@@ -1,0 +1,513 @@
+/* =========================================
+   PAGE: Vet Profile
+   ========================================= */
+
+/* ── Page Layout ──────────────────────────── */
+.vet-profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-10);
+  align-items: start;
+  padding-block: var(--space-8);
+}
+
+.vet-profile-main {
+  min-width: 0;
+}
+
+.vet-profile-sidebar {
+  position: sticky;
+  top: calc(72px + var(--space-4));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Breadcrumb ───────────────────────────── */
+.vet-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+}
+
+.vet-breadcrumb a {
+  color: var(--color-charcoal-600);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.vet-breadcrumb a:hover {
+  color: var(--color-umber-600);
+}
+
+.vet-breadcrumb-sep {
+  color: var(--color-sand-300);
+  user-select: none;
+}
+
+.vet-breadcrumb-current {
+  color: var(--color-charcoal-900);
+  font-weight: 600;
+}
+
+.vet-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  color: var(--color-umber-600);
+  text-decoration: none;
+  margin-block-end: var(--space-6);
+  transition: color 0.2s;
+}
+
+.vet-back-link:hover {
+  color: var(--color-umber-700);
+}
+
+/* ── Profile Hero ─────────────────────────── */
+.vet-profile-hero {
+  background-color: var(--color-sand-100);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-block-end: var(--space-8);
+}
+
+.vet-profile-hero-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.vet-profile-avatar {
+  inline-size: 80px;
+  height: 80px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-umber-600);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-h3);
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.vet-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.vet-profile-name {
+  font-size: var(--font-h1);
+  color: var(--color-charcoal-950);
+  margin-block-end: var(--space-2);
+}
+
+.vet-profile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+}
+
+.vet-profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+}
+
+.vet-profile-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-700);
+}
+
+.vet-profile-meta-icon {
+  inline-size: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--color-umber-500);
+}
+
+.vet-profile-animal-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ── Section Headings ─────────────────────── */
+.vet-section {
+  margin-block-end: var(--space-8);
+}
+
+.vet-section-title {
+  font-size: var(--font-h3);
+  color: var(--color-charcoal-950);
+  margin-block-end: var(--space-4);
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-sand-200);
+}
+
+/* ── About ────────────────────────────────── */
+.vet-about-text {
+  font-size: var(--font-body);
+  color: var(--color-charcoal-800);
+  line-height: 1.75;
+}
+
+/* ── Services ─────────────────────────────── */
+.vet-services-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vet-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-sand-100);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-md);
+}
+
+.vet-service-icon {
+  inline-size: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-umber-600);
+  margin-block-start: 2px;
+}
+
+.vet-service-text {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-800);
+  font-weight: 600;
+}
+
+/* ── Credentials ──────────────────────────── */
+.vet-credentials-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-inline-start: 3px solid var(--color-umber-600);
+  padding-inline-start: var(--space-5);
+}
+
+.vet-credential-item {
+  position: relative;
+  padding-block-end: var(--space-6);
+}
+
+.vet-credential-item:last-child {
+  padding-block-end: 0;
+}
+
+/* Timeline dot */
+.vet-credential-item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--space-5) - 5px);
+  top: 6px;
+  inline-size: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-umber-600);
+  border: 2px solid var(--color-sand-50);
+}
+
+.vet-credential-year {
+  font-size: var(--font-caption);
+  font-weight: 700;
+  color: var(--color-umber-600);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-block-end: var(--space-1);
+}
+
+.vet-credential-degree {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: var(--color-charcoal-900);
+  margin-block-end: var(--space-1);
+}
+
+.vet-credential-institution {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+}
+
+/* ── Reviews ──────────────────────────────── */
+.vet-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.vet-review-card {
+  background-color: var(--color-sand-50);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.vet-review-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+
+.vet-reviewer-avatar {
+  inline-size: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-sage-200);
+  color: var(--color-umber-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-caption);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.vet-reviewer-name {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: var(--color-charcoal-900);
+}
+
+.vet-reviewer-date {
+  font-size: var(--font-caption);
+  color: var(--color-charcoal-600);
+}
+
+.vet-review-text {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-800);
+  line-height: 1.65;
+}
+
+.vet-reviews-disclaimer {
+  font-size: var(--font-caption);
+  color: var(--color-charcoal-600);
+  font-style: italic;
+  margin-block-start: var(--space-4);
+}
+
+/* ── Availability Table ───────────────────── */
+.vet-availability-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-body-sm);
+}
+
+.vet-availability-table th {
+  text-align: start;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-charcoal-600);
+  border-block-end: 2px solid var(--color-sand-200);
+}
+
+.vet-availability-table td {
+  padding: var(--space-2) var(--space-3);
+  border-block-end: 1px solid var(--color-sand-200);
+  color: var(--color-charcoal-800);
+}
+
+.vet-availability-table tr:last-child td {
+  border-block-end: none;
+}
+
+.avail-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+}
+
+.avail-dot::before {
+  content: '';
+  display: inline-block;
+  inline-size: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.avail-dot.is-available {
+  color: var(--color-success);
+}
+
+.avail-dot.is-available::before {
+  background-color: var(--color-success);
+}
+
+.avail-dot.is-unavailable {
+  color: var(--color-charcoal-600);
+}
+
+.avail-dot.is-unavailable::before {
+  background-color: var(--color-sand-300);
+}
+
+/* ── Booking Sidebar Card ─────────────────── */
+.vet-booking-card {
+  background-color: var(--color-sand-50);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
+}
+
+.vet-booking-vet-name {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+  margin-block-end: var(--space-1);
+}
+
+.vet-booking-price {
+  font-size: var(--font-h2);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-charcoal-950);
+  margin-block-end: var(--space-1);
+}
+
+.vet-booking-price-note {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+  margin-block-end: var(--space-5);
+}
+
+.vet-booking-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vet-booking-sub-note {
+  font-size: var(--font-caption);
+  color: var(--color-charcoal-600);
+  text-align: center;
+  margin-block-start: var(--space-2);
+}
+
+/* Confirmation state inside booking card */
+.vet-booking-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  text-align: center;
+}
+
+.vet-booking-confirmation-icon {
+  color: var(--color-success);
+  inline-size: 40px;
+  height: 40px;
+}
+
+.vet-booking-confirmation-text {
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  color: var(--color-charcoal-900);
+}
+
+/* ── Availability sidebar card ────────────── */
+.vet-availability-card {
+  background-color: var(--color-sand-50);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.vet-availability-card-title {
+  font-size: var(--font-body);
+  font-weight: 700;
+  color: var(--color-charcoal-950);
+  margin-block-end: var(--space-4);
+}
+
+/* ── Mobile Sticky Bar ────────────────────── */
+.vet-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+  background-color: var(--color-sand-50);
+  border-block-start: 1px solid var(--color-sand-200);
+  padding: var(--space-3) var(--space-4);
+  z-index: 90;
+  align-items: center;
+  gap: var(--space-3);
+  box-shadow: 0 -4px 16px rgba(32, 26, 21, 0.08);
+}
+
+.vet-mobile-bar-price {
+  font-size: var(--font-h4);
+  font-weight: 800;
+  color: var(--color-charcoal-950);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 1023px) {
+  .vet-profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .vet-profile-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .vet-profile-layout {
+    padding-block: var(--space-4);
+  }
+
+  .vet-profile-name {
+    font-size: var(--font-h2);
+  }
+
+  .vet-profile-avatar {
+    inline-size: 60px;
+    height: 60px;
+    font-size: var(--font-body-lg);
+  }
+
+  .vet-profile-sidebar {
+    display: none;
+  }
+
+  .vet-mobile-bar {
+    display: flex;
+  }
+
+  .vet-profile-main {
+    padding-block-end: 80px;
+  }
+}

@@ -1,0 +1,23 @@
+/* Typography Editorial */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-charcoal-950);
+  font-weight: 700;
+  line-height: 1.1; /*1.2*/
+  letter-spacing: -0.03em; /*-0.02em*/
+}
+
+.text-display { font-size: var(--font-display); font-weight: 800; letter-spacing: -0.03em; }
+.text-h1 { font-size: var(--font-h1); }
+.text-h2 { font-size: var(--font-h2); }
+.text-h3 { font-size: var(--font-h3); }
+.text-h4 { font-size: var(--font-h4); }
+.text-body-lg { font-size: var(--font-body-lg); }
+.text-body { font-size: var(--font-body); }
+.text-body-sm { font-size: var(--font-body-sm); color: var(--color-charcoal-700); }
+.text-caption { font-size: var(--font-caption); color: var(--color-charcoal-600); }
+
+/* Editorial Numbers */
+.number-emphasized {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}

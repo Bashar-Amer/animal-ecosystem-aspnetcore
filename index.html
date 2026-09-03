@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Ecosystem - Home</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Marketplace</a></li>
+        <li><a href="#">Auctions</a></li>
+        <li><a href="#">Veterinary</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <!-- <button id="lang-toggle" class="btn btn-outline btn-sm">العربية</button> -->
+        <button class="btn btn-outline btn-sm" data-i18n="btn_signin">Sign In</button>
+        <button class="btn btn-primary btn-sm" data-i18n="btn_register">Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero -->
+  <section class="hero-section mb-12">
+    <div class="container hero-content" style="max-width: 800px;">
+      <h1 class="text-display mb-6" data-i18n="hero_title">Everything Your Animals Need, In One Place.</h1>
+      <p class="text-body-lg mb-8" data-i18n="hero_sub">The trusted platform for buying, selling, and caring for livestock and animals in Jordan.</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="./marketplace.html">
+          <button class="btn btn-primary btn-lg" data-i18n="find_animal">Find an Animal</button>
+        </a>
+        <a href="./veterinary.html">
+          <button class="btn btn-outline-light btn-lg" data-i18n="find_vet">Find a Veterinarian</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- 2. Three Core Services -->
+    <section class="mb-12">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <h3 class="text-h3 mb-4">Buy & Sell Animals</h3>
+          <p class="text-body-sm text-muted">A trusted marketplace for livestock and animals. Connect directly with verified sellers.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="text-h3 mb-4">Veterinary Care</h3>
+          <p class="text-body-sm text-muted">Find specialized veterinarians, book farm visits, and ensure the health of your animals.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M3 21h18"/><path d="M8 8a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4Z"/><path d="M20 8a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4Z"/><path d="M4 8l8-5 8 5"/></svg>
+          </div>
+          <h3 class="text-h3 mb-4">Live Auctions</h3>
+          <p class="text-body-sm text-muted">Participate in transparent live bidding for premium and rare animals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Featured Animals -->
+    <section class="mb-12">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-h2">Featured Animals</h2>
+        <a href="#" class="btn btn-secondary">View All</a>
+      </div>
+      <div id="featured-animals-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 4. Live Auctions -->
+    <section class="mb-12">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-h2">Live Auctions</h2>
+        <a href="#" class="btn btn-warm">Go to Auctions</a>
+      </div>
+      <div id="live-auctions-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 5. Featured Veterinarians -->
+    <section class="mb-12">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-h2">Featured Veterinarians</h2>
+        <a href="#" class="btn btn-secondary">Find a Vet</a>
+      </div>
+      <div id="featured-vets-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 6. Rare/Special Species -->
+    <!-- <section class="mb-12">
+      <div class="card" style="background-color: var(--color-earth-100); border: none; border-radius: var(--radius-xl);">
+        <div class="card-content flex flex-col md:flex-row items-center justify-between p-8">
+          <div class="mb-4 md:mb-0 md:mr-8">
+            <h2 class="text-h2 mb-2" style="color: var(--color-earth-700);">Discover Rare & Special Species</h2>
+            <p class="text-body" style="color: var(--color-earth-500);">Explore our educational directory of specialized and rare breeds.</p>
+          </div>
+          <button class="btn btn-primary" style="background-color: var(--color-earth-700);">Explore Directory</button>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- 7. Final CTA -->
+    <section class="cta-section">
+      <div class="container cta-container" >
+        <h2 class="text-h2 mb-4">Ready to join the ecosystem?</h2>
+        <p class="text-body-lg mb-8 text-umber-800" >Create your free account today to start buying, selling, or offering your veterinary services.</p>
+        <div class="flex justify-center gap-4">
+          <button class="btn btn-primary btn-lg">Create Account</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div>
+        <h3 class="text-h3 mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">Connecting commerce and animal health in one trusted platform.</p>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4">Marketplace</h4>
+        <ul class="footer-links" >
+          <li><a href="#" class="text-body-sm">Browse Animals</a></li>
+          <li><a href="#" class="text-body-sm">Sell Animal</a></li>
+          <li><a href="#" class="text-body-sm">Auctions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4">Services</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="text-body-sm">Veterinary Care</a></li>
+          <li><a href="#" class="text-body-sm">Rare Species</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4">Support</h4>
+        <ul class="footer-links" >
+          <li><a href="#" class="text-body-sm">Contact Us</a></li>
+          <li><a href="#" class="text-body-sm">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,1204 @@
+/* ============================================================
+   Marketplace
+   Page-specific styles only.
+
+   Global styling comes from:
+   main.css (which pulls in abstracts/variables.css,
+   components/cards.css, components/badges.css, etc.)
+
+   NOTE (fix): this file previously invented fallback tokens
+   like --color-primary-600 and --space-7 that don't exist in
+   variables.css — meaning it never actually read the real
+   design system, just coincidentally similar hex fallbacks.
+   Every var() below now references real tokens (--color-umber-*,
+   --color-sand-*, --color-charcoal-*, --space-*, --radius-*).
+   ============================================================ */
+
+
+/* ============================================================
+   Page
+   ============================================================ */
+
+.marketplace-page {
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   Container
+   ============================================================ */
+
+.marketplace-container {
+    width: min(
+        100% - 2 * var(--space-6),
+        1400px
+    );
+
+    margin-inline: auto;
+}
+
+
+/* ============================================================
+   Marketplace Header
+   ============================================================ */
+
+.marketplace-header {
+    padding-block:
+        var(--space-12)
+        var(--space-8);
+
+    border-bottom: 1px solid var(--color-sand-200);
+
+    background: var(--color-sand-50);
+}
+
+
+.marketplace-header__content {
+    max-width: 720px;
+}
+
+
+.marketplace-header__eyebrow {
+    display: inline-block;
+
+    margin-bottom: var(--space-3);
+
+    font-size: var(--font-caption);
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--color-umber-700);
+}
+
+
+.marketplace-header__title {
+    margin: 0;
+
+    font-size: var(--font-display);
+    line-height: 1.08;
+}
+
+
+.marketplace-header__description {
+    max-width: 620px;
+
+    margin: var(--space-4) 0 0;
+
+    font-size: var(--font-body-lg);
+    line-height: 1.7;
+
+    color: var(--color-charcoal-700);
+}
+
+
+/* ============================================================
+   Search
+   ============================================================ */
+
+.marketplace-search {
+    margin-top: var(--space-6);
+
+    max-width: 850px;
+}
+
+
+.marketplace-search__label {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+.marketplace-search__field {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 58px;
+
+    background: #fff;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.marketplace-search__field:focus-within {
+    border-color: var(--color-umber-500);
+
+    box-shadow: 0 0 0 3px rgba(122, 86, 54, .14);
+}
+
+
+.marketplace-search__icon {
+    width: 21px;
+    height: 21px;
+
+    margin-inline-start: 18px;
+
+    flex: 0 0 auto;
+
+    fill: none;
+
+    stroke: var(--color-charcoal-600);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+
+.marketplace-search__input {
+    width: 100%;
+
+    min-height: 56px;
+
+    padding-inline: 14px 48px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    font: inherit;
+
+    color: var(--color-charcoal-900);
+}
+
+
+.marketplace-search__clear {
+    position: absolute;
+
+    inset-inline-end: 14px;
+
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    border-radius: var(--radius-pill);
+
+    background: var(--color-sand-100);
+
+    color: var(--color-charcoal-700);
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   Content
+   ============================================================ */
+
+.marketplace-content {
+    padding-block: var(--space-8) var(--space-12);
+}
+
+
+/* ============================================================
+   Layout
+   ============================================================ */
+
+.marketplace-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(230px, 270px)
+        minmax(0, 1fr);
+
+    gap: var(--space-8);
+
+    align-items: start;
+}
+
+
+/* ============================================================
+   Filters
+   ============================================================ */
+
+.marketplace-filters {
+    position: sticky;
+    top: 1.5rem;
+
+    padding: var(--space-5);
+
+    background: #fff;
+
+    border: 1px solid var(--color-sand-200);
+    border-radius: var(--radius-md);
+}
+
+
+.marketplace-filters__header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-bottom: var(--space-5);
+
+    border-bottom: 1px solid var(--color-sand-200);
+}
+
+
+.marketplace-filters__header h2 {
+    margin: 0;
+
+    font-size: var(--font-h4);
+}
+
+
+.marketplace-filters__header span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: var(--font-caption);
+
+    color: var(--color-charcoal-600);
+}
+
+
+.marketplace-filters__clear {
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--color-umber-700);
+
+    font: inherit;
+    font-size: var(--font-caption);
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.marketplace-filter-group {
+    padding-block: var(--space-5);
+
+    border-bottom: 1px solid var(--color-sand-200);
+}
+
+
+.marketplace-filter-group:last-child {
+    border-bottom: 0;
+}
+
+
+.marketplace-filter-group h3 {
+    margin: 0 0 .85rem;
+
+    font-size: var(--font-body);
+}
+
+
+.marketplace-filter-options {
+    display: grid;
+
+    gap: .55rem;
+}
+
+
+/* ============================================================
+   Filter checkboxes
+   ============================================================ */
+
+.marketplace-checkbox {
+    display: flex;
+
+    align-items: center;
+
+    gap: .65rem;
+
+    font-size: var(--font-body-sm);
+
+    cursor: pointer;
+}
+
+
+.marketplace-checkbox input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.marketplace-checkbox__box {
+    display: grid;
+
+    place-items: center;
+
+    width: 18px;
+    height: 18px;
+
+    flex: 0 0 18px;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-xs);
+
+    background: #fff;
+}
+
+
+.marketplace-checkbox__box svg {
+    width: 13px;
+    height: 13px;
+
+    fill: none;
+
+    stroke: #fff;
+    stroke-width: 2.5;
+
+    opacity: 0;
+}
+
+
+.marketplace-checkbox input:checked + .marketplace-checkbox__box {
+    border-color: var(--color-umber-600);
+    background: var(--color-umber-600);
+}
+
+
+.marketplace-checkbox input:checked + .marketplace-checkbox__box svg {
+    opacity: 1;
+}
+
+
+/* Reuse the same checkbox visual for the generated filter options
+   (species/breed/age/gender/location/purpose) so everything looks
+   consistent — previously these had their own near-duplicate CSS. */
+
+.marketplace-filter-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: .65rem;
+
+    font-size: var(--font-body-sm);
+
+    cursor: pointer;
+}
+
+
+.marketplace-filter-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.marketplace-filter-option__box {
+    display: grid;
+
+    place-items: center;
+
+    width: 18px;
+    height: 18px;
+
+    flex: 0 0 18px;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-xs);
+
+    background: #fff;
+}
+
+
+.marketplace-filter-option__box svg {
+    width: 13px;
+    height: 13px;
+
+    fill: none;
+
+    stroke: #fff;
+    stroke-width: 2.5;
+
+    opacity: 0;
+}
+
+
+.marketplace-filter-option input:checked + .marketplace-filter-option__box {
+    border-color: var(--color-umber-600);
+    background: var(--color-umber-600);
+}
+
+
+.marketplace-filter-option input:checked + .marketplace-filter-option__box svg {
+    opacity: 1;
+}
+
+
+.marketplace-filter-option__label {
+    flex: 1;
+
+    color: var(--color-charcoal-800);
+}
+
+
+.marketplace-filter-option__count {
+    font-size: var(--font-caption);
+
+    color: var(--color-charcoal-600);
+}
+
+
+/* ============================================================
+   Price
+   ============================================================ */
+
+.marketplace-price-fields {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: end;
+
+    gap: .45rem;
+}
+
+
+.marketplace-price-fields label {
+    display: grid;
+
+    gap: .35rem;
+}
+
+
+.marketplace-price-fields label span {
+    font-size: var(--font-caption);
+
+    color: var(--color-charcoal-600);
+}
+
+
+.marketplace-price-fields input {
+    width: 100%;
+
+    height: 40px;
+
+    padding-inline: .65rem;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-xs);
+
+    background: #fff;
+
+    font: inherit;
+
+    font-size: var(--font-body-sm);
+}
+
+
+.marketplace-price-divider {
+    padding-bottom: .7rem;
+
+    color: var(--color-charcoal-600);
+}
+
+
+/* ============================================================
+   Results
+   ============================================================ */
+
+.marketplace-results {
+    min-width: 0;
+}
+
+
+.marketplace-results__toolbar {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 1.5rem;
+
+    margin-bottom: var(--space-5);
+}
+
+
+.marketplace-results__summary h2 {
+    margin: 0;
+
+    font-size: var(--font-h2);
+}
+
+
+.marketplace-results__summary p {
+    margin: .3rem 0 0;
+
+    font-size: var(--font-body-sm);
+
+    color: var(--color-charcoal-600);
+}
+
+
+.marketplace-sort {
+    display: flex;
+
+    align-items: center;
+
+    gap: .6rem;
+
+    flex: 0 0 auto;
+
+    font-size: var(--font-caption);
+
+    color: var(--color-charcoal-700);
+}
+
+
+.marketplace-sort select {
+    min-height: 40px;
+
+    padding-inline: .75rem 2rem .75rem .75rem;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-xs);
+
+    background: #fff;
+
+    font: inherit;
+
+    color: var(--color-charcoal-800);
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   Active Filters
+   ============================================================ */
+
+.marketplace-active-filters {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: .45rem;
+
+    margin-bottom: var(--space-5);
+}
+
+
+.marketplace-active-filter {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: .4rem;
+
+    padding: .35rem .65rem;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-pill);
+
+    background: var(--color-sand-50);
+
+    font-size: var(--font-caption);
+    color: var(--color-charcoal-800);
+}
+
+
+.marketplace-active-filter button,
+.marketplace-active-filter__remove {
+    display: grid;
+
+    place-items: center;
+
+    width: 17px;
+    height: 17px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   Animal Grid
+   ============================================================ */
+
+.marketplace-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: var(--space-6);
+}
+
+
+/*
+ * The marketplace controls the grid,
+ * but NOT the base .card styling — that lives in
+ * css/components/cards.css. Below are only the
+ * marketplace-specific additions to .animal-card.
+ */
+
+.animal-card {
+    position: relative;
+}
+
+
+.animal-card__favorite {
+    position: absolute;
+
+    inset-block-start: var(--space-3);
+    inset-inline-end: var(--space-3);
+
+    display: grid;
+
+    place-items: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    border-radius: var(--radius-pill);
+
+    background: rgba(255, 255, 255, .92);
+
+    color: var(--color-charcoal-700);
+
+    cursor: pointer;
+
+    transition:
+        color .15s ease,
+        transform .15s ease;
+}
+
+
+.animal-card__favorite:hover {
+    transform: scale(1.06);
+}
+
+
+.animal-card__favorite svg {
+    fill: none;
+
+    transition: fill .15s ease;
+}
+
+
+.animal-card__favorite.is-favorite {
+    color: var(--color-terracotta-600);
+}
+
+
+.animal-card__favorite.is-favorite svg {
+    fill: currentColor;
+}
+
+
+/* ============================================================
+   States
+   ============================================================ */
+
+.marketplace-state {
+    display: grid;
+
+    place-items: center;
+
+    min-height: 280px;
+
+    padding: 2rem;
+
+    text-align: center;
+}
+
+
+.marketplace-state h3 {
+    margin: .8rem 0 .4rem;
+}
+
+
+.marketplace-state p {
+    margin: 0;
+
+    max-width: 420px;
+
+    color: var(--color-charcoal-600);
+}
+
+
+.marketplace-state--error {
+    border: 1px solid var(--color-sand-200);
+    border-radius: var(--radius-md);
+}
+
+
+.marketplace-state button {
+    margin-top: 1rem;
+}
+
+
+.marketplace-state__icon {
+    font-size: 2rem;
+}
+
+
+.marketplace-spinner {
+    width: 30px;
+    height: 30px;
+
+    border: 3px solid var(--color-sand-200);
+    border-top-color: var(--color-umber-600);
+    border-radius: var(--radius-pill);
+
+    animation: marketplace-spin .8s linear infinite;
+}
+
+
+@keyframes marketplace-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ============================================================
+   Pagination
+   ============================================================ */
+
+.marketplace-pagination {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: var(--space-8);
+}
+
+
+.marketplace-load-more {
+    min-width: 190px;
+}
+
+
+/* ============================================================
+   Mobile toolbar
+   ============================================================ */
+
+.marketplace-mobile-toolbar {
+    display: none;
+}
+
+
+/* ============================================================
+   Filter Drawer
+   NOTE (fix): marketplace.js toggles a class named "is-open"
+   on #filter-drawer. The old CSS here styled
+   ".marketplace-drawer--open" instead, so the drawer never
+   visually opened even though aria-hidden toggled correctly.
+   ============================================================ */
+
+.marketplace-drawer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.marketplace-drawer.is-open {
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+.marketplace-drawer__backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(28, 19, 13, .45);
+
+    opacity: 0;
+
+    transition: opacity .25s ease;
+}
+
+
+.marketplace-drawer.is-open .marketplace-drawer__backdrop {
+    opacity: 1;
+}
+
+
+.marketplace-drawer__panel {
+    position: absolute;
+
+    inset-block: 0;
+    inset-inline-end: 0;
+
+    width: min(92vw, 400px);
+
+    display: grid;
+
+    grid-template-rows: auto 1fr auto;
+
+    background: #fff;
+
+    /* Slide in from the panel's own inline-end edge. In LTR that's
+       the right (positive X); in RTL, inset-inline-end resolves to
+       the left, so the closed-state offset needs to flip too, or
+       the drawer slides toward the center instead of off-screen. */
+    transform: translateX(100%);
+
+    transition: transform .25s ease;
+}
+
+
+[dir="rtl"] .marketplace-drawer__panel {
+    transform: translateX(-100%);
+}
+
+
+.marketplace-drawer.is-open .marketplace-drawer__panel {
+    transform: translateX(0);
+}
+
+
+.marketplace-drawer__header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 1.25rem;
+
+    border-bottom: 1px solid var(--color-sand-200);
+}
+
+
+.marketplace-drawer__header h2 {
+    margin: 0;
+
+    font-size: var(--font-h3);
+}
+
+
+.marketplace-drawer__header span {
+    display: block;
+
+    margin-top: .25rem;
+
+    font-size: var(--font-caption);
+
+    color: var(--color-charcoal-600);
+}
+
+
+.marketplace-drawer__header button {
+    width: 34px;
+    height: 34px;
+
+    border: 0;
+    border-radius: var(--radius-pill);
+
+    background: var(--color-sand-100);
+
+    font-size: 1.3rem;
+
+    cursor: pointer;
+}
+
+
+.marketplace-drawer__body {
+    overflow-y: auto;
+
+    padding: 1.25rem;
+}
+
+
+.marketplace-drawer__footer {
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: .75rem;
+
+    padding: 1rem 1.25rem;
+
+    border-top: 1px solid var(--color-sand-200);
+
+    background: #fff;
+}
+
+
+.marketplace-drawer__clear,
+.marketplace-drawer__apply {
+    min-height: 44px;
+
+    border-radius: var(--radius-sm);
+
+    font: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.marketplace-drawer__clear {
+    border: 1px solid var(--color-sand-300);
+
+    background: #fff;
+}
+
+
+.marketplace-drawer__apply {
+    border: 1px solid var(--color-umber-600);
+
+    background: var(--color-umber-600);
+
+    color: #fff;
+}
+
+
+/* ============================================================
+   Temp lang toggle (see marketplace.html note — remove once
+   the real navbar component renders on this page)
+   ============================================================ */
+
+.lang-toggle-temp {
+    margin: var(--space-3);
+
+    padding: .5rem 1rem;
+
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-sm);
+
+    background: #fff;
+
+    font: inherit;
+    font-size: var(--font-body-sm);
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+    .marketplace-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .marketplace-layout {
+        display: block;
+    }
+
+
+    .marketplace-filters {
+        display: none;
+    }
+
+
+    .marketplace-mobile-toolbar {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 1rem;
+
+        margin-bottom: var(--space-5);
+    }
+
+
+    .marketplace-filter-button {
+        position: relative;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: .5rem;
+
+        min-height: 40px;
+
+        padding-inline: .85rem;
+
+        border: 1px solid var(--color-sand-300);
+        border-radius: var(--radius-xs);
+
+        background: #fff;
+
+        font: inherit;
+        font-size: var(--font-body-sm);
+
+        cursor: pointer;
+    }
+
+
+    .marketplace-filter-button svg {
+        width: 17px;
+        height: 17px;
+
+        fill: none;
+
+        stroke: currentColor;
+        stroke-width: 1.8;
+    }
+
+
+    .marketplace-filter-count {
+        display: grid;
+
+        place-items: center;
+
+        min-width: 19px;
+        height: 19px;
+
+        padding-inline: .25rem;
+
+        border-radius: var(--radius-pill);
+
+        background: var(--color-umber-600);
+
+        color: #fff;
+
+        font-size: .7rem;
+    }
+
+
+    .marketplace-mobile-sort {
+        display: flex;
+
+        align-items: center;
+
+        gap: .5rem;
+
+        font-size: var(--font-caption);
+    }
+
+
+    .marketplace-mobile-sort select {
+        min-height: 40px;
+
+        padding-inline: .6rem;
+
+        border: 1px solid var(--color-sand-300);
+        border-radius: var(--radius-xs);
+
+        background: #fff;
+
+        font: inherit;
+    }
+
+
+    .marketplace-sort {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 640px) {
+
+    .marketplace-container {
+        width: min(100% - 2rem, 1400px);
+    }
+
+
+    .marketplace-header {
+        padding-block: 2.25rem 1.75rem;
+    }
+
+
+    .marketplace-search__field {
+        min-height: 52px;
+    }
+
+
+    .marketplace-search__input {
+        min-height: 50px;
+
+        font-size: var(--font-body-sm);
+    }
+
+
+    .marketplace-results__toolbar {
+        align-items: flex-start;
+    }
+
+
+    .marketplace-grid {
+        grid-template-columns: 1fr;
+
+        gap: 1rem;
+    }
+
+
+    .marketplace-content {
+        padding-block: 1.25rem 2.5rem;
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .marketplace-spinner {
+        animation: none;
+    }
+
+
+    .marketplace-drawer__panel,
+    .marketplace-drawer__backdrop {
+        transition: none;
+    }
+
+}
+
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Veterinarian Profile — Animal Ecosystem</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────── -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="veterinary.html" class="active">Veterinary</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Breadcrumb ───────────────────────── -->
+  <nav class="container" aria-label="Breadcrumb">
+    <ol class="vet-breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li aria-hidden="true" class="vet-breadcrumb-sep">/</li>
+      <li><a href="veterinary.html">Veterinary</a></li>
+      <li aria-hidden="true" class="vet-breadcrumb-sep">/</li>
+      <li>
+        <span class="vet-breadcrumb-current" id="breadcrumbName">
+          Loading…
+        </span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ── Back Link ────────────────────────── -->
+  <div class="container">
+    <a href="veterinary.html" class="vet-back-link" aria-label="Back to veterinarian directory">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Back to Directory
+    </a>
+  </div>
+
+  <!-- ── Main Layout ──────────────────────── -->
+  <div class="container vet-profile-layout">
+
+    <!-- ── Left: Main Content ─────────────── -->
+    <main class="vet-profile-main" id="mainContent">
+
+      <!-- Profile Hero -->
+      <div class="vet-profile-hero" aria-labelledby="profileName">
+        <div class="vet-profile-hero-inner">
+
+          <!-- Avatar -->
+          <div
+            class="vet-profile-avatar"
+            id="profileAvatar"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Identity -->
+          <div class="vet-profile-info">
+            <h1 class="vet-profile-name" id="profileName">Loading…</h1>
+
+            <!-- Badges -->
+            <div class="vet-profile-badges" id="profileBadges"></div>
+
+            <!-- Meta rows -->
+            <div class="vet-profile-meta" id="profileMeta"></div>
+
+            <!-- Animal types -->
+            <div
+              class="vet-profile-animal-types"
+              id="profileAnimalTypes"
+              role="list"
+              aria-label="Animal types treated"
+            ></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- About -->
+      <section class="vet-section" aria-labelledby="aboutTitle">
+        <h2 class="vet-section-title" id="aboutTitle">About</h2>
+        <p class="vet-about-text" id="profileAbout"></p>
+      </section>
+
+      <!-- Services -->
+      <section class="vet-section" aria-labelledby="servicesTitle">
+        <h2 class="vet-section-title" id="servicesTitle">Services Offered</h2>
+        <ul
+          class="vet-services-list"
+          id="profileServices"
+          aria-label="Services offered"
+        ></ul>
+      </section>
+
+      <!-- Credentials -->
+      <section class="vet-section" aria-labelledby="credentialsTitle">
+        <h2 class="vet-section-title" id="credentialsTitle">
+          Credentials &amp; Education
+        </h2>
+        <!-- ol: ordered because credentials are chronological -->
+        <ol
+          class="vet-credentials-list"
+          id="profileCredentials"
+          aria-label="Credentials and education"
+        ></ol>
+      </section>
+
+      <!-- Reviews -->
+      <section class="vet-section" aria-labelledby="reviewsTitle">
+        <h2 class="vet-section-title" id="reviewsTitle">What Clients Say</h2>
+        <div
+          class="vet-reviews-list"
+          id="profileReviews"
+          role="list"
+        ></div>
+        <p class="vet-reviews-disclaimer">
+          Reviews shown are illustrative examples for this prototype.
+        </p>
+      </section>
+
+    </main>
+
+    <!-- ── Right: Sidebar ─────────────────── -->
+    <aside class="vet-profile-sidebar" aria-label="Booking and availability">
+
+      <!-- Booking Card -->
+      <div class="vet-booking-card" id="bookingCard">
+        <p class="vet-booking-vet-name" id="bookingVetName">—</p>
+        <div class="vet-booking-price" id="bookingPrice">—</div>
+        <p class="vet-booking-price-note">In-person or farm visit available</p>
+
+        <div class="vet-booking-actions" id="bookingActions">
+          <button
+            id="requestConsultationBtn"
+            class="btn btn-primary"
+            aria-label="Request a consultation with this veterinarian"
+          >
+            Request Consultation
+          </button>
+
+          <button
+            id="saveVetBtn"
+            class="btn btn-outline"
+            aria-pressed="false"
+            aria-label="Save this veterinarian to your saved list"
+          >
+            ♡ Save Veterinarian
+          </button>
+        </div>
+
+        <p class="vet-booking-sub-note">
+          You will be contacted to confirm your date and time.
+        </p>
+      </div>
+
+      <!-- Availability Card -->
+      <div class="vet-availability-card">
+        <p class="vet-availability-card-title">Weekly Availability</p>
+        <table
+          class="vet-availability-table"
+          id="availabilityTable"
+          aria-label="Weekly availability schedule"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="availabilityBody"></tbody>
+        </table>
+      </div>
+
+    </aside>
+
+  </div><!-- /vet-profile-layout -->
+
+  <!-- ── Mobile Sticky Action Bar ─────────── -->
+  <div
+    class="vet-mobile-bar"
+    id="vetMobileBar"
+    aria-label="Quick booking actions"
+  >
+    <div class="vet-mobile-bar-price" id="mobilePriceDisplay">—</div>
+    <button
+      id="mobileRequestBtn"
+      class="btn btn-primary"
+      style="flex: 1;"
+      aria-label="Request a consultation with this veterinarian"
+    >
+      Request Consultation
+    </button>
+    <button
+      id="mobileSaveBtn"
+      class="btn btn-outline"
+      aria-pressed="false"
+      aria-label="Save this veterinarian"
+      style="width: 44px; padding: 0;"
+    >
+      ♡
+    </button>
+  </div>
+
+  <!-- ── Footer ───────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3 class="mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">
+          Connecting commerce and animal health in one trusted platform.
+        </p>
+      </div>
+      <div>
+        <h4 class="mb-4">Marketplace</h4>
+        <ul class="footer-links">
+          <li><a href="marketplace.html">Browse Animals</a></li>
+          <li><a href="sell-animal.html">Sell Animal</a></li>
+          <li><a href="auctions.html">Auctions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Services</h4>
+        <ul class="footer-links">
+          <li><a href="veterinary.html">Veterinary Care</a></li>
+          <li><a href="rare-species.html">Rare Species</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/vet-profile.js"></script>
+</body>
+</html>

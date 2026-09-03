@@ -1,0 +1,31 @@
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-sand-50);
+  color: var(--color-charcoal-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visually hidden — accessible label helper */
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Prevent text selection carets on standard layout and text elements */
+body, h1, h2, h3, h4, h5, h6, p, span, div, a, li {
+  caret-color: transparent;
+}
+
+/* Ensure inputs and textareas keep their typing cursor visible */
+input, textarea, [contenteditable="true"] {
+  caret-color: auto;
+}
+

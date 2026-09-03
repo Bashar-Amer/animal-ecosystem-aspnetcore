@@ -1,0 +1,94 @@
+.container {
+  inline-size: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.grid { display: grid; gap: var(--space-6); }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.flex-col { flex-direction: column; }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+
+.mt-2 { margin-block-start: var(--space-2); }
+.mt-4 { margin-block-start: var(--space-4); }
+.mt-8 { margin-block-start: var(--space-8); }
+.mb-2 { margin-block-end: var(--space-2); }
+.mb-4 { margin-block-end: var(--space-4); }
+.mb-6 { margin-block-end: var(--space-6); }
+.mb-8 { margin-block-end: var(--space-8); }
+.mb-12 { margin-block-end: var(--space-12); }
+
+/* Page Specific Layout Blocks */
+.animal-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-block-start: var(--space-12);
+}
+
+@media (min-width: 1024px) {
+  .details-main   { flex: 1 1 70%; }
+  .details-sidebar{ flex: 0 0 30%; position: sticky; top: var(--space-8); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .details-main   { flex: 1 1 70%; }
+  .details-sidebar{ flex: 0 0 30%; }
+}
+@media (max-width: 767px) {
+  .details-main,
+  .details-sidebar { flex: 1 1 100%; }
+}
+
+/* Container Mobile Adjustment */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: var(--space-3);
+  }
+}
+
+/* Base Grid Utils (Mobile First) */
+.grid-cols-1 { 
+  grid-template-columns: 1fr; 
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 { 
+    grid-template-columns: repeat(3, 1fr); 
+  }
+  .md\:flex-row { 
+    flex-direction: row; 
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 { 
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}
+
+/* Max-Width Grid Overrides */
+@media (max-width: 1024px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+

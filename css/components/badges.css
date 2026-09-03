@@ -1,0 +1,59 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-caption);
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.badge-verified-owner {
+  background-color: var(--color-sage-100);
+  color: var(--color-umber-800);
+  border-color: var(--color-sage-300);
+}
+.badge-vet-checked {
+  background-color: #E4F0E7;
+  color: var(--color-success);
+  border-color: #C5E2CD;
+}
+.badge-auction {
+  background-color: var(--color-terracotta-100);
+  color: var(--color-terracotta-700);
+  border-color: var(--color-terracotta-500);
+}
+.badge-neutral { 
+  background-color: var(--color-sand-300); 
+  color: var(--color-charcoal-800); 
+}
+
+/* Add these to your badges */
+.badge-live {
+  background-color: var(--color-terracotta-600);
+  color: white;
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(188, 78, 40, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(188, 78, 40, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(188, 78, 40, 0); }
+}
+
+.badge-ending {
+  background-color: var(--color-warning);
+  color: var(--color-umber-950);
+}
+
+.badge-verified-vet {
+  background-color: var(--color-info);
+  color: white;
+  padding-inline-start: var(--space-2);
+}
+
+.badge-verified-vet::before {
+  content: "✓"; /* Or use a FontAwesome/Phosphor icon */
+  font-weight: 800;
+}
+

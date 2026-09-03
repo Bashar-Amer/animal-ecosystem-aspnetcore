@@ -1,0 +1,75 @@
+/* Cards (Organic) */
+.card {
+  background-color: var(--color-sand-50);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-sand-200);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.card-image-container {
+  /* padding: var(--space-2);*/
+  padding: 0;
+}
+.card-image {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3; /* Forces a consistent photographic ratio (e.g., 4:3 or 16:9) */
+  height: auto;        /* Let aspect-ratio control the height */
+  object-fit: cover;   /* Keeps it filling the box nicely */
+  border-radius: var(--radius-md);
+}
+.card-content {
+  padding: var(--space-4);
+}
+.card-footer {
+  padding: var(--space-4);
+  border-block-start: 1px solid var(--color-sand-200);
+  background-color: var(--color-sand-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Gallery & Horizontal Lists */
+.gallery-main {
+  inline-size: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+.gallery-thumbs {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+}
+.gallery-thumbs button {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.gallery-thumbs img {
+  inline-size: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.seller-list {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--space-4);
+  padding-block-end: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .card-image {
+    height: 180px;
+  }
+}
+

@@ -1,0 +1,97 @@
+/* =========================================
+   SIGNATURE DESIGN TOKENS (UMBER/SAGE)
+   ========================================= */
+:root {
+  /* Primary - Umber */
+  --color-umber-950: #1C130D;
+  --color-umber-900: #271B12;
+  --color-umber-800: #3A2818;
+  --color-umber-700: #543823;
+  --color-umber-600: #7A5636;  /* primary — buttons, brand elements */
+  --color-umber-500: #93714D;  /* links, hover states */
+
+  /* Secondary - Sage */
+  --color-sage-400: #A6B384;
+  --color-sage-300: #C2CCA9;
+  --color-sage-200: #DCE1CD;
+  --color-sage-100: #EEF0E6;
+
+  /* Sand (Neutral Backgrounds) */
+  --color-sand-300: #DED0B7;
+  --color-sand-200: #ECE3D2;
+  --color-sand-100: #F6F0E6;
+  --color-sand-50:  #FBF8F3;
+
+  /* Charcoal (Typography) */
+  --color-charcoal-950: #201A15;
+  --color-charcoal-900: #2B241D;
+  --color-charcoal-800: #3D342A;
+  --color-charcoal-700: #52483B;
+  --color-charcoal-600: #6B5F4F;
+
+  /* Warm Accent - Terracotta (Auctions, energy) */
+  --color-terracotta-700: #9C3B1E;
+  --color-terracotta-600: #BC4E28;
+  --color-terracotta-500: #D66B3F;
+  --color-terracotta-100: #F5DED2;
+
+  /* Semantic Colors */
+  --color-success: #3E8E5A;
+  --color-warning: #D9A62B;
+  --color-error: #B3261E;
+  --color-info: #3B6FA0;
+
+  /* Typography */
+  --font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: clamp(2rem, 5vw + 1rem, 3rem);
+  --font-h1: clamp(1.75rem, 4vw + 1rem, 2.25rem);
+  --font-h2: clamp(1.5rem, 3vw + 1rem, 1.75rem);
+  --font-h3: clamp(1.25rem, 2.5vw + 1rem, 1.25rem);
+  --font-h4: clamp(1.125rem, 2vw + 1rem, 1.25rem);
+  --font-body-lg: 1.125rem;
+  --font-body: 1rem;
+  --font-body-sm: 0.875rem;
+  --font-caption: 0.75rem;
+  
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Border Radius (Organic Geometry) */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(32, 26, 21, 0.04);
+  --shadow-md: 0 4px 12px rgba(32, 26, 21, 0.06);
+  --shadow-lg: 0 12px 24px rgba(32, 26, 21, 0.08);
+}
+
+/* Tablet & Smaller Design Tokens */
+@media (max-width: 768px) {
+  :root {
+    --font-size-4xl: 1.875rem;
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+  }
+}
+
+/* Mobile Design Tokens */
+@media (max-width: 480px) {
+  :root {
+    --space-10: 1.5rem;
+    --space-12: 2rem;
+  }
+}

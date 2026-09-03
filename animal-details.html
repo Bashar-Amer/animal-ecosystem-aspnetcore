@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Animal Details — Animal Ecosystem</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────── -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html" class="active">Marketplace</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="veterinary.html">Veterinary</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Breadcrumb ───────────────────────── -->
+  <nav class="container" aria-label="Breadcrumb">
+  <ol class="breadcrumb" id="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item"><a href="marketplace.html">Marketplace</a></li>
+    <li class="breadcrumb-item" aria-current="page">Awassi Ram</li>
+  </ol>
+  </nav>
+
+  <!-- ── Main ─────────────────────────────── -->
+  <main class="container animal-details">
+
+    <!-- ── Left: Main Column ──────────────── -->
+    <div class="details-main">
+
+      <!-- Gallery -->
+      <section aria-label="Animal photo gallery" class="mb-6">
+        <div class="gallery-main-wrapper">
+          <img
+            id="galleryMainImg"
+            class="gallery-main"
+            src=""
+            alt=""
+          />
+        </div>
+        <div
+          id="galleryThumbs"
+          class="gallery-thumbs"
+          role="group"
+          aria-label="Photo thumbnails"
+        ></div>
+      </section>
+
+      <!-- Animal Overview -->
+      <section aria-labelledby="animalName" class="mb-6">
+        <h1 id="animalName" class="animal-title">Loading…</h1>
+
+        <!-- Location -->
+        <p class="animal-location" id="animalLocation">
+          <!-- JS populated -->
+        </p>
+
+        <!-- Spec chips -->
+        <div class="animal-specs" id="animalSpecs" role="list">
+          <!-- JS populated -->
+        </div>
+
+        <!-- Description -->
+        <p id="animalDescription" class="animal-description"></p>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- Trust & Verification -->
+      <section aria-labelledby="trustTitle" class="mb-6">
+        <div class="trust-block">
+          <h2 id="trustTitle" class="trust-block-title">Health &amp; Verification</h2>
+
+          <!-- Badges -->
+          <div class="trust-badges" id="trustBadges"></div>
+
+          <!-- Health records -->
+          <ul
+            id="healthList"
+            class="health-records"
+            aria-label="Health records"
+          ></ul>
+
+          <!-- Vet Check CTA — ecosystem connection -->
+          <div class="vet-check-cta" role="complementary">
+            <svg
+              class="vet-check-cta-icon"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke-linecap="round"/>
+              <path d="M12 8v4m0 4h.01" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="vet-check-cta-content">
+              <p class="vet-check-cta-title">
+                Want an independent veterinary assessment?
+              </p>
+              <p class="vet-check-cta-text">
+                Request a professional vet check through our veterinary
+                network before committing to a purchase.
+              </p>
+              <a href="veterinary.html" class="btn btn-secondary">
+                Find a Veterinarian
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- Seller's Other Listings -->
+      <section aria-labelledby="sellerListingsTitle" class="mb-6">
+        <h2 id="sellerListingsTitle" class="section-heading">
+          More from this Seller
+        </h2>
+        <div id="sellerListings" class="seller-listings-scroll"></div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- Similar Animals -->
+      <section aria-labelledby="similarTitle" class="mb-6">
+        <h2 id="similarTitle" class="section-heading">Similar Animals</h2>
+        <div id="similarAnimals" class="similar-grid"></div>
+      </section>
+
+    </div><!-- /details-main -->
+
+    <!-- ── Right: Sidebar ─────────────────── -->
+    <aside class="details-sidebar" aria-label="Listing actions">
+
+      <!-- Price + Actions -->
+      <div class="sidebar-price-card">
+        <div id="priceAmount" class="price-amount">—</div>
+        <div id="priceType" class="price-type"></div>
+
+        <div class="sidebar-actions">
+          <button
+            id="contactSellerBtn"
+            class="btn btn-primary"
+            aria-label="Contact the seller about this animal"
+          >
+            Contact Seller
+          </button>
+          <button
+            id="saveAnimalBtn"
+            class="btn btn-outline"
+            aria-pressed="false"
+            aria-label="Save this animal to your saved list"
+          >
+            ♡ Save Animal
+          </button>
+        </div>
+      </div>
+
+      <!-- Seller Card -->
+      <div class="seller-card" id="sellerCard">
+        <div class="seller-card-header">
+          <div
+            class="seller-avatar"
+            id="sellerAvatar"
+            aria-hidden="true"
+          >K</div>
+          <div>
+            <div class="seller-card-name" id="sellerName">—</div>
+            <div class="seller-card-meta" id="sellerMeta">—</div>
+          </div>
+        </div>
+
+        <div id="sellerVerifiedBadge"></div>
+
+        <div class="seller-card-stats">
+          <div class="seller-stat">
+            <svg class="seller-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span id="sellerLocation">—</span>
+          </div>
+          <div class="seller-stat">
+            <svg class="seller-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span id="sellerSince">—</span>
+          </div>
+          <div class="seller-stat">
+            <svg class="seller-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            <span id="sellerResponse">—</span>
+          </div>
+        </div>
+      </div>
+
+    </aside><!-- /details-sidebar -->
+
+  </main>
+
+  <!-- ── Mobile Sticky Action Bar ─────────── -->
+  <div
+    class="mobile-action-bar"
+    id="mobileActionBar"
+    aria-label="Quick actions"
+  >
+    <div id="mobilePriceAmount" class="price-amount">—</div>
+    <button
+      id="mobileContactBtn"
+      class="btn btn-primary"
+      aria-label="Contact the seller about this animal"
+    >
+      Contact Seller
+    </button>
+    <button
+      id="mobileSaveBtn"
+      class="btn btn-outline"
+      aria-pressed="false"
+      aria-label="Save this animal"
+    >
+      ♡
+    </button>
+  </div>
+
+  <!-- ── Footer ───────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-8);">
+      <div>
+        <h3 class="mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">
+          Connecting commerce and animal health in one trusted platform.
+        </p>
+      </div>
+      <div>
+        <h4 class="mb-4">Marketplace</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-2);">
+          <li><a href="marketplace.html">Browse Animals</a></li>
+          <li><a href="sell-animal.html">Sell Animal</a></li>
+          <li><a href="auctions.html">Auctions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Services</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-2);">
+          <li><a href="veterinary.html">Veterinary Care</a></li>
+          <li><a href="rare-species.html">Rare Species</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Support</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-2);">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/animal-details.js"></script>
+</body>
+</html>

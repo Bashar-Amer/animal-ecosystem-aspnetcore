@@ -1,0 +1,155 @@
+/* =========================================
+   PAGE: Home (index.html)
+   ========================================= */
+
+
+body {
+  background-image: url("https://www.transparenttextures.com/patterns/felt.png"); /* Very subtle texture */
+  background-attachment: fixed;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to bottom right, var(--color-umber-950), var(--color-umber-900));
+    color: white;
+    padding-block: var(--space-16);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Subtle organic background decoration for hero */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: -50%; 
+  inset-inline-start: -10%;
+  inline-size: 500px; 
+  height: 500px;
+  background: radial-gradient(circle, var(--color-umber-700) 0%, transparent 70%);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
+}
+
+.hero-visual-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-main-shape {
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
+    background: var(--color-umber-800);
+    border: 8px solid var(--color-umber-700);
+    overflow: hidden;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: url('path-to-your-animal-image.jpg') center/cover;
+    filter: sepia(20%) contrast(110%);
+}
+
+.floating-trust-card {
+    position: absolute;
+    bottom: var(--space-8);
+    inset-inline-start: -20px;
+    background: white;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    color: var(--color-charcoal-900);
+}
+
+
+.section-header {
+    margin-block-end: var(--space-10);
+}
+
+.hero-section .text-display {
+  color: #fff;
+}
+
+.hero-section .text-body-lg {
+  color: var(--color-sage-300);
+}
+
+/* Service Cards */
+.service-card {
+    background: white;
+    padding: var(--space-8);
+    border: 1px solid var(--color-sand-200);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: var(--color-sage-400);
+    transform: translateY(-5px);
+}
+
+.service-icon-container {
+    width: 64px;
+    height: 64px;
+    background: var(--color-sage-100);
+    color: var(--color-umber-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-block-end: var(--space-6);
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--color-sage-200);
+  color: var(--color-umber-900);
+  padding-block: var(--space-12);
+  text-align: center;
+  border-radius: var(--radius-xl);
+  margin-block-start: var(--space-16);
+}
+
+.cta-section h2 {
+  color: var(--color-umber-900);
+}
+
+.text-h2 {
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-block-end: var(--space-2);
+}
+
+.text-h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--color-sage-400);
+    border-radius: var(--radius-pill);
+}
+
+/* 5. Auction Section - Change the Vibe */
+#live-auctions-grid {
+    background-color: var(--color-sand-100);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+}

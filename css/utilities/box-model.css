@@ -1,0 +1,10 @@
+/* --- Global Refinements --- */
+.section-spacing {
+    padding-block: var(--space-16);
+}
+
+/* The "Pebble" Shape - Use for icons and decorative elements */
+.shape-organic {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+

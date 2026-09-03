@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find a Veterinarian — Animal Ecosystem</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────── -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="veterinary.html" class="active">Veterinary</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Page Hero ─────────────────────────── -->
+  <section class="vet-hero">
+    <div class="container">
+      <h1 class="vet-hero-title">Find a Trusted Veterinarian</h1>
+      <p class="vet-hero-subtitle">
+        Connect with certified livestock and animal health professionals across Jordan.
+      </p>
+
+      <!-- Search -->
+      <div class="vet-search-wrap">
+        <div class="search-bar vet-search-bar">
+          <label for="vetSearch" class="sr-only">
+            Search by name, specialty, or location
+          </label>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               style="flex-shrink:0; color: var(--color-charcoal-600);">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="text"
+            id="vetSearch"
+            placeholder="Search by name, specialty, or location…"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="vet-filters" id="vetFilters">
+
+        <!-- Specialty group -->
+        <div
+          class="filter-group"
+          role="group"
+          aria-labelledby="filter-label-specialty"
+        >
+          <span class="filter-group-label" id="filter-label-specialty">
+            Specialty
+          </span>
+          <div class="filter-chip-row">
+            <button class="filter-chip is-active" data-group="specialty" data-value="all" aria-pressed="true">All</button>
+            <button class="filter-chip" data-group="specialty" data-value="Large Animal" aria-pressed="false">Large Animal</button>
+            <button class="filter-chip" data-group="specialty" data-value="Livestock" aria-pressed="false">Livestock</button>
+            <button class="filter-chip" data-group="specialty" data-value="Equine" aria-pressed="false">Equine</button>
+            <button class="filter-chip" data-group="specialty" data-value="Poultry" aria-pressed="false">Poultry</button>
+            <button class="filter-chip" data-group="specialty" data-value="Small Animal" aria-pressed="false">Small Animal</button>
+          </div>
+        </div>
+
+        <!-- Location group -->
+        <div
+          class="filter-group"
+          role="group"
+          aria-labelledby="filter-label-location"
+        >
+          <span class="filter-group-label" id="filter-label-location">
+            Location
+          </span>
+          <div class="filter-chip-row">
+            <button class="filter-chip is-active" data-group="location" data-value="all" aria-pressed="true">All</button>
+            <button class="filter-chip" data-group="location" data-value="Amman" aria-pressed="false">Amman</button>
+            <button class="filter-chip" data-group="location" data-value="Irbid" aria-pressed="false">Irbid</button>
+            <button class="filter-chip" data-group="location" data-value="Madaba" aria-pressed="false">Madaba</button>
+            <button class="filter-chip" data-group="location" data-value="Zarqa" aria-pressed="false">Zarqa</button>
+            <button class="filter-chip" data-group="location" data-value="Aqaba" aria-pressed="false">Aqaba</button>
+          </div>
+        </div>
+
+        <!-- Availability group -->
+        <div
+          class="filter-group"
+          role="group"
+          aria-labelledby="filter-label-availability"
+        >
+          <span class="filter-group-label" id="filter-label-availability">
+            Availability
+          </span>
+          <div class="filter-chip-row">
+            <button class="filter-chip is-active" data-group="availability" data-value="all" aria-pressed="true">All</button>
+            <button class="filter-chip" data-group="availability" data-value="available" aria-pressed="false">Available Now</button>
+            <button class="filter-chip" data-group="availability" data-value="week" aria-pressed="false">Available This Week</button>
+          </div>
+        </div>
+
+        <!-- Animal Type group -->
+        <div
+          class="filter-group"
+          role="group"
+          aria-labelledby="filter-label-animaltype"
+        >
+          <span class="filter-group-label" id="filter-label-animaltype">
+            Animal Type
+          </span>
+          <div class="filter-chip-row">
+            <button class="filter-chip is-active" data-group="animalType" data-value="all" aria-pressed="true">All</button>
+            <button class="filter-chip" data-group="animalType" data-value="Cattle" aria-pressed="false">Cattle</button>
+            <button class="filter-chip" data-group="animalType" data-value="Sheep" aria-pressed="false">Sheep &amp; Goats</button>
+            <button class="filter-chip" data-group="animalType" data-value="Horses" aria-pressed="false">Horses</button>
+            <button class="filter-chip" data-group="animalType" data-value="Camels" aria-pressed="false">Camels</button>
+            <button class="filter-chip" data-group="animalType" data-value="Poultry" aria-pressed="false">Poultry</button>
+          </div>
+        </div>
+
+      </div><!-- /vet-filters -->
+    </div>
+  </section>
+
+  <!-- ── Results ───────────────────────────── -->
+  <main class="container vet-results" id="mainContent">
+
+    <!-- Results count — aria-live so screen readers announce changes -->
+    <p
+      class="vet-result-count"
+      id="resultCount"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      Showing 6 veterinarians
+    </p>
+
+    <!-- Vet grid -->
+    <div class="vet-grid" id="vetGrid" role="list"></div>
+
+    <!-- Empty state — hidden until needed -->
+    <div class="vet-empty" id="emptyState" hidden aria-hidden="true">
+      <div class="vet-empty-icon" aria-hidden="true">
+        <!-- Stethoscope-adjacent SVG — animal health, not human medical -->
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30"
+                  stroke="var(--color-sand-300)" stroke-width="3" fill="var(--color-sand-100)"/>
+          <path d="M22 20c0 6 4 10 10 10s10-4 10-10"
+                stroke="var(--color-charcoal-600)" stroke-width="2.5"
+                stroke-linecap="round" fill="none"/>
+          <circle cx="32" cy="40" r="5"
+                  stroke="var(--color-charcoal-600)" stroke-width="2.5" fill="none"/>
+          <line x1="32" y1="30" x2="32" y2="35"
+                stroke="var(--color-charcoal-600)" stroke-width="2.5"
+                stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="vet-empty-title">No veterinarians found</h2>
+      <p class="vet-empty-text">
+        Try adjusting your filters or search term.
+      </p>
+      <button
+        id="clearFiltersBtn"
+        class="btn btn-outline"
+        aria-label="Clear all filters and search"
+      >
+        Clear Filters
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3 class="mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">
+          Connecting commerce and animal health in one trusted platform.
+        </p>
+      </div>
+      <div>
+        <h4 class="mb-4">Marketplace</h4>
+        <ul class="footer-links">
+          <li><a href="marketplace.html">Browse Animals</a></li>
+          <li><a href="sell-animal.html">Sell Animal</a></li>
+          <li><a href="auctions.html">Auctions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Services</h4>
+        <ul class="footer-links">
+          <li><a href="veterinary.html">Veterinary Care</a></li>
+          <li><a href="rare-species.html">Rare Species</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/veterinary.js"></script>
+</body>
+</html>

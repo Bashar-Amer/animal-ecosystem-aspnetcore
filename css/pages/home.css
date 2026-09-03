@@ -1,0 +1,92 @@
+/* =========================================
+   PAGE: Home (index.html)
+   ========================================= */
+
+
+
+/* Hero Section */
+.hero-section {
+  background-color: var(--color-umber-900);
+  background-image: linear-gradient(rgba(28, 19, 13, 0.8), rgba(28, 19, 13, 0.8)), url('https://t4.ftcdn.net/jpg/01/70/07/17/360_F_170071737_UINsB1OZihE4R1S94mKfXEFtkIpw2cUM.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--color-sand-50);
+  padding-block: var(--space-16) var(--space-12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle organic background decoration for hero */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: -50%; 
+  inset-inline-start: -10%;
+  inline-size: 500px; 
+  height: 500px;
+  background: radial-gradient(circle, var(--color-umber-700) 0%, transparent 70%);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section .text-display {
+  color: #fff;
+}
+
+.hero-section .text-body-lg {
+  color: var(--color-sage-300);
+}
+
+/* Service Cards */
+.service-card {
+  text-align: center;
+  padding: var(--space-8);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-sand-50);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-icon {
+  inline-size: 80px; 
+  height: 80px;
+  margin: 0 auto var(--space-6);
+  background-color: var(--color-sage-200);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--color-umber-700);
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--color-sage-200);
+  color: var(--color-umber-900);
+  padding-block: var(--space-12);
+  text-align: center;
+  border-radius: var(--radius-xl);
+  margin-block-start: var(--space-16);
+}
+
+
+.cta-container {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.cta-section h2 {
+  color: var(--color-umber-900);
+}

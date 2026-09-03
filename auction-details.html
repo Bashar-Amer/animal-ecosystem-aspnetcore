@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Ecosystem - Auction Details</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────── -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="auctions.html" class="active">Auctions</a></li>
+        <li><a href="veterinary.html">Veterinary</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline" style="padding: var(--space-2) var(--space-4);">Sign In</button>
+        <button class="btn btn-primary"  style="padding: var(--space-2) var(--space-4);">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ───────────────────────────────── -->
+  <section class="auction-hero" id="auctionHero">
+    <div class="container auction-hero-inner">
+      <span class="auction-hero-eyebrow" id="heroEyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 3h18l-2 13H5L3 3z"/><path d="M3 3l-.5-2H1M8 21a1 1 0 100 2 1 1 0 000-2zm13 0a1 1 0 100 2 1 1 0 000-2z"/>
+        </svg>
+        Live Auction
+      </span>
+      <h1 class="auction-hero-title" id="auctionHeroName">Loading…</h1>
+      <div class="auction-hero-meta">
+        <span class="auction-hero-location" id="auctionHeroLocation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+          <span></span>
+        </span>
+        <span id="heroBadge" class="badge"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Breadcrumb ─────────────────────────── -->
+  <nav class="auction-breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li aria-current="page" id="breadcrumbCurrent">Loading…</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ── Not Found State ────────────────────── -->
+  <div id="notFoundState" class="auction-not-found container" hidden>
+    <svg class="auction-not-found-icon" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v4m0 4h.01"/>
+    </svg>
+    <h2 class="auction-not-found-title">Auction not found</h2>
+    <p class="auction-not-found-text">
+      This auction may have ended or the link may be incorrect.
+    </p>
+    <a href="auctions.html" class="btn btn-primary">Back to Auctions</a>
+  </div>
+
+  <!-- ── Main Content ───────────────────────── -->
+  <main class="container auction-details-layout" id="mainContent">
+
+    <!-- Left: main content -->
+    <div class="auction-details-main">
+
+      <!-- Gallery -->
+      <div class="auction-gallery auction-section" aria-label="Auction photo gallery">
+        <div class="auction-gallery-main-wrap">
+          <img id="galleryMainImg" class="auction-gallery-main"
+               src="" alt="" loading="lazy">
+        </div>
+        <div id="galleryThumbs" class="auction-gallery-thumbs"
+             role="group" aria-label="Photo thumbnails"></div>
+      </div>
+
+      <!-- Overview -->
+      <section class="auction-section" aria-labelledby="overviewHeading">
+        <h2 class="auction-section-title" id="overviewHeading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4m0-4h.01"/>
+          </svg>
+          Overview
+        </h2>
+        <h3 class="auction-overview-name" id="auctionTitle"></h3>
+        <p class="auction-overview-location" id="auctionLocation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+          <span id="auctionLocationText"></span>
+        </p>
+        <div class="auction-specs-row" id="auctionSpecs" role="list"></div>
+        <p class="auction-description" id="auctionDescription"></p>
+      </section>
+
+      <!-- Health Records -->
+      <section class="auction-section" aria-labelledby="healthHeading">
+        <h2 class="auction-section-title" id="healthHeading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+          Health Records
+        </h2>
+        <ul id="healthList" class="auction-health-list" aria-label="Health records"></ul>
+      </section>
+
+      <!-- Bid History -->
+      <section class="auction-section" aria-labelledby="bidHistoryHeading">
+        <h2 class="auction-section-title" id="bidHistoryHeading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Bid History
+        </h2>
+        <ul id="bidHistoryList" class="auction-bid-history" aria-label="Bid history"></ul>
+      </section>
+
+    </div><!-- /details-main -->
+
+    <!-- Right: sidebar -->
+    <aside class="auction-details-sidebar" aria-label="Auction actions" id="detailsSidebar">
+
+      <!-- Bid Card -->
+      <div class="auction-bid-card">
+        <div class="auction-bid-card-header">
+          <p class="auction-bid-card-name" id="sidebarAuctionName"></p>
+          <span id="statusBadge" class="badge"></span>
+        </div>
+        <div class="auction-bid-card-body">
+
+          <!-- Timer -->
+          <div class="auction-timer-row">
+            <svg class="auction-timer-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            <span class="auction-timer-label">Time remaining</span>
+            <span id="pulsingDot" class="auction-pulse-dot" aria-hidden="true"></span>
+            <span class="auction-timer-value" id="timeRemaining"
+                  aria-label="Time remaining" aria-live="polite"></span>
+          </div>
+
+          <!-- Current bid -->
+          <div class="auction-current-bid-wrap">
+            <p class="auction-current-bid-label">Current Bid</p>
+            <p class="auction-current-bid-amount" id="currentBid">—</p>
+            <div class="auction-bid-meta-row">
+              <span class="auction-bid-meta-item">
+                <strong id="bidCountDisplay">0</strong> bids
+              </span>
+              <span class="auction-bid-meta-item">
+                Min. increment: <strong id="minIncrementDisplay">—</strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="auction-bid-actions">
+            <button class="btn btn-warm auction-place-bid-btn" id="placeBidBtn">
+              Place Bid
+            </button>
+            <p class="auction-bid-min-note" id="minBidNote"></p>
+          </div>
+
+        </div>
+      </div><!-- /bid card -->
+
+      <!-- Seller Card -->
+      <div class="auction-seller-card">
+        <div class="auction-seller-card-header">About the Seller</div>
+        <div class="auction-seller-card-body">
+          <div class="auction-seller-identity">
+            <div class="auction-seller-avatar" id="sellerAvatar" aria-hidden="true">?</div>
+            <div>
+              <p class="auction-seller-name" id="sellerName"></p>
+              <p class="auction-seller-since" id="sellerMeta"></p>
+            </div>
+          </div>
+          <div id="sellerVerifiedBadge"></div>
+          <div class="auction-seller-stats">
+            <div class="auction-seller-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" aria-hidden="true">
+                <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <circle cx="12" cy="11" r="3"/>
+              </svg>
+              <span id="sellerLocation"></span>
+            </div>
+            <div class="auction-seller-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+              <span id="sellerMemberSince"></span>
+            </div>
+            <div class="auction-seller-stat" id="sellerResponseRow" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" aria-hidden="true">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+              <span id="sellerResponse"></span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /seller card -->
+
+    </aside>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3 class="text-h3 mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">
+          Connecting commerce and animal health in one trusted platform.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4" style="color:#fff;">Platform</h4>
+        <ul class="footer-links">
+          <li><a href="marketplace.html">Marketplace</a></li>
+          <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="veterinary.html">Veterinary</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4" style="color:#fff;">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-h4 mb-4" style="color:#fff;">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/pages/auction-details.js"></script>
+</body>
+</html>

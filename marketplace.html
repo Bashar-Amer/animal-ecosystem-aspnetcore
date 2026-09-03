@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Browse animals for sale from sellers across Jordan."
+    >
+
+    <title>Marketplace | Animal Ecosystem</title>
+
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Marketplace-specific stylesheet -->
+    <link rel="stylesheet" href="css/pages/marketplace.css">
+</head>
+
+<body>
+
+    <!-- ======================================================
+         Navigation
+         ====================================================== -->
+
+    <!-- Navigation -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Marketplace</a></li>
+        <li><a href="#">Auctions</a></li>
+        <li><a href="#">Veterinary</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <!-- <button id="lang-toggle" class="btn btn-outline btn-sm">العربية</button> -->
+        <button class="btn btn-outline btn-sm" data-i18n="btn_signin">Sign In</button>
+        <button class="btn btn-primary btn-sm" data-i18n="btn_register">Register</button>
+      </div>
+    </div>
+  </header>
+
+
+    <!-- ======================================================
+         Main
+         ====================================================== -->
+
+    <main class="marketplace-page">
+
+        <!-- ==================================================
+             Marketplace Header
+             ================================================== -->
+
+        <section class="marketplace-header">
+
+            <div class="marketplace-container">
+
+                <div class="marketplace-header__content">
+
+                    <span class="marketplace-header__eyebrow" data-i18n="marketplace_eyebrow">
+                        Animal Marketplace
+                    </span>
+
+                    <h1 class="marketplace-header__title" data-i18n="marketplace_title">
+                        Find the right animal
+                    </h1>
+
+                    <p class="marketplace-header__description" data-i18n="marketplace_description">
+                        Browse animals available for sale from sellers
+                        across Jordan.
+                    </p>
+
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="marketplace-search">
+
+                    <label
+                        class="marketplace-search__label"
+                        for="marketplace-search"
+                        data-i18n="marketplace_search_label"
+                    >
+                        Search animals
+                    </label>
+
+                    <div class="marketplace-search__field">
+
+                        <svg
+                            class="marketplace-search__icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="7"
+                            />
+
+                            <path d="m20 20-4-4" />
+                        </svg>
+
+                        <input
+                            type="search"
+                            id="marketplace-search"
+                            class="marketplace-search__input"
+                            placeholder="Search by animal, breed or location..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            id="clear-search"
+                            class="marketplace-search__clear"
+                            aria-label="Clear search"
+                            hidden
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             Marketplace Content
+             ================================================== -->
+
+        <section class="marketplace-content">
+
+            <div class="marketplace-container">
+
+                <!-- Mobile toolbar -->
+
+                <div class="marketplace-mobile-toolbar">
+
+                    <button
+                        type="button"
+                        class="marketplace-filter-button"
+                        id="open-filters"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M4 6h16" />
+                            <path d="M7 12h10" />
+                            <path d="M10 18h4" />
+                        </svg>
+
+                        <span data-i18n="marketplace_filters">Filters</span>
+
+                        <span
+                            class="marketplace-filter-count"
+                            id="mobile-filter-count"
+                            hidden
+                        >
+                            0
+                        </span>
+                    </button>
+
+                    <label
+                        class="marketplace-mobile-sort"
+                        for="mobile-sort"
+                    >
+                        <span data-i18n="marketplace_sort_label">Sort</span>
+
+                        <select id="mobile-sort">
+                            <option value="newest" data-i18n="marketplace_sort_newest">
+                                Newest
+                            </option>
+
+                            <option value="price-low" data-i18n="marketplace_sort_price_low">
+                                Price: Low to High
+                            </option>
+
+                            <option value="price-high" data-i18n="marketplace_sort_price_high">
+                                Price: High to Low
+                            </option>
+
+                            <option value="name" data-i18n="marketplace_sort_name">
+                                Name
+                            </option>
+                        </select>
+                    </label>
+
+                </div>
+
+
+                <!-- ==================================================
+                     Main Layout
+                     ================================================== -->
+
+                <div class="marketplace-layout">
+
+
+                    <!-- ==================================================
+                         Desktop Filters
+                         ================================================== -->
+
+                    <aside
+                        class="marketplace-filters"
+                        id="desktop-filters"
+                    >
+
+                        <div class="marketplace-filters__header">
+
+                            <div>
+                                <h2 data-i18n="marketplace_filters">
+                                    Filters
+                                </h2>
+
+                                <span id="filter-summary" data-i18n="marketplace_filters_summary">
+                                    Refine your search
+                                </span>
+                            </div>
+
+                            <button
+                                type="button"
+                                id="clear-filters"
+                                class="marketplace-filters__clear"
+                                data-i18n="marketplace_filters_clear"
+                            >
+                                Clear all
+                            </button>
+
+                        </div>
+
+
+                        <!-- Species -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_species">Species</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="species-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Breed -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_breed">Breed</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="breed-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Age -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_age">Age</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="age-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Gender -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_gender">Gender</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="gender-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Location -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_location">Location</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="location-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Price -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_price">Price</h3>
+
+                            <div class="marketplace-price-fields">
+
+                                <label>
+                                    <span data-i18n="marketplace_filter_price_min">Minimum</span>
+
+                                    <input
+                                        type="number"
+                                        id="min-price"
+                                        min="0"
+                                        placeholder="0"
+                                    >
+                                </label>
+
+                                <span class="marketplace-price-divider">
+                                    —
+                                </span>
+
+                                <label>
+                                    <span data-i18n="marketplace_filter_price_max">Maximum</span>
+
+                                    <input
+                                        type="number"
+                                        id="max-price"
+                                        min="0"
+                                        placeholder="Any"
+                                    >
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Purpose -->
+
+                        <div class="marketplace-filter-group">
+
+                            <h3 data-i18n="marketplace_filter_purpose">Purpose</h3>
+
+                            <div
+                                class="marketplace-filter-options"
+                                id="purpose-filters"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Verified seller -->
+
+                        <div class="marketplace-filter-group">
+
+                            <label class="marketplace-checkbox">
+
+                                <input
+                                    type="checkbox"
+                                    id="verified-seller"
+                                >
+
+                                <span class="marketplace-checkbox__box">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                </span>
+
+                                <span data-i18n="marketplace_filter_verified_only">
+                                    Verified sellers only
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </aside>
+
+
+                    <!-- ==================================================
+                         Results
+                         ================================================== -->
+
+                    <div class="marketplace-results">
+
+
+                        <!-- Results toolbar -->
+
+                        <div class="marketplace-results__toolbar">
+
+                            <div class="marketplace-results__summary">
+
+                                <h2 data-i18n="marketplace_results_title">
+                                    Animals for sale
+                                </h2>
+
+                                <p id="result-count" data-i18n="marketplace_results_loading">
+                                    Loading animals...
+                                </p>
+
+                            </div>
+
+
+                            <label class="marketplace-sort">
+
+                                <span data-i18n="marketplace_sort_label">Sort by</span>
+
+                                <select id="sort-select">
+
+                                    <option value="newest" data-i18n="marketplace_sort_newest">
+                                        Newest
+                                    </option>
+
+                                    <option value="price-low" data-i18n="marketplace_sort_price_low">
+                                        Price: Low to High
+                                    </option>
+
+                                    <option value="price-high" data-i18n="marketplace_sort_price_high">
+                                        Price: High to Low
+                                    </option>
+
+                                    <option value="name" data-i18n="marketplace_sort_name">
+                                        Name
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="marketplace-active-filters" hidden id="active-filters">
+                        </div>
+
+                        <!-- Loading -->
+                        <div class="marketplace-state" id="loading-state">
+                            <div class="marketplace-spinner"></div>
+                            <p data-i18n="marketplace_results_loading">Loading animals...</p>
+                        </div>
+
+                        <!-- Error -->
+                        <div
+                            class="marketplace-state marketplace-state--error hidden"
+                            id="error-state"
+                            
+                        >
+                            <h3 data-i18n="marketplace_error_title">
+                                Something went wrong
+                            </h3>
+
+                            <p data-i18n="marketplace_error_description">
+                                We couldn't load the animals.
+                                Please try again.
+                            </p>
+
+                            <button
+                                type="button"
+                                id="retry-button"
+                                data-i18n="marketplace_retry"
+                            >
+                                Try again
+                            </button>
+                        </div>
+
+
+                        <!-- Empty -->
+
+                        <div
+                            class="marketplace-state hidden"
+                            id="empty-state"
+                            
+                        >
+                            <div class="marketplace-state__icon">
+                                🔎
+                            </div>
+
+                            <h3 data-i18n="marketplace_empty_title">
+                                No animals found
+                            </h3>
+
+                            <p data-i18n="marketplace_empty_description">
+                                Try changing your search or filters.
+                            </p>
+
+                            <button
+                                type="button"
+                                id="empty-clear-filters"
+                                data-i18n="marketplace_filters_clear"
+                            >
+                                Clear filters
+                            </button>
+                        </div>
+
+
+                        <!-- Animal grid -->
+
+                        <div
+                            class="marketplace-grid"
+                            id="animal-grid"
+                        ></div>
+
+
+                        <!-- Load more -->
+
+                        <div
+                            class="marketplace-pagination"
+                            id="pagination"
+                            hidden
+                        >
+
+                            <button
+                                type="button"
+                                id="load-more"
+                                class="marketplace-load-more"
+                                data-i18n="marketplace_load_more"
+                            >
+                                Load more animals
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         Mobile filter drawer
+         ====================================================== -->
+
+    <div
+        class="marketplace-drawer"
+        id="filter-drawer"
+        aria-hidden="true"
+    >
+
+        <div
+            class="marketplace-drawer__backdrop"
+            id="filter-backdrop"
+        ></div>
+
+        <aside class="marketplace-drawer__panel">
+
+            <header class="marketplace-drawer__header">
+
+                <div>
+                    <h2 data-i18n="marketplace_filters">Filters</h2>
+
+                    <span data-i18n="marketplace_filters_summary">
+                        Refine your results
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    id="close-filters"
+                    aria-label="Close filters"
+                >
+                    ×
+                </button>
+
+            </header>
+
+
+            <div class="marketplace-drawer__body">
+
+                <div id="mobile-filter-content"></div>
+
+            </div>
+
+
+            <footer class="marketplace-drawer__footer">
+
+                <button
+                    type="button"
+                    id="mobile-clear-filters"
+                    class="marketplace-drawer__clear"
+                    data-i18n="marketplace_filters_clear"
+                >
+                    Clear all
+                </button>
+
+                <button
+                    type="button"
+                    id="apply-mobile-filters"
+                    class="marketplace-drawer__apply"
+                    data-i18n="marketplace_filters"
+                >
+                    Show results
+                </button>
+
+            </footer>
+
+        </aside>
+
+    </div>
+
+
+    <!-- ======================================================
+         Scripts
+         Order matters: data before translations (translations
+         are independent, but load early), translations before
+         components (renderAnimalCard calls App.translate), and
+         both before app.js / marketplace.js which consume them.
+         ====================================================== -->
+
+    <script src="js/data.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/pages/marketplace.js"></script>
+
+</body>
+</html>

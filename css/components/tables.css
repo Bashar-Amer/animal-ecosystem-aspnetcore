@@ -1,0 +1,25 @@
+.admin-table-container {
+  inline-size: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-sand-300);
+}
+
+.admin-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  text-align: start; /* Logical property for RTL */
+}
+
+.admin-table th {
+  background-color: var(--color-sand-100);
+  padding: var(--space-3);
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-700);
+}
+
+.admin-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-sand-200);
+}
+

@@ -1,0 +1,367 @@
+/* =========================================
+   PAGE: Veterinary — Directory
+   ========================================= */
+
+/* ── Hero Section ─────────────────────────── */
+.vet-hero {
+  background-color: var(--color-sand-100);
+  border-block-end: 1px solid var(--color-sand-200);
+  padding-block: var(--space-10) var(--space-8);
+}
+
+.vet-hero-title {
+  font-size: var(--font-h1);
+  color: var(--color-charcoal-950);
+  margin-block-end: var(--space-2);
+}
+
+.vet-hero-subtitle {
+  font-size: var(--font-body-lg);
+  color: var(--color-charcoal-700);
+  margin-block-end: var(--space-6);
+  max-width: 540px;
+}
+
+/* ── Search ───────────────────────────────── */
+.vet-search-wrap {
+  margin-block-end: var(--space-6);
+  max-width: 560px;
+}
+
+/* Override search-bar to be slightly larger on this page */
+.vet-search-bar {
+  padding: var(--space-2) var(--space-4);
+  gap: var(--space-3);
+  background-color: var(--color-sand-50);
+}
+
+.vet-search-bar input {
+  font-size: var(--font-body);
+  background: transparent;
+  border: none;
+  flex: 1;
+  color: var(--color-charcoal-900);
+  min-width: 0;
+}
+
+.vet-search-bar input:focus {
+  outline: none;
+}
+
+/* ── Filter Architecture ──────────────────── */
+.vet-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.filter-group-label {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: var(--color-charcoal-700);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+/* Single scrolling row per filter group */
+.filter-chip-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-block-end: var(--space-1);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Filter Chips ─────────────────────────── */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-sand-300);
+  background-color: var(--color-sand-50);
+  color: var(--color-charcoal-800);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+              border-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.filter-chip:hover {
+  background-color: var(--color-sage-100);
+  border-color: var(--color-umber-500);
+  color: var(--color-umber-900);
+}
+
+.filter-chip.is-active,
+.filter-chip[aria-pressed="true"] {
+  background-color: var(--color-umber-600);
+  border-color: var(--color-umber-600);
+  color: #fff;
+}
+
+.filter-chip:focus-visible {
+  outline: 2px solid var(--color-umber-500);
+  outline-offset: 2px;
+}
+
+/* ── Results Area ─────────────────────────── */
+.vet-results {
+  padding-block: var(--space-8);
+}
+
+.vet-result-count {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+  margin-block-end: var(--space-6);
+}
+
+/* ── Vet Grid ─────────────────────────────── */
+.vet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 1023px) {
+  .vet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .vet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Vet Card ─────────────────────────────── */
+.vet-card {
+  background-color: var(--color-sand-50);
+  border: 1px solid var(--color-sand-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.vet-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+.vet-card-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Avatar — initials based */
+.vet-avatar {
+  inline-size: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-umber-600);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.vet-avatar-lg {
+  inline-size: 64px;
+  height: 64px;
+  font-size: var(--font-body);
+}
+
+.vet-card-name-wrap {
+  min-width: 0;
+}
+
+.vet-card-name {
+  font-size: var(--font-h4);
+  font-weight: 700;
+  color: var(--color-charcoal-950);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-block-end: var(--space-1);
+}
+
+.vet-card-specialty {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-700);
+}
+
+/* Availability badge — extends .badge system */
+.badge-available {
+  background-color: #E4F0E7;
+  color: var(--color-success);
+  border-color: #C5E2CD;
+}
+
+.badge-unavailable {
+  background-color: var(--color-sand-200);
+  color: var(--color-charcoal-600);
+  border-color: var(--color-sand-300);
+}
+
+.vet-card-body {
+  padding-inline: var(--space-5);
+  padding-block-end: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.vet-card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-700);
+}
+
+.vet-card-meta-icon {
+  flex-shrink: 0;
+  inline-size: 14px;
+  height: 14px;
+  color: var(--color-umber-500);
+}
+
+/* Animal type chips inside vet card */
+.vet-animal-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-block-start: var(--space-2);
+}
+
+.vet-type-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem var(--space-2);
+  background-color: var(--color-sage-100);
+  border: 1px solid var(--color-sage-200);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-caption);
+  font-weight: 600;
+  color: var(--color-umber-800);
+}
+
+.vet-card-footer {
+  padding: var(--space-4) var(--space-5);
+  border-block-start: 1px solid var(--color-sand-200);
+  background-color: var(--color-sand-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.vet-card-price {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-700);
+}
+
+.vet-card-price strong {
+  display: block;
+  font-size: var(--font-h4);
+  font-weight: 800;
+  color: var(--color-charcoal-950);
+  letter-spacing: -0.02em;
+}
+
+/* ── Empty State ──────────────────────────── */
+.vet-empty {
+  text-align: center;
+  padding-block: var(--space-16);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.vet-empty[hidden] {
+  display: none;
+}
+
+.vet-empty:not([hidden]) {
+  display: flex;
+}
+
+.vet-empty-icon {
+  margin-block-end: var(--space-2);
+}
+
+.vet-empty-title {
+  font-size: var(--font-h3);
+  color: var(--color-charcoal-800);
+}
+
+.vet-empty-text {
+  font-size: var(--font-body-sm);
+  color: var(--color-charcoal-600);
+  margin-block-end: var(--space-2);
+}
+
+/* ── Responsive: Hero & Filters ───────────── */
+@media (max-width: 767px) {
+  .vet-hero {
+    padding-block: var(--space-8) var(--space-6);
+  }
+  .vet-hero-title {
+    font-size: var(--font-h2);
+  }
+  .vet-hero-subtitle {
+    font-size: var(--font-body);
+  }
+  .vet-search-wrap {
+    max-width: 100%;
+  }
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .filter-group-label {
+    min-width: unset;
+  }
+}
+
+/* ========================================= */

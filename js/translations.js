@@ -1,0 +1,185 @@
+window.App = window.App || {};
+
+// When move to ASP.NET Core, this same pattern using Resource files (.resx)
+
+// 1. Translation Dictionary
+window.App.Translations = {
+  en: {
+    nav_home: "Home",
+    nav_market: "Marketplace",
+    nav_auctions: "Auctions",
+    nav_vet: "Veterinary",
+    btn_signin: "Sign In",
+    btn_register: "Register",
+    hero_title: "Everything Your Animals Need, In One Place.",
+    hero_sub: "The trusted platform for buying, selling, and caring for livestock in Jordan.",
+    find_animal: "Find an Animal",
+    find_vet: "Find a Veterinarian",
+    featured_animals: "Featured Animals",
+    live_auctions: "Live Auctions",
+    top_vets: "Featured Veterinarians",
+    view_all: "View All",
+
+    verifiedOwner: "Verified Owner",
+    auctionEnded: "Auction Ended",
+    endsIn: "Ends in",
+    vetChecked: "Vet Checked",
+    contact: "Contact",
+    place_bid: "Place Bid",
+    book_now: "Book Now",
+    unavailable: "Unavailable",
+    jod: "JOD",
+
+    /* ---- Marketplace page ---- */
+    marketplace_eyebrow: "Animal Marketplace",
+    marketplace_title: "Find the right animal",
+    marketplace_description: "Browse animals available for sale from sellers across Jordan.",
+    marketplace_search_label: "Search animals",
+    marketplace_search_placeholder: "Search by animal, breed or location...",
+    marketplace_search_clear: "Clear search",
+    marketplace_filters: "Filters",
+    marketplace_filters_summary: "Refine your search",
+    marketplace_filters_clear: "Clear all",
+    marketplace_filter_species: "Species",
+    marketplace_filter_breed: "Breed",
+    marketplace_filter_age: "Age",
+    marketplace_filter_gender: "Gender",
+    marketplace_filter_location: "Location",
+    marketplace_filter_price: "Price",
+    marketplace_filter_price_min: "Minimum",
+    marketplace_filter_price_max: "Maximum",
+    marketplace_filter_purpose: "Purpose",
+    marketplace_filter_verified_only: "Verified sellers only",
+    marketplace_results_title: "Animals for sale",
+    marketplace_results_loading: "Loading animals...",
+    marketplace_sort_label: "Sort by",
+    marketplace_sort_newest: "Newest",
+    marketplace_sort_price_low: "Price: Low to High",
+    marketplace_sort_price_high: "Price: High to Low",
+    marketplace_sort_name: "Name",
+    marketplace_error_title: "Something went wrong",
+    marketplace_error_description: "We couldn't load the animals. Please try again.",
+    marketplace_retry: "Try again",
+    marketplace_empty_title: "No animals found",
+    marketplace_empty_description: "Try changing your search or filters.",
+    marketplace_load_more: "Load more animals",
+    marketplace_favorite: "Save to favorites",
+    marketplace_unfavorite: "Remove from favorites",
+    marketplace_results_count_all: "{count} animals available",
+    marketplace_results_count_filtered: "{count} of {total} animals",
+    marketplace_min_price_chip: "Min {value} JOD",
+    marketplace_max_price_chip: "Max {value} JOD",
+    marketplace_search_chip: "Search: {value}",
+    marketplace_verified_chip: "Verified sellers",
+    marketplace_active_filters_count: "{count} active filter",
+    marketplace_active_filters_count_plural: "{count} active filters",
+
+    age_under_1: "Under 1 Year",
+    age_1_2: "1–2 Years",
+    age_3_5: "3–5 Years",
+    age_6_10: "6–10 Years",
+    age_10_plus: "10+ Years",
+
+    purpose_breeding: "Breeding",
+    purpose_dairy: "Dairy",
+    purpose_meat: "Meat",
+    purpose_farm: "Farm",
+    purpose_sport: "Sport"
+  },
+
+  ar: {
+    nav_home: "الرئيسية",
+    nav_market: "السوق",
+    nav_auctions: "المزادات",
+    nav_vet: "الخدمات البيطرية",
+    btn_signin: "تسجيل الدخول",
+    btn_register: "إنشاء حساب",
+    hero_title: "كل ما تحتاجه لحيواناتك، في مكان واحد.",
+    hero_sub: "المنصة الموثوقة لبيع وشراء ورعاية الماشية في الأردن.",
+    find_animal: "ابحث عن حيوان",
+    find_vet: "ابحث عن طبيب",
+    featured_animals: "حيوانات مختارة",
+    live_auctions: "مزادات مباشرة",
+    top_vets: "أطباء متميزون",
+    view_all: "عرض الكل",
+
+    verifiedOwner: "بائع موثّق",
+    auctionEnded: "انتهى المزاد",
+    endsIn: "ينتهي خلال",
+    vetChecked: "فحص بيطري",
+    contact: "تواصل",
+    place_bid: "زايد الآن",
+    book_now: "احجز الآن",
+    unavailable: "غير متاح",
+    jod: "دينار",
+
+    /* ---- Marketplace page ---- */
+    marketplace_eyebrow: "سوق الحيوانات",
+    marketplace_title: "اعثر على الحيوان المناسب",
+    marketplace_description: "تصفّح الحيوانات المعروضة للبيع من بائعين في جميع أنحاء الأردن.",
+    marketplace_search_label: "ابحث عن حيوانات",
+    marketplace_search_placeholder: "ابحث بالاسم أو السلالة أو الموقع...",
+    marketplace_search_clear: "مسح البحث",
+    marketplace_filters: "الفلاتر",
+    marketplace_filters_summary: "حدّد نتائج بحثك",
+    marketplace_filters_clear: "مسح الكل",
+    marketplace_filter_species: "النوع",
+    marketplace_filter_breed: "السلالة",
+    marketplace_filter_age: "العمر",
+    marketplace_filter_gender: "الجنس",
+    marketplace_filter_location: "الموقع",
+    marketplace_filter_price: "السعر",
+    marketplace_filter_price_min: "الحد الأدنى",
+    marketplace_filter_price_max: "الحد الأقصى",
+    marketplace_filter_purpose: "الغرض",
+    marketplace_filter_verified_only: "بائعون موثّقون فقط",
+    marketplace_results_title: "حيوانات للبيع",
+    marketplace_results_loading: "جارٍ تحميل الحيوانات...",
+    marketplace_sort_label: "ترتيب حسب",
+    marketplace_sort_newest: "الأحدث",
+    marketplace_sort_price_low: "السعر: من الأقل للأعلى",
+    marketplace_sort_price_high: "السعر: من الأعلى للأقل",
+    marketplace_sort_name: "الاسم",
+    marketplace_error_title: "حدث خطأ ما",
+    marketplace_error_description: "تعذّر تحميل الحيوانات. حاول مرة أخرى.",
+    marketplace_retry: "إعادة المحاولة",
+    marketplace_empty_title: "لا توجد نتائج",
+    marketplace_empty_description: "جرّب تغيير البحث أو الفلاتر.",
+    marketplace_load_more: "عرض المزيد من الحيوانات",
+    marketplace_favorite: "أضف إلى المفضلة",
+    marketplace_unfavorite: "إزالة من المفضلة",
+    marketplace_results_count_all: "{count} حيوان متاح",
+    marketplace_results_count_filtered: "{count} من {total} حيوان",
+    marketplace_min_price_chip: "الحد الأدنى {value} دينار",
+    marketplace_max_price_chip: "الحد الأقصى {value} دينار",
+    marketplace_search_chip: "بحث: {value}",
+    marketplace_verified_chip: "بائعون موثّقون",
+    marketplace_active_filters_count: "{count} فلتر مفعّل",
+    marketplace_active_filters_count_plural: "{count} فلاتر مفعّلة",
+
+    age_under_1: "أقل من سنة",
+    age_1_2: "1–2 سنة",
+    age_3_5: "3–5 سنوات",
+    age_6_10: "6–10 سنوات",
+    age_10_plus: "أكثر من 10 سنوات",
+
+    purpose_breeding: "تربية",
+    purpose_dairy: "ألبان",
+    purpose_meat: "لحوم",
+    purpose_farm: "مزرعة",
+    purpose_sport: "رياضة"
+  }
+};
+
+window.App.translate = function (key, vars) {
+  const lang = document.documentElement.getAttribute('dir') === 'rtl' ? 'ar' : 'en';
+  let text = (window.App.Translations[lang] && window.App.Translations[lang][key]) || key;
+
+  if (vars) {
+    Object.keys(vars).forEach(function (varKey) {
+      text = text.replace('{' + varKey + '}', vars[varKey]);
+    });
+  }
+
+  return text;
+};

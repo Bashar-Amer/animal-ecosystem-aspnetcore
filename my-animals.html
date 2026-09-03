@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Animals — Animal Ecosystem</title>
+  <link rel="stylesheet" href="css/main.css">
+
+  
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="veterinary.html">Veterinary</a></li>
+        <li><a href="my-animals.html" class="active">My Animals</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="ma-hero" aria-label="My Animals dashboard">
+    <div class="ma-hero__inner">
+
+      <div class="ma-hero__eyebrow">
+        <!-- leaf icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20c9 0 10-8 10-8s-8 1-7 8c0 0-1-8 6-12z"/>
+        </svg>
+        My Animals
+      </div>
+
+      <h1 class="ma-hero__title">Manage Your Animals</h1>
+      <p class="ma-hero__subtitle">
+        Track health, manage listings, and connect with veterinarians — all in one place.
+      </p>
+
+      <!-- Stats populated by JS -->
+      <div id="heroStats" class="ma-hero__stats" aria-label="Animal overview statistics">
+      </div>
+
+      <a href="#animalsContent" class="ma-hero__cta">
+        <!-- plus icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Add New Animal
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       BREADCRUMB
+  ═══════════════════════════════════════════════════════════════ -->
+  <nav aria-label="Breadcrumb" class="ma-content" style="padding-block-end: 0; padding-block-start: var(--space-3);">
+    <ol style="display:flex; gap: var(--space-2); font-size: var(--font-body-sm); color: var(--color-charcoal-500); list-style:none; padding:0; margin:0;">
+      <li><a href="index.html" style="color: var(--color-umber-600); text-decoration:none;">Home</a></li>
+      <li aria-hidden="true" style="color: var(--color-charcoal-400);">/</li>
+      <li aria-current="page" style="color: var(--color-charcoal-700);">My Animals</li>
+    </ol>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STICKY TOOLBAR
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="ma-toolbar" role="search" aria-label="Filter and sort animals">
+    <div class="ma-toolbar__inner">
+
+      <!-- Search -->
+      <div class="ma-search">
+        <svg class="ma-search__icon" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          type="search"
+          id="searchInput"
+          class="ma-search__input"
+          placeholder="Search name, species, breed…"
+          aria-label="Search animals"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="ma-toolbar-divider" aria-hidden="true"></div>
+
+      <!-- Status filters -->
+      <div class="ma-filters" role="group" aria-label="Status filter">
+        <span class="ma-filter-label" aria-hidden="true">Status:</span>
+        <button class="ma-chip" data-filter-type="status" data-status="all"         aria-pressed="true">All</button>
+        <button class="ma-chip" data-filter-type="status" data-status="listed-sale" aria-pressed="false">For Sale</button>
+        <button class="ma-chip" data-filter-type="status" data-status="in-auction"  aria-pressed="false">In Auction</button>
+        <button class="ma-chip" data-filter-type="status" data-status="unlisted"    aria-pressed="false">Unlisted</button>
+      </div>
+
+      <div class="ma-toolbar-divider" aria-hidden="true"></div>
+
+      <!-- Health filters -->
+      <div class="ma-filters" role="group" aria-label="Health filter">
+        <span class="ma-filter-label" aria-hidden="true">Health:</span>
+        <button class="ma-chip" data-filter-type="health" data-health="all"              aria-pressed="true">All</button>
+        <button class="ma-chip" data-filter-type="health" data-health="healthy"          aria-pressed="false">Healthy</button>
+        <button class="ma-chip" data-filter-type="health" data-health="needs-attention"  aria-pressed="false">Needs Attention</button>
+        <button class="ma-chip" data-filter-type="health" data-health="vet-scheduled"    aria-pressed="false">Vet Scheduled</button>
+      </div>
+
+      <!-- Right section -->
+      <div class="ma-toolbar__right">
+        <!-- Sort -->
+        <label for="sortSelect" class="sr-only">Sort animals</label>
+        <select id="sortSelect" class="ma-sort">
+          <option value="added-desc">Recently Added</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="health">Health Priority</option>
+          <option value="listing">Listing Status</option>
+        </select>
+
+        <!-- View toggle -->
+        <div class="ma-view-toggle" role="group" aria-label="View mode">
+          <button id="gridViewBtn" class="ma-view-btn" aria-pressed="true"
+                  title="Grid view" data-view="grid">
+            <!-- grid icon -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <rect x="1" y="1" width="6" height="6" rx="1"/>
+              <rect x="9" y="1" width="6" height="6" rx="1"/>
+              <rect x="1" y="9" width="6" height="6" rx="1"/>
+              <rect x="9" y="9" width="6" height="6" rx="1"/>
+            </svg>
+          </button>
+          <button id="listViewBtn" class="ma-view-btn" aria-pressed="false"
+                  title="List view" data-view="list">
+            <!-- list icon -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <rect x="1" y="2"  width="14" height="2" rx="1"/>
+              <rect x="1" y="7"  width="14" height="2" rx="1"/>
+              <rect x="1" y="12" width="14" height="2" rx="1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RESULTS BAR
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="ma-results-bar" role="status" aria-live="polite">
+    <p class="ma-results-count" id="resultCount">
+      Showing <strong>0</strong> animals
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ANIMALS GRID / LIST
+  ═══════════════════════════════════════════════════════════════ -->
+  <main id="animalsContent" class="ma-content" tabindex="-1">
+    <div id="animalsContainer" class="ma-grid" aria-label="Your animals">
+      <!-- Injected by my-animals.js -->
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: var(--space-6);">
+        <div>
+          <h3 style="font-size: var(--font-h4); margin-block-end: var(--space-3); color: var(--color-sand-50);">
+            Animal Ecosystem
+          </h3>
+          <p style="font-size: var(--font-body-sm); color: var(--color-sage-400); line-height: 1.6;">
+            Connecting commerce and animal health in one trusted platform.
+          </p>
+        </div>
+        <div>
+          <h4 style="font-size: var(--font-body-sm); font-weight:700; margin-block-end: var(--space-3); color: var(--color-sand-50);">
+            Platform
+          </h4>
+          <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap: var(--space-2);">
+            <li><a href="marketplace.html" style="color: var(--color-sage-400); font-size: var(--font-body-sm); text-decoration:none;">Marketplace</a></li>
+            <li><a href="auctions.html"    style="color: var(--color-sage-400); font-size: var(--font-body-sm); text-decoration:none;">Auctions</a></li>
+            <li><a href="veterinary.html"  style="color: var(--color-sage-400); font-size: var(--font-body-sm); text-decoration:none;">Veterinary</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/pages/my-animals.js"></script>
+
+</body>
+</html>

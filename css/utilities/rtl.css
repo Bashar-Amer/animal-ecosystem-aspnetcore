@@ -1,0 +1,25 @@
+/* =========================================
+   RTL OVERRIDES
+   ========================================= */
+
+/* Use logical properties in style.css whenever possible (margin-inline-start, etc.) */
+/* This file is for specific overrides where logical properties fall short. */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+[dir="rtl"] body {
+  /* Ensure fallback fonts for Arabic are preferred in RTL mode */
+  font-family: "Tajawal", "Cairo", system-ui, -apple-system, sans-serif;
+}
+
+[dir="rtl"] .search-bar input {
+  /* In RTL, the search icon might be on the right, text input on left */
+  /* handled by flex row if we use gap, but we can override padding if needed */
+}
+
+/* Bi-directional utilities */
+[dir="rtl"] .ms-2 { margin-inline-start: var(--spacing-2); }
+[dir="rtl"] .me-2 { margin-inline-end: var(--spacing-2); }
+
+[dir="rtl"] .text-left { text-align: right; }
+[dir="rtl"] .text-right { text-align: left; }

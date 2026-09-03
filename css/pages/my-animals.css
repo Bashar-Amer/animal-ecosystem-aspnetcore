@@ -1,0 +1,134 @@
+/* My Animals page scoped styles */
+/* --------------------------------------------------- */
+/* Hero */
+.ma-hero {
+  background: linear-gradient(
+    160deg,
+    var(--color-umber-900) 0%,
+    var(--color-umber-700) 100%
+  );
+  color: var(--color-sand-50);
+  padding-block: var(--space-16) var(--space-12);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture overlay */
+.ma-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 70%,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.ma-hero__inner {
+  max-width: 860px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ma-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sage-400);
+  margin-block-end: var(--space-4);
+}
+
+.ma-hero__eyebrow svg {
+  inline-size: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.ma-hero__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-sand-50);
+  margin-block-end: var(--space-3);
+}
+
+.ma-hero__subtitle {
+  font-size: var(--font-body-lg);
+  color: rgba(255, 255, 255, 0.7);
+  margin-block-end: var(--space-8);
+}
+
+/* Stat chips row */
+.ma-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-8);
+}
+
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-caption);
+  font-weight: 600;
+  color: var(--color-sand-50);
+  white-space: nowrap;
+}
+
+.stat-chip__dot {
+  inline-size: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stat-chip--total   .stat-chip__dot { background: var(--color-sage-400); }
+.stat-chip--healthy .stat-chip__dot { background: #6fcf97; }
+.stat-chip--alert   .stat-chip__dot { background: var(--color-terracotta-400); }
+.stat-chip--active  .stat-chip__dot { background: #f2c94c; }
+
+/* Hero CTA */
+.ma-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-sage-500);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--font-body);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ma-hero__cta:hover {
+  background: var(--color-sage-600);
+  transform: translateY(-1px);
+}
+
+.ma-hero__cta svg {
+  inline-size: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+}

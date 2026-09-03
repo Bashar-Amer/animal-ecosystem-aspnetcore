@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animal Auctions — Animal Ecosystem</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────── -->
+  <header class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="nav-brand">AnimalEcosystem</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="auctions.html" class="active">Auctions</a></li>
+        <li><a href="veterinary.html">Veterinary</a></li>
+      </ul>
+      <div class="flex gap-4">
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Post Ad</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────── -->
+  <section class="auctions-hero" aria-labelledby="auctionsHeroTitle">
+    <div class="container">
+      <div class="auctions-hero-inner">
+        <h1 class="auctions-hero-title" id="auctionsHeroTitle">
+          Animal Auctions
+        </h1>
+        <p class="auctions-hero-subtitle">
+          Bid on verified livestock and animals from trusted
+          sellers across Jordan.
+        </p>
+        <ul class="auctions-hero-trust" aria-label="Trust information">
+          <li>
+            <svg class="auctions-hero-trust-icon" aria-hidden="true"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            All auctions are listed by verified sellers.
+          </li>
+          <li>
+            <svg class="auctions-hero-trust-icon" aria-hidden="true"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            Winning bids are settled directly between buyer and seller.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Breadcrumb ───────────────────────── -->
+  <nav class="container" aria-label="Breadcrumb">
+    <ol class="vet-breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li aria-hidden="true" class="vet-breadcrumb-sep">/</li>
+      <li>
+        <span class="vet-breadcrumb-current">Auctions</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ── Status Tabs ───────────────────────── -->
+  <div class="auction-tabs-wrap">
+    <div class="container">
+      <div
+        class="auction-tabs"
+        role="tablist"
+        aria-label="Filter auctions by status"
+        id="auctionTabList"
+      >
+        <button
+          class="auction-tab is-active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="auctionTabPanel"
+          data-tab="all"
+          id="tab-all"
+        >
+          All
+          <span class="tab-count" id="count-all">6</span>
+        </button>
+        <button
+          class="auction-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="auctionTabPanel"
+          data-tab="live"
+          id="tab-live"
+        >
+          Live
+          <span class="tab-count" id="count-live">0</span>
+        </button>
+        <button
+          class="auction-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="auctionTabPanel"
+          data-tab="ending-soon"
+          id="tab-ending-soon"
+        >
+          Ending Soon
+          <span class="tab-count" id="count-ending-soon">0</span>
+        </button>
+        <button
+          class="auction-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="auctionTabPanel"
+          data-tab="starting-soon"
+          id="tab-starting-soon"
+        >
+          Starting Soon
+          <span class="tab-count" id="count-starting-soon">0</span>
+        </button>
+        <button
+          class="auction-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="auctionTabPanel"
+          data-tab="ended"
+          id="tab-ended"
+        >
+          Ended
+          <span class="tab-count" id="count-ended">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ──────────────────────── -->
+  <main
+    class="container"
+    id="auctionTabPanel"
+    role="tabpanel"
+    aria-labelledby="tab-all"
+  >
+
+    <!-- Results bar -->
+    <div class="auction-results-bar">
+      <p
+        class="auction-result-count"
+        id="resultCount"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        Showing 6 auctions
+      </p>
+    </div>
+
+    <!-- Auction grid -->
+    <div class="auction-grid" id="auctionGrid" role="list">
+      <!-- Populated by auctions.js -->
+    </div>
+
+    <!-- Empty state -->
+    <div class="auction-empty" id="auctionEmpty" hidden aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+           aria-hidden="true">
+        <circle cx="32" cy="32" r="30"
+                stroke="var(--color-sand-300)" stroke-width="3"
+                fill="var(--color-sand-100)"/>
+        <path d="M20 32h24M32 20v24"
+              stroke="var(--color-charcoal-600)" stroke-width="2.5"
+              stroke-linecap="round"/>
+      </svg>
+      <h2 class="auction-empty-title">No auctions found</h2>
+      <p class="auction-empty-text">
+        There are no auctions in this category right now.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3 class="mb-4">Animal Ecosystem</h3>
+        <p class="text-body-sm" style="color: var(--color-sage-400);">
+          Connecting commerce and animal health in one trusted platform.
+        </p>
+      </div>
+      <div>
+        <h4 class="mb-4">Marketplace</h4>
+        <ul class="footer-links">
+          <li><a href="marketplace.html">Browse Animals</a></li>
+          <li><a href="sell-animal.html">Sell Animal</a></li>
+          <li><a href="auctions.html">Auctions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Services</h4>
+        <ul class="footer-links">
+          <li><a href="veterinary.html">Veterinary Care</a></li>
+          <li><a href="rare-species.html">Rare Species</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/pages/auctions.js"></script>
+</body>
+</html>
+
