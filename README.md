@@ -107,4 +107,13 @@ The project follows a **"Premium Natural"** aesthetic:
 
 1. Clone the repository:
    ```bash
-   git clone [Your-Repo-Link]
+   git clone https://github.com/Bashar-Amer/animal-ecosystem-aspnetcore.git
+   
+2. Navigate to the project folder.
+3. Update `appsettings`.json with your SQL Server connection string.
+4. Run migrations:
+   ```bash
+   dotnet ef database update
+5. Run the project:
+   ```bash
+   dotnet run
