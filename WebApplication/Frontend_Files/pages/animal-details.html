@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awassi Ram | AnimalEcosystem Marketplace</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages/animal-details.css">
+  
+  <!-- Meta Tags -->
+  <meta name="description" content="Awassi Ram, 2 years old, healthy and verified. Located in Amman Farm, Jordan. Fixed price: 250 JOD.">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="/" class="site-logo" aria-label="AnimalEcosystem Homepage">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+          </div>
+          <span class="logo-text">Animal<span class="logo-accent">Ecosystem</span></span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/marketplace" class="nav-link active" aria-current="page">Marketplace</a>
+          <a href="/auctions" class="nav-link">Auctions</a>
+          <a href="/veterinary" class="nav-link">Veterinary</a>
+        </nav>
+
+        <!-- Auth Actions -->
+        <div class="header-actions" data-guest-menu>
+          <a href="/signin" class="btn btn-secondary btn-sm">Sign In</a>
+          <a href="/register" class="btn btn-primary btn-sm">Register</a>
+        </div>
+
+        <!-- User Menu (hidden by default) -->
+        <div class="header-actions" data-user-menu style="display: none;">
+          <div class="dropdown" data-dropdown>
+            <button class="btn btn-secondary btn-sm" data-dropdown-trigger>
+              My Account
+            </button>
+            <div class="dropdown-menu" data-dropdown-menu>
+              <a href="/profile">Profile</a>
+              <a href="/my-listings">My Listings</a>
+              <a href="/favorites">Favorites</a>
+              <a href="#" data-logout>Sign Out</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/marketplace">Marketplace</a></li>
+        <li aria-current="location">Awassi Ram</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="container">
+      <div class="detail-layout">
+        
+        <!-- Left Column: Visual & Details -->
+        <div class="detail-primary">
+          
+          <!-- Gallery Section -->
+          <section class="gallery-section card">
+            <!-- Main Image -->
+            <div class="gallery-main">
+              <div class="image-showcase">
+                <img 
+                  data-lazy="https://lh3.googleusercontent.com/aida-public/AB6AXuD7oK-rwomq0QJVWQyV7onBlSPCIiuW5sH2a8bk62BBPTmPhEiJMYGAgPa6kIpWEKgpHceyXJpUueauht0zQ5q-ucyU6FvB8ESafjybBesCaHswPQq--iZsK8D9x2qA742D3gHqcD6yvd6j2FJ8TeXlk47aX_pqGbo-A-UrR2QwkLvEsxHBFnsAIyj3Jnn_l5lA95YBCHj87yOI-_nEqfVYhbi1RM8Ygei8CAqlWJojXgPPZh49i0xJF_CIpeDWLbN8rQ"
+                  alt="Awassi Ram - main view"
+                  class="main-image"
+                  id="mainImage"
+                >
+                <span class="status-badge badge badge-live">Live Listing</span>
+              </div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+              <button class="thumbnail active" data-gallery-thumb="0">
+                <img data-lazy="https://lh3.googleusercontent.com/aida-public/AB6AXuBRtoHdeG_Z3UA2XRcPHer3gKKkZw5zhYvigfPRLI1MwqlAoj-cSHJIqZTFUv7HjmZdJ6anmkDbLe1L4mmVNdCK9WBJNI0oXiECzu0lrP3TwYuA9sm26GfdZwV_5ZgQWvBowWDDVZiiLnB3D5gtVNqRSZ6S_9ECzpVs0BMqd0q74E4DBXQp03bE8HwfFKkd7Tcij9bAEsZu_j5E7TrRsmRmRIR2oq9nQaVoCif7LKK36hoKTe5MF-iNduDEPTUv_GuRhg" alt="View 1">
+              </button>
+              <button class="thumbnail" data-gallery-thumb="1">
+                <img data-lazy="https://lh3.googleusercontent.com/aida-public/AB6AXuCg6jK4m1zsApcgInezZuIgLxtQrwSNEEuhvzSoHPF2l-qiZ7s0Bw6iECz6y4HK7yHNAXQ46teN4JtADQ3lWR1QL0msq7H_u5Koue3uHB3f5VAPlsr8NEhiOvM4gBPrhUULIZNHqaR2qGTn6q5Rn73Af-HoFUVQXy22L5kcbcZquX0k9TA-Lg9dEdr5P0E2Kre0REmj1H2RghO7gTG4MRjm2p7HiWO119SPWfdipvPzgyejzEfKP9ugFBaOzLU_NPo59g" alt="View 2">
+              </button>
+              <button class="thumbnail" data-gallery-thumb="2">
+                <img data-lazy="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZyaZyl6mVGSudMoLmfC0Z56Svbm0XOjf-I_pLjdyOpfGva4Y-1wjU75MC4F0usM17ZuMBayVud8NZK9FaX7w5zjbgzS9x1HLFKWHTuXtOAkMDtce-jIggFyMTn_oed49Qt686ceKG6HROik5e5n0zGudVetKvkxEbT_nu0Aj0Tz9QTdagdMXrsSFWC3zZ3P1JX6i08LueXKeq5s_EOvSRbLWVMFve1OIcgFzL3hE7pPMjKu25irzmHJrHRXfShAs3w" alt="View 3">
+              </button>
+              <button class="thumbnail" data-gallery-thumb="3">
+                <img data-lazy="https://lh3.googleusercontent.com/aida-public/AB6AXuD3TYGY1gEOs8cL17CayhSmH3YIR6hFCz92SoYoynjLo2Vr0bwqufJ58mO8ihgBOxxAy8W6y0gVanRJWoVAjd0mleW63Xyg27kXJjuIup9CwF6KbX74_-d7Ot6VxzzB3kvNql33XBZpTQ1-gvkOlbhL7O79tvqkwrxXSAvnDUGaiXPnIT9t_uTOuIqL3qYSME4pjZKMDtAcEYTpN425s2BTtfSfVdVUGuPtqRpDAb65C-VQA85bVSBda_SZ0rvMeY4XjA" alt="View 4">
+              </button>
+            </div>
+          </section>
+
+          <!-- Animal Info Section -->
+          <section class="animal-info card">
+            <div class="info-header">
+              <div>
+                <h1 class="headline-lg">Awassi Ram</h1>
+                <div class="location">
+                  <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <span>Amman Farm, Jordan</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specifications -->
+            <div class="spec-pills">
+              <span class="spec-pill">
+                <span class="spec-label">Species:</span> Sheep
+              </span>
+              <span class="spec-pill">
+                <span class="spec-label">Breed:</span> Awassi Sheep
+              </span>
+              <span class="spec-pill">
+                <span class="spec-label">Age:</span> 2 Years
+              </span>
+              <span class="spec-pill">
+                <span class="spec-label">Gender:</span> Male
+              </span>
+            </div>
+
+            <!-- Description -->
+            <div class="description-section">
+              <h2 class="label-md">Description</h2>
+              <p class="body-lg">
+                A strong, healthy Awassi ram, 3 years old, raised on a family farm in Amman. 
+                Known for its robust milk production lineage and calm temperament. 
+                Excellent genetic pedigree for flock enhancement.
+              </p>
+            </div>
+          </section>
+
+          <!-- Health & Verification -->
+          <section class="health-section card card-highlight">
+            <div class="section-header">
+              <h2 class="headline-sm">Health & Verification</h2>
+              <div class="verification-badges">
+                <span class="badge badge-verified">
+                  <svg class="icon" width="14" height="14" viewBox="0 0 20 20">
+                    <path fill="currentColor" fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Verified Owner
+                </span>
+                <span class="badge badge-verified">
+                  <svg class="icon" width="14" height="14" viewBox="0 0 20 20">
+                    <path fill="currentColor" fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Vet Checked
+                </span>
+              </div>
+            </div>
+
+            <!-- Health Checklist -->
+            <ul class="health-checklist">
+              <li class="checklist-item">
+                <span class="check-icon">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                  </svg>
+                </span>
+                Vaccinated – Foot & Mouth Disease
+              </li>
+              <li class="checklist-item">
+                <span class="check-icon">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                  </svg>
+                </span>
+                Last vet check: March 2025
+              </li>
+              <li class="checklist-item">
+                <span class="check-icon">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                  </svg>
+                </span>
+                No known conditions
+              </li>
+            </ul>
+
+            <!-- Vet Request Callout -->
+            <div class="vet-callout">
+              <div class="callout-content">
+                <div class="callout-icon">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="title-sm">Want an independent veterinary assessment?</h3>
+                  <p class="body-sm">
+                    Request a professional vet check through our network before committing to a purchase.
+                  </p>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm" data-modal-trigger="vet-modal">Find a Veterinarian</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Column: Sticky Sidebar -->
+        <aside class="detail-sidebar">
+          
+          <!-- Price & CTA Card -->
+          <div class="price-card card sticky-card">
+            <div class="price-header">
+              <div>
+                <span class="price-label label-sm">Listing Price</span>
+                <div class="price-value">
+                  <span class="amount label-numeric-lg">250</span>
+                  <span class="currency title-md">JOD</span>
+                </div>
+              </div>
+              <span class="badge badge-spec">Fixed Price</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button class="btn btn-primary btn-lg btn-block" data-contact-seller data-seller-id="user-123">
+                <svg class="icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                Contact Seller
+              </button>
+              <button class="btn btn-secondary btn-block" data-favorite data-animal-id="animal-001">
+                <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                Save Animal
+              </button>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+              <div class="trust-item">
+                <svg class="icon icon-success" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                <span class="body-sm">Escrow Protection</span>
+              </div>
+              <div class="trust-item">
+                <svg class="icon icon-success" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                <span class="body-sm">Identity Verified</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seller Profile Card -->
+          <div class="seller-card card">
+            <div class="seller-header">
+              <div class="seller-avatar">KA</div>
+              <div class="seller-info">
+                <h3 class="title-md">Khalid Al-Rashid</h3>
+                <span class="seller-meta body-sm">Member since 2022</span>
+                <span class="badge badge-verified badge-sm">
+                  <svg class="icon" width="12" height="12" viewBox="0 0 20 20">
+                    <path fill="currentColor" fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Verified Owner
+                </span>
+              </div>
+            </div>
+
+            <!-- Seller Details -->
+            <ul class="seller-details">
+              <li class="detail-item">
+                <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                <span>Amman Farm, Jordan</span>
+              </li>
+              <li class="detail-item">
+                <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                <span>Member since 2022</span>
+              </li>
+              <li class="detail-item">
+                <svg class="icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                <span>Usually responds within 2 hours</span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <!-- More From Seller Section -->
+      <section class="related-section">
+        <div class="section-header">
+          <div>
+            <h2 class="headline-md">More from this Seller</h2>
+            <p class="body-md text-muted">Explore additional livestock registered by Khalid Al-Rashid</p>
+          </div>
+        </div>
+
+        <div class="animal-grid">
+          <!-- Animal cards will be here (same structure as in your original) -->
+        </div>
+      </section>
+
+      <!-- Similar Animals Section -->
+      <section class="related-section">
+        <div class="section-header">
+          <div>
+            <h2 class="headline-md">Similar Animals</h2>
+            <p class="body-md text-muted">Recommended based on breed classification & regional availability</p>
+          </div>
+        </div>
+
+        <div class="animal-grid">
+          <!-- Similar animal cards -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              </svg>
+            </div>
+            <span class="logo-text">Animal<span class="logo-accent">Ecosystem</span></span>
+          </div>
+          <p class="footer-description body-md">
+            Connecting commerce and animal health in one trusted platform.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="link-column">
+            <h4 class="label-sm">Marketplace</h4>
+            <ul>
+              <li><a href="/browse">Browse Animals</a></li>
+              <li><a href="/sell">Sell Animal</a></li>
+              <li><a href="/auctions">Auctions</a></li>
+            </ul>
+          </div>
+          <div class="link-column">
+            <h4 class="label-sm">Services</h4>
+            <ul>
+              <li><a href="/veterinary">Veterinary Care</a></li>
+              <li><a href="/rare-species">Rare Species</a></li>
+            </ul>
+          </div>
+          <div class="link-column">
+            <h4 class="label-sm">Support</h4>
+            <ul>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="body-sm">© 2025 AnimalEcosystem. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Seller Modal -->
+  <div class="modal" id="contact-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="headline-sm">Contact Seller</h2>
+        <button class="btn-close" data-modal-close aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="contactForm" data-contact-form>
+          <div class="form-group">
+            <label for="contactMessage" class="form-label">Your Message</label>
+            <textarea 
+              id="contactMessage" 
+              name="message" 
+              class="form-textarea" 
+              rows="5" 
+              placeholder="Hi, I'm interested in your Awassi Ram..."
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="contactPhone" class="form-label">Your Phone Number</label>
+            <input 
+              type="tel" 
+              id="contactPhone" 
+              name="phone" 
+              class="form-input" 
+              placeholder="+962 7X XXX XXXX"
+              required
+            >
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts - Using YOUR existing files -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/animal-details.js"></script>
+</body>
+</html>

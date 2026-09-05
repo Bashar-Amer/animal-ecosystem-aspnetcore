@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse live livestock auctions with verified health records and secure escrow protection. Bid on premium animals from certified breeders.">
+  <title>Live Auctions - AnimalEcosystem</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pages/auctions.css">
+  
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="/" class="header-logo">
+        <div class="logo-icon">
+          <span class="material-symbols-outlined">pets</span>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">AnimalEcosystem</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="header-nav">
+        <a href="/">Home</a>
+        <a href="/marketplace.html">Marketplace</a>
+        <a href="/auctions.html" class="active">Auctions</a>
+        <a href="/veterinary.html">Veterinary</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Guest Menu -->
+        <div data-guest-menu>
+          <a href="/login.html" class="btn btn-secondary btn-sm hidden sm:inline-flex">
+            Sign In
+          </a>
+          <a href="/register.html" class="btn btn-primary btn-sm">
+            Get Started
+          </a>
+        </div>
+
+        <!-- User Menu (hidden by default) -->
+        <div data-user-menu style="display: none;">
+          <div data-dropdown class="dropdown">
+            <button data-dropdown-trigger class="user-avatar">
+              <span class="material-symbols-outlined">person</span>
+            </button>
+            <div data-dropdown-menu class="dropdown-menu">
+              <a href="/dashboard.html">Dashboard</a>
+              <a href="/watchlist.html">My Watchlist</a>
+              <a href="/my-bids.html">My Bids</a>
+              <a href="/settings.html">Settings</a>
+              <a href="#" onclick="handleLogout()">Logout</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="container mobile-menu">
+      <a href="/">Home</a>
+      <a href="/marketplace.html">Marketplace</a>
+      <a href="/auctions.html" class="active">Auctions</a>
+      <a href="/veterinary.html">Veterinary</a>
+      <div class="mobile-menu-actions">
+        <a href="/login.html" class="btn btn-secondary btn-sm btn-block">Sign In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm btn-block">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="auctions-hero">
+      <div class="container">
+        <div class="hero-content-center">
+          <!-- Live Indicator Badge -->
+          <div class="live-auctions-badge">
+            <span class="live-pulse-dot"></span>
+            <span class="label-sm">Live Auctions Now</span>
+          </div>
+
+          <!-- Page Title -->
+          <h1 class="display-hero text-center">
+            Live Livestock <span class="text-secondary">Auctions</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="hero-description body-lg text-center">
+            Bid on verified premium livestock with complete health documentation. Secure escrow protection and transparent bidding process.
+          </p>
+
+          <!-- Quick Stats -->
+          <div class="auction-stats">
+            <div class="stat-card">
+              <span class="stat-icon">
+                <span class="material-symbols-outlined">gavel</span>
+              </span>
+              <div class="stat-content">
+                <span class="stat-value label-numeric-lg">24</span>
+                <span class="stat-label body-sm">Active Auctions</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">
+                <span class="material-symbols-outlined">group</span>
+              </span>
+              <div class="stat-content">
+                <span class="stat-value label-numeric-lg">1,342</span>
+                <span class="stat-label body-sm">Active Bidders</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">
+                <span class="material-symbols-outlined">verified</span>
+              </span>
+              <div class="stat-content">
+                <span class="stat-value label-numeric-lg">100%</span>
+                <span class="stat-label body-sm">Verified Animals</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTERS & SEARCH SECTION -->
+    <section class="section">
+      <div class="container">
+        <div class="auctions-filters-container">
+          
+          <!-- Search Bar -->
+          <div class="search-bar-large">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input 
+              type="text" 
+              class="search-input" 
+              placeholder="Search auctions by breed, lot number, or seller..."
+              data-search
+            >
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="filter-tabs-auction">
+            <button class="filter-tab active" data-filter="status" data-value="all">
+              All Auctions
+            </button>
+            <button class="filter-tab" data-filter="status" data-value="live">
+              <span class="live-dot"></span>
+              Live Now
+            </button>
+            <button class="filter-tab" data-filter="status" data-value="ending-soon">
+              <span class="material-symbols-outlined">schedule</span>
+              Ending Soon
+            </button>
+            <button class="filter-tab" data-filter="status" data-value="upcoming">
+              <span class="material-symbols-outlined">event</span>
+              Starting Soon
+            </button>
+          </div>
+
+          <!-- Advanced Filters Row -->
+          <div class="filters-row">
+            <!-- Category Filter -->
+            <div class="filter-dropdown">
+              <label class="filter-label label-sm">Category</label>
+              <select class="filter-select" data-filter="category">
+                <option value="all">All Categories</option>
+                <option value="horse">Horses</option>
+                <option value="cattle">Cattle</option>
+                <option value="sheep">Sheep</option>
+                <option value="goat">Goats</option>
+                <option value="camel">Camels</option>
+              </select>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div class="filter-dropdown">
+              <label class="filter-label label-sm">Price Range</label>
+              <select class="filter-select" data-filter="price">
+                <option value="all">All Prices</option>
+                <option value="under-1000">Under $1,000</option>
+                <option value="1000-5000">$1,000 - $5,000</option>
+                <option value="5000-10000">$5,000 - $10,000</option>
+                <option value="over-10000">Over $10,000</option>
+              </select>
+            </div>
+
+            <!-- Sort By -->
+            <div class="filter-dropdown">
+              <label class="filter-label label-sm">Sort By</label>
+              <select class="filter-select" data-sort>
+                <option value="ending-soon">Ending Soon</option>
+                <option value="newly-listed">Newly Listed</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="most-bids">Most Bids</option>
+              </select>
+            </div>
+
+            <!-- View Toggle -->
+            <div class="view-toggle">
+              <button class="view-toggle-btn active" data-view="grid" aria-label="Grid view">
+                <span class="material-symbols-outlined">grid_view</span>
+              </button>
+              <button class="view-toggle-btn" data-view="list" aria-label="List view">
+                <span class="material-symbols-outlined">view_list</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Count -->
+          <div class="results-info">
+            <span class="body-md">
+              Showing <strong data-results-count>24</strong> auctions
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AUCTIONS GRID SECTION -->
+    <section class="section auctions-listing-section">
+      <div class="container">
+        
+        <div class="auctions-grid" id="auctions-grid">
+          
+          <!-- Auction Card 1 - Live -->
+          <article class="auction-card" data-status="live" data-category="horse" data-price="12500">
+            <!-- Card Image -->
+            <div class="auction-card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDziebzI7ZQmFr0MNtxJgsM7l-9vcjhHnBz5YkgcK6Lgsuh4k7ZMnacNNuTLCeB-zEUdehz-WDsLNfEGRwzAjAFTEpEWrXu4GRhGWa2jNL413o4UjkB7L2PV1KcOIE2b-BSRP0lz43vulpDGQBH5EljzmzFl1GB-fWzw-5Kef-9IGfwJIpL7ZWVtI8IU7kEy7ui3ucIrhsD-JNN5GLG30Jp1_XkxwkiFjmBKcHvEsFbnSWlzB29pUYe"
+                alt="Champion Arabian Stallion"
+                data-lazy
+              >
+              <!-- Status Badge -->
+              <div class="auction-status-badge">
+                <span class="badge badge-live">
+                  <span class="badge-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <!-- Lot Number -->
+              <div class="auction-lot-number">
+                <span class="label-sm">Lot #1042</span>
+              </div>
+              <!-- Watchlist Button -->
+              <button class="watchlist-btn" data-auction-id="1042" aria-label="Add to watchlist">
+                <span class="material-symbols-outlined">favorite_border</span>
+              </button>
+            </div>
+
+            <!-- Card Content -->
+            <div class="auction-card-content">
+              <!-- Title & Verification -->
+              <div class="auction-card-header">
+                <h3 class="auction-card-title title-md">
+                  <a href="/auction-detail.html?id=1042">Championship Arabian Stallion</a>
+                </h3>
+                <div class="verification-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span class="label-sm">Verified</span>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="auction-details">
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">category</span>
+                  <span class="body-sm">Arabian Horse • 5 Years • Stallion</span>
+                </div>
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">location_on</span>
+                  <span class="body-sm">Premium Stables, TX</span>
+                </div>
+              </div>
+
+              <!-- Specs Pills -->
+              <div class="spec-pills">
+                <span class="spec-pill">WAHO Registered</span>
+                <span class="spec-pill">Health Certified</span>
+                <span class="spec-pill">Championship Bloodline</span>
+              </div>
+
+              <!-- Bid Information Panel -->
+              <div class="bid-info-card">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-value headline-md">$12,500</span>
+                  <span class="bid-count body-sm">24 bids</span>
+                </div>
+                <div class="bid-timer">
+                  <span class="timer-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2024-12-31T18:00:00">
+                    02h 45m 18s
+                  </span>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <a href="/auction-detail.html?id=1042" class="btn btn-primary btn-block">
+                Place Bid
+              </a>
+            </div>
+          </article>
+
+          <!-- Auction Card 2 - Live -->
+          <article class="auction-card" data-status="live" data-category="sheep" data-price="5800">
+            <div class="auction-card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCD-UAttpSfgjLQ3icLSUIGwZR2Qg83yToJqi_QCxBo6apS_Tsq2my_FH8NmtPnO29M-GvSiz8AGE1KAvUSY3OLzV8l-S4goh1pPCfx_QWizyEYNWS7a6a0Yyaf3RcehqbZSVQhjtRaWwzjHXrlAyWMN00j7MdSjvWul5qqu95NcEc6KiL8BrSEf4azCh5gc5YNRAavBMd_Kz-C0h0r_l0F-MDtR9aFxbP7o-isTY_ZN5EHo26pQU6"
+                alt="Premium Breeding Flock"
+                data-lazy
+              >
+              <div class="auction-status-badge">
+                <span class="badge badge-live">
+                  <span class="badge-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <div class="auction-lot-number">
+                <span class="label-sm">Lot #1043</span>
+              </div>
+              <button class="watchlist-btn" data-auction-id="1043" aria-label="Add to watchlist">
+                <span class="material-symbols-outlined">favorite_border</span>
+              </button>
+            </div>
+
+            <div class="auction-card-content">
+              <div class="auction-card-header">
+                <h3 class="auction-card-title title-md">
+                  <a href="/auction-detail.html?id=1043">Premium Breeding Flock (10)</a>
+                </h3>
+                <div class="verification-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span class="label-sm">Verified</span>
+                </div>
+              </div>
+
+              <div class="auction-details">
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">category</span>
+                  <span class="body-sm">Elite Breeding Ewes • 1 Champion Ram</span>
+                </div>
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">location_on</span>
+                  <span class="body-sm">Heritage Farm, WY</span>
+                </div>
+              </div>
+
+              <div class="spec-pills">
+                <span class="spec-pill">Full Health Records</span>
+                <span class="spec-pill">Vaccinated</span>
+              </div>
+
+              <div class="bid-info-card">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-value headline-md">$5,800</span>
+                  <span class="bid-count body-sm">18 bids</span>
+                </div>
+                <div class="bid-timer">
+                  <span class="timer-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2024-12-31T20:00:00">
+                    05h 12m 09s
+                  </span>
+                </div>
+              </div>
+
+              <a href="/auction-detail.html?id=1043" class="btn btn-primary btn-block">
+                Place Bid
+              </a>
+            </div>
+          </article>
+
+          <!-- Auction Card 3 - Ending Soon -->
+          <article class="auction-card" data-status="ending-soon" data-category="goat" data-price="920">
+            <div class="auction-card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuUOCLfEu4brCPG6wmxHhVDnm734uxCl90SbQLSfZAbMmqn4fjGpC9jAh8TdyZVaVBsTX0vDH41bJEsWC79tr7dQQQouOGCC8v2EbqQz1eX9NydGEtvljhU6RW8La7c_JeiW6yrVGZDHmUmPeMGF6XujmuWFz5NZ7dp7UlFdAGfCvkBlHRpMcqDN720qJqnlnBhP73smpouszdcV2qWiQicRDhBl8I--ZLwDrcfhX-_W3xvj18wvUK"
+                alt="Champion Boer Buck"
+                data-lazy
+              >
+              <div class="auction-status-badge">
+                <span class="badge badge-ending">
+                  <span class="material-symbols-outlined">schedule</span>
+                  Ending Soon
+                </span>
+              </div>
+              <div class="auction-lot-number">
+                <span class="label-sm">Lot #1045</span>
+              </div>
+              <button class="watchlist-btn" data-auction-id="1045" aria-label="Add to watchlist">
+                <span class="material-symbols-outlined">favorite_border</span>
+              </button>
+            </div>
+
+            <div class="auction-card-content">
+              <div class="auction-card-header">
+                <h3 class="auction-card-title title-md">
+                  <a href="/auction-detail.html?id=1045">Champion Boer Buck</a>
+                </h3>
+                <div class="verification-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span class="label-sm">Verified</span>
+                </div>
+              </div>
+
+              <div class="auction-details">
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">category</span>
+                  <span class="body-sm">Boer Goat • 2 Years • Buck</span>
+                </div>
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">location_on</span>
+                  <span class="body-sm">Mountain Farm, CO</span>
+                </div>
+              </div>
+
+              <div class="spec-pills">
+                <span class="spec-pill">Award Winner</span>
+                <span class="spec-pill">Proven Genetics</span>
+              </div>
+
+              <div class="bid-info-card">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-value headline-md">$920</span>
+                  <span class="bid-count body-sm">12 bids</span>
+                </div>
+                <div class="bid-timer">
+                  <span class="timer-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2024-12-31T16:30:00">
+                    45m 22s
+                  </span>
+                </div>
+              </div>
+
+              <a href="/auction-detail.html?id=1045" class="btn btn-urgent btn-block">
+                Bid Now
+              </a>
+            </div>
+          </article>
+
+          <!-- Auction Card 4 - Upcoming -->
+          <article class="auction-card" data-status="upcoming" data-category="cattle" data-price="8500">
+            <div class="auction-card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGaVcPEWBp1bEPjvGvCuWLCUWkQEscJKSj_1JCCrD9gPDbIH90M3l6YIXkSe4Ec6Z7YMggCQ2Ell7wKvXmNxbQfGVM0vw3c0YXEfMiIxD0YIwPFAtkn0_MioVJ0WHbiGBdNN1elRl3oTNHEGxX4ffBPfvlNN-l90CDxMtXQmvEbkqTGexU70BD4sWCBvVvmf6hT1uV3lqJEt_dDw1h0F04qP0bAKepEaBXFgAk-sqqDPdOf9r9vjIa"
+                alt="Premium Holstein Heifer"
+                data-lazy
+              >
+              <div class="auction-status-badge">
+                <span class="badge badge-starting">
+                  <span class="material-symbols-outlined">schedule</span>
+                  Starts in 2h
+                </span>
+              </div>
+              <div class="auction-lot-number">
+                <span class="label-sm">Lot #1046</span>
+              </div>
+              <button class="watchlist-btn" data-auction-id="1046" aria-label="Add to watchlist">
+                <span class="material-symbols-outlined">favorite_border</span>
+              </button>
+            </div>
+
+            <div class="auction-card-content">
+              <div class="auction-card-header">
+                <h3 class="auction-card-title title-md">
+                  <a href="/auction-detail.html?id=1046">Premium Holstein Heifer</a>
+                </h3>
+                <div class="verification-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span class="label-sm">Verified</span>
+                </div>
+              </div>
+
+              <div class="auction-details">
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">category</span>
+                  <span class="body-sm">Holstein • 2 Years • Heifer</span>
+                </div>
+                <div class="detail-item">
+                  <span class="material-symbols-outlined">location_on</span>
+                  <span class="body-sm">Elite Dairy, WI</span>
+                </div>
+              </div>
+
+              <div class="spec-pills">
+                <span class="spec-pill">High Production Line</span>
+                <span class="spec-pill">AI Ready</span>
+              </div>
+
+              <div class="bid-info-card upcoming">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Starting Bid</span>
+                  <span class="bid-value headline-md">$8,500</span>
+                </div>
+                <div class="bid-timer">
+                  <span class="timer-label label-sm">Starts in</span>
+                  <span class="countdown-timer title-sm">
+                    2h 15m
+                  </span>
+                </div>
+              </div>
+
+              <button class="btn btn-secondary btn-block" data-notify-auction="1046">
+                <span class="material-symbols-outlined">notifications</span>
+                Notify Me
+              </button>
+            </div>
+          </article>
+
+          <!-- Add more auction cards as needed -->
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <button class="pagination-btn" disabled>
+            <span class="material-symbols-outlined">chevron_left</span>
+            Previous
+          </button>
+          <div class="pagination-numbers">
+            <button class="pagination-number active">1</button>
+            <button class="pagination-number">2</button>
+            <button class="pagination-number">3</button>
+            <span class="pagination-ellipsis">...</span>
+            <button class="pagination-number">8</button>
+          </div>
+          <button class="pagination-btn">
+            Next
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW BIDDING WORKS SECTION -->
+    <section class="section how-it-works-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title headline-lg">How Auction Bidding Works</h2>
+          <p class="section-description body-md">
+            Transparent and secure bidding process with buyer protection
+          </p>
+        </div>
+
+        <div class="grid grid-4">
+          
+          <div class="how-it-works-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">
+              <span class="material-symbols-outlined">account_circle</span>
+            </div>
+            <h3 class="headline-sm">Register & Verify</h3>
+            <p class="body-md">
+              Create your free account and complete identity verification to participate in auctions.
+            </p>
+          </div>
+
+          <div class="how-it-works-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">
+              <span class="material-symbols-outlined">search</span>
+            </div>
+            <h3 class="headline-sm">Browse & Research</h3>
+            <p class="body-md">
+              Review detailed animal profiles, health records, and seller ratings before bidding.
+            </p>
+          </div>
+
+          <div class="how-it-works-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">
+              <span class="material-symbols-outlined">gavel</span>
+            </div>
+            <h3 class="headline-sm">Place Your Bid</h3>
+            <p class="body-md">
+              Submit competitive bids with automatic notifications if you're outbid.
+            </p>
+          </div>
+
+          <div class="how-it-works-card">
+            <div class="step-number">4</div>
+            <div class="step-icon">
+              <span class="material-symbols-outlined">verified</span>
+            </div>
+            <h3 class="headline-sm">Win & Complete</h3>
+            <p class="body-md">
+              Secure payment through escrow, coordinate delivery, and receive your animal.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        
+        <!-- Column 1: Brand -->
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <span class="material-symbols-outlined">pets</span>
+            </div>
+            <span class="brand-name">AnimalEcosystem</span>
+          </div>
+          <p class="footer-description body-md">
+            Premium livestock trading platform with verified health documentation and secure transactions.
+          </p>
+        </div>
+
+        <!-- Column 2: Platform -->
+        <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="/marketplace.html">Browse Animals</a></li>
+            <li><a href="/sell.html">Sell Animal</a></li>
+            <li><a href="/auctions.html">Live Auctions</a></li>
+            <li><a href="/veterinary.html">Veterinary Care</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Support -->
+        <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Support</h4>
+          <ul class="footer-links">
+            <li><a href="/how-it-works.html">How It Works</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Trust -->
+        <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Trust & Safety</h4>
+          <ul class="footer-links">
+            <li><a href="/buyer-protection.html">Buyer Protection</a></li>
+            <li><a href="/seller-guidelines.html">Seller Guidelines</a></li>
+            <li><a href="/health-standards.html">Health Standards</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="copyright body-sm">
+          © 2025 AnimalEcosystem. All rights reserved.
+        </p>
+        <div class="footer-badges">
+          <span class="badge badge-verified">
+            <span class="material-symbols-outlined">verified_user</span>
+            Verified Platform
+          </span>
+          <span class="badge badge-verified">
+            <span class="material-symbols-outlined">lock</span>
+            Secure Transactions
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/auctions.js"></script>
+</body>
+</html>

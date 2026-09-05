@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse animals available for sale from verified sellers with complete health documentation.">
+  <title>Animal Marketplace - AnimalEcosystem</title>
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pages/marketplace.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="header-logo">
+        <div class="logo-icon"><span class="material-symbols-outlined">pets</span></div>
+        <div class="logo-text"><span class="brand-name">AnimalEcosystem</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="/">Home</a>
+        <a href="/marketplace.html" class="active">Marketplace</a>
+        <a href="/auctions.html">Auctions</a>
+        <a href="/veterinary.html">Veterinary</a>
+      </nav>
+      <div class="header-actions">
+        <div data-guest-menu>
+          <a href="/login.html" class="btn btn-secondary btn-sm hidden sm:inline-flex">Sign In</a>
+          <a href="/register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="container mobile-menu">
+      <a href="/">Home</a>
+      <a href="/marketplace.html" class="active">Marketplace</a>
+      <a href="/auctions.html">Auctions</a>
+      <a href="/veterinary.html">Veterinary</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+
+    <!-- INTRO -->
+    <section class="marketplace-intro">
+      <div class="container">
+        <span class="eyebrow label-sm">Animal Marketplace</span>
+        <h1 class="headline-lg">Find the right animal</h1>
+        <p class="body-md intro-desc">Browse animals available for sale from verified sellers.</p>
+
+        <!-- SEARCH -->
+        <div class="market-search-wrapper">
+          <div class="market-search-box">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="text" id="market-search" placeholder="Search by animal, breed or location..." data-search>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="market-filters-section">
+      <div class="container">
+        <div class="filter-sort-bar">
+          <button class="btn btn-outline btn-sm" id="filter-toggle-btn">
+            <span class="material-symbols-outlined">tune</span>
+            Filters
+          </button>
+          <div class="sort-control">
+            <label class="label-sm" for="sort-select">Sort</label>
+            <select id="sort-select" class="filter-select">
+              <option value="newest">Newest</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Expandable Filter Panel -->
+        <div class="filter-panel" id="filter-panel">
+          <div class="filter-panel-grid">
+            <div class="filter-group">
+              <span class="filter-group-title label-sm">Species</span>
+              <div class="filter-pills" data-filter-group="species">
+                <button class="filter-pill active" data-value="all">All</button>
+                <button class="filter-pill" data-value="goat">Goats</button>
+                <button class="filter-pill" data-value="sheep">Sheep</button>
+                <button class="filter-pill" data-value="horse">Horses</button>
+                <button class="filter-pill" data-value="cattle">Cattle</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-group-title label-sm">Gender</span>
+              <div class="filter-pills" data-filter-group="gender">
+                <button class="filter-pill active" data-value="all">All</button>
+                <button class="filter-pill" data-value="male">Male</button>
+                <button class="filter-pill" data-value="female">Female</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-group-title label-sm">Age</span>
+              <div class="filter-pills" data-filter-group="age">
+                <button class="filter-pill active" data-value="all">All</button>
+                <button class="filter-pill" data-value="young">Under 1 Year</button>
+                <button class="filter-pill" data-value="adult">1-3 Years</button>
+                <button class="filter-pill" data-value="mature">3+ Years</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-group-title label-sm">Verification</span>
+              <div class="filter-pills" data-filter-group="verified">
+                <button class="filter-pill active" data-value="all">All</button>
+                <button class="filter-pill" data-value="verified">Verified Owner</button>
+                <button class="filter-pill" data-value="vet-checked">Vet Checked</button>
+              </div>
+            </div>
+          </div>
+          <div class="filter-panel-actions">
+            <button class="btn btn-secondary btn-sm" id="clear-filters-btn">Clear All</button>
+            <button class="btn btn-primary btn-sm" id="apply-filters-btn">Apply Filters</button>
+          </div>
+        </div>
+
+        <div class="results-bar">
+          <h2 class="title-md">Animals for sale</h2>
+          <span class="body-sm"><span id="results-count">6</span> animals available</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTINGS GRID -->
+    <section class="section market-listing-section">
+      <div class="container">
+        <div class="market-grid" id="market-grid">
+
+          <!-- Card 1 -->
+          <article class="card market-card" data-species="goat" data-gender="male" data-age="adult" data-verified="verified vet-checked" data-price="850" data-breed="shami">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1U8ZODGE7u7AtJdbMTh65ReGSiVIcu4eq5jIm6B0UJpoL9tf6Y-oH425oNFSxRoZNtsvB729K9Z1evmlhwLjhhn5qFXkEWzAbxnXmyD_UYKFw0GCMzsG6v5vAhUkqmKYdP8MWw7ilr_VLieUS1ohaE8SQ2TJQ22wvoTwIBL0PivpXOtJLf2flb9mze5dUpBetXji8MalT93WswP4yPW-8L2DLsSuiaro5fKVfUq998fqy8ZM900l2nyqvI" alt="Shami Goat Buck">
+              <button class="fav-btn" data-fav-id="1" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Shami Goat Buck</h3>
+              <p class="market-meta body-sm">Shami Goat • 2 Years • Male</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Highland Farm</p>
+              <div class="market-badges">
+                <span class="badge badge-spec"><span class="material-symbols-outlined">check</span>Verified Owner</span>
+                <span class="badge badge-verified"><span class="material-symbols-outlined">verified</span>Vet Checked</span>
+              </div>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$850</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="1">Contact</button>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card market-card" data-species="sheep" data-gender="female" data-age="adult" data-verified="verified vet-checked" data-price="780" data-breed="awassi">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1Xz9mhFAQuhvsD2UjmlhkWSE2Iznc1e1wimHFAC3pTJT4fGjXigchDmFjd7sMgPC4U2UeBQaJ6ZSxIadS600EKjpppxZqTCvJFeavrit83EFd4JUBMXoV40u24Adhht-XYUlT7OaaPZ1rRJVngyvHrLurdcdeW0wBQ_NqEpxVtsNAcy_IBG7JgBJxm4ps-zbsSuCd-TQFiD7NAM_eYakLM-Sb2PGUypoYmFTrV5mkZWy_DTrbReDa8iqA" alt="Breeding Ewe with Lamb">
+              <button class="fav-btn" data-fav-id="2" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Breeding Ewe with Lamb</h3>
+              <p class="market-meta body-sm">Awassi Sheep • 2.5 Years • Female</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Meadow Pastures</p>
+              <div class="market-badges">
+                <span class="badge badge-spec"><span class="material-symbols-outlined">check</span>Verified Owner</span>
+                <span class="badge badge-verified"><span class="material-symbols-outlined">verified</span>Vet Checked</span>
+              </div>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$780</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="2">Contact</button>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card market-card" data-species="goat" data-gender="female" data-age="adult" data-verified="" data-price="420" data-breed="boer">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1U8ZODGE7u7AtJdbMTh65ReGSiVIcu4eq5jIm6B0UJpoL9tf6Y-oH425oNFSxRoZNtsvB729K9Z1evmlhwLjhhn5qFXkEWzAbxnXmyD_UYKFw0GCMzsG6v5vAhUkqmKYdP8MWw7ilr_VLieUS1ohaE8SQ2TJQ22wvoTwIBL0PivpXOtJLf2flb9mze5dUpBetXji8MalT93WswP4yPW-8L2DLsSuiaro5fKVfUq998fqy8ZM900l2nyqvI" alt="Boer Doe">
+              <button class="fav-btn" data-fav-id="3" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Boer Doe</h3>
+              <p class="market-meta body-sm">Boer Goat • 1.5 Years • Female</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Valley Ranch</p>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$420</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="3">Contact</button>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card market-card" data-species="horse" data-gender="male" data-age="mature" data-verified="verified vet-checked" data-price="12500" data-breed="arabian">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVg2SzKdMhZR0BiimmE9fyiRCLKKuGxiSayVKFyjNY40mkCXOzVrOZ-nSOaZR8Bvul7EjA7bU5f8Ry1VTAYgJh2yuu0lZZPqLBKctgwIJ1KJw5KpAjzRRW0oQ-_yNUjaUepLIhKpWeEcFkNNHAflaH5Ux6Ed8POgAzWWoXPFhlVw-X66W8EYXlVhRjQoXESWeDxEP1l5nk8ieUvD1KKrjgGPka5Qeq55vFGZ5xps_hA_fipMxXLsNI" alt="Arabian Stallion">
+              <button class="fav-btn" data-fav-id="4" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Arabian Stallion</h3>
+              <p class="market-meta body-sm">Purebred Arabian • 4 Years • Male</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Elite Stables</p>
+              <div class="market-badges">
+                <span class="badge badge-spec"><span class="material-symbols-outlined">check</span>Verified Owner</span>
+                <span class="badge badge-verified"><span class="material-symbols-outlined">verified</span>Vet Checked</span>
+              </div>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$12,500</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="4">Contact</button>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="card market-card" data-species="cattle" data-gender="female" data-age="adult" data-verified="verified" data-price="3200" data-breed="holstein">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6kK3r978qglCgFvkGHOGXqD0J4OlNN2ab-GYuq40BsjyZiZ404JPbmTwz1q1OWtHk2qa4cK17vXwqHvTQJqOrNsx0tZXvns2tF2fPrpZHj2b9qt8pDC-QP3tRfUQeoxuKdtx4vsvEKOaOZvzX1ii1S1rnj5K1D1M8GaT2jeGmoXBoTc5K3RyGJQepV5OBIyHwp_kqCAFImeFRW0M2S8D02SsEeGA4nDNMuPfi0-mcMkxNOtWDauWn" alt="Holstein Dairy Cow">
+              <button class="fav-btn" data-fav-id="5" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Holstein Dairy Cow</h3>
+              <p class="market-meta body-sm">Holstein Friesian • 3 Years • Female</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Green Pasture Dairy</p>
+              <div class="market-badges">
+                <span class="badge badge-spec"><span class="material-symbols-outlined">check</span>Verified Owner</span>
+              </div>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$3,200</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="5">Contact</button>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="card market-card" data-species="sheep" data-gender="male" data-age="adult" data-verified="verified vet-checked" data-price="650" data-breed="awassi">
+            <div class="market-card-image">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1Xz9mhFAQuhvsD2UjmlhkWSE2Iznc1e1wimHFAC3pTJT4fGjXigchDmFjd7sMgPC4U2UeBQaJ6ZSxIadS600EKjpppxZqTCvJFeavrit83EFd4JUBMXoV40u24Adhht-XYUlT7OaaPZ1rRJVngyvHrLurdcdeW0wBQ_NqEpxVtsNAcy_IBG7JgBJxm4ps-zbsSuCd-TQFiD7NAM_eYakLM-Sb2PGUypoYmFTrV5mkZWy_DTrbReDa8iqA" alt="Breeding Ram">
+              <button class="fav-btn" data-fav-id="6" aria-label="Add to favorites"><span class="material-symbols-outlined">favorite_border</span></button>
+            </div>
+            <div class="card-body">
+              <h3 class="title-md">Premium Breeding Ram</h3>
+              <p class="market-meta body-sm">Awassi Sheep • 2 Years • Male</p>
+              <p class="market-location body-sm"><span class="material-symbols-outlined">location_on</span>Highland Farm</p>
+              <div class="market-badges">
+                <span class="badge badge-spec"><span class="material-symbols-outlined">check</span>Verified Owner</span>
+                <span class="badge badge-verified"><span class="material-symbols-outlined">verified</span>Vet Checked</span>
+              </div>
+            </div>
+            <div class="card-footer market-footer">
+              <div class="market-price"><span class="headline-sm">$650</span></div>
+              <button class="btn btn-primary btn-sm" data-contact-id="6">Contact</button>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <span class="material-symbols-outlined">search_off</span>
+          <h3 class="title-md">No animals found</h3>
+          <p class="body-md">Try adjusting your filters or search terms.</p>
+          <button class="btn btn-outline btn-sm" id="reset-filters-btn">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column"><div class="footer-logo"><div class="logo-icon"><span class="material-symbols-outlined">pets</span></div><span class="brand-name">AnimalEcosystem</span></div><p class="footer-description body-md">Premium livestock trading platform with verified health documentation and secure transactions.</p></div>
+        <div class="footer-column"><h4 class="footer-column-title title-sm">Platform</h4><ul class="footer-links"><li><a href="/marketplace.html">Browse Animals</a></li><li><a href="/auctions.html">Live Auctions</a></li><li><a href="/veterinary.html">Veterinary Care</a></li></ul></div>
+        <div class="footer-column"><h4 class="footer-column-title title-sm">Support</h4><ul class="footer-links"><li><a href="/contact.html">Contact Us</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li></ul></div>
+        <div class="footer-column"><h4 class="footer-column-title title-sm">Trust & Safety</h4><ul class="footer-links"><li><a href="#">Buyer Protection</a></li><li><a href="#">Health Standards</a></li><li><a href="#">Verified Sellers</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="copyright body-sm">© 2025 AnimalEcosystem. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/marketplace.js"></script>
+</body>
+</html>

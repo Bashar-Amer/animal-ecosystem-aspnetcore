@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premier regulated digital livestock auction and veterinary certified marketplace. Buy, sell, and auction animals with complete trust and biosecurity.">
+  <title>AnimalEcosystem - Premium Livestock & Veterinary Exchange</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pages/home.css">
+  
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- HEADER -->
+  <header class="header header-branded">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="/" class="header-logo-branded">
+        <div class="logo-icon">
+          <span class="material-symbols-outlined">pets</span>
+        </div>
+        <div class="logo-text">
+          <div class="logo-main">
+            <span class="brand-name">AnimalEcosystem</span>
+            <span class="brand-tagline">EXCHANGE</span>
+          </div>
+          <span class="logo-subtitle">Premium Livestock Trading Platform</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="header-nav">
+        <a href="/" class="active">Home</a>
+        <a href="/marketplace.html">Marketplace</a>
+        <a href="/auctions.html">Auctions</a>
+        <a href="/veterinary.html">Veterinary</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Guest Menu -->
+        <div data-guest-menu>
+          <a href="/login.html" class="btn btn-secondary btn-sm hidden sm:inline-flex">
+            Sign In
+          </a>
+          <a href="/register.html" class="btn btn-primary btn-sm">
+            Register
+          </a>
+        </div>
+
+        <!-- User Menu (hidden by default) -->
+        <div data-user-menu style="display: none;">
+          <div data-dropdown class="dropdown">
+            <button data-dropdown-trigger class="user-avatar">
+              <span class="material-symbols-outlined">person</span>
+            </button>
+            <div data-dropdown-menu class="dropdown-menu">
+              <a href="/dashboard.html">Dashboard</a>
+              <a href="/watchlist.html">Watchlist</a>
+              <a href="/bids.html">My Bids</a>
+              <a href="/settings.html">Settings</a>
+              <a href="#" onclick="handleLogout()">Logout</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="container mobile-menu">
+      <a href="/" class="active">Home</a>
+      <a href="/marketplace.html">Marketplace</a>
+      <a href="/auctions.html">Auctions</a>
+      <a href="/veterinary.html">Veterinary</a>
+      <div class="mobile-menu-actions">
+        <a href="/login.html" class="btn btn-secondary btn-sm btn-block">Sign In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm btn-block">Register</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-home">
+      <!-- Decorative Background Elements -->
+      <div class="hero-decoration hero-decoration-1"></div>
+      <div class="hero-decoration hero-decoration-2"></div>
+      
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Left Content -->
+          <div class="hero-content">
+            <!-- Authority Badge -->
+            <div class="authority-badge">
+              <span class="badge-indicator"></span>
+              <span class="badge-text">
+                Trusted Livestock & Veterinary Ecosystem
+              </span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="display-hero hero-title">
+              Everything Your Animals Need, <span class="text-secondary">In One Place.</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-description body-lg">
+              The trusted platform for buying, selling, auctioning, and caring for livestock. Safeguarded by veterinary health checks and secure escrow transactions.
+            </p>
+
+            <!-- Primary CTAs -->
+            <div class="hero-actions">
+              <a href="/marketplace.html" class="btn btn-primary btn-lg">
+                Browse Marketplace
+              </a>
+              <a href="/veterinary.html" class="btn btn-outline btn-lg">
+                Find a Veterinarian
+              </a>
+              <a href="/auctions.html" class="hero-link">
+                <span class="material-symbols-outlined">gavel</span>
+                <span>Explore Live Auctions →</span>
+              </a>
+            </div>
+
+            <!-- Trust Stats -->
+            <div class="trust-stats">
+              <div class="stat-item">
+                <span class="stat-value label-numeric-lg">50+</span>
+                <span class="stat-label label-sm">Countries Served</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value label-numeric-lg">100%</span>
+                <span class="stat-label label-sm">Verified Veterinarians</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value label-numeric-lg">24/7</span>
+                <span class="stat-label label-sm">Escrow Protection</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value label-numeric-lg">50,000+</span>
+                <span class="stat-label label-sm">Active Breeders</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Visual - Live Auction Card -->
+          <div class="hero-visual">
+            <div class="live-auction-showcase">
+              <!-- Decorative accent -->
+              <div class="showcase-accent"></div>
+              
+              <!-- Header -->
+              <div class="showcase-header">
+                <div class="live-indicator">
+                  <span class="live-pulse"></span>
+                  <span class="live-text label-sm">Live Auction</span>
+                </div>
+                <span class="lot-number label-sm">Lot #1042</span>
+              </div>
+
+              <!-- Image -->
+              <div class="showcase-image">
+                <img 
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrxb5Tvxbgy6PN4brLofGGyWjwcFvJXuiQQpjGYeSgsi15TgYruszzKWcqhzHbLkucFcWldYUjec1ind6DYwROJmP8zGpEBHFtu53BKaUstVZ76e--kXKr8yiGlTnT_Wt0FEYSyfvpc07oc7JR8wa7rjl3NitHkutbkY_lbp3d7ro-EfD_IwlhaSuOstxR4rmCkTz2eiOmL36AyO9vaaRY4-LqVnkdmaGvxH4Z1kg0vGJK-CXnEINw"
+                  alt="Premium Arabian purebred stallion"
+                  data-lazy
+                >
+                <div class="image-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Pedigree Certified • WAHO</span>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="showcase-details">
+                <div class="showcase-title-row">
+                  <h3 class="title-md">Purebred Arabian Stallion</h3>
+                  <span class="location-label body-sm">Premium Stables</span>
+                </div>
+
+                <!-- Bid Info -->
+                <div class="bid-info-panel">
+                  <div class="bid-amount">
+                    <span class="bid-label body-sm">Current Highest Bid</span>
+                    <span class="bid-value headline-sm">$12,500</span>
+                  </div>
+                  <div class="bid-timer">
+                    <span class="timer-label label-sm">Closes in</span>
+                    <span class="timer-value title-sm" data-countdown="2024-12-31T18:00:00">02h : 45m : 18s</span>
+                  </div>
+                </div>
+
+                <!-- CTA -->
+                <a href="/auctions.html" class="btn btn-urgent btn-block">
+                  Place Instant Bid
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE PILLARS SECTION -->
+    <section class="section pillars-section">
+      <div class="container">
+        <div class="grid grid-3">
+          
+          <!-- Pillar 1: Buy & Sell Animals -->
+          <a href="/marketplace.html" class="pillar-card">
+            <div class="pillar-content">
+              <div class="pillar-icon pillar-icon-primary">
+                <span class="material-symbols-outlined">storefront</span>
+              </div>
+              <div class="pillar-text">
+                <h3 class="headline-sm pillar-title">Buy & Sell Animals</h3>
+                <p class="body-md pillar-description">
+                  Verified livestock marketplace connecting you to certified breeders and farmers worldwide with complete health documentation.
+                </p>
+              </div>
+            </div>
+            <div class="pillar-cta">
+              <span>Explore Animals</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </div>
+          </a>
+
+          <!-- Pillar 2: Veterinary Care -->
+          <a href="/veterinary.html" class="pillar-card">
+            <div class="pillar-content">
+              <div class="pillar-icon pillar-icon-secondary">
+                <span class="material-symbols-outlined">medical_services</span>
+              </div>
+              <div class="pillar-text">
+                <h3 class="headline-sm pillar-title">Veterinary Care</h3>
+                <p class="body-md pillar-description">
+                  Licensed veterinary directory with tele-health consultations and on-site clinical visits from qualified professionals.
+                </p>
+              </div>
+            </div>
+            <div class="pillar-cta">
+              <span>Find a Doctor</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </div>
+          </a>
+
+          <!-- Pillar 3: Live Auctions -->
+          <a href="/auctions.html" class="pillar-card">
+            <div class="pillar-content">
+              <div class="pillar-header">
+                <div class="pillar-icon pillar-icon-tertiary">
+                  <span class="material-symbols-outlined">gavel</span>
+                </div>
+                <span class="badge badge-live">
+                  <span class="badge-pulse"></span>
+                  Live Now
+                </span>
+              </div>
+              <div class="pillar-text">
+                <h3 class="headline-sm pillar-title">Live Auctions</h3>
+                <p class="body-md pillar-description">
+                  Transparent timed livestock auctions with verified escrow, real-time bidding notifications, and international shipping support.
+                </p>
+              </div>
+            </div>
+            <div class="pillar-cta">
+              <span>Enter Auctions</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ANIMALS SECTION -->
+    <section class="section featured-animals-section">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header-complex">
+          <div class="section-header-text">
+            <span class="section-eyebrow label-sm">Premium Marketplace</span>
+            <h2 class="section-title headline-lg">Featured Animals</h2>
+            <p class="section-description body-md">
+              Verified listings backed by international health certificates and direct breeder contact.
+            </p>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-category="all">All</button>
+            <button class="filter-tab" data-category="sheep">Sheep</button>
+            <button class="filter-tab" data-category="horse">Horses</button>
+            <button class="filter-tab" data-category="goat">Goats</button>
+            <button class="filter-tab" data-category="cattle">Cattle</button>
+            <a href="/marketplace.html" class="view-all-link title-sm">
+              <span>View Marketplace</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Animals Grid -->
+        <div class="grid grid-4" id="featured-animals-grid">
+          
+          <!-- Animal Card 1: Premium Sheep -->
+          <article class="card animal-card" data-category="sheep">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRAZVkBvyMRaFpC29oHRzbnz1CCWZRjxxkCEoUAZogaO1pzRCk8a7_CWs8PEpigf4kAq_tyO-XQTKCwF3KoqwupSUzlU9nViU7vSpcdSNK0Vycb-MH-WIyJlF7J3NVAQ9ezLpgwSK-XAUpaydxVaBiZj7UmSMcnW9FU0jz5yi5IX8VWOICM19Jm0NV3IVirFiS4baojy7SAz5lqTWrq0yqxmZBnSc43ZP0_cwjKJoRMJYGUqRhjiBT"
+                alt="Purebred Ram"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-spec">Purebred</span>
+              </div>
+              <div class="card-location-badge">Premium Farm</div>
+            </div>
+
+            <div class="card-body">
+              <div class="card-verification">
+                <span class="material-symbols-outlined">verified</span>
+                <span class="label-sm">Verified Owner • Vet Checked</span>
+              </div>
+              
+              <h3 class="card-title title-md">Premium Breeding Ram</h3>
+              <p class="card-meta body-sm">2 Years • Male • Full Vaccination Record</p>
+            </div>
+
+            <div class="card-footer animal-card-footer">
+              <div class="price-info">
+                <span class="price-label body-sm">Asking Price</span>
+                <span class="price-value headline-sm">$850</span>
+              </div>
+              <a href="/marketplace.html" class="btn btn-primary btn-sm">
+                Contact
+              </a>
+            </div>
+          </article>
+
+          <!-- Animal Card 2: Holstein Dairy Cow -->
+          <article class="card animal-card" data-category="cattle">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGaVcPEWBp1bEPjvGvCuWLCUWkQEscJKSj_1JCCrD9gPDbIH90M3l6YIXkSe4Ec6Z7YMggCQ2Ell7wKvXmNxbQfGVM0vw3c0YXEfMiIxD0YIwPFAtkn0_MioVJ0WHbiGBdNN1elRl3oTNHEGxX4ffBPfvlNN-l90CDxMtXQmvEbkqTGexU70BD4sWCBvVvmf6hT1uV3lqJEt_dDw1h0F04qP0bAKepEaBXFgAk-sqqDPdOf9r9vjIa"
+                alt="Holstein Dairy Cow"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-spec">Holstein Friesian</span>
+              </div>
+              <div class="card-location-badge">Certified Dairy</div>
+            </div>
+
+            <div class="card-body">
+              <div class="card-verification">
+                <span class="material-symbols-outlined">verified</span>
+                <span class="label-sm">Certified Dairy Facility</span>
+              </div>
+              
+              <h3 class="card-title title-md">High-Yield Dairy Cow</h3>
+              <p class="card-meta body-sm">3 Years • Female • 28L Daily Production</p>
+            </div>
+
+            <div class="card-footer animal-card-footer">
+              <div class="price-info">
+                <span class="price-label body-sm">Direct Price</span>
+                <span class="price-value headline-sm">$3,200</span>
+              </div>
+              <a href="/marketplace.html" class="btn btn-primary btn-sm">
+                Contact
+              </a>
+            </div>
+          </article>
+
+          <!-- Animal Card 3: Arabian Stallion -->
+          <article class="card animal-card" data-category="horse">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXU1Lm2h4lT12QCDOv2AzEn7lrrYgSF6DebvekJgimklmWtTFkWdhdUsOUFdv_tvyG5Udi8CqbUF9OPJCjQG-ZC_OmYOUV7yQsTS-VjyQJxW4umfjLeuS4ChBCWOomm49XIAhOapjuPmmgRUIhBbRqDCi16vh0PNuCpMKVLfzFlNFdqWzBjVVG5OSQfqvWnY2xCdnrRa0t0B2pfXvgJYBpJ3JxuU0nlHZdM4mFPlOX0tmIFgyuowgI"
+                alt="Arabian Stallion"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-spec">WAHO Registered</span>
+              </div>
+              <div class="card-location-badge">Elite Stables</div>
+            </div>
+
+            <div class="card-body">
+              <div class="card-verification">
+                <span class="material-symbols-outlined">verified</span>
+                <span class="label-sm">Verified Owner • Vet Checked</span>
+              </div>
+              
+              <h3 class="card-title title-md">Arabian Stallion (Najm)</h3>
+              <p class="card-meta body-sm">4 Years • Male • Championship Bloodline</p>
+            </div>
+
+            <div class="card-footer animal-card-footer">
+              <div class="price-info">
+                <span class="price-label body-sm">Fixed Price</span>
+                <span class="price-value headline-sm">$18,000</span>
+              </div>
+              <a href="/marketplace.html" class="btn btn-primary btn-sm">
+                Contact
+              </a>
+            </div>
+          </article>
+
+          <!-- Animal Card 4: Boer Goat -->
+          <article class="card animal-card" data-category="goat">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnV2cGMcSjjtRp1OtK-oezv7-fqAYpV9jVwdx_TghmZ8BDU7Dgu00Dc239Qg9M5HeF9YVrLNhbA7ASPz1-Fl7ViQG3kYR_PsFcI_31Trwz8xSffSK4-QoLC3kJGqLkLks4SnFixEnUNt2NwidNae-OVG9_-UFYP84VkFQDBYG-hQ4pY3zuN4hMBL1BQiqufmHX76d-kX0uCMrEFkbHebTsZxCq2AL_1WJH9MBkbiUkPA8P7gmq6auP"
+                alt="Boer Goat Buck"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-spec">Purebred Boer</span>
+              </div>
+              <div class="card-location-badge">Heritage Farm</div>
+            </div>
+
+            <div class="card-body">
+              <div class="card-verification">
+                <span class="material-symbols-outlined">verified</span>
+                <span class="label-sm">Vaccinated • Breeding Ready</span>
+              </div>
+              
+              <h3 class="card-title title-md">Premium Boer Buck</h3>
+              <p class="card-meta body-sm">2 Years • Male • Health Certified</p>
+            </div>
+
+            <div class="card-footer animal-card-footer">
+              <div class="price-info">
+                <span class="price-label body-sm">Direct Price</span>
+                <span class="price-value headline-sm">$750</span>
+              </div>
+              <a href="/marketplace.html" class="btn btn-primary btn-sm">
+                Contact
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE AUCTIONS SECTION -->
+    <section class="section auctions-section">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header-complex">
+          <div class="section-header-text">
+            <div class="auction-live-badge">
+              <span class="material-symbols-outlined">bolt</span>
+              <span class="label-sm">Live Bidding Active</span>
+            </div>
+            <h2 class="section-title headline-lg">Live Livestock Auctions</h2>
+            <p class="section-description body-md">
+              Transparent timed bidding with escrow security and international shipping assistance.
+            </p>
+          </div>
+          <a href="/auctions.html" class="view-all-link title-sm">
+            <span>Go to Auctions</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Auctions Grid -->
+        <div class="grid grid-3">
+          
+          <!-- Auction Card 1 -->
+          <article class="card auction-card-home">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDziebzI7ZQmFr0MNtxJgsM7l-9vcjhHnBz5YkgcK6Lgsuh4k7ZMnacNNuTLCeB-zEUdehz-WDsLNfEGRwzAjAFTEpEWrXu4GRhGWa2jNL413o4UjkB7L2PV1KcOIE2b-BSRP0lz43vulpDGQBH5EljzmzFl1GB-fWzw-5Kef-9IGfwJIpL7ZWVtI8IU7kEy7ui3ucIrhsD-JNN5GLG30Jp1_XkxwkiFjmBKcHvEsFbnSWlzB29pUYe"
+                alt="Thoroughbred Arabian Stallion"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-live">
+                  <span class="badge-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <div class="auction-lot-badge">Lot #1042</div>
+            </div>
+
+            <div class="card-body">
+              <h3 class="card-title title-md">Championship Arabian Stallion</h3>
+              <p class="card-meta body-sm">
+                Registered bloodline with international competition history.
+              </p>
+
+              <div class="auction-bid-panel">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-amount headline-sm">$12,500</span>
+                </div>
+                <div class="bid-countdown">
+                  <span class="countdown-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2024-12-31T18:00:00">02h : 45m : 18s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <a href="/auctions.html" class="btn btn-primary btn-block">Place Bid</a>
+            </div>
+          </article>
+
+          <!-- Auction Card 2 -->
+          <article class="card auction-card-home">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCD-UAttpSfgjLQ3icLSUIGwZR2Qg83yToJqi_QCxBo6apS_Tsq2my_FH8NmtPnO29M-GvSiz8AGE1KAvUSY3OLzV8l-S4goh1pPCfx_QWizyEYNWS7a6a0Yyaf3RcehqbZSVQhjtRaWwzjHXrlAyWMN00j7MdSjvWul5qqu95NcEc6KiL8BrSEf4azCh5gc5YNRAavBMd_Kz-C0h0r_l0F-MDtR9aFxbP7o-isTY_ZN5EHo26pQU6"
+                alt="Premium Breeding Flock"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-live">
+                  <span class="badge-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+              <div class="auction-lot-badge">Lot #1043</div>
+            </div>
+
+            <div class="card-body">
+              <h3 class="card-title title-md">Premium Breeding Flock (10)</h3>
+              <p class="card-meta body-sm">
+                Elite breeding ewes and champion ram with complete health records.
+              </p>
+
+              <div class="auction-bid-panel">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-amount headline-sm">$5,800</span>
+                </div>
+                <div class="bid-countdown">
+                  <span class="countdown-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2024-12-31T20:00:00">05h : 12m : 09s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <a href="/auctions.html" class="btn btn-primary btn-block">Place Bid</a>
+            </div>
+          </article>
+
+          <!-- Auction Card 3 -->
+          <article class="card auction-card-home">
+            <div class="card-image">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuUOCLfEu4brCPG6wmxHhVDnm734uxCl90SbQLSfZAbMmqn4fjGpC9jAh8TdyZVaVBsTX0vDH41bJEsWC79tr7dQQQouOGCC8v2EbqQz1eX9NydGEtvljhU6RW8La7c_JeiW6yrVGZDHmUmPeMGF6XujmuWFz5NZ7dp7UlFdAGfCvkBlHRpMcqDN720qJqnlnBhP73smpouszdcV2qWiQicRDhBl8I--ZLwDrcfhX-_W3xvj18wvUK"
+                alt="Champion Boer Buck"
+                data-lazy
+              >
+              <div class="card-badge">
+                <span class="badge badge-ending">
+                  <span class="material-symbols-outlined">hourglass_bottom</span>
+                  Ending Soon
+                </span>
+              </div>
+              <div class="auction-lot-badge">Lot #1045</div>
+            </div>
+
+            <div class="card-body">
+              <h3 class="card-title title-md">Champion Boer Buck</h3>
+              <p class="card-meta body-sm">
+                Award-winning stud with proven genetics and full health screening.
+              </p>
+
+              <div class="auction-bid-panel">
+                <div class="bid-current">
+                  <span class="bid-label label-sm">Current Bid</span>
+                  <span class="bid-amount headline-sm">$920</span>
+                </div>
+                <div class="bid-countdown">
+                  <span class="countdown-label label-sm">Ends in</span>
+                  <span class="countdown-timer title-sm" data-countdown="2025-01-01T08:00:00">14h : 22m : 55s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <a href="/auctions.html" class="btn btn-urgent btn-block">Bid Now</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VETERINARY NETWORK SECTION -->
+    <section class="section veterinary-section">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header-complex">
+          <div class="section-header-text">
+            <span class="section-eyebrow label-sm">Professional Network</span>
+            <h2 class="section-title headline-lg">Trusted Veterinary Network</h2>
+            <p class="section-description body-md">
+              Connect with licensed veterinary professionals for herd health, surgery, and tele-health consultations.
+            </p>
+          </div>
+          <a href="/veterinary.html" class="view-all-link title-sm">
+            <span>View All Veterinarians</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Veterinarians Grid -->
+        <div class="grid grid-3">
+          
+          <!-- Vet Card 1 -->
+          <article class="card vet-card">
+            <div class="vet-header">
+              <div class="vet-info">
+                <div class="vet-avatar">
+                  <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHHYMz3PtxFgBDrBuHsppu3JDhgk1m-V9C8py0u1i9qqlQ7m2FCvU9kOR2QJCeGF49SB8IaKnYxc0QxUBYPlG9j9CtMMqyCw3HQYjD7_s1kuXcSVM5--K1gf66QL_YCpdNAKOj5GMGo1etbWq_nl_J6pfCBkqtFhevPH_dDjw_sJJ0nA2_IUl3GJi3LKm64TXUVX8nSzSRwRjZCGjRgWVBOGZSX-RXMfpkzv5mDPHWXIMtLHizh3f2"
+                    alt="Dr. Michael Anderson"
+                    data-lazy
+                  >
+                </div>
+                <div class="vet-details">
+                  <h3 class="vet-name title-md">Dr. Michael Anderson</h3>
+                  <span class="vet-specialty body-sm">Large Animal & Herd Health</span>
+                </div>
+              </div>
+              <span class="vet-location-badge label-sm">Texas, USA</span>
+            </div>
+
+            <div class="vet-rating">
+              <div class="rating-stars">
+                <span class="material-symbols-outlined filled">star</span>
+                <span class="rating-value">4.9</span>
+                <span class="rating-count">(247 reviews)</span>
+              </div>
+              <span class="vet-experience label-sm">15+ yrs experience</span>
+            </div>
+
+            <div class="vet-availability">
+              <div class="availability-status">
+                <span class="status-indicator status-available"></span>
+                <span class="status-text label-sm">Available Now</span>
+              </div>
+              <span class="vet-fee title-sm">From $85</span>
+            </div>
+
+            <a href="/veterinary.html" class="btn btn-outline btn-block">
+              Book Consultation
+            </a>
+          </article>
+
+          <!-- Vet Card 2 -->
+          <article class="card vet-card">
+            <div class="vet-header">
+              <div class="vet-info">
+                <div class="vet-avatar">
+                  <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1hykTC8KOnVw5jUF03Agw374ikPqZ1FoM5eQR4izkL8JY9QrxcItiIbAEQBHuRIt888frz_wly0eiIJ3sl9g66b4ZF6BBpH6hsipBQISETZMHqBgYEy-S7bShxsAW4ENAi_Br7Ua0tVS_nel3ZKgANo0deqPkiC8lV-WEI-hS_UH9btMk-c3Sb1FLbDFPIEvv1nL2bSURubZVkjsuTc_aa8EZAeFtV11Z3Zwd8X58PR0Q6iJ_8DGV"
+                    alt="Dr. Sarah Mitchell"
+                    data-lazy
+                  >
+                </div>
+                <div class="vet-details">
+                  <h3 class="vet-name title-md">Dr. Sarah Mitchell</h3>
+                  <span class="vet-specialty body-sm">Equine Specialist & Surgeon</span>
+                </div>
+              </div>
+              <span class="vet-location-badge label-sm">Kentucky, USA</span>
+            </div>
+
+            <div class="vet-rating">
+              <div class="rating-stars">
+                <span class="material-symbols-outlined filled">star</span>
+                <span class="rating-value">5.0</span>
+                <span class="rating-count">(183 reviews)</span>
+              </div>
+              <span class="vet-experience label-sm">12 yrs experience</span>
+            </div>
+
+            <div class="vet-availability">
+              <div class="availability-status">
+                <span class="status-indicator status-available"></span>
+                <span class="status-text label-sm">Available Today</span>
+              </div>
+              <span class="vet-fee title-sm">From $95</span>
+            </div>
+
+            <a href="/veterinary.html" class="btn btn-outline btn-block">
+              Book Consultation
+            </a>
+          </article>
+
+          <!-- Vet Card 3 -->
+          <article class="card vet-card">
+            <div class="vet-header">
+              <div class="vet-info">
+                <div class="vet-avatar">
+                  <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfKn8GXpDG91zl-0QJJHRIgXEBfoKn4EZDdq_SwPTTTuYgIEhfpLMJxW1gqQ4k_njYzEVxftWlNBTF5sOrQTQ6-1Vs_MVmEYJOjEBw1Y5g5nm_f36VFCX7BAo09ZS5cZ9YDxBhVYhLk7Nr1W4wHoZ9kpqH7w3dekRUAJ6ifuxzcc3zi7-H2Oki-UtpZSabKUcTGZupDtTa56FCwAoEtMenDfwEpTZmU96W0X7QAUMOh3dsPe-Pjnsq"
+                    alt="Dr. James Patterson"
+                    data-lazy
+                  >
+                </div>
+                <div class="vet-details">
+                  <h3 class="vet-name title-md">Dr. James Patterson</h3>
+                  <span class="vet-specialty body-sm">Livestock Health & Nutrition</span>
+                </div>
+              </div>
+              <span class="vet-location-badge label-sm">Ontario, Canada</span>
+            </div>
+
+            <div class="vet-rating">
+              <div class="rating-stars">
+                <span class="material-symbols-outlined filled">star</span>
+                <span class="rating-value">4.8</span>
+                <span class="rating-count">(310 reviews)</span>
+              </div>
+              <span class="vet-experience label-sm">20+ yrs experience</span>
+            </div>
+
+            <div class="vet-availability">
+              <div class="availability-status">
+                <span class="status-indicator status-scheduled"></span>
+                <span class="status-text label-sm">Tomorrow 9:00 AM</span>
+              </div>
+              <span class="vet-fee title-sm">From $75</span>
+            </div>
+
+            <a href="/veterinary.html" class="btn btn-outline btn-block">
+              Book Consultation
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY ANIMALECOSYSTEM SECTION -->
+    <section class="section trust-section">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header">
+          <span class="section-eyebrow label-sm">Trust & Security</span>
+          <h2 class="section-title headline-lg">Built for Complete Trust & Biosecurity</h2>
+          <p class="section-description body-md">
+            Designed with international agricultural standards to safeguard breeders, buyers, and animal welfare at every step.
+          </p>
+        </div>
+
+        <!-- Trust Pillars Grid -->
+        <div class="grid grid-3">
+          
+          <!-- Trust Pillar 1 -->
+          <div class="trust-card">
+            <div class="trust-icon trust-icon-primary">
+              <span class="material-symbols-outlined">assignment_turned_in</span>
+            </div>
+            <h3 class="headline-sm">Verified Health Documentation</h3>
+            <p class="body-md">
+              Every animal undergoes comprehensive health certificate verification, including vaccination records, microchip registration, and complete disease screening.
+            </p>
+          </div>
+
+          <!-- Trust Pillar 2 -->
+          <div class="trust-card">
+            <div class="trust-icon trust-icon-secondary">
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <h3 class="headline-sm">Secure Escrow Protection</h3>
+            <p class="body-md">
+              Transactions are held securely and only released following physical handover and certified veterinary inspection at the designated transfer location.
+            </p>
+          </div>
+
+          <!-- Trust Pillar 3 -->
+          <div class="trust-card">
+            <div class="trust-icon trust-icon-tertiary">
+              <span class="material-symbols-outlined">emergency</span>
+            </div>
+            <h3 class="headline-sm">24/7 Veterinary Support</h3>
+            <p class="body-md">
+              Direct access to licensed veterinarians through our tele-health platform, connecting livestock owners with qualified professionals worldwide.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA BANNER -->
+    <section class="section cta-banner-section">
+      <div class="container">
+        <div class="cta-banner">
+          <!-- Decorative Elements -->
+          <div class="cta-decoration cta-decoration-1"></div>
+          <div class="cta-decoration cta-decoration-2"></div>
+
+          <div class="cta-content">
+            <div class="cta-text">
+              <div class="cta-badge">
+                <span class="material-symbols-outlined">shield</span>
+                <span>Trusted Trading Network</span>
+              </div>
+              <h2 class="headline-lg cta-title">
+                Ready to join the premier livestock ecosystem?
+              </h2>
+              <p class="body-md cta-description">
+                Create your free account today to start buying, listing animals, bidding in live auctions, or offering certified veterinary services.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a href="/register.html" class="btn btn-urgent btn-lg">
+                Create Free Account
+              </a>
+              <a href="/marketplace.html" class="btn btn-secondary btn-lg cta-btn-alt">
+                Explore Marketplace
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer-dark">
+    <div class="container">
+      <div class="footer-content">
+        
+        <!-- Column 1: Brand & Description -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <span class="material-symbols-outlined">pets</span>
+            </div>
+            <div class="logo-text">
+              <span class="brand-name">AnimalEcosystem Exchange</span>
+              <span class="brand-subtitle">Premium Livestock & Veterinary Trading</span>
+            </div>
+          </div>
+          <p class="footer-description body-md">
+            The world's premier regulated digital livestock auction and veterinary certified marketplace. Empowering farmers, breeders, and equine estates.
+          </p>
+          <div class="footer-compliance">
+            <span class="material-symbols-outlined">verified_user</span>
+            <span class="label-sm">Internationally Compliant Registry • EST. 2024</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Platform Links -->
+        <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="/marketplace.html">Browse Animals</a></li>
+            <li><a href="/sell.html">Sell Animal</a></li>
+            <li><a href="/auctions.html">Live Auctions</a></li>
+            <li><a href="/veterinary.html">Veterinary Care</a></li>
+            <li><a href="/breeds.html">Breed Directory</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Support & Legal -->
+        <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Support & Legal</h4>
+          <ul class="footer-links">
+            <li><a href="/contact.html">Contact Us</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/compliance.html">Compliance Standards</a></li>
+            <li><a href="/health-protocols.html">Health Protocols</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Trust Info -->
+        <!-- <div class="footer-column">
+          <h4 class="footer-column-title title-sm">Global Exchange</h4>
+          <div class="footer-currency-card">
+            <span class="currency-label label-sm">Secure Transactions</span>
+            <span class="currency-value headline-sm">Multi-Currency</span>
+            <p class="currency-description body-sm">
+              Escrow-backed transactions with immediate veterinary inspection checkpoints worldwide.
+            </p>
+          </div>
+        </div> -->
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <!-- <div class="service-regions">
+          <span class="regions-label">Global Service:</span>
+          <span>North America</span>
+          <span class="separator">•</span>
+          <span>Europe</span>
+          <span class="separator">•</span>
+          <span>Middle East</span>
+          <span class="separator">•</span>
+          <span>Asia Pacific</span>
+          <span class="separator">•</span>
+          <span>Africa</span>
+          <span class="separator">•</span>
+          <span>Latin America</span>
+        </div> -->
+        <p class="copyright body-sm">
+          © 2025 AnimalEcosystem. Veterinary & Livestock Exchange. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/home.js"></script>
+</body>
+</html>

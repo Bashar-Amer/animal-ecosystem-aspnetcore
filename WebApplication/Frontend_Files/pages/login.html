@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In - AnimalEcosystem</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/typography.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/pages/login.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="header-logo" data-path="home">
+        <span class="material-symbols-outlined text-primary" style="font-size: 32px;">pets</span>
+        <div style="display: flex; flex-direction: column;">
+          <span>AnimalEcosystem</span>
+          <span class="label-sm text-secondary">Verified Platform</span>
+        </div>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="#" data-path="home">Home</a>
+        <a href="#" data-path="marketplace">Marketplace</a>
+        <a href="#" data-path="auctions">Auctions</a>
+        <a href="#" data-path="veterinary">Veterinary</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="#" class="btn btn-secondary btn-sm" data-path="login">Sign In</a>
+        <a href="#" class="btn btn-primary btn-sm" data-path="register">Get Started</a>
+        <button class="mobile-menu-toggle" aria-label="Open Menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="login-main">
+    <div class="login-decorations">
+      <div class="decoration decoration-1"></div>
+      <div class="decoration decoration-2"></div>
+      <div class="decoration decoration-3"></div>
+    </div>
+    
+    <div class="container flex-center">
+      <div class="card login-card">
+        <div class="card-body">
+          
+          <div class="login-header text-center mb-xl">
+            <div class="login-icon">
+              <span class="material-symbols-outlined">pets</span>
+              <span class="pulse-dot"></span>
+            </div>
+            <div class="badge badge-verified mb-sm">
+              <span class="material-symbols-outlined" style="font-size: 16px;">verified_user</span>
+              Secure Portal
+            </div>
+            <h1 class="headline-md">Welcome back</h1>
+            <p class="body-md text-muted mt-xs">
+              Sign in to access verified livestock auctions, marketplace listings, and veterinary records.
+            </p>
+          </div>
+
+          <form data-login-form>
+            <div class="form-group">
+              <label for="email" class="form-label flex-between">
+                <span><span class="material-symbols-outlined text-muted" style="font-size: 18px; vertical-align: middle;">mail</span> Email Address</span>
+                <span class="label-sm text-muted">Required</span>
+              </label>
+              <div style="position: relative;">
+                <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label flex-between">
+                <span><span class="material-symbols-outlined text-muted" style="font-size: 18px; vertical-align: middle;">lock</span> Password</span>
+                <a href="#" class="label-sm text-secondary" style="text-decoration: none;">Forgot password?</a>
+              </label>
+              <div class="password-input-wrapper">
+                <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required />
+                <button type="button" class="btn-toggle-password" id="togglePasswordBtn" aria-label="Toggle password visibility">
+                  <span class="material-symbols-outlined" id="passwordToggleIcon">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group flex-between mt-sm">
+              <label class="remember-me">
+                <input type="checkbox" id="remember" name="remember" />
+                <span class="body-sm text-muted">Remember this device for 30 days</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-md flex-center">
+              Sign In to AnimalEcosystem
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </form>
+
+          <div class="login-divider my-lg">
+            <span>Or continue with</span>
+          </div>
+
+          <div class="grid grid-2 mb-xl">
+            <button class="btn btn-outline flex-center" type="button">
+              <span class="material-symbols-outlined text-primary">shield</span>
+              Secure ID
+            </button>
+            <button class="btn btn-outline flex-center" type="button">
+              <span class="material-symbols-outlined text-muted">sms</span>
+              Phone OTP
+            </button>
+          </div>
+
+          <div class="login-footer text-center p-md">
+            <p class="body-sm text-muted">
+              Don't have a verified account?
+              <a href="#" class="text-primary" style="font-weight: 700; text-decoration: none;">Register for free <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">chevron_right</span></a>
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="trust-indicators text-center mt-xl">
+      <div class="flex-center gap-sm flex-wrap text-muted mb-xs">
+        <div class="flex-center gap-xs">
+          <span class="material-symbols-outlined text-secondary">verified</span>
+          <span class="label-sm">Livestock Standard Compliance</span>
+        </div>
+        <span class="d-none sm:d-inline">•</span>
+        <div class="flex-center gap-xs">
+          <span class="material-symbols-outlined text-secondary">lock</span>
+          <span class="label-sm">256-Bit Escrow Protection</span>
+        </div>
+      </div>
+      <p class="body-sm text-muted">Authorized by Veterinary Guidelines & Digital Commerce Regulations.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-dark">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon"><span class="material-symbols-outlined">verified</span></div>
+          <div class="logo-text">
+            <span class="brand-name">Veterinary & Livestock Exchange</span>
+            <span class="brand-subtitle">Verified pedigree, health passports, and regulated animal commerce.</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4 class="footer-column-title">Platform</h4>
+        <a href="#">Marketplace</a>
+        <a href="#">Auctions</a>
+        <a href="#">Health Records</a>
+        <a href="#">Ministry Compliance</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="copyright">© 2024 AnimalEcosystem. All rights reserved. Registered Agri-Tech Platform.</p>
+      <div class="service-regions">
+        <span class="regions-label text-primary-fixed">Global Coverage</span>
+        <span class="separator">•</span>
+        <span class="regions-label text-surface-container-highest">Secure Escrow</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/login.js"></script>
+</body>
+</html>

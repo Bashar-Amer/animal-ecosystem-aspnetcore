@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|d:\\orange\\final_project\\research\\ai_files\\animal ecosystem\\webapplication\\controllers\\marketplacecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|solutionrelative:webapplication\\controllers\\marketplacecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|d:\\orange\\final_project\\research\\ai_files\\animal ecosystem\\webapplication\\viewmodels\\animals\\animalcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|solutionrelative:webapplication\\viewmodels\\animals\\animalcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|d:\\orange\\final_project\\research\\ai_files\\animal ecosystem\\webapplication\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|solutionrelative:webapplication\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|d:\\orange\\final_project\\research\\ai_files\\animal ecosystem\\webapplication\\services\\animalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|solutionrelative:webapplication\\services\\animalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|d:\\orange\\final_project\\research\\ai_files\\animal ecosystem\\webapplication\\dtos\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBAD7B4-8E30-4533-9F5A-D89D5F3CC01D}|WebApplication\\WebApp.csproj|solutionrelative:webapplication\\dtos\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AnimalService.cs",
+              "DocumentMoniker": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Services\\AnimalService.cs",
+              "RelativeDocumentMoniker": "WebApplication\\Services\\AnimalService.cs",
+              "ToolTip": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Services\\AnimalService.cs",
+              "RelativeToolTip": "WebApplication\\Services\\AnimalService.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-05T21:56:15.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Animal.cs",
+              "DocumentMoniker": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Models\\Animal.cs",
+              "RelativeDocumentMoniker": "WebApplication\\Models\\Animal.cs",
+              "ToolTip": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Models\\Animal.cs",
+              "RelativeToolTip": "WebApplication\\Models\\Animal.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAADAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-05T22:07:56.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Result.cs",
+              "DocumentMoniker": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\DTOs\\Result.cs",
+              "RelativeDocumentMoniker": "WebApplication\\DTOs\\Result.cs",
+              "ToolTip": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\DTOs\\Result.cs",
+              "RelativeToolTip": "WebApplication\\DTOs\\Result.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-05T22:19:09.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AnimalCreateViewModel.cs",
+              "DocumentMoniker": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\ViewModels\\Animals\\AnimalCreateViewModel.cs",
+              "RelativeDocumentMoniker": "WebApplication\\ViewModels\\Animals\\AnimalCreateViewModel.cs",
+              "ToolTip": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\ViewModels\\Animals\\AnimalCreateViewModel.cs",
+              "RelativeToolTip": "WebApplication\\ViewModels\\Animals\\AnimalCreateViewModel.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAB8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-05T22:07:35.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MarketplaceController.cs",
+              "DocumentMoniker": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Controllers\\MarketplaceController.cs",
+              "RelativeDocumentMoniker": "WebApplication\\Controllers\\MarketplaceController.cs",
+              "ToolTip": "D:\\Orange\\Final_project\\research\\AI_files\\Animal Ecosystem\\WebApplication\\Controllers\\MarketplaceController.cs",
+              "RelativeToolTip": "WebApplication\\Controllers\\MarketplaceController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAADcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-05T22:03:01.093Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
