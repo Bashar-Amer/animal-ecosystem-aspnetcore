@@ -1,9 +1,0 @@
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.csproj.AssemblyReference.cache
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\rpswa.dswa.cache.json
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.GeneratedMSBuildEditorConfig.editorconfig
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.AssemblyInfoInputs.cache
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.AssemblyInfo.cs
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.csproj.CoreCompileInputs.cache
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.MvcApplicationPartsAssemblyInfo.cache
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.RazorAssemblyInfo.cache
-D:\Orange\Final_project\research\AI_files\Animal Ecosystem\WebApplication\obj\Debug\net10.0\WebApplication.RazorAssemblyInfo.cs
