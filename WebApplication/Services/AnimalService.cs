@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.DTOs;
 using WebApp.Interfaces.Services;
@@ -17,21 +16,94 @@ namespace WebApp.Services
             _dbContext = dbContext;
         }
 
-        public async Task<ICollection<Animal>> GetAllAsync()
-        => await _dbContext.Animals.ToListAsync();
+        public async Task<ICollection<AnimalListViewModel>> GetAllAsync()
+        {
+            var list = await _dbContext.Animals
+                .AsNoTracking()
+                .Where(a => a.Status == AnimalStatus.Available)
+                .Include(a => a.Owner)
+                .Include(a => a.Species)
+                .Include(a => a.Images)
+                .Select(a => new AnimalListViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Breed = a.Breed,
+                    AgeInMonths = a.AgeInMonths,
+                    Price = a.Price,
+                    Location = a.Location,
+                    IsOwnerVerified = a.Owner.IsVerified,
+                    IsVetVerified = a.IsVerified,
+                    MainImageUrl = a.Images.FirstOrDefault(i=>i.IsMain == true).ImageUrl
+                }).ToListAsync();
+            return list;
+        }
 
-        public async Task<Animal?> GetById(string id)
+        public async Task<Animal?> GetByIdAsync(string id)
         {
             if (id == null)
                 return null;
            
-            var animal = await _dbContext.Animals.FirstOrDefaultAsync(m => m.Id == id);
-
+            var animal = await _dbContext.Animals.Include(a=>a.Species).FirstOrDefaultAsync(m => m.Id == id);
+            
             if (animal == null)
                 return null;
-            else
-                return animal;
+
+            await _dbContext.Entry<Animal>(animal).Collection(a => a.Images).LoadAsync();
+            return animal;
         }
+
+        public async Task<ICollection<AnimalListViewModel>> GetSimilarAsync(Animal animal)
+        {
+            var list = await _dbContext.Animals
+                .AsNoTracking()
+                .Where(a => a.Status == AnimalStatus.Available)
+                .Where(a=>a.Breed == animal.Breed) //|| a.Species == a.Species
+                .Include(a => a.Owner)
+                .Include(a => a.Species)
+                .Include(a => a.Images)
+                .Select(a => new AnimalListViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Breed = a.Breed,
+                    Gender = a.Gender,
+                    AgeInMonths = a.AgeInMonths,
+                    Price = a.Price,
+                    Location = a.Location,
+                    IsOwnerVerified = a.Owner.IsVerified,
+                    IsVetVerified = a.IsVerified,
+                    MainImageUrl = a.Images.FirstOrDefault(i => i.IsMain == true).ImageUrl
+                }).ToListAsync();
+            return list;
+        }
+
+        public async Task<ICollection<AnimalListViewModel>> GetByOwnerAsync(string userId)
+        {
+            var list = await _dbContext.Animals
+                .AsNoTracking()
+                .Where(a => a.Status == AnimalStatus.Available)
+                .Where(a => a.OwnerId == userId)
+                .Include(a => a.Owner)
+                .Include(a => a.Species)
+                .Include(a => a.Images)
+                .Select(a => new AnimalListViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Breed = a.Breed,
+                    Gender = a.Gender,
+                    AgeInMonths = a.AgeInMonths,
+                    Price = a.Price,
+                    Location = a.Location,
+                    IsOwnerVerified = a.Owner.IsVerified,
+                    IsVetVerified = a.IsVerified,
+                    MainImageUrl = a.Images.FirstOrDefault(i => i.IsMain == true).ImageUrl
+                }).ToListAsync();
+            return list;
+        }
+
+
 
         public async Task<Result> AddAsync(AnimalCreateViewModel userData)
         {
@@ -59,5 +131,10 @@ namespace WebApp.Services
                 return Result.Failure(e.ToString());
             }
         }
+
+        //Task<ICollection<Animal>> IAnimalService.GetAllAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

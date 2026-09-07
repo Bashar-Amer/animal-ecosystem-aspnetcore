@@ -23,5 +23,7 @@ namespace WebApp.Models
         public ICollection<Bid> Bids { get; set; } = new List<Bid>();
         public VetProfile? VetProfile { get; set; } // null if not a veterinarian
         public ICollection<Appointment> AppointmentsAsClient { get; set; } = new List<Appointment>();
+
+        public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }

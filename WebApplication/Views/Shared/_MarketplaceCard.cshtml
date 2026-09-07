@@ -1,0 +1,65 @@
+﻿@* Views/Shared/_MarketplaceCard.cshtml *@
+@model WebApp.ViewModels.Animals.AnimalListViewModel
+
+<a asp-controller="Marketplace"
+   asp-action="Details"
+   asp-route-id="@Model.Id"
+   class="card-link-wrapper"
+   aria-label="View details for @Model.Name">
+
+    <article class="card market-card"
+             data-breed="@Model.Breed"
+             data-gender="@Model.Gender"
+             data-age="@Model.AgeInMonths"
+             data-verified="@Model.IsVetVerified"
+             data-price="@Model.Price">
+
+        <div class="market-card-image">
+            <img src="@Model.MainImageUrl"
+                 alt="@Model.Name"
+                 loading="lazy" />
+        </div>
+
+        <div class="card-body">
+            <h3 class="title-md">@Model.Name</h3>
+
+            <p class="market-meta body-sm">
+                @Model.Breed &bull; @Model.AgeInMonths &bull;
+                @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Gender ?? "N/A")
+            </p>
+
+            <p class="market-location body-sm">
+                <span class="material-symbols-outlined">location_on</span>
+                @Model.Location
+            </p>
+
+            @if (Model.IsOwnerVerified || Model.IsVetVerified)
+            {
+                <div class="market-badges">
+                    @if (Model.IsOwnerVerified)
+                    {
+                        <span class="badge badge-spec">
+                            <span class="material-symbols-outlined">check</span>
+                            Verified Owner
+                        </span>
+                    }
+                    @if (Model.IsVetVerified)
+                    {
+                        <span class="badge badge-verified">
+                            <span class="material-symbols-outlined">verified</span>
+                            Vet Checked
+                        </span>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="card-footer market-footer">
+            <div class="market-price">
+                <span class="headline-sm">@Model.Price.ToString("N0") JOD</span>
+            </div>
+            <span class="btn btn-outline btn-sm">View</span>
+        </div>
+
+    </article>
+</a>

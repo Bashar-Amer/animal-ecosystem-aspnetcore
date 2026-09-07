@@ -1,552 +1,254 @@
-/**
- * Main Application Logic
- * Initialize components and handle global functionality
- */
-
-// App State
 const AppState = {
-  user: null,
-  filters: {},
-  sortBy: 'ending-soon',
-  viewMode: 'grid',
+    user: null,
+    filters: {},
+    sortBy: "ending-soon",
+    viewMode: "grid"
 };
-
-/**
- * Initialize Application
- */
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu();
-  initCountdownTimers();
-  initModals();
-  initTabs();
-  initAccordions();
-  initDropdowns();
-  initLazyLoading();
-  initFilters();
-  initSearch();
-  initAuctionCards();
-  initScrollEffects();
+document.addEventListener("DOMContentLoaded", () => {
+    initMobileMenu();
+    initCountdownTimers();
+    initModals();
+    initTabs();
+    initAccordions();
+    initDropdowns();
+    initLazyLoading();
+    initFilters();
+    initSearch();
+    initAuctionCards();
+    initScrollEffects()
 });
 
-/**
- * Mobile Menu Toggle
- */
 function initMobileMenu() {
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
-  if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-
-      // Update aria-expanded for accessibility
-      const isExpanded = mobileMenu.classList.contains('active');
-      mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
-
-      // Update icon (if using icon toggle)
-      const icon = mobileMenuToggle.querySelector('svg, i');
-      if (icon) {
-        icon.classList.toggle('rotate-90');
-      }
-    });
-
-    // Close menu when clicking on a link
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+    const e = document.querySelector(".mobile-menu-toggle"),
+        t = document.querySelector(".mobile-menu");
+    e && t && (e.addEventListener("click", () => {
+        t.classList.toggle("active");
+        const s = t.classList.contains("active");
+        e.setAttribute("aria-expanded", s);
+        const n = e.querySelector("svg, i");
+        n && n.classList.toggle("rotate-90")
+    }), t.querySelectorAll("a").forEach(s => {
+        s.addEventListener("click", () => {
+            t.classList.remove("active"), e.setAttribute("aria-expanded", "false")
+        })
+    }))
 }
 
-/**
- * Initialize All Countdown Timers
- */
 function initCountdownTimers() {
-  const timerElements = document.querySelectorAll('[data-countdown]');
-
-  timerElements.forEach((element) => {
-    const endDate = element.dataset.countdown;
-    if (endDate) {
-      const timer = new CountdownTimer(element, endDate);
-      timer.setExpireCallback(() => {
-        // Handle timer expiration
-        const card = element.closest('.card');
-        if (card) {
-          const badge = card.querySelector('.badge');
-          if (badge) {
-            badge.className = 'badge badge-ended';
-            badge.textContent = 'Ended';
-          }
-
-          const actionButton = card.querySelector('.btn-primary, .btn-urgent');
-          if (actionButton) {
-            actionButton.disabled = true;
-            actionButton.textContent = 'Auction Ended';
-            actionButton.classList.add('btn-disabled');
-          }
+    document.querySelectorAll("[data-countdown]").forEach(e => {
+        const t = e.dataset.countdown;
+        if (t) {
+            const s = new CountdownTimer(e, t);
+            s.setExpireCallback(() => {
+                const n = e.closest(".card");
+                if (n) {
+                    const a = n.querySelector(".badge");
+                    a && (a.className = "badge badge-ended", a.textContent = "Ended");
+                    const i = n.querySelector(".btn-primary, .btn-urgent");
+                    i && (i.disabled = true, i.textContent = "Auction Ended", i.classList.add("btn-disabled"))
+                }
+            }), s.start()
         }
-      });
-      timer.start();
-    }
-  });
+    })
 }
 
-/**
- * Initialize All Modals
- */
 function initModals() {
-  const modalTriggers = document.querySelectorAll('[data-modal-trigger]');
-
-  modalTriggers.forEach((trigger) => {
-    const modalId = trigger.dataset.modalTrigger;
-    const modal = new Modal(modalId);
-
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      modal.open();
-    });
-  });
+    document.querySelectorAll("[data-modal-trigger]").forEach(e => {
+        const t = e.dataset.modalTrigger,
+            s = new Modal(t);
+        e.addEventListener("click", n => {
+            n.preventDefault(), s.open()
+        })
+    })
 }
 
-/**
- * Initialize All Tabs
- */
 function initTabs() {
-  const tabContainers = document.querySelectorAll('[data-tabs]');
-
-  tabContainers.forEach((container) => {
-    new Tabs(container);
-  });
+    document.querySelectorAll("[data-tabs]").forEach(e => {
+        new Tabs(e)
+    })
 }
 
-/**
- * Initialize All Accordions
- */
 function initAccordions() {
-  const accordions = document.querySelectorAll('[data-accordion]');
-
-  accordions.forEach((accordion) => {
-    new Accordion(accordion);
-  });
+    document.querySelectorAll("[data-accordion]").forEach(e => {
+        new Accordion(e)
+    })
 }
 
-/**
- * Initialize All Dropdowns
- */
 function initDropdowns() {
-  const dropdowns = document.querySelectorAll('[data-dropdown]');
-
-  dropdowns.forEach((dropdown) => {
-    new Dropdown(dropdown);
-  });
+    document.querySelectorAll("[data-dropdown]").forEach(e => {
+        new Dropdown(e)
+    })
 }
 
-/**
- * Initialize Lazy Loading for Images
- */
 function initLazyLoading() {
-  new LazyLoader('[data-lazy]');
+    new LazyLoader("[data-lazy]")
 }
 
-/**
- * Initialize Filters
- */
 function initFilters() {
-  const filterInputs = document.querySelectorAll('[data-filter]');
-
-  filterInputs.forEach((input) => {
-    input.addEventListener(
-      'change',
-      Utils.debounce(() => {
-        const filterType = input.dataset.filter;
-        const filterValue = input.value;
-
-        AppState.filters[filterType] = filterValue;
-        applyFilters();
-      }, 300)
-    );
-  });
+    document.querySelectorAll("[data-filter]").forEach(e => {
+        e.addEventListener("change", Utils.debounce(() => {
+            AppState.filters[e.dataset.filter] = e.value, applyFilters()
+        }, 300))
+    })
 }
 
-/**
- * Apply Filters to Auction Listings
- */
 function applyFilters() {
-  const cards = document.querySelectorAll('.auction-card');
-
-  cards.forEach((card) => {
-    let shouldShow = true;
-
-    // Check each filter
-    Object.keys(AppState.filters).forEach((filterType) => {
-      const filterValue = AppState.filters[filterType];
-
-      if (!filterValue || filterValue === 'all') return;
-
-      const cardValue = card.dataset[filterType];
-
-      if (cardValue !== filterValue) {
-        shouldShow = false;
-      }
-    });
-
-    // Show/hide card
-    card.style.display = shouldShow ? '' : 'none';
-  });
-
-  updateResultsCount();
+    document.querySelectorAll(".auction-card").forEach(e => {
+        let t = true;
+        Object.keys(AppState.filters).forEach(s => {
+            const n = AppState.filters[s];
+            if (!n || n === "all") return;
+            e.dataset[s] !== n && (t = false)
+        }), e.style.display = t ? "" : "none"
+    }), updateResultsCount()
 }
 
-/**
- * Update visible results count
- */
 function updateResultsCount() {
-  const visibleCards = document.querySelectorAll('.auction-card:not([style*="display: none"])');
-  const resultsCount = document.querySelector('[data-results-count]');
-
-  if (resultsCount) {
-    resultsCount.textContent = `${visibleCards.length} ${
-      visibleCards.length === 1 ? 'listing' : 'listings'
-    }`;
-  }
+    const e = document.querySelectorAll('.auction-card:not([style*="display: none"])'),
+        t = document.querySelector("[data-results-count]");
+    t && (t.textContent = `${e.length} ${1 === e.length ? "listing" : "listings"}`)
 }
 
-/**
- * Initialize Search
- */
 function initSearch() {
-  const searchInput = document.querySelector('[data-search]');
-
-  if (searchInput) {
-    searchInput.addEventListener(
-      'input',
-      Utils.debounce((e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        performSearch(searchTerm);
-      }, 300)
-    );
-  }
+    const e = document.querySelector("[data-search]");
+    e && e.addEventListener("input", Utils.debounce(t => {
+        performSearch(t.target.value.toLowerCase())
+    }, 300))
 }
 
-/**
- * Perform Search on Auction Cards
- */
-function performSearch(searchTerm) {
-  const cards = document.querySelectorAll('.auction-card');
-
-  cards.forEach((card) => {
-    const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
-    const description = card.querySelector('.card-meta')?.textContent.toLowerCase() || '';
-    const searchableText = title + ' ' + description;
-
-    if (searchableText.includes(searchTerm)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-
-  updateResultsCount();
+function performSearch(e) {
+    document.querySelectorAll(".auction-card").forEach(t => {
+        const s = t.querySelector(".card-title")?.textContent.toLowerCase() || "",
+            n = t.querySelector(".card-meta")?.textContent.toLowerCase() || "";
+        t.style.display = (s + " " + n).includes(e) ? "" : "none"
+    }), updateResultsCount()
 }
 
-/**
- * Initialize Auction Card Interactions
- */
 function initAuctionCards() {
-  const bidButtons = document.querySelectorAll('[data-bid-button]');
-
-  bidButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const auctionId = button.dataset.auctionId;
-      handleBidClick(auctionId);
-    });
-  });
-
-  // Favorite/Watchlist buttons
-  const favoriteButtons = document.querySelectorAll('[data-favorite]');
-
-  favoriteButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const auctionId = button.dataset.favorite;
-      toggleFavorite(auctionId, button);
-    });
-  });
+    document.querySelectorAll("[data-bid-button]").forEach(e => {
+        e.addEventListener("click", t => {
+            t.preventDefault(), handleBidClick(e.dataset.auctionId)
+        })
+    }), document.querySelectorAll("[data-favorite]").forEach(e => {
+        e.addEventListener("click", t => {
+            t.preventDefault(), toggleFavorite(e.dataset.favorite, e)
+        })
+    })
 }
 
-/**
- * Handle Bid Button Click
- */
-function handleBidClick(auctionId) {
-  // Check if user is logged in
-  if (!AppState.user) {
-    Utils.showToast('Please sign in to place a bid', 'warning');
-    // Open login modal or redirect
-    const loginModal = new Modal('login-modal');
-    loginModal.open();
-    return;
-  }
-
-  // Open bid modal
-  const bidModal = new Modal('bid-modal');
-  if (bidModal.modal) {
-    // Set auction ID in modal
-    bidModal.modal.dataset.auctionId = auctionId;
-    bidModal.open();
-  }
-}
-
-/**
- * Toggle Favorite/Watchlist
- */
-function toggleFavorite(auctionId, button) {
-  const isFavorited = button.classList.contains('favorited');
-
-  if (isFavorited) {
-    button.classList.remove('favorited');
-    Utils.showToast('Removed from watchlist', 'info');
-  } else {
-    button.classList.add('favorited');
-    Utils.showToast('Added to watchlist', 'success');
-  }
-
-  // Update icon
-  const icon = button.querySelector('svg');
-  if (icon) {
-    icon.classList.toggle('filled');
-  }
-
-  // Save to local storage or send to server
-  saveFavoriteState(auctionId, !isFavorited);
-}
-
-/**
- * Save Favorite State
- */
-function saveFavoriteState(auctionId, isFavorited) {
-  let favorites = Utils.storage.get('favorites') || [];
-
-  if (isFavorited) {
-    if (!favorites.includes(auctionId)) {
-      favorites.push(auctionId);
+function handleBidClick(e) {
+    if (!AppState.user) {
+        Utils.showToast("Please sign in to place a bid", "warning");
+        new Modal("login-modal").open();
+        return
     }
-  } else {
-    favorites = favorites.filter((id) => id !== auctionId);
-  }
-
-  Utils.storage.set('favorites', favorites);
+    const t = new Modal("bid-modal");
+    t.modal && (t.modal.dataset.auctionId = e, t.modal.open())
 }
 
-/**
- * Initialize Scroll Effects (Header shadow, back-to-top button)
- */
+function toggleFavorite(e, t) {
+    const s = t.classList.contains("favorited");
+    s ? (t.classList.remove("favorited"), Utils.showToast("Removed from watchlist", "info")) : (t.classList.add("favorited"), Utils.showToast("Added to watchlist", "success"));
+    const n = t.querySelector("svg");
+    n && n.classList.toggle("filled"), saveFavoriteState(e, !s)
+}
+
+function saveFavoriteState(e, t) {
+    let s = Utils.storage.get("favorites") || [];
+    t ? s.includes(e) || s.push(e) : s = s.filter(n => n !== e), Utils.storage.set("favorites", s)
+}
+
 function initScrollEffects() {
-  const header = document.querySelector('.header');
-  const backToTopButton = document.querySelector('[data-back-to-top]');
-
-  window.addEventListener(
-    'scroll',
-    Utils.throttle(() => {
-      const scrollY = window.scrollY;
-
-      // Add shadow to header on scroll
-      if (header) {
-        if (scrollY > 10) {
-          header.style.boxShadow = 'var(--shadow-level-1)';
-        } else {
-          header.style.boxShadow = 'none';
-        }
-      }
-
-      // Show/hide back to top button
-      if (backToTopButton) {
-        if (scrollY > 500) {
-          backToTopButton.classList.add('visible');
-        } else {
-          backToTopButton.classList.remove('visible');
-        }
-      }
-    }, 100)
-  );
-
-  // Back to top button click
-  if (backToTopButton) {
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+    const e = document.querySelector(".header"),
+        t = document.querySelector("[data-back-to-top]");
+    window.addEventListener("scroll", Utils.throttle(() => {
+        const s = window.scrollY;
+        e && (e.style.boxShadow = s > 10 ? "var(--shadow-level-1)" : "none"), t && (s > 500 ? t.classList.add("visible") : t.classList.remove("visible"))
+    }, 100)), t && t.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    })
 }
 
-/**
- * Form Submission Handlers
- */
 function initForms() {
-  // Login Form
-  const loginForm = document.querySelector('[data-login-form]');
-  if (loginForm) {
-    const validator = new FormValidator(loginForm);
-    validator.addRule('email', {
-      required: true,
-      email: true,
-      requiredMessage: 'Email is required',
-      emailMessage: 'Please enter a valid email address',
-    });
-    validator.addRule('password', {
-      required: true,
-      minLength: 6,
-      requiredMessage: 'Password is required',
-      minLengthMessage: 'Password must be at least 6 characters',
-    });
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (validator.validate()) {
-        // Submit form
-        handleLogin(new FormData(loginForm));
-      } else {
-        validator.showErrors();
-      }
-    });
-  }
-
-  // Registration Form
-  const registerForm = document.querySelector('[data-register-form]');
-  if (registerForm) {
-    const validator = new FormValidator(registerForm);
-    validator.addRule('name', {
-      required: true,
-      requiredMessage: 'Name is required',
-    });
-    validator.addRule('email', {
-      required: true,
-      email: true,
-    });
-    validator.addRule('phone', {
-      required: true,
-      phone: true,
-    });
-    validator.addRule('password', {
-      required: true,
-      minLength: 8,
-    });
-
-    registerForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (validator.validate()) {
-        handleRegistration(new FormData(registerForm));
-      } else {
-        validator.showErrors();
-      }
-    });
-  }
-
-  // Bid Form
-  const bidForm = document.querySelector('[data-bid-form]');
-  if (bidForm) {
-    bidForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      handleBidSubmission(new FormData(bidForm));
-    });
-  }
+    const e = document.querySelector("[data-login-form]");
+    if (e) {
+        const t = new FormValidator(e);
+        t.addRule("email", {
+            required: true,
+            email: true,
+            requiredMessage: "Email is required",
+            emailMessage: "Please enter a valid email address"
+        }), t.addRule("password", {
+            required: true,
+            minLength: 6,
+            requiredMessage: "Password is required",
+            minLengthMessage: "Password must be at least 6 characters"
+        }), e.addEventListener("submit", s => {
+            s.preventDefault(), t.validate() ? handleLogin(new FormData(e)) : t.showErrors()
+        })
+    }
+    const t = document.querySelector("[data-register-form]");
+    if (t) {
+        const s = new FormValidator(t);
+        s.addRule("name", {
+            required: true,
+            requiredMessage: "Name is required"
+        }), s.addRule("email", {
+            required: true,
+            email: true
+        }), s.addRule("phone", {
+            required: true,
+            phone: true
+        }), s.addRule("password", {
+            required: true,
+            minLength: 8
+        }), t.addEventListener("submit", n => {
+            n.preventDefault(), s.validate() ? handleRegistration(new FormData(t)) : s.showErrors()
+        })
+    }
+    const s = document.querySelector("[data-bid-form]");
+    s && s.addEventListener("submit", e => {
+        e.preventDefault(), handleBidSubmission(new FormData(s))
+    })
+}
+async function handleLogin(e) {
+    try {
+        Utils.showToast("Logging in...", "info"), setTimeout(() => {
+            AppState.user = {
+                id: 1,
+                email: e.get("email"),
+                name: "User Name"
+            }, Utils.showToast("Login successful!", "success"), new Modal("login-modal").close(), updateUserUI()
+        }, 1000)
+    } catch (t) {
+        Utils.showToast("Login failed. Please try again.", "error")
+    }
+}
+async function handleRegistration(e) {
+    try {
+        Utils.showToast("Creating account...", "info"), setTimeout(() => {
+            Utils.showToast("Account created successfully!", "success"), new Modal("register-modal").close()
+        }, 1000)
+    } catch (t) {
+        Utils.showToast("Registration failed. Please try again.", "error")
+    }
+}
+async function handleBidSubmission(e) {
+    try {
+        Utils.showToast("Placing bid...", "info"), setTimeout(() => {
+            Utils.showToast("Bid placed successfully!", "success"), new Modal("bid-modal").close()
+        }, 1000)
+    } catch (t) {
+        Utils.showToast("Failed to place bid. Please try again.", "error")
+    }
 }
 
-/**
- * Handle Login (placeholder - integrate with backend)
- */
-async function handleLogin(formData) {
-  try {
-    // Simulate API call
-    Utils.showToast('Logging in...', 'info');
-
-    // TODO: Replace with actual API call
-    // const response = await fetch('/api/login', {
-    //   method: 'POST',
-    //   body: formData
-    // });
-
-    // Simulate success
-    setTimeout(() => {
-      AppState.user = {
-        id: 1,
-        email: formData.get('email'),
-        name: 'User Name',
-      };
-
-      Utils.showToast('Login successful!', 'success');
-
-      // Close modal
-      const loginModal = new Modal('login-modal');
-      loginModal.close();
-
-      // Update UI
-      updateUserUI();
-    }, 1000);
-  } catch (error) {
-    Utils.showToast('Login failed. Please try again.', 'error');
-  }
-}
-
-/**
- * Handle Registration (placeholder)
- */
-async function handleRegistration(formData) {
-  try {
-    Utils.showToast('Creating account...', 'info');
-
-    // TODO: Replace with actual API call
-    setTimeout(() => {
-      Utils.showToast('Account created successfully!', 'success');
-
-      const registerModal = new Modal('register-modal');
-      registerModal.close();
-    }, 1000);
-  } catch (error) {
-    Utils.showToast('Registration failed. Please try again.', 'error');
-  }
-}
-
-/**
- * Handle Bid Submission (placeholder)
- */
-async function handleBidSubmission(formData) {
-  try {
-    Utils.showToast('Placing bid...', 'info');
-
-    // TODO: Replace with actual API call
-    setTimeout(() => {
-      Utils.showToast('Bid placed successfully!', 'success');
-
-      const bidModal = new Modal('bid-modal');
-      bidModal.close();
-
-      // Update card UI with new bid
-    }, 1000);
-  } catch (error) {
-    Utils.showToast('Failed to place bid. Please try again.', 'error');
-  }
-}
-
-/**
- * Update UI based on user login state
- */
 function updateUserUI() {
-  const userMenus = document.querySelectorAll('[data-user-menu]');
-  const guestMenus = document.querySelectorAll('[data-guest-menu]');
-
-  if (AppState.user) {
-    userMenus.forEach((menu) => (menu.style.display = ''));
-    guestMenus.forEach((menu) => (menu.style.display = 'none'));
-  } else {
-    userMenus.forEach((menu) => (menu.style.display = 'none'));
-    guestMenus.forEach((menu) => (menu.style.display = ''));
-  }
+    const e = document.querySelectorAll("[data-user-menu]"),
+        t = document.querySelectorAll("[data-guest-menu]");
+    AppState.user ? (e.forEach(s => s.style.display = ""), t.forEach(s => s.style.display = "none")) : (e.forEach(s => s.style.display = "none"), t.forEach(s => s.style.display = ""))
 }
-
-// Initialize forms if present
 initForms();

@@ -4,7 +4,7 @@ namespace WebApp.Interfaces.Services
 {
     public interface IUserService
     {
-        ICollection<ApplicationUser> GetAll();
-        ApplicationUser? GetById(string Id);
+        Task<ICollection<ApplicationUser>> GetAllAsync();
+        Task<ApplicationUser?> GetByIdAsync(string Id);
     }
 }

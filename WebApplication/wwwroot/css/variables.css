@@ -1,0 +1,248 @@
+/**
+ * Design System Variables
+ * Levantine Heritage Livestock
+ * Source: design.md
+ */
+
+:root {
+  /* ===== COLOR PALETTE ===== */
+  
+  /* Surface Colors */
+  --surface: #fff8f5;
+  --surface-dim: #e1d8d3;
+  --surface-bright: #fff8f5;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fbf2ec;
+  --surface-container: #f6ece7;
+  --surface-container-high: #f0e6e1;
+  --surface-container-highest: #eae1db;
+  
+  /* On Surface Colors */
+  --on-surface: #1f1b18;
+  --on-surface-variant: #52443e;
+  
+  /* Inverse Colors */
+  --inverse-surface: #342f2c;
+  --inverse-on-surface: #f8efea;
+  
+  /* Outline Colors */
+  --outline: #84746d;
+  --outline-variant: #d6c2bb;
+  
+  /* Surface Tint */
+  --surface-tint: #84523a;
+  
+  /* Primary Colors */
+  --primary: #49230e;
+  --on-primary: #ffffff;
+  --primary-container: #643822;
+  --on-primary-container: #e0a286;
+  --inverse-primary: #f9b89a;
+  --primary-hover: #4d2817;
+  
+  /* Secondary Colors */
+  --secondary: #9d4314;
+  --on-secondary: #ffffff;
+  --secondary-container: #fe8c58;
+  --on-secondary-container: #712800;
+  --secondary-bright: #d96b27;
+  --secondary-accent: #c25e2e;
+  
+  /* Tertiary Colors */
+  --tertiary: #482413;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #623927;
+  --on-tertiary-container: #dda48c;
+  
+  /* Error Colors */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  
+  /* Fixed Colors */
+  --primary-fixed: #ffdbcc;
+  --primary-fixed-dim: #f9b89a;
+  --on-primary-fixed: #331102;
+  --on-primary-fixed-variant: #683b25;
+  
+  --secondary-fixed: #ffdbcd;
+  --secondary-fixed-dim: #ffb596;
+  --on-secondary-fixed: #360f00;
+  --on-secondary-fixed-variant: #7d2d00;
+  
+  --tertiary-fixed: #ffdbcd;
+  --tertiary-fixed-dim: #f5b9a0;
+  --on-tertiary-fixed: #321204;
+  --on-tertiary-fixed-variant: #663c2a;
+  
+  /* Background Colors */
+  --background: #fff8f5;
+  --on-background: #1f1b18;
+  --surface-variant: #eae1db;
+  
+  /* Custom Contextual Colors */
+  --canvas-base: #fdfbf7;
+  --surface-alt: #faf8f5;
+  --surface-dark: #120f0d;
+  --border-divider: #e7e1d8;
+  --muted-neutral: #78716c;
+  --dark-neutral: #1f1b18;
+  
+  /* Status Badge Colors */
+  --status-live-bg: #fee2e2;
+  --status-live-border: #fca5a5;
+  --status-live-text: #991b1b;
+  --status-live-pulse: #dc2626;
+  
+  --status-ending-bg: #fef3c7;
+  --status-ending-border: #fcd34d;
+  --status-ending-text: #92400e;
+  --status-ending-icon: #d97706;
+  
+  --status-starting-bg: #e0f2fe;
+  --status-starting-border: #bae6fd;
+  --status-starting-text: #0369a1;
+  
+  --status-ended-bg: #e7e5e4;
+  --status-ended-border: #d6d3d1;
+  --status-ended-text: #57534e;
+  
+  --status-verified-bg: #ecfdf5;
+  --status-verified-border: #a7f3d0;
+  --status-verified-text: #065f46;
+  --status-verified-icon: #059669;
+  
+  /* ===== TYPOGRAPHY ===== */
+  
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  
+  /* Display Hero */
+  --display-hero-size: 48px;
+  --display-hero-weight: 800;
+  --display-hero-line: 56px;
+  --display-hero-spacing: -0.02em;
+  
+  --display-hero-mobile-size: 32px;
+  --display-hero-mobile-weight: 800;
+  --display-hero-mobile-line: 40px;
+  --display-hero-mobile-spacing: -0.01em;
+  
+  /* Headline Large */
+  --headline-lg-size: 32px;
+  --headline-lg-weight: 700;
+  --headline-lg-line: 40px;
+  --headline-lg-spacing: -0.01em;
+  
+  --headline-lg-mobile-size: 26px;
+  --headline-lg-mobile-weight: 700;
+  --headline-lg-mobile-line: 34px;
+  --headline-lg-mobile-spacing: 0em;
+  
+  /* Headline Medium */
+  --headline-md-size: 24px;
+  --headline-md-weight: 700;
+  --headline-md-line: 32px;
+  --headline-md-spacing: -0.005em;
+  
+  /* Headline Small */
+  --headline-sm-size: 20px;
+  --headline-sm-weight: 700;
+  --headline-sm-line: 28px;
+  
+  /* Title Medium */
+  --title-md-size: 18px;
+  --title-md-weight: 600;
+  --title-md-line: 26px;
+  
+  /* Title Small */
+  --title-sm-size: 16px;
+  --title-sm-weight: 600;
+  --title-sm-line: 24px;
+  
+  /* Body Large */
+  --body-lg-size: 16px;
+  --body-lg-weight: 400;
+  --body-lg-line: 24px;
+  
+  /* Body Medium */
+  --body-md-size: 14px;
+  --body-md-weight: 400;
+  --body-md-line: 22px;
+  
+  /* Body Small */
+  --body-sm-size: 13px;
+  --body-sm-weight: 400;
+  --body-sm-line: 18px;
+  
+  /* Label Numeric Large */
+  --label-numeric-lg-size: 24px;
+  --label-numeric-lg-weight: 800;
+  --label-numeric-lg-line: 28px;
+  
+  /* Label Medium */
+  --label-md-size: 13px;
+  --label-md-weight: 600;
+  --label-md-line: 16px;
+  --label-md-spacing: 0.01em;
+  
+  /* Label Small */
+  --label-sm-size: 11px;
+  --label-sm-weight: 700;
+  --label-sm-line: 14px;
+  --label-sm-spacing: 0.04em;
+  
+  /* ===== BORDER RADIUS ===== */
+  
+  --rounded-sm: 0.25rem;    /* 4px */
+  --rounded: 0.5rem;        /* 8px */
+  --rounded-md: 0.75rem;    /* 12px */
+  --rounded-lg: 1rem;       /* 16px */
+  --rounded-xl: 1.5rem;     /* 24px */
+  --rounded-2xl: 2rem;      /* 32px */
+  --rounded-full: 9999px;
+  
+  /* ===== SPACING ===== */
+  
+  --space-2xs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  
+  --gutter-mobile: 1rem;
+  --gutter-desktop: 1.5rem;
+  --container-max: 1280px;
+  
+  /* ===== ELEVATION / SHADOWS ===== */
+  
+  --shadow-level-0: none;
+  --shadow-level-1: 
+    0 2px 6px -1px rgba(77, 40, 23, 0.04),
+    0 1px 3px -1px rgba(77, 40, 23, 0.03);
+  --shadow-level-2: 
+    0 12px 24px -4px rgba(77, 40, 23, 0.08),
+    0 4px 8px -2px rgba(77, 40, 23, 0.04);
+  --shadow-level-3: 
+    0 20px 32px -6px rgba(31, 27, 24, 0.16);
+  
+  /* ===== TRANSITIONS ===== */
+  
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* ===== Z-INDEX SCALE ===== */
+  
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+}

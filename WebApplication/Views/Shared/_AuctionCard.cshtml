@@ -1,0 +1,90 @@
+﻿@model WebApp.ViewModels.Auctions.AuctionListViewModel
+
+<article class="auction-card" data-status="@Model.Status" data-category="@Model.Category" data-price="@Model.Price">
+    <div class="auction-card-image">
+        <img src="@Model.ImageUrl" alt="@Model.Title" data-lazy />
+
+        <div class="auction-status-badge">
+            @switch (Model.Status)
+            {
+                case "live":
+                    <span class="badge badge-live"><span class="badge-pulse"></span>LIVE</span>
+                    break;
+                case "ending-soon":
+                    <span class="badge badge-ending"><span class="material-symbols-outlined">schedule</span>Ending Soon</span>
+                    break;
+                case "upcoming":
+                    <span class="badge badge-starting"><span class="material-symbols-outlined">schedule</span>Starts in @Model.CountdownStaticText</span>
+                    break;
+            }
+        </div>
+
+        <div class="auction-lot-number"><span class="label-sm">@Model.LotNumber</span></div>
+
+        <button class="watchlist-btn" data-auction-id="@Model.Id" aria-label="Add to watchlist">
+            <span class="material-symbols-outlined">favorite_border</span>
+        </button>
+    </div>
+
+    <div class="auction-card-content">
+        <div class="auction-card-header">
+            <h3 class="auction-card-title title-md">
+                <a asp-controller="Auctions" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a>
+            </h3>
+            @if (Model.IsVerified)
+            {
+                <div class="verification-badge">
+                    <span class="material-symbols-outlined">verified</span><span class="label-sm">Verified</span>
+                </div>
+            }
+        </div>
+
+        <div class="auction-details">
+            <div class="detail-item"><span class="material-symbols-outlined">category</span><span class="body-sm">@Model.DetailsLine</span></div>
+            <div class="detail-item"><span class="material-symbols-outlined">location_on</span><span class="body-sm">@Model.Location</span></div>
+        </div>
+
+        @if (Model.SpecPills.Any())
+        {
+            <div class="spec-pills">
+                @foreach (var pill in Model.SpecPills)
+                {
+                    <span class="spec-pill">@pill</span>
+                }
+            </div>
+        }
+
+        <div class="bid-info-card @(Model.IsUpcoming ? "upcoming" : "")">
+            <div class="bid-current">
+                <span class="bid-label label-sm">@Model.BidLabel</span>
+                <span class="bid-value headline-md">@Model.Price.ToString("C0")</span>
+                @if (!Model.IsUpcoming)
+                {
+                    <span class="bid-count body-sm">@Model.BidCount bids</span>
+                }
+            </div>
+            <div class="bid-timer">
+                <span class="timer-label label-sm">@Model.TimerLabel</span>
+                @if (Model.CountdownTarget.HasValue)
+                {
+                    <span class="countdown-timer title-sm" data-countdown="@Model.CountdownTarget.Value.ToString("s")">--</span>
+                }
+                else
+                {
+                    <span class="countdown-timer title-sm">@Model.CountdownStaticText</span>
+                }
+            </div>
+        </div>
+
+        @if (Model.Status == "upcoming")
+        {
+            <button class="@Model.ActionCssClass" data-notify-auction="@Model.Id">
+                <span class="material-symbols-outlined">notifications</span>@Model.ActionText
+            </button>
+        }
+        else
+        {
+            <a asp-controller="Auctions" asp-action="Details" asp-route-id="@Model.Id" class="@Model.ActionCssClass">@Model.ActionText</a>
+        }
+    </div>
+</article>

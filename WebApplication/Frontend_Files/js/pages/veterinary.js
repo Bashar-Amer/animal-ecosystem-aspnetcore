@@ -64,7 +64,7 @@ function applyFilters() {
     const specialties = card.dataset.specialty;
     const region = card.dataset.region;
     const availability = card.dataset.availability;
-    const species = card.dataset.species;
+    const species = card.dataset.breed;
     const text = card.textContent.toLowerCase();
     
     let show = true;

@@ -1,0 +1,40 @@
+﻿<footer class="footer">
+    <div class="container">
+        <div class="row g-4 footer-content">
+            <div class="col-12 col-md-6 col-lg-3 footer-column">
+                <div class="footer-logo d-flex align-items-center gap-2 mb-3">
+                    <div class="logo-icon"><span class="material-symbols-outlined">pets</span></div>
+                    <span class="brand-name">AnimalEcosystem</span>
+                </div>
+                <p class="footer-description body-md">Premium livestock trading platform with verified health documentation and secure transactions.</p>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 footer-column">
+                <h4 class="footer-column-title title-sm">Platform</h4>
+                <ul class="footer-links list-unstyled">
+                    <li><a asp-controller="Marketplace" asp-action="Index">Browse Animals</a></li>
+                    <li><a asp-controller="Auctions" asp-action="Index">Live Auctions</a></li>
+                    <li><a asp-controller="Veterinary" asp-action="Index">Veterinary Care</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 footer-column">
+                <h4 class="footer-column-title title-sm">Support</h4>
+                <ul class="footer-links list-unstyled">
+                    <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                    <li><a asp-controller="Home" asp-action="Terms">Terms</a></li>
+                    <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 footer-column">
+                <h4 class="footer-column-title title-sm">Trust & Safety</h4>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="#">Buyer Protection</a></li>
+                    <li><a href="#">Health Standards</a></li>
+                    <li><a href="#">Verified Sellers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p class="copyright body-sm mb-0">&copy; @DateTime.Now.Year AnimalEcosystem. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

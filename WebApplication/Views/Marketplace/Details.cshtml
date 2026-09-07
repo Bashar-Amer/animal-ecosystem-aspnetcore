@@ -1,115 +1,452 @@
-@model WebApp.Models.Animal
+
+@* Views/Marketplace/Details.cshtml *@
+@model WebApp.ViewModels.Animals.AnimalDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.animalInfo.Name;
+    var listing = Model.animalInfo;
+    var seller = Model.owner;
 }
 
-<h1>Details</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/animal-details.css" />
+}
 
-<div>
-    <h4>Animal</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Breed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Breed)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AgeInMonths)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AgeInMonths)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OwnerId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OwnerId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Owner)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Images)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Auction)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Auction)
-        </dd>
-    </dl>
+@* ══════════════════════════════════════════
+   BREADCRUMB
+   ══════════════════════════════════════════ *@
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li>
+                <a asp-controller="Marketplace" asp-action="Index">Marketplace</a>
+            </li>
+            <li aria-current="location">@listing.Name</li>
+        </ol>
+    </div>
+</nav>
+
+@* ══════════════════════════════════════════
+   MAIN CONTENT
+   ══════════════════════════════════════════ *@
+<main class="page-content">
+    <div class="container">
+        <div class="detail-layout">
+
+            @* ══════════════════════════════
+               LEFT COLUMN: Visual & Details
+               ══════════════════════════════ *@
+            <div class="detail-primary">
+
+                @* ── Gallery ── *@
+                <section class="gallery-section card">
+
+                    <div class="gallery-main">
+                        <div class="image-showcase">
+                            <img src="@listing.Images.FirstOrDefault(i=>i.IsMain).ImageUrl"
+                                 alt="@listing.Name - main view"
+                                 class="main-image"
+                                 id="mainImage"
+                                 loading="lazy" />
+                            <span class="status-badge badge badge-live">Live Listing</span>
+                        </div>
+                    </div>
+
+                    @* Thumbnails — only render if more than one image *@
+                    @if (listing.Images.Count > 1)
+                    {
+                        <div class="gallery-thumbnails" id="galleryThumbnails">
+                            @for (int i = 0; i < listing.Images.Count; i++)
+                            {
+                                <button class="thumbnail @(i == 0 ? "active" : "")"
+                                        type="button"
+                                        data-gallery-thumb="@i">
+                                    <img src="@listing.Images.ToList()[i].ImageUrl"
+                                         alt="@listing.Name - view @(i + 1)"
+                                         loading="lazy" />
+                                </button>
+                            }
+                        </div>
+                    }
+
+                </section>
+
+                @* ── Animal Info ── *@
+                <section class="animal-info card">
+                    <div class="info-header">
+                        <div>
+                            <h1 class="headline-lg">@listing.Name</h1>
+                            <div class="location">
+                                <svg class="icon" width="16" height="16" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                                <span>@listing.Location</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Spec Pills *@
+                    <div class="spec-pills">
+                        <span class="spec-pill">
+                            <span class="spec-label">Species:</span>
+                            @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(listing.Species.Name)
+                        </span>
+                        <span class="spec-pill">
+                            <span class="spec-label">Breed:</span> @listing.Breed
+                        </span>
+                        <span class="spec-pill">
+                            <span class="spec-label">Age:</span> @listing.AgeInMonths
+                        </span>
+                        <span class="spec-pill">
+                            <span class="spec-label">Gender:</span>
+                            @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(listing.Gender)
+                        </span>
+                    </div>
+
+                    @* Description *@
+                    @if (!string.IsNullOrWhiteSpace(listing.Description))
+                    {
+                        <div class="description-section">
+                            <h2 class="label-md">Description</h2>
+                            <p class="body-lg">@listing.Description</p>
+                        </div>
+                    }
+                </section>
+
+                @* ── Health & Verification ── *@
+                <section class="health-section card card-highlight">
+                    <div class="section-header">
+                        <h2 class="headline-sm">Health & Verification</h2>
+
+                        <div class="verification-badges">
+                            @if (seller.IsVerified)
+                            {
+                                <span class="badge badge-verified">
+                                    <svg class="icon" width="14" height="14" viewBox="0 0 20 20">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                    Verified Owner
+                                </span>
+                            }
+                            @if (listing.IsVetChecked)
+                            {
+                                <span class="badge badge-verified">
+                                    <svg class="icon" width="14" height="14" viewBox="0 0 20 20">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                    Vet Checked
+                                </span>
+                            }
+                        </div>
+                    </div>
+
+                    @* Health Checklist — driven from model, no hardcoded items *@
+                    @* @if (listing.HealthChecklist.Count > 0)
+                    {
+                        <ul class="health-checklist">
+                            @foreach (var item in listing.HealthChecklist)
+                            {
+                                <li class="checklist-item">
+                                    <span class="check-icon">
+                                        <svg width="14" height="14" fill="none"
+                                             stroke="currentColor" viewBox="0 0 24 24">
+                                            <path d="M5 13l4 4L19 7"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  stroke-width="3" />
+                                        </svg>
+                                    </span>
+                                    @item
+                                </li>
+                            }
+                        </ul>
+                    } *@
+
+
+                    @* Vet Request Callout *@
+                    
+                    <div class="vet-callout">
+                        <div class="callout-content">
+                            <div class="callout-icon">
+                                <svg width="20" height="20" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="title-sm">Want an independent veterinary assessment?</h3>
+                                <p class="body-sm">
+                                    Request a professional vet check through our network
+                                    before committing to a purchase.
+                                </p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm"
+                                type="button"
+                                data-modal-trigger="vet-modal">
+                            Find a Veterinarian
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+            @* /detail-primary *@
+
+            @* ══════════════════════════════
+               RIGHT COLUMN: Sticky Sidebar
+               ══════════════════════════════ *@
+            <aside class="detail-sidebar">
+
+                @* ── Price & CTA Card ── *@
+                <div class="price-card card sticky-card">
+                    <div class="price-header">
+                        <div>
+                            <span class="price-label label-sm">Listing Price</span>
+                            <div class="price-value">
+                                @*
+                                    Split price into amount + currency
+                                    so CSS can style them independently (like the original)
+                                *@
+                                <span class="amount label-numeric-lg">
+                                    @listing.Price.ToString("N0")
+                                </span>
+                                <span class="currency title-md">JOD</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-spec">Fixed Price</span>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-lg btn-block"
+                                type="button"
+                                data-contact-seller
+                                data-seller-id="@seller?.Id">
+                            <svg class="icon" width="20" height="20" fill="none"
+                                 stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </svg>
+                            Contact Seller
+                        </button>
+
+                        <button class="btn btn-secondary btn-block"
+                                type="button"
+                                data-favorite
+                                data-animal-id="@listing.Id">
+                            <svg class="icon" width="16" height="16" fill="none"
+                                 stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </svg>
+                            Add to favorite
+                        </button>
+                    </div>
+
+                    <div class="trust-badges">
+                        <div class="trust-item">
+                            <svg class="icon icon-success" width="16" height="16" fill="none"
+                                 stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </svg>
+                            <span class="body-sm">Escrow Protection</span>
+                        </div>
+                        <div class="trust-item">
+                            <svg class="icon icon-success" width="16" height="16" fill="none"
+                                 stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </svg>
+                            <span class="body-sm">Identity Verified</span>
+                        </div>
+                    </div>
+                </div>
+
+                @* ── Seller Card ── *@
+                @if (seller is not null)
+                {
+                    <div class="seller-card card">
+                        <div class="seller-header">
+
+                            @* Avatar: initials computed in C# *@
+                            <div class="seller-avatar">@seller.FullName[0]</div>
+
+                            <div class="seller-info">
+                                <h3 class="title-md">@seller.FullName</h3>
+                                <span class="seller-meta body-sm">
+                                    Member since @seller.CreatedAt.Year
+                                </span>
+
+                                @if (seller.IsVerified)
+                                {
+                                    <span class="badge badge-verified badge-sm">
+                                        <svg class="icon" width="12" height="12" viewBox="0 0 20 20">
+                                            <path fill="currentColor" fill-rule="evenodd"
+                                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                  clip-rule="evenodd" />
+                                        </svg>
+                                        Verified Owner
+                                    </span>
+                                }
+                            </div>
+                        </div>
+
+                        <ul class="seller-details">
+                            <li class="detail-item">
+                                <svg class="icon" width="16" height="16" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                                <span>@seller.Location</span>
+                            </li>
+                            <li class="detail-item">
+                                <svg class="icon" width="16" height="16" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                                <span>Member since @seller.CreatedAt.Year</span>
+                            </li>
+                            @* <li class="detail-item">
+                                <svg class="icon" width="16" height="16" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                                <span>@seller.ResponseTime</span>
+                            </li> *@
+                        </ul>
+                    </div>
+                }
+
+            </aside>
+            @* /detail-sidebar *@
+
+        </div>
+        @* /detail-layout *@
+
+        @* ══════════════════════════════════════════
+           MORE FROM SELLER
+           ══════════════════════════════════════════ *@
+        @if (Model.MoreFromSeller.Count > 0)
+        {
+            <section class="related-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="headline-md">More from this Seller</h2>
+                        <p class="body-md text-muted">
+                            Explore additional livestock registered by @seller?.FullName
+                        </p>
+                    </div>
+                </div>
+
+                <div class="animal-grid">
+                    @foreach (var related in Model.MoreFromSeller)
+                    {
+                        @await Html.PartialAsync("_MarketplaceCard", related)
+                    }
+                </div>
+            </section>
+        }
+
+        @* ══════════════════════════════════════════
+           SIMILAR ANIMALS
+           ══════════════════════════════════════════ *@
+        @if (Model.SimilarListings.Count > 0)
+        {
+            <section class="related-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="headline-md">Similar Animals</h2>
+                        <p class="body-md text-muted">
+                            Recommended based on breed classification &amp; regional availability
+                        </p>
+                    </div>
+                </div>
+
+                <div class="animal-grid">
+                    @foreach (var similar in Model.SimilarListings)
+                    {
+                        @await Html.PartialAsync("_MarketplaceCard", similar)
+                    }
+                </div>
+            </section>
+        }
+
+    </div>
+    @* /container *@
+</main>
+
+@* ══════════════════════════════════════════
+   CONTACT SELLER MODAL
+   ══════════════════════════════════════════ *@
+<div class="modal" id="contact-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="headline-sm">Contact Seller</h2>
+            <button class="btn-close"
+                    type="button"
+                    data-modal-close
+                    aria-label="Close modal">
+                &times;
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="contactForm" data-contact-form>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="contactMessage" class="form-label">Your Message</label>
+                    <textarea id="contactMessage"
+                              name="message"
+                              class="form-textarea"
+                              rows="5"
+                              placeholder="Hi, I'm interested in your @listing.Name..."
+                              required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone" class="form-label">Your Phone Number</label>
+                    <input type="tel"
+                           id="contactPhone"
+                           name="phone"
+                           class="form-input"
+                           placeholder="+962 7X XXX XXXX"
+                           required />
+                </div>
+                @* Pass listing ID so JS/backend knows which listing *@
+                <input type="hidden" name="listingId" value="@listing.Id" />
+                <button type="submit" class="btn btn-primary btn-block">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    @*
+        Pass image URLs from C# → JS cleanly via JSON.
+        JS gallery reads this instead of scraping data-lazy attributes.
+    *@
+    <script>
+        window.listingImages = @Html.Raw(
+                    System.Text.Json.JsonSerializer.Serialize(listing.Images.Select(i=>i.ImageUrl))
+                    );
+        window.listingId = "@listing.Id";
+    </script>
+    <script src="~/js/animal-details.js"></script>
+}

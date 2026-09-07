@@ -4,7 +4,7 @@ using WebApp.Interfaces.Services;
 using WebApp.Services;
 
 var builder = WebApplication.CreateBuilder();
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDb") ?? throw new InvalidOperationException("Connection string 'ApplicationDb' not found.");
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));

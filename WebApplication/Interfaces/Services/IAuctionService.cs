@@ -1,10 +1,11 @@
 ﻿using WebApp.Models;
+using WebApp.ViewModels.Auctions;
 
 namespace WebApp.Interfaces.Services
 {
     public interface IAuctionService
     {
-        ICollection<Auction> GetAll();
-        Auction? GetById(string Id);
+        Task<ICollection<AuctionListViewModel>> GetAllAsync();
+        Task<AuctionListViewModel?> GetByIdAsync(string id);
     }
 }

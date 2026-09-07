@@ -8,6 +8,7 @@ namespace WebApp.Models
         public required string UserId { get; set; }
         public ApplicationUser? User { get; set; }
 
-        public ICollection<Animal> Animals { get; set; } = new List<Animal>();
+        public required string AnimalId { get; set; }
+        public Animal? Animal { get; set; }
     }
 }

@@ -1,113 +1,255 @@
-@model IEnumerable<WebApp.Models.Animal>
+@using WebApp.ViewModels.Animals
+@* Views/Marketplace/Index.cshtml *@
+@model ICollection<AnimalListViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Animal Marketplace";
+    ViewData["Description"] = "Browse animals available for sale from verified sellers.";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Breed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AgeInMonths)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OwnerId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Images)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Auction)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Breed)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.AgeInMonths)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.OwnerId)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Owner)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Images)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Auction)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@* ── Page-specific CSS ── *@
+@section Styles {
+    <link rel="stylesheet" href="~/css/marketplace.css" />
 }
-    </tbody>
-</table>
+
+<main class="main-content">
+    <section class="marketplace-intro">
+        <div class="container">
+            <span class="eyebrow label-sm">Animal Marketplace</span>
+            <h1 class="headline-lg">Find the right animal</h1>
+            <p class="body-md intro-desc">
+                Browse animals available for sale from verified sellers.
+            </p>
+
+            @* SEARCH *@
+            <div class="market-search-wrapper">
+                <div class="market-search-box">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text"
+                           id="market-search"
+                           placeholder="Search by animal, breed or location..."
+                           data-search
+                           class="form-control" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════
+       FILTERS SECTION
+       ══════════════════════════════════════════ *@
+    <section class="market-filters-section">
+        <div class="container">
+
+            @* Filter toggle bar *@
+            <div class="filter-sort-bar">
+                <button class="btn btn-outline btn-sm d-inline-flex align-items-center gap-1"
+                        id="filter-toggle-btn"
+                        type="button">
+                    <span class="material-symbols-outlined">tune</span>
+                    Filters
+                </button>
+
+                <div class="sort-control">
+                    <label class="label-sm" for="sort-select">Sort</label>
+                    <select id="sort-select" class="filter-select form-select form-select-sm w-auto">
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            @* ── Expandable Filter Panel ── *@
+            <div class="filter-panel" id="filter-panel">
+                <div class="filter-panel-grid">
+
+                    @* Species *@
+                    <div class="filter-group">
+                        <span class="filter-group-title label-sm">Species</span>
+                        <div class="filter-pills" data-filter-group="species">
+                            <button class="filter-pill active" data-value="all" type="button">All</button>
+                            <button class="filter-pill" data-value="goat" type="button">Goats</button>
+                            <button class="filter-pill" data-value="sheep" type="button">Sheep</button>
+                            <button class="filter-pill" data-value="horse" type="button">Horses</button>
+                            <button class="filter-pill" data-value="cattle" type="button">Cattle</button>
+                        </div>
+                    </div>
+
+                    @* Gender *@
+                    <div class="filter-group">
+                        <span class="filter-group-title label-sm">Gender</span>
+                        <div class="filter-pills" data-filter-group="gender">
+                            <button class="filter-pill active" data-value="all" type="button">All</button>
+                            <button class="filter-pill" data-value="male" type="button">Male</button>
+                            <button class="filter-pill" data-value="female" type="button">Female</button>
+                        </div>
+                    </div>
+
+                    @* Age *@
+                    <div class="filter-group">
+                        <span class="filter-group-title label-sm">Age</span>
+                        <div class="filter-pills" data-filter-group="age">
+                            <button class="filter-pill active" data-value="all" type="button">All</button>
+                            <button class="filter-pill" data-value="young" type="button">Under 1 Year</button>
+                            <button class="filter-pill" data-value="adult" type="button">1–3 Years</button>
+                            <button class="filter-pill" data-value="mature" type="button">3+ Years</button>
+                        </div>
+                    </div>
+
+                    @* Verification *@
+                    <div class="filter-group">
+                        <span class="filter-group-title label-sm">Verification</span>
+                        <div class="filter-pills" data-filter-group="verified">
+                            <button class="filter-pill active" data-value="all" type="button">All</button>
+                            <button class="filter-pill" data-value="verified" type="button">Verified Owner</button>
+                            <button class="filter-pill" data-value="vet-checked" type="button">Vet Checked</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="filter-panel-actions">
+                    <button class="btn btn-secondary btn-sm" id="clear-filters-btn" type="button">
+                        Clear All
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="apply-filters-btn" type="button">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+            @* /filter-panel *@
+
+            @* Results bar *@
+            <div class="results-bar">
+                <h2 class="title-md">Animals for sale</h2>
+                <span class="body-sm">
+                    <span id="results-count">@Model.Count</span> animals available
+                </span>
+            </div>
+
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════
+       LISTINGS GRID
+       ══════════════════════════════════════════ *@
+    <section class="section market-listing-section">
+        <div class="container">
+
+            <div class="market-grid" id="market-grid">
+
+                @*
+                    ── Razor foreach replaces 6 hardcoded cards ──
+                    All data-* attributes are driven from the Model.
+                    When you connect a DB later, only the controller changes.
+                *@
+                @foreach (var listing in Model)
+                {
+                    <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@listing.Id"
+                       class="card-link-wrapper"
+                       aria-label="View details for @listing.Name">
+                        <article class="card market-card"
+                             data-breed="@listing.Breed"
+                             data-gender="@listing.Gender"
+                             data-age="@listing.AgeInMonths"
+                             data-verified="@listing.IsVetVerified"
+                             data-price="@listing.Price">
+
+                            @* ── Card Image ── *@
+                            <div class="market-card-image">
+                                <img src="@listing.MainImageUrl"
+                                     alt="@listing.MainImageUrl"
+                                     loading="lazy" />
+
+                                <button class="fav-btn"
+                                        type="button"
+                                        data-fav-id="@listing.Id"
+                                        aria-label="Add to favorites"
+                                        onclick="event.preventDefault(); event.stopPropagation();">
+
+                                    <span class="material-symbols-outlined">favorite_border</span>
+                                </button>
+                            </div>
+
+                            @* ── Card Body ── *@
+                            <div class="card-body">
+                                <h3 class="title-md">@listing.Name</h3>
+
+                                <p class="market-meta body-sm">
+                                    @listing.Breed &bull; @listing.AgeInMonths &bull;
+                                    @(listing.Gender == "male" ? "Male" : "Female")
+                                </p>
+
+                                <p class="market-location body-sm">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                    @listing.Location
+                                </p>
+
+                                @* ── Badges (only rendered if applicable) ── *@
+                                @if (listing.IsOwnerVerified || listing.IsVetVerified)
+                                {
+                                    <div class="market-badges">
+                                        @if (listing.IsOwnerVerified)
+                                        {
+                                            <span class="badge badge-spec">
+                                                <span class="material-symbols-outlined">check</span>
+                                                Verified Owner
+                                            </span>
+                                        }
+                                        @if (listing.IsVetVerified)
+                                        {
+                                            <span class="badge badge-verified">
+                                                <span class="material-symbols-outlined">verified</span>
+                                                Vet Checked
+                                            </span>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            @* ── Card Footer ── *@
+                            <div class="card-footer market-footer">
+                                <div class="market-price">
+                                    @*
+                                        Format price with JOD currency.
+                                        C# formatting keeps it consistent regardless of browser locale.
+                                    *@
+                                    <span class="headline-sm">
+                                        @listing.Price.ToString("N0") JOD
+                                    </span>
+                                </div>
+                                <button class="btn btn-primary btn-sm"
+                                        type="button"
+                                        data-contact-id="@listing.Id"
+                                        onclick="event.stopPropagation();">
+                                    Contact
+                                </button>
+                            </div>
+
+                        </article>
+                    </a>
+                }
+
+            </div>
+            @* /market-grid *@
+
+            @* ── Empty State (hidden by default, shown via JS) ── *@
+            <div class="empty-state" id="empty-state" style="display:none;">
+                <span class="material-symbols-outlined">search_off</span>
+                <h3 class="title-md">No animals found</h3>
+                <p class="body-md">Try adjusting your filters or search terms.</p>
+                <button class="btn btn-outline btn-sm" id="reset-filters-btn" type="button">
+                    Clear Filters
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+@* ── Page-specific JS (loaded after Bootstrap & shared JS) ── *@
+@section Scripts {
+    <script src="~/js/marketplace.js"></script>
+}

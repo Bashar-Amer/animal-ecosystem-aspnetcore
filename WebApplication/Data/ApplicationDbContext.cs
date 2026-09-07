@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
+using WebApp.Extensions;
 using WebApp.Models;
 
 namespace WebApp.Data
@@ -29,13 +31,18 @@ namespace WebApp.Data
                 .HasOne(a => a.Species)
                 .WithMany(c => c.Animals)
                 .HasForeignKey(a => a.SpeciesId)
-                .OnDelete(DeleteBehavior.Restrict); // don't wipe animals if a category is deleted
+                .OnDelete(DeleteBehavior.Restrict); // don't wipe animals if a species is deleted
 
             builder.Entity<Auction>()
                 .HasOne(au => au.HighestBidder)
                 .WithMany()
                 .HasForeignKey(au => au.HighestBidderId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Auction>()
+                .Property(au => au.LotNumber)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn(seed: 1, increment: 1);
 
             builder.Entity<Bid>()
                 .HasOne(b => b.User)
@@ -49,9 +56,26 @@ namespace WebApp.Data
                 .HasForeignKey(ap => ap.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Favorite>(entity =>
+            {
+                entity.HasKey(f => f.Id);
+
+                entity.HasOne(f => f.User)
+                    .WithMany(u => u.Favorites)
+                    .HasForeignKey(f => f.UserId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(f => f.Animal)
+                    .WithMany(a => a.Favorites)
+                    .HasForeignKey(f => f.AnimalId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
             // Everything else (Animal->Owner, Auction->Animal, VetProfile->User,
             // Appointment->VetProfile, Bid->Auction) uses EF Core's default Cascade
             // behavior, which is what we want for those relationships anyway.
+
+            builder.SeedAnimalEcosystem();
         }
     }
 }

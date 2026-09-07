@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models
@@ -8,19 +9,25 @@ namespace WebApp.Models
         StartingSoon,
         Live,
         Ended,
-        Cancelled
+        Cancelled,
+        Upcoming
     }
 
     // [Index] with IsUnique enforces the one-to-one relationship with Animal at the DB level.
     // EF Core also infers one-to-one by convention here since both navigation properties
     // (Animal.Auction and Auction.Animal) are single references, not collections.
+
     [Index(nameof(AnimalId), IsUnique = true)]
     public class Auction
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
+        public int LotNumber { get; set; }
 
         // One-to-one with Animal
         public string AnimalId { get; set; }
+
+        [Required]
+        public required string Title { get; set; }
 
         [ForeignKey(nameof(AnimalId))]
         public Animal Animal { get; set; } = null!;

@@ -16,10 +16,13 @@ namespace WebApp.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required, MaxLength(150)]
-        public string Name { get; set; } = string.Empty; // e.g. "Holstein Dairy Cow"
+        public string Name { get; set; } = string.Empty;
 
         [MaxLength(100)]
         public string? Breed { get; set; }
+
+        [MaxLength(50)]
+        public string? Gender { get; set; }
 
         public int? AgeInMonths { get; set; }
 
@@ -35,6 +38,7 @@ namespace WebApp.Models
         public AnimalStatus Status { get; set; } = AnimalStatus.Available;
 
         public bool IsVerified { get; set; } = false;
+        public bool IsVetChecked { get; set; } = false;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -56,7 +60,7 @@ namespace WebApp.Models
         public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 
-    // Separate table so an animal can have multiple listing photos
+
     public class AnimalImage
     {
         public int Id { get; set; }
@@ -66,6 +70,8 @@ namespace WebApp.Models
 
         [Required]
         public string AnimalId { get; set; }
+
+        public bool IsMain { get; set; }
 
         [ForeignKey(nameof(AnimalId))]
         public Animal Animal { get; set; } = null!;

@@ -1,0 +1,55 @@
+﻿@{
+    string IsActive(string c, string a = "Index") =>
+        ViewContext.RouteData.Values["controller"]?.ToString() == c && ViewContext.RouteData.Values["action"]?.ToString() == a ? "active" : "";
+}
+<header class="header">
+    <nav class="navbar navbar-expand-md py-0" aria-label="Main navigation">
+        <div class="container header-container">
+            <a asp-controller="Home" asp-action="Index" class="header-logo navbar-brand">
+                <div class="logo-icon"><span class="material-symbols-outlined">pets</span></div>
+                <div class="logo-text"><span class="brand-name">AnimalEcosystem</span></div>
+            </a>
+            <button class="navbar-toggler mobile-menu-toggle border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavMenu" aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle menu">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18" /></svg>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavMenu">
+                <ul class="navbar-nav header-nav me-auto ms-md-4">
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link @IsActive("Home")">Home</a></li>
+                    <li class="nav-item"><a asp-controller="Marketplace" asp-action="Index" class="nav-link @IsActive("Marketplace")">Marketplace</a></li>
+                    <li class="nav-item"><a asp-controller="Auctions" asp-action="Index" class="nav-link @IsActive("Auctions")">Auctions</a></li>
+                    <li class="nav-item"><a asp-controller="Veterinary" asp-action="Index" class="nav-link @IsActive("Veterinary")">Veterinary</a></li>
+                </ul>
+                <div class="header-actions d-flex align-items-center gap-2">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <div class="dropdown" data-user-menu>
+                            <button class="btn btn-outline dropdown-toggle btn-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="material-symbols-outlined" style="font-size: 20px;">account_circle</span>
+                                <span class="d-none d-sm-inline">@User.Identity.Name</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a asp-controller="Account" asp-action="Profile" class="dropdown-item">My Profile</a></li>
+                                <li><a asp-controller="Account" asp-action="MyListings" class="dropdown-item">My Listings</a></li>
+                                <li><a asp-controller="Account" asp-action="Watchlist" class="dropdown-item">Watchlist</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <form asp-controller="Account" asp-action="Logout" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="dropdown-item text-danger">Sign Out</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center gap-2" data-guest-menu>
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-secondary btn-sm d-none d-sm-inline-flex">Sign In</a>
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-sm">Register</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

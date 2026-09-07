@@ -1,0 +1,179 @@
+@model WebApp.ViewModels.Auctions.AuctionsIndexViewModel
+
+@{
+    ViewData["Title"] = "Live Auctions";
+    ViewData["Description"] = "Browse live livestock auctions with verified health records and secure escrow protection.";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/auctions.css" />
+}
+
+<section class="auctions-hero">
+    <div class="container">
+        <div class="hero-content-center">
+            <div class="live-auctions-badge">
+                <span class="live-pulse-dot"></span><span class="label-sm">Live Auctions Now</span>
+            </div>
+            <h1 class="display-hero text-center">Live Livestock <span class="text-secondary">Auctions</span></h1>
+            <p class="hero-description body-lg text-center">
+                Bid on verified premium livestock with complete health documentation. Secure escrow protection and transparent bidding process.
+            </p>
+            <div class="auction-stats">
+                <div class="stat-card">
+                    <span class="stat-icon"><span class="material-symbols-outlined">gavel</span></span>
+                    <div class="stat-content">
+                        <span class="stat-value label-numeric-lg">@Model.ActiveAuctionsCount</span>
+                        <span class="stat-label body-sm">Active Auctions</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon"><span class="material-symbols-outlined">group</span></span>
+                    <div class="stat-content">
+                        <span class="stat-value label-numeric-lg">@Model.ActiveBiddersCount.ToString("N0")</span>
+                        <span class="stat-label body-sm">Active Bidders</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon"><span class="material-symbols-outlined">verified</span></span>
+                    <div class="stat-content">
+                        <span class="stat-value label-numeric-lg">@Model.VerifiedPercentage%</span>
+                        <span class="stat-label body-sm">Verified Animals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="auctions-filters-container">
+            <div class="search-bar-large">
+                <span class="search-icon material-symbols-outlined">search</span>
+                <input type="text" class="search-input" placeholder="Search auctions by breed, lot number, or seller..." data-search />
+            </div>
+
+            <div class="filter-tabs-auction">
+                <button class="filter-tab active" data-filter="status" data-value="all">All Auctions</button>
+                <button class="filter-tab" data-filter="status" data-value="live"><span class="live-dot"></span>Live Now</button>
+                <button class="filter-tab" data-filter="status" data-value="ending-soon"><span class="material-symbols-outlined">schedule</span>Ending Soon</button>
+                <button class="filter-tab" data-filter="status" data-value="upcoming"><span class="material-symbols-outlined">event</span>Starting Soon</button>
+            </div>
+
+            <div class="row g-3 align-items-end">
+                <div class="col-sm-6 col-lg-3">
+                    <label class="filter-label label-sm form-label">Category</label>
+                    <select class="form-select" data-filter="category">
+                        <option value="all">All Categories</option>
+                        <option value="horse">Horses</option>
+                        <option value="cattle">Cattle</option>
+                        <option value="sheep">Sheep</option>
+                        <option value="goat">Goats</option>
+                        <option value="camel">Camels</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <label class="filter-label label-sm form-label">Price Range</label>
+                    <select class="form-select" data-filter="price">
+                        <option value="all">All Prices</option>
+                        <option value="under-1000">Under $1,000</option>
+                        <option value="1000-5000">$1,000 - $5,000</option>
+                        <option value="5000-10000">$5,000 - $10,000</option>
+                        <option value="over-10000">Over $10,000</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <label class="filter-label label-sm form-label">Sort By</label>
+                    <select class="form-select" data-sort>
+                        <option value="ending-soon">Ending Soon</option>
+                        <option value="newly-listed">Newly Listed</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="most-bids">Most Bids</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-view="grid" aria-label="Grid view"><span class="material-symbols-outlined">grid_view</span></button>
+                        <button class="view-toggle-btn" data-view="list" aria-label="List view"><span class="material-symbols-outlined">view_list</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-info">
+                <span class="body-md">Showing <strong data-results-count>@Model.Auctions.Count</strong> auctions</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section auctions-listing-section">
+    <div class="container">
+        <div class="auctions-grid" id="auctions-grid">
+            @foreach (var auction in Model.Auctions)
+            {
+                @await Html.PartialAsync("_AuctionCard", auction)
+            }
+        </div>
+
+        <nav aria-label="Auctions pagination" class="pagination-container">
+            <ul class="pagination mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<section class="section how-it-works-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title headline-lg">How Auction Bidding Works</h2>
+            <p class="section-description body-md">Transparent and secure bidding process with buyer protection</p>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="how-it-works-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><span class="material-symbols-outlined">account_circle</span></div>
+                    <h3 class="headline-sm">Register & Verify</h3>
+                    <p class="body-md">Create your free account and complete identity verification to participate in auctions.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="how-it-works-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><span class="material-symbols-outlined">search</span></div>
+                    <h3 class="headline-sm">Browse & Research</h3>
+                    <p class="body-md">Review detailed animal profiles, health records, and seller ratings before bidding.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="how-it-works-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><span class="material-symbols-outlined">gavel</span></div>
+                    <h3 class="headline-sm">Place Your Bid</h3>
+                    <p class="body-md">Submit competitive bids with automatic notifications if you're outbid.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="how-it-works-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><span class="material-symbols-outlined">verified</span></div>
+                    <h3 class="headline-sm">Win & Complete</h3>
+                    <p class="body-md">Secure payment through escrow, coordinate delivery, and receive your animal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/auctions.js"></script>
+}
