@@ -1,0 +1,251 @@
+﻿@model WebApp.ViewModels.Vet.VeterinarianProfileViewModel
+@{
+    ViewData["Title"] = $"{Model.Name} | Veterinarian Profile";
+    ViewData["Description"] = $"{Model.Name} - {Model.SpecialtyLabel}. Verified veterinarian with {Model.ExperienceLabel}.";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vet-profile.css" />
+}
+
+<div class="breadcrumb-bar">
+    <div class="container breadcrumb-bar-inner">
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Home</a><span class="breadcrumb-sep">/</span>
+            <a asp-controller="Veterinarians" asp-action="Index">Veterinary</a><span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">@Model.Name</span>
+        </nav>
+        <a asp-controller="Veterinarians" asp-action="Index" class="back-link">
+            <span class="material-symbols-outlined">arrow_back</span>Back to Directory
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <section class="profile-summary-card">
+        <div class="profile-summary-main">
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar"><span>@Model.AvatarInitials</span><div class="avatar-badge">@Model.CredentialBadge</div></div>
+                <div class="verified-check" title="Verified Practitioner"><span class="material-symbols-outlined">verified</span></div>
+            </div>
+            <div class="profile-info">
+                <div class="profile-badges">
+                    @foreach (var badge in Model.Badges)
+                    {
+                        <span class="badge badge-@badge.Style">
+                            @if (badge.HasPulseDot)
+                            {
+                                <span class="status-dot"></span>
+                            }
+                            else if (!string.IsNullOrEmpty(badge.Icon))
+                            {
+                                <span class="material-symbols-outlined">@badge.Icon</span>
+                            }
+                            @badge.Text
+                        </span>
+                    }
+                </div>
+                <h1 class="headline-lg">@Model.Name</h1>
+                <p class="title-md text-secondary">@Model.SpecialtyLabel</p>
+                <div class="profile-meta">
+                    <span><span class="material-symbols-outlined">location_on</span> @Model.LocationNote</span>
+                    <span><span class="material-symbols-outlined">work_history</span> @Model.ExperienceLabel</span>
+                    <span><span class="material-symbols-outlined filled">star</span> <strong>@Model.Rating.ToString("0.0") / 5.0</strong> (@Model.ReviewCount verified reviews)</span>
+                </div>
+            </div>
+        </div>
+        <div class="species-card">
+            <span class="label-sm">Species Treated</span>
+            <div class="species-pills">
+                @foreach (var species in Model.SpeciesTreated)
+                {
+                    <span class="spec-pill">@species</span>
+                }
+            </div>
+        </div>
+    </section>
+
+    <div class="vet-profile-layout">
+        <div class="vet-profile-main">
+            <section class="detail-card">
+                <div class="detail-card-header">
+                    <span class="material-symbols-outlined">medical_services</span>
+                    <h2 class="headline-sm">About @Model.Name</h2>
+                </div>
+                <div class="card-text">
+                    @foreach (var paragraph in Model.AboutParagraphs)
+                    {
+                        <p class="body-lg">@paragraph</p>
+                    }
+                </div>
+                <div class="stats-grid">
+                    @foreach (var stat in Model.Stats)
+                    {
+                        <div class="stat-box">
+                            <span class="label-sm">@stat.Label</span>
+                            <span class="label-numeric-lg">@stat.Value</span>
+                            <span class="body-sm">@stat.SubLabel</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="detail-card">
+                <div class="detail-card-header">
+                    <div class="header-left">
+                        <span class="material-symbols-outlined">vaccines</span>
+                        <h2 class="headline-sm">Services & Clinical Capabilities</h2>
+                    </div>
+                    <span class="label-sm text-muted">@Model.Services.Count Certified Offerings</span>
+                </div>
+                <div class="services-grid">
+                    @foreach (var service in Model.Services)
+                    {
+                        <div class="service-card">
+                            <div class="service-icon @(string.IsNullOrEmpty(service.IconVariant) ? "" : "icon-" + service.IconVariant)">
+                                <span class="material-symbols-outlined">@service.Icon</span>
+                            </div>
+                            <h3 class="title-sm">@service.Title</h3>
+                            <p class="body-md">@service.Description</p>
+                            <div class="service-footer @(service.IsUrgent ? "text-error" : "")">
+                                <span>@service.FooterText</span><span class="material-symbols-outlined">chevron_right</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="detail-card">
+                <div class="detail-card-header">
+                    <span class="material-symbols-outlined">school</span>
+                    <h2 class="headline-sm">Credentials & Licensure</h2>
+                </div>
+                <div class="timeline">
+                    @foreach (var item in Model.Timeline)
+                    {
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-@item.DotVariant"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="badge badge-spec">@item.DateRangeLabel</span>
+                                    <h3 class="title-sm">@item.Title</h3>
+                                </div>
+                                <p class="body-md">@item.Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="detail-card">
+                <div class="detail-card-header">
+                    <div class="header-left">
+                        <span class="material-symbols-outlined">rate_review</span>
+                        <h2 class="headline-sm">Client Reviews</h2>
+                    </div>
+                    <div class="rating-summary">
+                        <span class="material-symbols-outlined filled">star</span>
+                        <span class="headline-sm">@Model.Rating.ToString("0.0")</span>
+                        <span class="body-sm">out of 5.0 (@Model.ReviewCount Reviews)</span>
+                    </div>
+                </div>
+                <div class="rating-bars">
+                    @foreach (var bar in Model.RatingBreakdown)
+                    {
+                        <div class="rating-bar-row">
+                            <span>@bar.Stars Stars</span>
+                            <div class="bar"><div class="fill @bar.FillVariant" style="width:@(bar.Percent)%"></div></div>
+                            <span>@bar.Count</span>
+                        </div>
+                    }
+                </div>
+                <div class="reviews-list">
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <article class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer">
+                                    <div class="reviewer-avatar @review.AvatarVariant">@review.ReviewerInitials</div>
+                                    <div><span class="title-sm">@review.ReviewerName</span><span class="body-sm text-muted">@review.ReviewerRole</span></div>
+                                </div>
+                                <div class="review-meta">
+                                    <div class="stars">
+                                        @for (int i = 0; i < review.StarCount; i++)
+                                        {
+                                            <span class="material-symbols-outlined filled">star</span>
+                                        }
+                                    </div>
+                                    <span class="label-sm">@review.DateLabel</span>
+                                </div>
+                            </div>
+                            <p class="body-md italic">@review.Text</p>
+                        </article>
+                    }
+                </div>
+            </section>
+        </div>
+
+        <aside class="vet-profile-sidebar">
+            <div class="booking-card" data-vet-slug="@Model.Slug">
+                <div class="booking-header">
+                    <div><span class="label-sm">Consultation Rate</span><div class="price-display"><span class="headline-lg">From @Model.ConsultationPriceFrom.ToString("C0")</span></div></div>
+                    <span class="badge badge-spec">Base Visit Fee</span>
+                </div>
+                <p class="body-sm text-muted">In-person farm visit or specialized clinical consultation.</p>
+                <div class="booking-actions">
+                    <button class="btn btn-primary btn-block" id="book-visit-btn"><span class="material-symbols-outlined">calendar_month</span> Request Farm Visit</button>
+                    <button class="btn btn-outline btn-block" id="save-vet-btn"><span class="material-symbols-outlined">favorite_border</span> Save Veterinarian</button>
+                </div>
+                <div class="booking-notices">
+                    <div class="notice"><span class="material-symbols-outlined">schedule</span><span class="body-sm">You will be contacted within <strong>2 hours</strong> to confirm appointment time & location.</span></div>
+                    <div class="notice"><span class="material-symbols-outlined">verified_user</span><span class="body-sm"><strong>Escrow Protection:</strong> Payment released only after report completion.</span></div>
+                </div>
+            </div>
+
+            <div class="detail-card schedule-card">
+                <div class="detail-card-header">
+                    <span class="material-symbols-outlined">event_available</span>
+                    <h3 class="title-md">Weekly Schedule</h3>
+                </div>
+                <div class="schedule-list">
+                    @foreach (var row in Model.WeeklySchedule)
+                    {
+                        <div class="schedule-row @row.Status">
+                            <span class="day">@row.Day</span>
+                            <span class="time">
+                                @if (row.Icon != null)
+                                {
+                                    <span class="material-symbols-outlined">@row.Icon</span>
+                                }
+                                else
+                                {
+                                    <span class="dot"></span>
+                                }
+                                @row.TimeLabel
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <span class="material-symbols-outlined">local_hospital</span>
+                    <h3 class="title-md">Practice Information</h3>
+                </div>
+                <div class="contact-list">
+                    <div class="contact-item"><span class="material-symbols-outlined">pin_drop</span><div><strong>@Model.PracticeLocationName</strong><br>@Model.PracticeAddress</div></div>
+                    <div class="contact-item"><span class="material-symbols-outlined">quickreply</span><span>Typically replies in <strong>@Model.ResponseTimeText</strong></span></div>
+                    <div class="contact-item"><span class="material-symbols-outlined">translate</span><span>Fluent in <strong>@Model.LanguagesText</strong></span></div>
+                </div>
+                <button class="btn btn-outline btn-sm btn-block mt-md" id="inquiry-btn">
+                    <span class="material-symbols-outlined">chat</span>Send Direct Inquiry
+                </button>
+            </div>
+        </aside>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/vet-profile.js"></script>
+}

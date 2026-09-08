@@ -820,6 +820,7 @@ namespace WebApp.Extensions
                 {
                     Id = auctionId1,
                     AnimalId = animalId1,
+                    Title= "Auction1",
                     StartingPrice = 300.00m,
                     CurrentPrice = 320.00m,
                     MinIncrement = 10.00m,
@@ -833,6 +834,7 @@ namespace WebApp.Extensions
                 {
                     Id = auctionId2,
                     AnimalId = animalId6,
+                    Title = "Auction2",
                     StartingPrice = 450.00m,
                     CurrentPrice = 500.00m,
                     MinIncrement = 10.00m,
@@ -846,6 +848,7 @@ namespace WebApp.Extensions
                 {
                     Id = auctionId3,
                     AnimalId = animalId10,
+                    Title = "Auction3",
                     StartingPrice = 2800.00m,
                     CurrentPrice = 3100.00m,
                     MinIncrement = 50.00m,
@@ -859,6 +862,7 @@ namespace WebApp.Extensions
                 {
                     Id = auctionId4,
                     AnimalId = animalId12,
+                    Title = "Auction4",
                     StartingPrice = 6500.00m,
                     CurrentPrice = 7000.00m,
                     MinIncrement = 100.00m,
@@ -872,6 +876,7 @@ namespace WebApp.Extensions
                 {
                     Id = auctionId5,
                     AnimalId = animalId18,
+                    Title = "Auction5",
                     StartingPrice = 60.00m,
                     CurrentPrice = 70.00m,
                     MinIncrement = 5.00m,

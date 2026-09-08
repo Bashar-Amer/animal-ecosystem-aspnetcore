@@ -1,0 +1,23 @@
+﻿@model WebApp.ViewModels.Home.FeaturedVetViewModel
+
+<article class="card vet-card">
+    <div class="vet-header">
+        <div class="vet-info">
+            <div class="vet-avatar"><img src="@Model.ImageUrl" alt="@Model.Name" data-lazy /></div>
+            <div class="vet-details"><h3 class="vet-name title-md">@Model.Name</h3><span class="vet-specialty body-sm">@Model.Specialty</span></div>
+        </div>
+        <span class="vet-location-badge label-sm">@Model.LocationLabel</span>
+    </div>
+    <div class="vet-rating">
+        <div class="rating-stars"><span class="material-symbols-outlined filled">star</span><span class="rating-value">@Model.Rating.ToString("0.0")</span><span class="rating-count">(@Model.ReviewCount reviews)</span></div>
+        <span class="vet-experience label-sm">@Model.ExperienceLabel</span>
+    </div>
+    <div class="vet-availability">
+        <div class="availability-status">
+            <span class="status-indicator status-@Model.AvailabilityStatus"></span>
+            <span class="status-text label-sm">@Model.AvailabilityText</span>
+        </div>
+        <span class="vet-fee title-sm">From @Model.FeeFrom.ToString("C0")</span>
+    </div>
+    <a asp-controller="Veterinarians" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-outline btn-block">Book Consultation</a>
+</article>

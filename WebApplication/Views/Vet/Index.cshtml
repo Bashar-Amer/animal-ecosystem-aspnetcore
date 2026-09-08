@@ -1,0 +1,174 @@
+﻿@model WebApp.ViewModels.Vet.VeterinariansIndexViewModel
+@{
+    ViewData["Title"] = "Veterinary Directory";
+    ViewData["Description"] = "Find certified veterinarians for livestock, equine and herd health. Verified practitioners, transparent reviews and secure booking.";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/veterinary.css" />
+}
+
+<section class="vet-hero">
+    <div class="vet-hero-decoration d1"></div>
+    <div class="vet-hero-decoration d2"></div>
+    <div class="container">
+        <div class="vet-hero-top">
+            <div class="trust-badge">
+                <span class="material-symbols-outlined">verified</span>
+                <span class="label-sm">CERTIFIED VETERINARY CARE</span>
+            </div>
+            <div class="vet-hero-main">
+                <div class="vet-hero-text">
+                    <h1 class="display-hero">Find a Trusted Veterinarian</h1>
+                    <p class="body-lg">Connect with certified livestock, herd health, and equine professionals. Every practitioner is independently licensed and verified.</p>
+                </div>
+                <div class="metric-mini">
+                    <div class="metric-icon"><span class="material-symbols-outlined">local_hospital</span></div>
+                    <div><span class="label-numeric-lg">100%</span><span class="body-sm">Verified Licensing</span></div>
+                </div>
+            </div>
+            <div class="master-search">
+                <div class="master-search-input">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" id="vet-search" placeholder="Search by name, specialty, clinic or focus area..." data-search />
+                </div>
+                <button class="btn btn-primary btn-lg master-search-btn" id="vet-search-btn">
+                    <span>Find Doctors</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="vet-filters-section">
+    <div class="container">
+        <div class="filters-wrapper">
+            <div class="filter-group">
+                <div class="filter-group-label"><span class="material-symbols-outlined">stethoscope</span><span class="label-sm">Specialty</span></div>
+                <div class="filter-pills" data-filter-group="specialty">
+                    <button class="filter-pill active" data-value="all">All</button>
+                    <button class="filter-pill" data-value="large-animal">Large Animal</button>
+                    <button class="filter-pill" data-value="livestock">Livestock & Ruminants</button>
+                    <button class="filter-pill" data-value="equine">Equine Specialist</button>
+                    <button class="filter-pill" data-value="poultry">Poultry</button>
+                    <button class="filter-pill" data-value="mixed">Small & Mixed</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-group-label"><span class="material-symbols-outlined">location_on</span><span class="label-sm">Region</span></div>
+                <div class="filter-pills" data-filter-group="region">
+                    <button class="filter-pill active" data-value="all">All Regions</button>
+                    <button class="filter-pill" data-value="central">Central</button>
+                    <button class="filter-pill" data-value="north">North</button>
+                    <button class="filter-pill" data-value="south">South</button>
+                    <button class="filter-pill" data-value="east">East</button>
+                    <button class="filter-pill" data-value="west">West</button>
+                </div>
+            </div>
+
+            <div class="filter-row-split">
+                <div class="filter-group">
+                    <div class="filter-group-label"><span class="material-symbols-outlined">schedule</span><span class="label-sm">Availability</span></div>
+                    <div class="filter-pills" data-filter-group="availability">
+                        <button class="filter-pill active" data-value="all">All</button>
+                        <button class="filter-pill" data-value="now">Available Now</button>
+                        <button class="filter-pill" data-value="today">Available Today</button>
+                        <button class="filter-pill" data-value="week">This Week</button>
+                        <button class="filter-pill pill-emergency" data-value="emergency">Emergency 24/7</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-label"><span class="label-sm">Species</span></div>
+                    <div class="filter-pills" data-filter-group="species">
+                        <button class="filter-pill active" data-value="all">All Species</button>
+                        <button class="filter-pill" data-value="cattle">Cattle</button>
+                        <button class="filter-pill" data-value="sheep-goat">Sheep & Goats</button>
+                        <button class="filter-pill" data-value="horse">Horses</button>
+                        <button class="filter-pill" data-value="camel">Camels</button>
+                        <button class="filter-pill" data-value="poultry">Poultry</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-bar">
+                <span class="body-md">Showing <strong id="vet-count">@Model.Veterinarians.Count</strong> verified veterinarians</span>
+                <div class="sort-control">
+                    <span class="label-sm">Sort:</span>
+                    <select id="vet-sort" class="form-select form-select-sm">
+                        <option value="rating-high">Highest Rated</option>
+                        <option value="reviews-high">Most Reviews</option>
+                        <option value="experience-high">Most Experienced</option>
+                        <option value="price-low">Price: Low to High</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="vet-grid" id="vet-grid">
+            @foreach (var vet in Model.Veterinarians)
+            {
+                @await Html.PartialAsync("_VetCard", vet)
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section emergency-section">
+    <div class="container">
+        <div class="emergency-banner">
+            <div class="emergency-decoration d1"></div>
+            <div class="emergency-decoration d2"></div>
+            <div class="emergency-content">
+                <div class="emergency-text">
+                    <div class="emergency-icon"><span class="material-symbols-outlined">emergency</span></div>
+                    <div>
+                        <div class="emergency-label"><span class="label-sm">Immediate Care Dispatch</span><span class="pulse-dot"></span></div>
+                        <h2 class="headline-md">Need urgent veterinary care for livestock or horses?</h2>
+                        <p class="body-md">24/7 Emergency Hotline & Tele-Triage dispatch. Immediate on-call veterinarian connection within minutes.</p>
+                    </div>
+                </div>
+                <div class="emergency-actions">
+                    <a href="tel:000000000" class="btn btn-urgent btn-lg"><span class="material-symbols-outlined">call</span>Emergency Hotline</a>
+                    <button class="btn btn-secondary btn-lg btn-ghost-light" id="tele-triage-btn"><span class="material-symbols-outlined">videocam</span>Start Tele-Triage</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section protocol-section">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-md-6">
+                <div class="protocol-text">
+                    <div class="section-eyebrow"><span class="material-symbols-outlined">verified</span><span class="label-sm">Veterinary Certified Protocol</span></div>
+                    <h2 class="headline-lg">Veterinary Certified Trade Guarantee</h2>
+                    <p class="body-lg">Every animal transacted on the platform undergoes required physical inspection, vaccination verification, and identification logging by an authorized certified veterinarian.</p>
+                    <div class="protocol-stats">
+                        <div class="protocol-stat"><span class="label-numeric-lg">100%</span><span class="body-sm">Health Passport Verified</span></div>
+                        <div class="protocol-stat"><span class="label-numeric-lg">24/7</span><span class="body-sm">Emergency Coverage</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="protocol-visual">
+                    <div class="protocol-card">
+                        <span class="material-symbols-outlined">verified</span>
+                        <span class="title-sm">Official Veterinary Standards</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/veterinary.js"></script>
+}

@@ -1,0 +1,29 @@
+﻿@model WebApp.ViewModels.Home.HomeAuctionCardViewModel
+
+<article class="card auction-card-home">
+    <div class="card-image">
+        <img src="@Model.ImageUrl" alt="@Model.Title" data-lazy />
+        <div class="card-badge">
+            @if (Model.Status == "live")
+            {
+                <span class="badge badge-live"><span class="badge-pulse"></span>LIVE</span>
+            }
+            else
+            {
+                <span class="badge badge-ending"><span class="material-symbols-outlined">hourglass_bottom</span>Ending Soon</span>
+            }
+        </div>
+        <div class="auction-lot-badge">@Model.LotNumber</div>
+    </div>
+    <div class="card-body">
+        <h3 class="card-title title-md">@Model.Title</h3>
+        <p class="card-meta body-sm">@Model.Description</p>
+        <div class="auction-bid-panel">
+            <div class="bid-current"><span class="bid-label label-sm">Current Bid</span><span class="bid-amount headline-sm">@Model.CurrentBid.ToString("C0")</span></div>
+            <div class="bid-countdown"><span class="countdown-label label-sm">Ends in</span><span class="countdown-timer title-sm" data-countdown="@Model.CountdownTarget.ToString("s")">--</span></div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Auction" asp-action="Details" asp-route-id="@Model.Id" class="@Model.ActionCssClass">@Model.ActionText</a>
+    </div>
+</article>

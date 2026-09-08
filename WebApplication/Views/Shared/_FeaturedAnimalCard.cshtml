@@ -1,0 +1,18 @@
+﻿@model WebApp.ViewModels.Home.FeaturedAnimalViewModel
+
+<article class="card animal-card" data-category="@Model.Category">
+    <div class="card-image">
+        <img src="@Model.ImageUrl" alt="@Model.Title" data-lazy />
+        <div class="card-badge"><span class="badge badge-spec">@Model.BadgeText</span></div>
+        <div class="card-location-badge">@Model.LocationBadge</div>
+    </div>
+    <div class="card-body">
+        <div class="card-verification"><span class="material-symbols-outlined">verified</span><span class="label-sm">@Model.VerificationText</span></div>
+        <h3 class="card-title title-md">@Model.Title</h3>
+        <p class="card-meta body-sm">@Model.MetaLine</p>
+    </div>
+    <div class="card-footer animal-card-footer">
+        <div class="price-info"><span class="price-label body-sm">@Model.PriceLabel</span><span class="price-value headline-sm">@Model.Price.ToString("C0")</span></div>
+        <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Contact</a>
+    </div>
+</article>

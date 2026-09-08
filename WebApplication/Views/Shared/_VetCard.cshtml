@@ -1,0 +1,74 @@
+﻿@model WebApp.ViewModels.Vet.VeterinarianListViewModel
+
+<article class="vet-dir-card"
+         data-specialty="@Model.SpecialtyFilterAttr"
+         data-region="@Model.RegionFilterValue"
+         data-availability="@Model.AvailabilityFilterValue"
+         data-breed="@Model.SpeciesFilterAttr"
+         data-rating="@Model.Rating"
+         data-reviews="@Model.ReviewCount"
+         data-experience="@Model.ExperienceYears"
+         data-price="@Model.ConsultationPriceFrom.ToString("F0")">
+
+    <div class="vet-dir-top">
+        <div class="vet-dir-identity">
+            <div class="vet-avatar-square @Model.AvatarVariant">@Model.AvatarInitials</div>
+            <div>
+                <div class="vet-name-row">
+                    <h3 class="title-md">@Model.Name</h3>
+                    <span class="material-symbols-outlined verified-icon">verified</span>
+                </div>
+                <span class="body-sm text-muted">@Model.SpecialtyLabel</span>
+            </div>
+        </div>
+
+        <span class="availability-badge @Model.AvailabilityBadgeVariant">
+            @if (Model.AvailabilityBadgeVariant == "available")
+            {
+                <span class="dot"></span>
+            }
+            else if (Model.AvailabilityBadgeIcon != null)
+            {
+                <span class="material-symbols-outlined">@Model.AvailabilityBadgeIcon</span>
+            }
+            @Model.AvailabilityBadgeText
+        </span>
+    </div>
+
+    <div class="vet-dir-rating">
+        <div class="rating">
+            <span class="material-symbols-outlined filled">star</span>
+            <span>@Model.Rating.ToString("0.0")</span>
+            <span class="text-muted">(@Model.ReviewCount reviews)</span>
+        </div>
+        <div class="license @(Model.IsLicenseHighlight ? "highlight" : "")">
+            <span class="material-symbols-outlined">@Model.LicenseIcon</span>
+            <span>@Model.LicenseText</span>
+        </div>
+    </div>
+
+    <div class="vet-dir-meta">
+        @foreach (var meta in Model.MetaLines)
+        {
+            <span><span class="material-symbols-outlined">@meta.Icon</span>@meta.Text</span>
+        }
+    </div>
+
+    @if (Model.SpecPills.Any())
+    {
+        <div class="spec-pills">
+            @foreach (var pill in Model.SpecPills)
+            {
+                <span class="spec-pill">@pill</span>
+            }
+        </div>
+    }
+
+    <div class="vet-dir-footer">
+        <div>
+            <span class="label-sm">Consultation</span>
+            <span class="headline-sm">From @Model.ConsultationPriceFrom.ToString("C0")</span>
+        </div>
+        <a asp-controller="Vet" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-primary btn-sm">Book Consultation</a>
+    </div>
+</article>

@@ -1,94 +1,299 @@
-@model WebApp.Models.Auction
-
+@model WebApp.ViewModels.Auctions.AuctionDetailsViewModel
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"{Model.Title} | Live Auction";
+    ViewData["Description"] = $"{Model.Title} - Live auction with verified health records, pedigree documentation and secure escrow protection.";
 }
 
-<h1>Details</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/auction-details.css" />
+}
 
-<div>
-    <h4>Auction</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnimalId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnimalId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Animal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Animal)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartingPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartingPrice)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CurrentPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CurrentPrice)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MinIncrement)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MinIncrement)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HighestBidderId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HighestBidderId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HighestBidder)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HighestBidder)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bids)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bids)
-        </dd>
-    </dl>
+<section class="auction-meta-header">
+    <div class="container">
+        <div class="meta-top">
+            <div class="meta-tags">
+                <span class="badge badge-verified"><span class="badge-pulse"></span>@Model.StatusLabel</span>
+                <span class="lot-tag"><span class="material-symbols-outlined">sell</span>@Model.LotNumber</span>
+            </div>
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index">Home</a><span class="breadcrumb-sep">/</span>
+                <a asp-controller="Auctions" asp-action="Index">Auctions</a><span class="breadcrumb-sep">/</span>
+                <span class="breadcrumb-current">@Model.Title</span>
+            </nav>
+        </div>
+        <div class="meta-title-row">
+            <div class="meta-title-content">
+                <h1 class="headline-lg">@Model.Title</h1>
+                <div class="meta-subtitle">
+                    <span class="meta-location"><span class="material-symbols-outlined">location_on</span>@Model.Location</span>
+                    @if (Model.IsVerifiedOwnership)
+                    {
+                        <span class="dot-sep"></span>
+                        <span class="badge badge-verified badge-sm"><span class="material-symbols-outlined">verified</span>Verified Ownership</span>
+                    }
+                </div>
+            </div>
+            <div class="meta-actions">
+                <button class="icon-btn" aria-label="Save auction" data-action="save"><span class="material-symbols-outlined">favorite_border</span></button>
+                <button class="icon-btn" aria-label="Share" data-action="share"><span class="material-symbols-outlined">share</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="auction-detail-layout">
+
+        <div class="auction-detail-main">
+            <div class="detail-card media-showcase">
+                <div class="media-main" id="media-main">
+                    <span class="media-badge"><span class="badge-pulse"></span>Live Lot In Inspection</span>
+                    <img id="main-image" src="@Model.MainImageUrl" alt="@Model.Title" />
+                </div>
+                <div class="media-thumbnails">
+                    @foreach (var thumb in Model.Thumbnails)
+                    {
+                        if (thumb.Type == "image")
+                        {
+                            <button class="thumbnail-btn @(thumb.IsActive ? "active" : "")" data-image="@thumb.ImageUrl">
+                                <img src="@thumb.ImageUrl" alt="@thumb.Label" />
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="thumbnail-btn" data-type="@thumb.Type">
+                                <span class="thumbnail-placeholder">
+                                    <span class="material-symbols-outlined">@thumb.Icon</span>@thumb.Label
+                                </span>
+                            </button>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <div class="detail-card-icon"><span class="material-symbols-outlined">info</span></div>
+                    <h2 class="headline-sm">Overview & Specifications</h2>
+                </div>
+                <div class="spec-grid">
+                    @foreach (var spec in Model.Specs)
+                    {
+                        <div class="spec-item @(spec.IsWide ? "spec-item-wide" : "") @(spec.IsHighlight ? "spec-item-highlight" : "")">
+                            <span class="spec-label">@spec.Label</span>
+                            <span class="spec-value @(spec.IsHighlight ? "text-success" : "")">@spec.Value</span>
+                        </div>
+                    }
+                </div>
+                <div class="breeder-notes">
+                    <h3 class="title-sm">Breeder's Notes</h3>
+                    @foreach (var note in Model.BreederNotes)
+                    {
+                        <p class="body-md">@note</p>
+                    }
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <div class="detail-card-icon icon-success"><span class="material-symbols-outlined">favorite</span></div>
+                    <h2 class="headline-sm">Health Records & Vet Verification</h2>
+                    <span class="badge badge-verified ml-auto"><span class="material-symbols-outlined">check_circle</span>Vet Verified</span>
+                </div>
+                <div class="health-list">
+                    @foreach (var record in Model.HealthRecords)
+                    {
+                        <div class="health-item">
+                            <div class="health-check"><span class="material-symbols-outlined">check</span></div>
+                            <div class="health-content">
+                                <span class="health-title">@record.Title</span>
+                                <span class="health-meta">@record.Meta</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="vet-inspection-banner">
+                    <div class="banner-content">
+                        <div class="banner-icon"><span class="material-symbols-outlined">verified_user</span></div>
+                        <div>
+                            <h4 class="title-sm">Need an independent veterinary inspection?</h4>
+                            <p class="body-sm">Dispatch a certified network doctor prior to auction close.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm">Request Vet Inspection</button>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-card-header">
+                    <div class="detail-card-icon"><span class="material-symbols-outlined">history</span></div>
+                    <h2 class="headline-sm">Bid History</h2>
+                    <span class="badge badge-spec ml-auto" id="bid-count">@Model.TotalBidsPlaced Total Bids Placed</span>
+                </div>
+                <div class="bid-history" id="bid-history">
+                    @foreach (var bid in Model.BidHistory)
+                    {
+                        <div class="bid-row @(bid.IsWinning ? "winning" : "")">
+                            <div class="bidder-info">
+                                <div class="bidder-avatar @(bid.IsWinning ? "winning" : "")">@bid.BidderInitial</div>
+                                <div>
+                                    @if (bid.Tag != null)
+                                    {
+                                        <div class="bidder-name">
+                                            <span>@bid.BidderName</span>
+                                            <span class="badge @(bid.IsWinning ? "badge-ending" : "badge-spec") badge-sm">@bid.Tag</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="bidder-name">@bid.BidderName</span>
+                                    }
+                                    <span class="bid-time">@bid.TimeAgo</span>
+                                </div>
+                            </div>
+                            <span class="bid-value @(bid.IsWinning ? "headline-sm" : "title-sm")">@bid.Amount.ToString("C0")</span>
+                        </div>
+                    }
+                </div>
+                <div class="bid-footer-note">
+                    <span class="material-symbols-outlined">verified</span>
+                    <span class="body-sm">Every bid is legally binding & backed by escrow guarantee</span>
+                </div>
+            </div>
+        </div>
+
+        <aside class="auction-detail-sidebar">
+            <div class="bidding-card">
+                <div class="bidding-header">
+                    <div>
+                        <span class="label-sm text-muted">Live Auction</span>
+                        <h3 class="title-md">@Model.Title</h3>
+                    </div>
+                    <span class="badge badge-live"><span class="badge-pulse"></span>LIVE BIDDING</span>
+                </div>
+
+                <div class="countdown-widget">
+                    <div class="countdown-header">
+                        <span class="countdown-label"><span class="material-symbols-outlined">schedule</span>Time Remaining</span>
+                        <span class="label-sm text-ending font-bold">@Model.TimeRemainingLabel</span>
+                    </div>
+                    <div class="countdown-grid" data-countdown="@Model.CountdownTarget.ToString("s")">
+                        <div class="countdown-box"><span class="countdown-number" data-hours>--</span><span class="countdown-unit">Hours</span></div>
+                        <div class="countdown-box"><span class="countdown-number" data-minutes>--</span><span class="countdown-unit">Mins</span></div>
+                        <div class="countdown-box"><span class="countdown-number" data-seconds>--</span><span class="countdown-unit">Secs</span></div>
+                    </div>
+                </div>
+
+                <div class="bid-financials">
+                    <span class="label-sm text-muted">Current Highest Bid</span>
+                    <div class="current-bid-display">
+                        <span class="bid-amount-large" id="current-bid-display">@Model.CurrentBid.ToString("F0")</span><span class="title-md">$</span>
+                    </div>
+                    <div class="bid-meta">
+                        <span class="body-sm">Minimum Next Bid: <strong id="min-bid-label">@Model.MinNextBid.ToString("C0")</strong></span>
+                        <span class="body-sm">Increment: <strong>+@Model.BidIncrement.ToString("C0")</strong></span>
+                    </div>
+                </div>
+
+                <div class="quick-bid-section">
+                    <span class="label-sm font-bold mb-xs">Quick Bid Increments</span>
+                    <div class="quick-bids">
+                        @foreach (var amount in Model.QuickBidAmounts)
+                        {
+                            <button class="quick-bid-btn" data-quick-bid="@amount.ToString("F0")">
+                                +@((amount - Model.CurrentBid).ToString("F0")) $<span>@amount.ToString("C0")</span>
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="bid-action-section">
+                    <div class="bid-stepper">
+                        <button type="button" data-stepper="minus">-</button>
+                        <input type="number" id="bid-amount-input" value="@Model.MinNextBid.ToString("F0")" min="@Model.MinNextBid.ToString("F0")" step="@Model.BidIncrement.ToString("F0")" />
+                        <span class="stepper-currency">$</span>
+                        <button type="button" data-stepper="plus">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block" id="place-bid-btn" type="button">
+                        <span class="material-symbols-outlined">gavel</span>
+                        <span id="place-bid-text">Place Bid of @Model.MinNextBid.ToString("C0")</span>
+                    </button>
+                    <button class="btn btn-outline btn-block" id="watchlist-btn" type="button">
+                        <span class="material-symbols-outlined">favorite_border</span>
+                        Add to Watchlist
+                    </button>
+                </div>
+
+                <div class="trust-badges">
+                    <div class="trust-item"><span class="material-symbols-outlined text-success">shield</span><span class="body-sm"><strong>Escrow Protection:</strong> Funds held securely until handover</span></div>
+                    <div class="trust-item"><span class="material-symbols-outlined text-secondary">badge</span><span class="body-sm"><strong>Verified ID:</strong> Ear Tag #AE-9941-B</span></div>
+                    <div class="trust-item"><span class="material-symbols-outlined text-primary">bolt</span><span class="body-sm"><strong>Real-time Alerts</strong> sent via notification</span></div>
+                </div>
+            </div>
+
+            <div class="seller-card">
+                <span class="label-sm text-muted uppercase">About The Seller</span>
+                <div class="seller-header">
+                    <div class="seller-avatar-large">@Model.Seller.Initials</div>
+                    <div class="seller-info">
+                        <div class="seller-name-row">
+                            <h4 class="title-sm">@Model.Seller.Name</h4>
+                            <span class="material-symbols-outlined text-success">verified</span>
+                        </div>
+                        <span class="body-sm text-muted">@Model.Seller.Tier</span>
+                        <div class="seller-rating">
+                            <span class="material-symbols-outlined filled">star</span>
+                            <span class="rating-value">@Model.Seller.Rating.ToString("0.0")</span>
+                            <span class="body-sm text-muted">(@Model.Seller.CompletedAuctions auctions completed)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="seller-meta">
+                    <div class="seller-meta-item"><span class="material-symbols-outlined">location_on</span><span class="body-sm">@Model.Seller.Location</span></div>
+                    <div class="seller-meta-item"><span class="material-symbols-outlined">calendar_today</span><span class="body-sm">Member since @Model.Seller.MemberSinceYear</span></div>
+                    <div class="seller-meta-item"><span class="material-symbols-outlined">schedule</span><span class="body-sm">@Model.Seller.ResponseTimeText</span></div>
+                </div>
+                <div class="seller-actions">
+                    <button class="btn btn-outline btn-sm btn-block">Contact Seller Directly</button>
+                    <a asp-controller="Seller" asp-action="Profile" asp-route-id="@Model.Seller.Id" class="seller-link">View all @Model.Seller.ActiveListingsCount active listings →</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <section class="similar-section">
+        <div class="similar-header">
+            <div>
+                <span class="label-sm text-secondary uppercase font-bold">Explore Live Events</span>
+                <h2 class="headline-md mt-2xs">Similar Live Auctions</h2>
+            </div>
+            <a asp-controller="Auctions" asp-action="Index" class="view-all-link title-sm">Browse All Active Auctions →</a>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+            @foreach (var similar in Model.SimilarAuctions)
+            {
+                <div class="col">
+                    <article class="card auction-card-compact h-100">
+                        <div class="card-image">
+                            <img src="@similar.ImageUrl" alt="@similar.Title" />
+                            <span class="card-badge-top">@similar.EndsLabel</span>
+                            <button class="watchlist-btn-sm"><span class="material-symbols-outlined">favorite_border</span></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta-top"><span class="body-sm text-muted">@similar.FarmName</span><span class="body-sm text-success">@similar.BidCount Bids</span></div>
+                            <h3 class="title-sm">@similar.Title</h3>
+                            <div class="card-footer-row">
+                                <div><span class="label-sm text-muted">Current Bid</span><span class="title-sm font-bold">@similar.CurrentBid.ToString("C0")</span></div>
+                                <a asp-controller="Auctions" asp-action="Details" asp-route-id="@similar.Id" class="btn btn-primary btn-sm">Bid Now</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    </section>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <script src="~/js/auction-details.js"></script>
+}

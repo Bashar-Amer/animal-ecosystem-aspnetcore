@@ -10,7 +10,8 @@ namespace WebApp.Models
         Live,
         Ended,
         Cancelled,
-        Upcoming
+        Upcoming,
+        EndingSoon
     }
 
     // [Index] with IsUnique enforces the one-to-one relationship with Animal at the DB level.

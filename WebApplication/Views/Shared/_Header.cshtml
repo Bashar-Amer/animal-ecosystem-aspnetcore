@@ -16,8 +16,8 @@
                 <ul class="navbar-nav header-nav me-auto ms-md-4">
                     <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link @IsActive("Home")">Home</a></li>
                     <li class="nav-item"><a asp-controller="Marketplace" asp-action="Index" class="nav-link @IsActive("Marketplace")">Marketplace</a></li>
-                    <li class="nav-item"><a asp-controller="Auctions" asp-action="Index" class="nav-link @IsActive("Auctions")">Auctions</a></li>
-                    <li class="nav-item"><a asp-controller="Veterinary" asp-action="Index" class="nav-link @IsActive("Veterinary")">Veterinary</a></li>
+                    <li class="nav-item"><a asp-controller="Auction" asp-action="Index" class="nav-link @IsActive("Auctions")">Auctions</a></li>
+                    <li class="nav-item"><a asp-controller="Vet" asp-action="Index" class="nav-link @IsActive("Veterinary")">Veterinary</a></li>
                 </ul>
                 <div class="header-actions d-flex align-items-center gap-2">
                     @if (User.Identity?.IsAuthenticated == true)
