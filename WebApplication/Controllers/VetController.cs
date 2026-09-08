@@ -1,305 +1,268 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
+using WebApp.Data;
+using WebApp.Helpers;
+using WebApp.Models;
 using WebApp.ViewModels.Vet;
 
 namespace WebApp.Controllers
 {
     public class VetController : Controller
     {
-        // GET: VetController
-        public ActionResult Index()
+        private readonly ApplicationDbContext _dbContext;
+
+        public VetController(ApplicationDbContext dbContext)
         {
-            // TODO: replace with a real query once the vet directory service/repo exists
-            var vm = new VeterinariansIndexViewModel
+            _dbContext = dbContext;
+        }
+
+        private static readonly string[] AvatarVariants = { "", "secondary", "neutral", "fixed", "tertiary" };
+        // GET: VetController
+        public async Task<IActionResult> Index()
+        {
+            var vets = await _dbContext.VetProfiles
+            .Include(v => v.User)
+            .OrderByDescending(v => v.IsVerified)
+            .ThenByDescending(v => v.Rating)
+            .ToListAsync();
+
+            var viewModel = new VeterinariansIndexViewModel
             {
-                Veterinarians = new()
-            {
-                new VeterinarianListViewModel
-                {
-                    Slug = "ahmed-ali", Name = "Dr. Ahmed Ali", AvatarInitials = "AA",
-                    SpecialtyLabel = "Large Animal & Herd Health",
-                    SpecialtyFilterValues = new() { "large-animal", "livestock" },
-                    RegionFilterValue = "central", AvailabilityFilterValue = "now",
-                    SpeciesFilterValues = new() { "cattle", "sheep-goat", "camel" },
-                    Rating = 4.9, ReviewCount = 48, ExperienceYears = 10,
-                    LicenseIcon = "badge", LicenseText = "#VET-412",
-                    AvailabilityBadgeVariant = "available", AvailabilityBadgeText = "Available Now",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "On-site & Clinic" },
-                        new() { Icon = "work_history", Text = "10+ years experience" },
-                        new() { Icon = "verified_user", Text = "Licensed Veterinary Surgeon" }
-                    },
-                    SpecPills = new() { "Cattle", "Sheep & Goats", "Camels" },
-                    ConsultationPriceFrom = 30
-                },
-                new VeterinarianListViewModel
-                {
-                    Slug = "sarah-mahmoud", Name = "Dr. Sarah Mahmoud", AvatarInitials = "SM", AvatarVariant = "secondary",
-                    SpecialtyLabel = "Equine Specialist & Surgeon",
-                    SpecialtyFilterValues = new() { "equine" },
-                    RegionFilterValue = "central", AvailabilityFilterValue = "today",
-                    SpeciesFilterValues = new() { "horse" },
-                    Rating = 5.0, ReviewCount = 62, ExperienceYears = 8,
-                    LicenseIcon = "military_tech", LicenseText = "Equine Consultant", IsLicenseHighlight = true,
-                    AvailabilityBadgeVariant = "today", AvailabilityBadgeText = "Available Today",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "Stable & Clinic Visits" },
-                        new() { Icon = "work_history", Text = "8 years specialized equine" },
-                        new() { Icon = "verified_user", Text = "FEI Certified Delegate" }
-                    },
-                    SpecPills = new() { "Horses", "Purebred", "Sport Horses" },
-                    ConsultationPriceFrom = 35
-                },
-                new VeterinarianListViewModel
-                {
-                    Slug = "omar-hassan", Name = "Dr. Omar Hassan", AvatarInitials = "OH", AvatarVariant = "neutral",
-                    SpecialtyLabel = "Livestock Health & Epidemiology",
-                    SpecialtyFilterValues = new() { "livestock", "large-animal" },
-                    RegionFilterValue = "north", AvailabilityFilterValue = "week",
-                    SpeciesFilterValues = new() { "cattle", "sheep-goat" },
-                    Rating = 4.8, ReviewCount = 35, ExperienceYears = 15,
-                    LicenseIcon = "vaccines", LicenseText = "Vaccination Lead",
-                    AvailabilityBadgeVariant = "scheduled", AvailabilityBadgeIcon = "event", AvailabilityBadgeText = "Tomorrow 9AM",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "Northern Region" },
-                        new() { Icon = "work_history", Text = "15 years field practice" },
-                        new() { Icon = "verified_user", Text = "Regional Supervisor" }
-                    },
-                    SpecPills = new() { "Cattle", "Sheep", "Dairy Herds" },
-                    ConsultationPriceFrom = 30
-                },
-                new VeterinarianListViewModel
-                {
-                    Slug = "layla-nasser", Name = "Dr. Layla Nasser", AvatarInitials = "LN", AvatarVariant = "fixed",
-                    SpecialtyLabel = "Equine & Camel Specialist",
-                    SpecialtyFilterValues = new() { "equine", "large-animal" },
-                    RegionFilterValue = "east", AvailabilityFilterValue = "today",
-                    SpeciesFilterValues = new() { "horse", "camel" },
-                    Rating = 4.9, ReviewCount = 53, ExperienceYears = 7,
-                    LicenseIcon = "explore", LicenseText = "Field Unit",
-                    AvailabilityBadgeVariant = "today", AvailabilityBadgeText = "Available Today",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "Eastern & Field Operations" },
-                        new() { Icon = "work_history", Text = "7 years arid zone" },
-                        new() { Icon = "verified_user", Text = "Desert Service Registry" }
-                    },
-                    SpecPills = new() { "Horses", "Camels", "Endurance Breeds" },
-                    ConsultationPriceFrom = 50
-                },
-                new VeterinarianListViewModel
-                {
-                    Slug = "faris-khalil", Name = "Dr. Faris Khalil", AvatarInitials = "FK", AvatarVariant = "neutral",
-                    SpecialtyLabel = "Poultry Health & Broilers",
-                    SpecialtyFilterValues = new() { "poultry" },
-                    RegionFilterValue = "north", AvailabilityFilterValue = "week",
-                    SpeciesFilterValues = new() { "poultry" },
-                    Rating = 4.7, ReviewCount = 29, ExperienceYears = 5,
-                    LicenseIcon = "sanitizer", LicenseText = "Biosecurity Consultant",
-                    AvailabilityBadgeVariant = "scheduled", AvailabilityBadgeIcon = "calendar_today", AvailabilityBadgeText = "Book for Thursday",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "Northern Farms" },
-                        new() { Icon = "work_history", Text = "5 years intensive consulting" },
-                        new() { Icon = "verified_user", Text = "Avian Certification" }
-                    },
-                    SpecPills = new() { "Poultry", "Game Birds", "Layers" },
-                    ConsultationPriceFrom = 20
-                },
-                new VeterinarianListViewModel
-                {
-                    Slug = "rima-barakat", Name = "Dr. Rima Barakat", AvatarInitials = "RB", AvatarVariant = "tertiary",
-                    SpecialtyLabel = "Small & Mixed Rural Practice",
-                    SpecialtyFilterValues = new() { "mixed", "livestock" },
-                    RegionFilterValue = "south", AvailabilityFilterValue = "now",
-                    SpeciesFilterValues = new() { "cattle", "sheep-goat" },
-                    Rating = 4.9, ReviewCount = 41, ExperienceYears = 12,
-                    LicenseIcon = "apartment", LicenseText = "Surgical Lead",
-                    AvailabilityBadgeVariant = "available", AvailabilityBadgeText = "Available Now",
-                    MetaLines = new()
-                    {
-                        new() { Icon = "location_on", Text = "Southern Region" },
-                        new() { Icon = "work_history", Text = "12 years clinical practice" },
-                        new() { Icon = "verified_user", Text = "Diagnostics & Surgery" }
-                    },
-                    SpecPills = new() { "Sheep", "Goats", "Cattle", "Guard Dogs" },
-                    ConsultationPriceFrom = 25
-                }
-            }
+                Veterinarians = vets.Select((v, index) => MapToListViewModel(v, index)).ToList()
             };
 
-            return View(vm);
+            return View(viewModel);
         }
 
         // GET: VetController/Details/5
-        public ActionResult Profile(string id)
+        public async Task<IActionResult> Profile(string id)
         {
-            // TODO: replace with a real lookup by slug once the vet directory service/repo exists
-            var vm = new VeterinarianProfileViewModel
+            // Slug isn't stored, so scan and regenerate to find the match.
+            var allVets = await _dbContext.VetProfiles
+                .Include(v => v.User)
+                .ToListAsync();
+
+            var matchedId = allVets.FirstOrDefault(v => DisplayHelpers.GenerateSlug(v.User.FullName) == id)?.Id;
+            if (matchedId == null)
+            {
+                return NotFound();
+            }
+
+            var vet = await _dbContext.VetProfiles
+                .Include(v => v.User)
+                .Include(v => v.Services)
+                .Include(v => v.TimelineEvents)
+                .Include(v => v.WeeklySchedule)
+                .Include(v => v.Reviews).ThenInclude(r => r.Reviewer)
+                .FirstAsync(v => v.Id == matchedId);
+
+            var reviews = vet.Reviews.OrderByDescending(r => r.CreatedAt).ToList();
+            var reviewCount = reviews.Count;
+            var averageRating = reviewCount == 0 ? 0 : reviews.Average(r => r.Rating);
+
+            var completedAppointments = await _dbContext.Appointments
+                .CountAsync(a => a.VetProfileId == vet.Id && a.Status == AppointmentStatus.Completed);
+
+            var viewModel = new VeterinarianProfileViewModel
             {
                 Slug = id,
-                Name = "Dr. Ahmed Ali",
-                AvatarInitials = "AA",
-                CredentialBadge = "D.V.M.",
-                Badges = new()
-        {
-            new() { Icon = "verified_user", Text = "Verified Veterinarian", Style = "verified" },
-            new() { Icon = "", Text = "Available for Booking", Style = "starting", HasPulseDot = true },
-            new() { Icon = "military_tech", Text = "Top Rated 2025", Style = "spec" }
-        },
-                SpecialtyLabel = "Large Animal & Herd Health Specialist",
-                LocationNote = "On-site farm visits available",
-                ExperienceLabel = "10+ Years Experience",
-                Rating = 4.9,
-                ReviewCount = 48,
-                SpeciesTreated = new() { "Cattle", "Sheep", "Goats", "Camels", "Horses" },
-                AboutParagraphs = new()
-        {
-            "Dr. Ahmed Ali is a veterinary clinician and herd health consultant specializing in large ruminants, epidemiology, and production livestock wellbeing.",
-            "Over the past decade, he has led biosecurity programs, herd vaccination campaigns, and reproductive optimization protocols for dairy herds, sheep genetics, and working camels. His practice combines clinical diagnostics with practical farm management to improve productivity while maintaining high animal welfare standards."
-        },
-                Stats = new()
-        {
-            new() { Label = "Field Visits", Value = "1,400+", SubLabel = "Farms visited" },
-            new() { Label = "Herd Size Covered", Value = "45,000+", SubLabel = "Heads examined" },
-            new() { Label = "Accuracy Rate", Value = "99.4%", SubLabel = "Soundness inspections" },
-            new() { Label = "License", Value = "#884-A", SubLabel = "Active Class-A" }
-        },
-                Services = new()
-        {
-            new() { Icon = "health_and_safety", Title = "Herd Examination & Farm Visits",
-                Description = "Comprehensive on-site physical evaluations, biometric monitoring, and pathology screenings.",
-                FooterText = "Base Rate: $30" },
-            new() { Icon = "syringe", IconVariant = "secondary", Title = "Vaccination & Immunity Schedules",
-                Description = "Custom vaccination schedules with official health record logging.",
-                FooterText = "Preventative Care" },
-            new() { Icon = "science", Title = "Reproductive & AI Consultation",
-                Description = "Ultrasound pregnancy checks, artificial insemination, and breeding synchronization.",
-                FooterText = "Genetics & Fertility" },
-            new() { Icon = "emergency", IconVariant = "error", Title = "Emergency Trauma & Colic Care",
-                Description = "Rapid triage for acute conditions, wound trauma, and obstetrical emergencies.",
-                FooterText = "24/7 On-Call Triage", IsUrgent = true },
-            new() { Icon = "fact_check", IconVariant = "tertiary", Title = "Pre-Purchase Soundness Inspections",
-                Description = "Independent vetting with detailed health certificates and lab profiling.",
-                FooterText = "Official Health Dossier" },
-            new() { Icon = "grass", IconVariant = "secondary", Title = "Nutritional Counseling",
-                Description = "Dietary analysis and feed optimization for dairy, sheep, and camels.",
-                FooterText = "Yield Optimization" }
-        },
-                Timeline = new()
-        {
-            new() { DotVariant = "primary", DateRangeLabel = "2021 — Present",
-                Title = "Certified Livestock Biosecurity & Herd Health Auditor",
-                Description = "Accredited inspector for commercial breeding herds and quarantine protocols." },
-            new() { DotVariant = "secondary", DateRangeLabel = "2015",
-                Title = "Board Specialist in Large Animal Internal Medicine",
-                Description = "Advanced certification in ruminant metabolic diseases and herd prophylaxis." },
-            new() { DotVariant = "tertiary", DateRangeLabel = "2012",
-                Title = "Doctor of Veterinary Medicine (D.V.M.)",
-                Description = "Faculty of Veterinary Medicine — Graduated with honors in Large Animal Surgery." }
-        },
-                RatingBreakdown = new()
-        {
-            new() { Stars = 5, Count = 44, Percent = 92 },
-            new() { Stars = 4, Count = 4, Percent = 8, FillVariant = "secondary" },
-            new() { Stars = 3, Count = 0, Percent = 0, FillVariant = "muted" }
-        },
-                Reviews = new()
-        {
-            new() { ReviewerInitials = "KR", ReviewerName = "Khalid R.", ReviewerRole = "Pastoral Farm Owner",
-                DateLabel = "March 2025",
-                Text = "Thorough health checks for our breeding flock and cattle. Fast response, thorough examination, and precise diagnosis. We rely exclusively on him for reproductive ultrasound." },
-            new() { ReviewerInitials = "LS", ReviewerName = "Lina S.", ReviewerRole = "Dairy Facility Manager", AvatarVariant = "secondary",
-                DateLabel = "Jan 2025",
-                Text = "Highly responsive for emergency care during difficult calving. Established our vaccination calendar which lowered calf mortality to zero. Exceptional with large ruminants." },
-            new() { ReviewerInitials = "TA", ReviewerName = "Tariq H.", ReviewerRole = "Livestock Trading Co.", AvatarVariant = "primary",
-                DateLabel = "Dec 2024",
-                Text = "His pre-purchase inspection saved us from buying sick livestock with dormant infections. Complete transparency and officially stamped documentation." }
-        },
-                ConsultationPriceFrom = 30,
-                WeeklySchedule = new()
-        {
-            new() { Day = "Saturday", TimeLabel = "8:00 AM – 5:00 PM", Status = "available" },
-            new() { Day = "Sunday", TimeLabel = "8:00 AM – 5:00 PM", Status = "available" },
-            new() { Day = "Monday", TimeLabel = "8:00 AM – 4:00 PM", Status = "available" },
-            new() { Day = "Tuesday", TimeLabel = "8:00 AM – 5:00 PM", Status = "available" },
-            new() { Day = "Wednesday", TimeLabel = "Field Operations", Status = "limited", Icon = "block" },
-            new() { Day = "Thursday", TimeLabel = "Emergency Only", Status = "emergency", Icon = "bolt" },
-            new() { Day = "Friday", TimeLabel = "Rest Day", Status = "off", Icon = "hotel" }
-        },
-                PracticeLocationName = "Central Vet Complex",
-                PracticeAddress = "Building 42, Veterinary District",
-                ResponseTimeText = "under 1 hour",
-                LanguagesText = "English & Arabic"
+                Name = vet.User.FullName,
+                AvatarInitials = DisplayHelpers.GetInitials(vet.User.FullName),
+                CredentialBadge = vet.Credential ?? "",
+                Badges = BuildBadges(vet),
+
+                SpecialtyLabel = vet.Specialty,
+                LocationNote = vet.ClinicLocation ?? "",
+                ExperienceLabel = $"{vet.YearsOfExperience}+ Years Experience",
+                Rating = Math.Round(averageRating, 1),
+                ReviewCount = reviewCount,
+
+                SpeciesTreated = MapSpeciesFromSpecialty(vet.Specialty)
+                    .Select(s => char.ToUpper(s[0]) + s.Substring(1))
+                    .ToList(),
+
+                AboutParagraphs = string.IsNullOrWhiteSpace(vet.Bio)
+                    ? new List<string>()
+                    : vet.Bio.Split("\n\n", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList(),
+
+                Stats = new List<StatBoxViewModel>
+            {
+                new() { Label = "Experience", Value = $"{vet.YearsOfExperience}+", SubLabel = "Years" },
+                new() { Label = "Appointments", Value = completedAppointments.ToString(), SubLabel = "Completed" },
+                new() { Label = "Rating", Value = averageRating.ToString("0.0"), SubLabel = $"{reviewCount} Reviews" }
+            },
+
+                Services = vet.Services.Select(s => new ServiceCardViewModel
+                {
+                    Icon = s.Icon ?? "medical_services",
+                    IconVariant = s.IsUrgent ? "error" : "",
+                    Title = s.Title,
+                    Description = s.Description ?? "",
+                    FooterText = s.Price.HasValue ? $"From ${s.Price:0}" : "Contact for pricing",
+                    IsUrgent = s.IsUrgent
+                }).ToList(),
+
+                Timeline = vet.TimelineEvents
+                    .OrderByDescending(t => t.StartDate)
+                    .Select((t, i) => new TimelineItemViewModel
+                    {
+                        DotVariant = i == 0 ? "primary" : (i % 2 == 0 ? "secondary" : "tertiary"),
+                        DateRangeLabel = FormatDateRange(t.StartDate, t.EndDate),
+                        Title = t.Title,
+                        Description = t.Description ?? ""
+                    }).ToList(),
+
+                RatingBreakdown = BuildRatingBreakdown(reviews),
+
+                Reviews = reviews.Select((r, i) => new ReviewViewModel
+                {
+                    ReviewerInitials = GetInitials(r.Reviewer.FullName),
+                    ReviewerName = r.Reviewer.FullName,
+                    ReviewerRole = "Verified Client",
+                    AvatarVariant = i % 3 == 0 ? "" : (i % 3 == 1 ? "secondary" : "primary"),
+                    DateLabel = r.CreatedAt.ToString("MMMM yyyy"),
+                    StarCount = r.Rating,
+                    Text = r.Text ?? ""
+                }).ToList(),
+
+                ConsultationPriceFrom = vet.ConsultationFee,
+                WeeklySchedule = vet.WeeklySchedule.Select(s => new ScheduleRowViewModel
+                {
+                    Day = s.DayOfWeek,
+                    TimeLabel = s.TimeLabel ?? "",
+                    Status = s.Status,
+                    Icon = s.Status switch
+                    {
+                        "limited" => "schedule",
+                        "emergency" => "priority_high",
+                        "off" => "block",
+                        _ => null // "available"
+                    }
+                }).ToList(),
+
+                PracticeLocationName = "",
+                PracticeAddress = vet.ClinicLocation ?? "",
+                ResponseTimeText = "",
+                LanguagesText = ""
             };
 
-            return View(vm);
+            return View(viewModel);
         }
 
-        // GET: VetController/Create
-        public ActionResult Create()
+        private static VeterinarianListViewModel MapToListViewModel(VetProfile v, int index)
         {
-            return View();
+            var isVerified = v.IsVerified;
+
+            return new VeterinarianListViewModel
+            {
+                Slug = GenerateSlug(v.User.FullName),
+                Name = v.User.FullName,
+                AvatarInitials = GetInitials(v.User.FullName),
+                AvatarVariant = AvatarVariants[index % AvatarVariants.Length],
+                SpecialtyLabel = v.Specialty,
+
+                SpecialtyFilterValues = new List<string> { v.Specialty.ToLowerInvariant().Replace(" ", "-") },
+                RegionFilterValue = (v.ClinicLocation ?? "").ToLowerInvariant().Replace(" ", "-"),
+                AvailabilityFilterValue = v.AvailabilityWindow,
+                SpeciesFilterValues = MapSpeciesFromSpecialty(v.Specialty),
+
+                Rating = v.Rating,
+                ReviewCount = v.ReviewCount,
+                ExperienceYears = v.YearsOfExperience,
+
+                LicenseIcon = isVerified ? "verified" : "pending",
+                LicenseText = isVerified ? "Licensed & Verified" : "License Pending Verification",
+                IsLicenseHighlight = isVerified,
+
+                AvailabilityBadgeVariant = MapAvailabilityBadgeVariant(v.AvailabilityStatus),
+                AvailabilityBadgeText = string.IsNullOrWhiteSpace(v.AvailabilityText)
+                    ? DefaultAvailabilityText(v.AvailabilityStatus)
+                    : v.AvailabilityText,
+                AvailabilityBadgeIcon = v.AvailabilityStatus == "available" ? null : "schedule",
+
+                MetaLines = BuildMetaLines(v),
+                SpecPills = BuildSpecPills(v),
+                ConsultationPriceFrom = v.ConsultationFee
+            };
         }
 
-        // POST: VetController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        private static string MapAvailabilityBadgeVariant(string status) => status switch
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            "available" => "available",
+            "busy" => "today",
+            _ => "scheduled" // "unavailable"
+        };
+
+        private static string DefaultAvailabilityText(string status) => status switch
+        {
+            "available" => "Available Now",
+            "busy" => "Busy Today",
+            _ => "By Appointment"
+        };
+
+        private static List<VetMetaItemViewModel> BuildMetaLines(VetProfile v)
+        {
+            var lines = new List<VetMetaItemViewModel>();
+            if (!string.IsNullOrWhiteSpace(v.ClinicLocation))
+                lines.Add(new VetMetaItemViewModel { Icon = "location_on", Text = v.ClinicLocation });
+            lines.Add(new VetMetaItemViewModel { Icon = "work_history", Text = $"{v.YearsOfExperience} Years Experience" });
+            return lines;
         }
 
-        // GET: VetController/Edit/5
-        public ActionResult Edit(int id)
+        private static List<string> BuildSpecPills(VetProfile v)
         {
-            return View();
+            var pills = new List<string> { v.Specialty };
+            if (v.IsVerified) pills.Add("Licensed");
+            if (v.YearsOfExperience >= 10) pills.Add("Senior Vet");
+            return pills;
         }
 
-        // POST: VetController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        private static List<ProfileBadgeViewModel> BuildBadges(VetProfile v)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var badges = new List<ProfileBadgeViewModel>();
+            if (v.IsVerified)
+                badges.Add(new ProfileBadgeViewModel { Icon = "verified", Text = "Verified & Licensed", Style = "verified" });
+            if (v.AvailabilityStatus == "available")
+                badges.Add(new ProfileBadgeViewModel { Icon = "circle", Text = "Available Now", Style = "starting", HasPulseDot = true });
+            badges.Add(new ProfileBadgeViewModel { Icon = "pets", Text = v.Specialty, Style = "spec" });
+            return badges;
         }
 
-        // GET: VetController/Delete/5
-        public ActionResult Delete(int id)
+        private static List<RatingBarViewModel> BuildRatingBreakdown(List<VetReview> reviews)
         {
-            return View();
+            var total = reviews.Count;
+            var result = new List<RatingBarViewModel>();
+            for (int stars = 5; stars >= 1; stars--)
+            {
+                var count = reviews.Count(r => r.Rating == stars);
+                var percent = total == 0 ? 0 : (int)Math.Round(count * 100.0 / total);
+                result.Add(new RatingBarViewModel
+                {
+                    Stars = stars,
+                    Count = count,
+                    Percent = percent,
+                    FillVariant = stars >= 4 ? "" : stars == 3 ? "secondary" : "muted"
+                });
+            }
+            return result;
         }
 
-        // POST: VetController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        private static string FormatDateRange(DateTime start, DateTime? end) =>
+            $"{start:yyyy} - {(end.HasValue ? end.Value.ToString("yyyy") : "Present")}";
+
+        private static List<string> MapSpeciesFromSpecialty(string specialty)
         {
-            try
+            var s = specialty.ToLowerInvariant();
+            return s switch
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                var x when x.Contains("equine") => new List<string> { "horse" },
+                var x when x.Contains("poultry") => new List<string> { "poultry" },
+                var x when x.Contains("livestock") => new List<string> { "cattle", "sheep", "goat" },
+                var x when x.Contains("large animal") => new List<string> { "cattle", "horse", "camel" },
+                var x when x.Contains("small animal") => new List<string>(),
+                _ => new List<string>()
+            };
         }
     }
 }

@@ -15,6 +15,7 @@ namespace WebApp.Models
         // Trust System
         public bool IsVerified { get; set; } = false;
         public string? VerificationDocumentUrl { get; set; } // uploaded ID/license for admin review
+        public double Rating { get; set; } = 0;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

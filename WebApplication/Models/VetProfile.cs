@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Services;
 
 namespace WebApp.Models
 {
@@ -13,8 +14,6 @@ namespace WebApp.Models
         Cancelled
     }
 
-    // Extended profile data, only created for users with the "Veterinarian" role.
-    // [Index] with IsUnique enforces the one-to-one relationship with ApplicationUser.
     [Index(nameof(UserId), IsUnique = true)]
     public class VetProfile
     {
@@ -38,6 +37,30 @@ namespace WebApp.Models
 
         public bool IsVerified { get; set; } = false; // separate from ApplicationUser.IsVerified for license checks
         public string? LicenseDocumentUrl { get; set; }
+
+        public double Rating { get; set; } = 0;
+        public int ReviewCount { get; set; } = 0;
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal ConsultationFee { get; set; }
+
+        [MaxLength(30)]
+        public string AvailabilityStatus { get; set; } = "available";
+
+        [MaxLength(20)]
+        public string AvailabilityWindow { get; set; } = "week"; // "now" | "today" | "week" — for filter UI, distinct from AvailabilityStatus
+
+        [MaxLength(100)]
+        public string? AvailabilityText { get; set; }
+
+        public bool IsFeatured { get; set; } = false;
+
+        [MaxLength(30)]
+        public string? Credential { get; set; } // e.g. "D.V.M."
+        public ICollection<VetReview> Reviews { get; set; } = new List<VetReview>();
+        public ICollection<VeterinaryService> Services { get; set; } = new List<VetService>();
+        public ICollection<VetTimelineEvent> TimelineEvents { get; set; } = new List<VetTimelineEvent>();
+        public ICollection<VetScheduleSlot> WeeklySchedule { get; set; } = new List<VetScheduleSlot>();
 
         // Navigation
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();

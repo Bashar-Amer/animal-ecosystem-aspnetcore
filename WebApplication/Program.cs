@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Interfaces.Services;
+using WebApp.Models;
 using WebApp.Services;
 
 var builder = WebApplication.CreateBuilder();
@@ -9,10 +11,22 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDb"
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    // Configure lockout settings
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
 builder.Services.AddScoped<IAnimalService,AnimalService>();
 builder.Services.AddScoped<IVetService, VetService>();
 builder.Services.AddScoped<IAuctionService, AuctionService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 
 // Add services to the container.

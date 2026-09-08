@@ -2,9 +2,8 @@
 {
     public class FeaturedAnimalViewModel
     {
-        public int Id { get; set; }
-        // "sheep" | "cattle" | "horse" | "goat" -- must match the home filter-tab data-category values
-        public string Category { get; set; } = "";
+        public string Id { get; set; }
+        public string Species { get; set; } = "";
         public string ImageUrl { get; set; } = "";
         public string BadgeText { get; set; } = "";
         public string LocationBadge { get; set; } = "";

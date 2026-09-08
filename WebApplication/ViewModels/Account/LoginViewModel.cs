@@ -13,8 +13,8 @@ namespace WebApp.ViewModels.Account
         [DataType(DataType.Password)]
         public string Password { get; set; } = "";
 
-        //[Display(Name = "Remember this device for 30 days")]
-        //public bool RememberMe { get; set; }
+        [Display(Name = "Remember this device for 30 days")]
+        public bool RememberMe { get; set; }
 
         public string? ReturnUrl { get; set; }
     }

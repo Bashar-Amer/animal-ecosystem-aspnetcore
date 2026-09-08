@@ -36,9 +36,13 @@ namespace WebApp.Models
         public string? Location { get; set; } // e.g. "Irbid, Jordan"
 
         public AnimalStatus Status { get; set; } = AnimalStatus.Available;
+        public bool IsFeatured { get; set; } = false;
 
         public bool IsVerified { get; set; } = false;
         public bool IsVetChecked { get; set; } = false;
+
+        [MaxLength(2000)]
+        public string? BreederNotes { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -58,6 +62,9 @@ namespace WebApp.Models
         public Auction? Auction { get; set; } // one-to-one, present only if listed for auction
 
         public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
+
+        // Navigation — add:
+        public ICollection<AnimalHealthRecord> HealthRecords { get; set; } = new List<AnimalHealthRecord>();
     }
 
 

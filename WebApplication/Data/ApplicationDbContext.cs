@@ -13,10 +13,15 @@ namespace WebApp.Data
 
         public DbSet<Animal> Animals { get; set; }
         public DbSet<AnimalImage> AnimalImages { get; set; }
+        public DbSet<AnimalHealthRecord> AnimalHealthRecords { get; set; }
         public DbSet<Species> Species { get; set; }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<Bid> Bids { get; set; }
         public DbSet<VetProfile> VetProfiles { get; set; }
+        public DbSet<VetReview> VetReviews { get; set; }
+        public DbSet<VeterinaryService> VeterinaryServices { get; set; }
+        public DbSet<VetTimelineEvent> VetTimelineEvents { get; set; }
+        public DbSet<VetScheduleSlot> VetScheduleSlots { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
         // NOTE: EF Core has no data-annotation attribute for delete behavior (CASCADE/RESTRICT),
