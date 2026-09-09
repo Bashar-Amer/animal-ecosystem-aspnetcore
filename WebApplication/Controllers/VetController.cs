@@ -117,7 +117,7 @@ namespace WebApp.Controllers
 
                 Reviews = reviews.Select((r, i) => new ReviewViewModel
                 {
-                    ReviewerInitials = GetInitials(r.Reviewer.FullName),
+                    ReviewerInitials = DisplayHelpers.GetInitials(r.Reviewer.FullName),
                     ReviewerName = r.Reviewer.FullName,
                     ReviewerRole = "Verified Client",
                     AvatarVariant = i % 3 == 0 ? "" : (i % 3 == 1 ? "secondary" : "primary"),
@@ -156,9 +156,9 @@ namespace WebApp.Controllers
 
             return new VeterinarianListViewModel
             {
-                Slug = GenerateSlug(v.User.FullName),
+                Slug = DisplayHelpers.GenerateSlug(v.User.FullName),
                 Name = v.User.FullName,
-                AvatarInitials = GetInitials(v.User.FullName),
+                AvatarInitials = DisplayHelpers.GetInitials(v.User.FullName),
                 AvatarVariant = AvatarVariants[index % AvatarVariants.Length],
                 SpecialtyLabel = v.Specialty,
 

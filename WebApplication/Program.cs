@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
-using WebApp.Interfaces.Services;
 using WebApp.Models;
-using WebApp.Services;
+using static WebApp.Extensions.DbContextExtensions;
 
 var builder = WebApplication.CreateBuilder();
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDb") ?? throw new InvalidOperationException("Connection string 'ApplicationDb' not found.");
@@ -21,18 +20,20 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IAnimalService,AnimalService>();
-builder.Services.AddScoped<IVetService, VetService>();
-builder.Services.AddScoped<IAuctionService, AuctionService>();
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IAnimalService,AnimalService>();
+//builder.Services.AddScoped<IVetService, VetService>();
+//builder.Services.AddScoped<IAuctionService, AuctionService>();
+//builder.Services.AddScoped<IUserService, UserService>();
 
 
-
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    await SeedData.SeedAsync(scope.ServiceProvider);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

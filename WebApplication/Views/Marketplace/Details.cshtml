@@ -3,9 +3,9 @@
 @model WebApp.ViewModels.Animals.AnimalDetailsViewModel
 
 @{
-    ViewData["Title"] = Model.animalInfo.Name;
     var listing = Model.animalInfo;
     var seller = Model.owner;
+    ViewData["Title"] = Model.animalInfo.Name;
 }
 
 @section Styles {

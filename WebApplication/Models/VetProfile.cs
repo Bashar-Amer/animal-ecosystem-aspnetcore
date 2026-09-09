@@ -58,7 +58,7 @@ namespace WebApp.Models
         [MaxLength(30)]
         public string? Credential { get; set; } // e.g. "D.V.M."
         public ICollection<VetReview> Reviews { get; set; } = new List<VetReview>();
-        public ICollection<VeterinaryService> Services { get; set; } = new List<VetService>();
+        public ICollection<VeterinaryService> Services { get; set; } = new List<VeterinaryService>();
         public ICollection<VetTimelineEvent> TimelineEvents { get; set; } = new List<VetTimelineEvent>();
         public ICollection<VetScheduleSlot> WeeklySchedule { get; set; } = new List<VetScheduleSlot>();
 

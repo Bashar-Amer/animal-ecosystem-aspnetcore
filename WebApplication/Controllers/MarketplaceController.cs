@@ -16,26 +16,26 @@ public class MarketplaceController : Controller
     }
 
     // GET: ANIMALS
-    public async Task<IActionResult> Index()    
+    public async Task<IActionResult> Index()
     {
         var animals = await _dbContext.Animals
-            .Where(a => a.Status == AnimalStatus.Available)
-            .OrderByDescending(a => a.CreatedAt)
-            .Select(a => new AnimalListViewModel
-            {
-                Id = a.Id,
-                Name = a.Name,
-                Breed = a.Breed,
-                Gender = a.Gender,
-                AgeInMonths = a.AgeInMonths,
-                Price = a.Price,
-                Location = a.Location,
-                IsOwnerVerified = a.Owner.IsVerified,
-                IsVetVerified = a.IsVetChecked,
-                MainImageUrl = a.Images.Where(i => i.IsMain).Select(i => i.ImageUrl).FirstOrDefault()
-                               ?? a.Images.Select(i => i.ImageUrl).FirstOrDefault()
-            })
-            .ToListAsync();
+        .Where(a => a.Status == AnimalStatus.Available)
+        .OrderByDescending(a => a.CreatedAt)
+        .Select(a => new AnimalListViewModel
+        {
+            Id = a.Id,
+            Name = a.Name,
+            Breed = a.Breed,
+            Gender = a.Gender,
+            AgeInMonths = a.AgeInMonths,
+            Price = a.Price,
+            Location = a.Location,
+            IsOwnerVerified = a.Owner.IsVerified,
+            IsVetVerified = a.IsVetChecked,
+            MainImageUrl = a.Images.Where(i => i.IsMain).Select(i => i.ImageUrl).FirstOrDefault()
+                           ?? a.Images.Select(i => i.ImageUrl).FirstOrDefault()
+        })
+        .ToListAsync();
 
         return View(animals);
     }

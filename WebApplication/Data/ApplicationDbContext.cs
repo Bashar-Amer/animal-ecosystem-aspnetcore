@@ -24,63 +24,63 @@ namespace WebApp.Data
         public DbSet<VetScheduleSlot> VetScheduleSlots { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
-        // NOTE: EF Core has no data-annotation attribute for delete behavior (CASCADE/RESTRICT),
-        // so this is the only fluent configuration left. Everything else (foreign keys, unique
-        // constraints for one-to-one relationships, column types) is on the model classes via
-        // [ForeignKey], [Index], and [Column] attributes.
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder); // required for Identity tables
+            base.OnModelCreating(modelBuilder);
 
-            builder.Entity<Animal>()
-                .HasOne(a => a.Species)
-                .WithMany(c => c.Animals)
-                .HasForeignKey(a => a.SpeciesId)
-                .OnDelete(DeleteBehavior.Restrict); // don't wipe animals if a species is deleted
-
-            builder.Entity<Auction>()
-                .HasOne(au => au.HighestBidder)
-                .WithMany()
-                .HasForeignKey(au => au.HighestBidderId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Auction>()
-                .Property(au => au.LotNumber)
-                .ValueGeneratedOnAdd()
-                .UseIdentityColumn(seed: 1, increment: 1);
-
-            builder.Entity<Bid>()
-                .HasOne(b => b.User)
-                .WithMany(u => u.Bids)
-                .HasForeignKey(b => b.UserId)
-                .OnDelete(DeleteBehavior.Restrict); // keep bid history even if a user is removed
-
-            builder.Entity<Appointment>()
-                .HasOne(ap => ap.Client)
-                .WithMany(u => u.AppointmentsAsClient)
-                .HasForeignKey(ap => ap.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Favorite>(entity =>
+            // Global default: no cascading deletes. This prevents multi-path cascade
+            // cycles (common once ApplicationUser is referenced from many entities)
+            // and is generally safer — deleting a user shouldn't silently wipe out
+            // their bids, reviews, appointments, etc.
+            foreach (var foreignKey in modelBuilder.Model
+                .GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys())
+                .Where(fk => fk.DeleteBehavior == DeleteBehavior.Cascade))
             {
-                entity.HasKey(f => f.Id);
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
 
-                entity.HasOne(f => f.User)
-                    .WithMany(u => u.Favorites)
-                    .HasForeignKey(f => f.UserId)
-                    .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Animal>()
+                .HasMany(a => a.Images)
+                .WithOne(i => i.Animal)
+                .HasForeignKey(i => i.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne(f => f.Animal)
-                    .WithMany(a => a.Favorites)
-                    .HasForeignKey(f => f.AnimalId)
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
+            modelBuilder.Entity<Animal>()
+                .HasMany(a => a.HealthRecords)
+                .WithOne(h => h.Animal)
+                .HasForeignKey(h => h.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Everything else (Animal->Owner, Auction->Animal, VetProfile->User,
-            // Appointment->VetProfile, Bid->Auction) uses EF Core's default Cascade
-            // behavior, which is what we want for those relationships anyway.
+            modelBuilder.Entity<Auction>()
+                .HasMany(a => a.Bids)
+                .WithOne(b => b.Auction)
+                .HasForeignKey(b => b.AuctionId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.SeedAnimalEcosystem();
+            modelBuilder.Entity<VetProfile>()
+                .HasMany(v => v.Services)
+                .WithOne(s => s.VetProfile)
+                .HasForeignKey(s => s.VetProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VetProfile>()
+                .HasMany(v => v.TimelineEvents)
+                .WithOne(t => t.VetProfile)
+                .HasForeignKey(t => t.VetProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VetProfile>()
+                .HasMany(v => v.WeeklySchedule)
+                .WithOne(s => s.VetProfile)
+                .HasForeignKey(s => s.VetProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VetProfile>()
+                .HasMany(v => v.Reviews)
+                .WithOne(r => r.VetProfile)
+                .HasForeignKey(r => r.VetProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
