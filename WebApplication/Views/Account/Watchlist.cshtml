@@ -1,0 +1,156 @@
+@model WebApp.ViewModels.Account.WatchlistViewModel
+
+@{
+    ViewData["Title"] = "My Watchlist";
+    ViewData["Description"] = "Your saved livestock listings and auctions.";
+    var allCount = Model.Items.Count;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account/watchlist.css" />
+}
+
+<main class="watchlist-page">
+    <section class="watchlist-hero">
+        <div class="container">
+            <div class="watchlist-hero-content">
+                <div>
+                    <span class="section-eyebrow label-sm">Buyer workspace</span>
+                    <h1 class="headline-lg">My Watchlist</h1>
+                    <p class="body-lg mb-0">Keep track of livestock listings and auction lots you want to revisit.</p>
+                </div>
+                <div class="watchlist-hero-stat">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <div>
+                        <strong id="watchlist-count">@allCount</strong>
+                        <span id="watchlist-count-label">saved item@(allCount == 1 ? "" : "s")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <form asp-controller="Account" asp-action="Watchlist" method="get" class="watchlist-toolbar">
+                <div class="watchlist-search">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" name="search" value="@Model.SearchQuery" placeholder="Search saved animals, breeds, or lots..." aria-label="Search watchlist" />
+                </div>
+                <div class="watchlist-filters" role="group" aria-label="Watchlist type">
+                    <button type="submit" name="filter" value="all" class="watchlist-filter @(Model.ActiveFilter.Equals("all", StringComparison.OrdinalIgnoreCase) ? "active" : "")">All</button>
+                    <button type="submit" name="filter" value="auctions" class="watchlist-filter @(Model.ActiveFilter.Equals("auctions", StringComparison.OrdinalIgnoreCase) ? "active" : "")"><span class="material-symbols-outlined">gavel</span> Auctions</button>
+                    <button type="submit" name="filter" value="listings" class="watchlist-filter @(Model.ActiveFilter.Equals("listings", StringComparison.OrdinalIgnoreCase) ? "active" : "")"><span class="material-symbols-outlined">storefront</span> Listings</button>
+                </div>
+            </form>
+
+            @if (Model.Items.Count > 0)
+            {
+                <div class="watchlist-grid" id="watchlistGrid">
+                    @foreach (var item in Model.Items)
+                    {
+                        <article class="watchlist-card" data-watchlist-item="@item.AnimalId">
+                            <div class="watchlist-card-image">
+                                <img src="@item.ImageUrl" alt="@item.Name" loading="lazy" />
+                                <span class="watchlist-type @(item.IsAuction ? "watchlist-type-auction" : "watchlist-type-listing")">
+                                    <span class="material-symbols-outlined">@(item.IsAuction ? "gavel" : "storefront")</span>
+                                    @(item.IsAuction ? "Auction" : "Marketplace")
+                                </span>
+                                <button type="button" class="watchlist-remove" data-remove-animal="@item.AnimalId" aria-label="Remove @item.Name from watchlist" title="Remove from watchlist">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                </button>
+                            </div>
+                            <div class="watchlist-card-body">
+                                <span class="label-sm watchlist-species">@item.SpeciesName</span>
+                                <h2 class="title-md">@item.Name</h2>
+                                @if (!string.IsNullOrWhiteSpace(item.Breed) || !string.IsNullOrWhiteSpace(item.Location))
+                                {
+                                    <div class="watchlist-meta">
+                                        @if (!string.IsNullOrWhiteSpace(item.Breed))
+                                        {
+                                            <span>@item.Breed</span>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(item.Location))
+                                        {
+                                            <span><span class="material-symbols-outlined">location_on</span>@item.Location</span>
+                                        }
+                                    </div>
+                                }
+                                @if (item.IsAuction)
+                                {
+                                    <div class="watchlist-auction-info">
+                                        <div><span class="label-sm">@item.LotNumber · Current bid</span><strong>@item.CurrentBid?.ToString("N0") JOD</strong></div>
+                                        <span class="body-sm">@item.BidCount bid@(item.BidCount == 1 ? "" : "s")</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="watchlist-price"><span>Asking price</span><strong>@item.Price.ToString("N0") JOD</strong></div>
+                                }
+                                <div class="watchlist-card-actions">
+                                    @if (item.IsAuction && item.AuctionId is not null)
+                                    {
+                                        <a asp-controller="Auction" asp-action="Details" asp-route-id="@item.AuctionId" class="btn btn-primary btn-sm">View auction</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@item.AnimalId" class="btn btn-primary btn-sm">View listing</a>
+                                    }
+                                    <button type="button" class="btn btn-quiet btn-sm" data-remove-animal="@item.AnimalId">Remove</button>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+            <div class="watchlist-empty" id="watchlist-empty" style="display:@(Model.Items.Count == 0 ? "block" : "none");">
+                <span class="material-symbols-outlined">favorite_border</span>
+                <h2 class="headline-sm">Your watchlist is empty</h2>
+                <p class="body-md">Save a marketplace animal or auction lot to find it here later.</p>
+                <div class="d-flex justify-content-center gap-sm flex-wrap">
+                    <a asp-controller="Marketplace" asp-action="Index" class="btn btn-primary">Browse marketplace</a>
+                    <a asp-controller="Auction" asp-action="Index" class="btn btn-outline">Browse auctions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    @Html.AntiForgeryToken()
+    <script>
+        (() => {
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+            document.querySelectorAll("[data-remove-animal]").forEach(button => {
+                button.addEventListener("click", async () => {
+                    const animalId = button.dataset.removeAnimal;
+                    if (!animalId) return;
+                    const response = await fetch(`/api/favorite/remove/${encodeURIComponent(animalId)}`, {
+                        method: "POST",
+                        headers: { "X-CSRF-TOKEN": token ?? "" }
+                    });
+                    if (!response.ok) return;
+
+                    const card = document.querySelector(`[data-watchlist-item="${CSS.escape(animalId)}"]`);
+                    if (!card) return;
+
+                    card.remove();
+
+                    const countElement = document.getElementById("watchlist-count");
+                    const countLabel = document.getElementById("watchlist-count-label");
+                    const remainingCount = document.querySelectorAll("[data-watchlist-item]").length;
+
+                    if (countElement) countElement.textContent = remainingCount.toString();
+                    if (countLabel) countLabel.textContent = `saved item${remainingCount === 1 ? "" : "s"}`;
+
+                    if (remainingCount === 0) {
+                        const grid = document.getElementById("watchlistGrid");
+                        if (grid) grid.style.display = "none";
+                        const emptyState = document.getElementById("watchlist-empty");
+                        if (emptyState) emptyState.style.display = "block";
+                    }
+                });
+            });
+        })();
+    </script>
+}

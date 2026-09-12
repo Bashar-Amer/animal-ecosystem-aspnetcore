@@ -57,6 +57,13 @@ namespace WebApp.Models
 
         [MaxLength(30)]
         public string? Credential { get; set; } // e.g. "D.V.M."
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? VerifiedAt { get; set; }
+        public string? VerifiedByAdminId { get; set; }
+        [ForeignKey(nameof(VerifiedByAdminId))]
+        public ApplicationUser? VerifiedByAdmin { get; set; }
+
         public ICollection<VetReview> Reviews { get; set; } = new List<VetReview>();
         public ICollection<VeterinaryService> Services { get; set; } = new List<VeterinaryService>();
         public ICollection<VetTimelineEvent> TimelineEvents { get; set; } = new List<VetTimelineEvent>();

@@ -1,0 +1,73 @@
+/* Admin Platform Styles - Levantine Heritage Livestock Ecosystem */
+.admin-interactive-btn {
+    transition: transform var(--transition-fast),background-color var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast)
+}
+
+    .admin-interactive-btn:active {
+        transform: scale(0.97)
+    }
+
+.admin-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--outline-variant) var(--surface-container-low)
+}
+
+    .admin-scroll::-webkit-scrollbar {
+        height: 6px;
+        width: 6px
+    }
+
+    .admin-scroll::-webkit-scrollbar-track {
+        background: var(--surface-container-low);
+        border-radius: var(--rounded-full)
+    }
+
+    .admin-scroll::-webkit-scrollbar-thumb {
+        background: var(--outline-variant);
+        border-radius: var(--rounded-full)
+    }
+
+        .admin-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--outline)
+        }
+
+@keyframes adminPulse {
+    0%,100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    50% {
+        opacity: .4;
+        transform: scale(.9)
+    }
+}
+
+.admin-pulse-dot {
+    animation: adminPulse 2s cubic-bezier(.4,0,.6,1) infinite
+}
+
+.admin-kpi-card {
+    transition: transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast)
+}
+
+    .admin-kpi-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-level-2)
+    }
+
+#admin-mobile-drawer:not(.hidden) {
+    animation: drawerSlideDown .2s ease-out
+}
+
+@keyframes drawerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}

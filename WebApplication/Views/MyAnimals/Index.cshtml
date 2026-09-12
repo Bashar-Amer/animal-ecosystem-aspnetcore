@@ -1,0 +1,297 @@
+﻿@using WebApp.ViewModels.MyAnimals
+@model MyAnimalsIndexViewModel
+
+@{
+    ViewData["Title"] = "My Animals & Listings";
+    ViewData["Description"] = "Manage your livestock listings, auctions, and review status.";
+
+    var tabs = new[]
+    {
+        new { Key = "all", Label = "All Listings", Count = Model.Stats.TotalActiveListings },
+        new { Key = "auctions", Label = "Live Auctions", Count = Model.Stats.AuctionCount },
+        new { Key = "marketplace", Label = "Marketplace", Count = Model.Stats.MarketplaceCount },
+        new { Key = "pending", Label = "Under Review", Count = Model.Stats.PendingReviewCount },
+        new { Key = "completed", Label = "Completed", Count = Model.Stats.CompletedCount }
+    };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/my-animals/index.css" />
+}
+
+<main class="my-animals-page">
+    <section class="my-animals-hero">
+        <div class="container">
+            <div class="my-animals-hero-content">
+                <div>
+                    <span class="section-eyebrow label-sm">Seller Portal</span>
+                    <h1 class="headline-lg mb-xs">My Animals &amp; Listings</h1>
+                    <p class="body-lg mb-0">Manage your livestock, monitor auctions, and keep your listings moving.</p>
+                </div>
+                <a asp-controller="MyAnimals" asp-action="Create" class="btn btn-primary">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    List an Animal
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section my-animals-content">
+        <div class="container">
+            @if (TempData["Message"] is string message)
+            {
+                <div class="alert alert-success d-flex align-items-center gap-sm" role="status">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span>@message</span>
+                </div>
+            }
+            @if (TempData["Error"] is string error)
+            {
+                <div class="alert alert-error d-flex align-items-center gap-sm" role="alert">
+                    <span class="material-symbols-outlined">error</span>
+                    <span>@error</span>
+                </div>
+            }
+
+            <div class="my-animals-stats">
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat-heading">
+                        <span class="label-sm">Active Listings</span>
+                        <span class="dashboard-stat-icon"><span class="material-symbols-outlined">pets</span></span>
+                    </div>
+                    <strong class="label-numeric-lg">@Model.Stats.TotalActiveListings</strong>
+                    <span class="body-sm text-muted">Animals currently listed</span>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat-heading">
+                        <span class="label-sm">Marketplace</span>
+                        <span class="dashboard-stat-icon"><span class="material-symbols-outlined">storefront</span></span>
+                    </div>
+                    <strong class="label-numeric-lg">@Model.Stats.MarketplaceCount</strong>
+                    <span class="body-sm text-muted">Fixed-price listings</span>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat-heading">
+                        <span class="label-sm">Auction Lots</span>
+                        <span class="dashboard-stat-icon dashboard-stat-icon-accent"><span class="material-symbols-outlined">gavel</span></span>
+                    </div>
+                    <strong class="label-numeric-lg">@Model.Stats.AuctionCount</strong>
+                    <span class="body-sm text-muted">Active auction listings</span>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat-heading">
+                        <span class="label-sm">Catalog Value</span>
+                        <span class="dashboard-stat-icon dashboard-stat-icon-accent"><span class="material-symbols-outlined">payments</span></span>
+                    </div>
+                    <strong class="label-numeric-lg">@Model.Stats.ActiveCatalogValue.ToString("N0") JOD</strong>
+                    <span class="body-sm text-muted">Current active value</span>
+                </div>
+            </div>
+
+            <div class="listing-toolbar">
+                <nav class="listing-tabs" aria-label="Listing filters">
+                    @foreach (var tab in tabs)
+                    {
+                        <a class="listing-tab @(Model.ActiveTab == tab.Key ? "active" : "")"
+                           asp-controller="MyAnimals"
+                           asp-action="Index"
+                           asp-route-tab="@tab.Key"
+                           asp-route-search="@Model.SearchQuery"
+                           asp-route-sort="@Model.SortBy">
+                            <span>@tab.Label</span>
+                            <span class="listing-tab-count">@tab.Count</span>
+                        </a>
+                    }
+                </nav>
+
+                <form asp-controller="MyAnimals" asp-action="Index" method="get" class="listing-filters">
+                    <input type="hidden" name="tab" value="@Model.ActiveTab" />
+                    <label class="visually-hidden" for="listing-search">Search your listings</label>
+                    <div class="listing-search">
+                        <span class="material-symbols-outlined">search</span>
+                        <input id="listing-search" name="search" value="@Model.SearchQuery" type="search" placeholder="Search by name, breed, or species..." />
+                    </div>
+                    <label class="visually-hidden" for="listing-sort">Sort listings</label>
+                    <select id="listing-sort" name="sort" class="form-select">
+                        <option value="newest" selected="@(Model.SortBy == "newest" ? "selected" : null)">Newest first</option>
+                        <option value="ending-soon" selected="@(Model.SortBy == "ending-soon" ? "selected" : null)">Ending soon</option>
+                        <option value="price-high" selected="@(Model.SortBy == "price-high" ? "selected" : null)">Highest price</option>
+                        <option value="price-low" selected="@(Model.SortBy == "price-low" ? "selected" : null)">Lowest price</option>
+                    </select>
+                    <button type="submit" class="btn btn-outline btn-sm">Apply</button>
+                </form>
+            </div>
+
+            @if (Model.Animals.Count == 0)
+            {
+                <div class="empty-state">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <h2 class="headline-sm">No listings found</h2>
+                    <p class="body-md">Try another filter or add your first animal listing.</p>
+                    <a asp-controller="MyAnimals" asp-action="Create" class="btn btn-primary btn-sm">List an Animal</a>
+                </div>
+            }
+            else
+            {
+                <div class="listing-results-header">
+                    <div>
+                        <span class="section-eyebrow label-sm">Your inventory</span>
+                        <h2 class="headline-md mb-0">@Model.Animals.Count listing@(Model.Animals.Count == 1 ? "" : "s")</h2>
+                    </div>
+                    <span class="body-sm text-muted">Only your active and completed listings are shown.</span>
+                </div>
+
+                <div class="listing-stack">
+                    @foreach (var animal in Model.Animals)
+                    {
+                        var isPending = animal.ModerationStatus.Equals("Pending", StringComparison.OrdinalIgnoreCase);
+                        var isRejected = animal.ModerationStatus.Equals("Rejected", StringComparison.OrdinalIgnoreCase);
+                        var auctionIsPending = animal.Auction?.ModerationStatus.Equals("Pending", StringComparison.OrdinalIgnoreCase) == true;
+                        var auctionIsRejected = animal.Auction?.ModerationStatus.Equals("Rejected", StringComparison.OrdinalIgnoreCase) == true;
+                        var auctionIsApproved = animal.Auction?.ModerationStatus.Equals("Approved", StringComparison.OrdinalIgnoreCase) == true;
+                        var statusClass = !auctionIsApproved && auctionIsRejected ? "status-ended"
+                            : !auctionIsApproved && auctionIsPending ? "status-starting"
+                            : animal.Auction?.Status switch
+                        {
+                            "live" => "status-live",
+                            "ending-soon" => "status-ending",
+                            "upcoming" => "status-starting",
+                            _ => animal.Status.Equals("Sold", StringComparison.OrdinalIgnoreCase) ? "status-ended" : "status-marketplace"
+                        };
+                        var statusLabel = !auctionIsApproved && auctionIsRejected ? "Auction changes requested"
+                            : !auctionIsApproved && auctionIsPending ? "Auction under review"
+                            : animal.Auction?.Status switch
+                        {
+                            "live" => "Live auction",
+                            "ending-soon" => "Ending soon",
+                            "upcoming" => "Starting soon",
+                            _ => animal.Status.Equals("Sold", StringComparison.OrdinalIgnoreCase) ? "Completed" : isPending ? "Under review" : isRejected ? "Changes requested" : "Marketplace"
+                        };
+                        var ageLabel = animal.AgeInMonths.HasValue
+                            ? animal.AgeInMonths.Value < 12
+                                ? $"{animal.AgeInMonths.Value} month{(animal.AgeInMonths.Value == 1 ? "" : "s")}"
+                                : $"{animal.AgeInMonths.Value / 12} year{(animal.AgeInMonths.Value / 12 == 1 ? "" : "s")}"
+                            : "Age not provided";
+
+                        <article class="listing-card">
+                            @if (auctionIsApproved && animal.Auction is not null)
+                            {
+                                <a asp-controller="Auction" asp-action="Details" asp-route-id="@animal.Auction.AuctionId" class="listing-image-link" aria-label="View auction for @animal.Name">
+                                    <img src="@animal.ImageUrl" alt="@animal.Name" class="listing-image" loading="lazy" />
+                                    <span class="listing-status @statusClass">
+                                        <span class="status-dot"></span>
+                                        @statusLabel
+                                    </span>
+                                </a>
+                            }
+                            else if (animal.ModerationStatus.Equals("Approved", StringComparison.OrdinalIgnoreCase) && (!auctionIsPending && !auctionIsRejected))
+                            {
+                                <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@animal.Id" class="listing-image-link" aria-label="View @animal.Name">
+                                    <img src="@animal.ImageUrl" alt="@animal.Name" class="listing-image" loading="lazy" />
+                                    <span class="listing-status @statusClass">
+                                        <span class="status-dot"></span>
+                                        @statusLabel
+                                    </span>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="listing-image-link" aria-label="@statusLabel: @animal.Name">
+                                <img src="@animal.ImageUrl" alt="@animal.Name" class="listing-image" loading="lazy" />
+                                <span class="listing-status @statusClass">
+                                    <span class="status-dot"></span>
+                                    @statusLabel
+                                </span>
+                                </div>
+                            }
+
+                            <div class="listing-card-body">
+                                <div class="listing-card-main">
+                                    <div class="listing-card-heading">
+                                        <div>
+                                            <span class="label-sm listing-species">@animal.SpeciesName</span>
+                                            <h3 class="headline-sm">@animal.Name</h3>
+                                        </div>
+                                        <strong class="listing-price">@animal.Price.ToString("N0") <small>JOD</small></strong>
+                                    </div>
+
+                                    <div class="listing-meta body-sm">
+                                        @if (!string.IsNullOrWhiteSpace(animal.Breed))
+                                        {
+                                            <span>@animal.Breed</span><span>•</span>
+                                        }
+                                        <span>@ageLabel</span>
+                                        @if (!string.IsNullOrWhiteSpace(animal.Gender))
+                                        {
+                                            <span>•</span><span>@animal.Gender</span>
+                                        }
+                                    </div>
+
+                                    @if (auctionIsApproved && animal.Auction is not null)
+                                    {
+                                        <div class="auction-summary">
+                                            <div>
+                                                <span class="label-sm">Current bid · @animal.Auction.LotNumber</span>
+                                                <strong>@animal.Auction.CurrentPrice.ToString("N0") JOD</strong>
+                                            </div>
+                                            <div class="auction-summary-detail">
+                                                <span class="material-symbols-outlined">gavel</span>
+                                                <span>@animal.Auction.BidCount bid@(animal.Auction.BidCount == 1 ? "" : "s")</span>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (auctionIsPending || auctionIsRejected)
+                                    {
+                                        <div class="review-summary @(auctionIsRejected ? "review-summary-error" : "")">
+                                            <span class="material-symbols-outlined">@(auctionIsRejected ? "edit_note" : "pending_actions")</span>
+                                            <span>@(auctionIsRejected ? animal.Auction?.RejectionReason ?? "Please review and update this auction." : "This auction is waiting for admin approval. It will remain hidden until approved.")</span>
+                                        </div>
+                                    }
+                                    else if (isPending || isRejected)
+                                    {
+                                        <div class="review-summary @(isRejected ? "review-summary-error" : "")">
+                                            <span class="material-symbols-outlined">@(isRejected ? "edit_note" : "pending_actions")</span>
+                                            <span>@(isRejected ? animal.RejectionReason ?? "Please review and update this listing." : "This listing is waiting for admin approval.")</span>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="listing-actions">
+                                    @if (auctionIsApproved && animal.Auction is not null)
+                                    {
+                                        <a asp-controller="Auction" asp-action="Details" asp-route-id="@animal.Auction.AuctionId" class="btn btn-outline btn-sm">View auction</a>
+                                    }
+                                    else if (animal.ModerationStatus.Equals("Approved", StringComparison.OrdinalIgnoreCase) && animal.Auction is null)
+                                    {
+                                        <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@animal.Id" class="btn btn-outline btn-sm">View listing</a>
+                                    }
+                                    @if (auctionIsApproved && animal.Auction is not null)
+                                    {
+                                        <a asp-controller="Auction" asp-action="Details" asp-route-id="@animal.Auction.AuctionId" class="btn btn-secondary btn-sm">Edit auction</a>
+                                    }
+                                    else if (animal.CanCreateAuction)
+                                    {
+                                        <a asp-controller="MyAnimals" asp-action="CreateAuction" asp-route-animalId="@animal.Id" class="btn btn-urgent btn-sm">
+                                            <span class="material-symbols-outlined">gavel</span>Start auction
+                                        </a>
+                                    }
+                                    @if (animal.CanEdit)
+                                    {
+                                        <a asp-controller="MyAnimals" asp-action="Edit" asp-route-id="@animal.Id" class="btn btn-primary btn-sm">Edit</a>
+                                    }
+                                    @if (animal.CanWithdraw)
+                                    {
+                                        <form asp-controller="MyAnimals" asp-action="Delete" asp-route-id="@animal.Id" method="post" class="d-inline" onsubmit="return confirm('Withdraw this listing?');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-quiet btn-sm">Withdraw</button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+</main>

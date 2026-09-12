@@ -2,7 +2,7 @@
 
 <article class="vet-dir-card"
          data-specialty="@Model.SpecialtyFilterAttr"
-         data-region="@Model.RegionFilterValue"
+         data-city="@Model.CityFilterValue"
          data-availability="@Model.AvailabilityFilterValue"
          data-breed="@Model.SpeciesFilterAttr"
          data-rating="@Model.Rating"
@@ -67,8 +67,8 @@
     <div class="vet-dir-footer">
         <div>
             <span class="label-sm">Consultation</span>
-            <span class="headline-sm">From @Model.ConsultationPriceFrom.ToString("C0")</span>
+            <span class="headline-sm">From @Model.ConsultationPriceFrom.ToString("N0") JOD</span>
         </div>
-        <a asp-controller="Vet" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-primary btn-sm">Book Consultation</a>
+        <a asp-controller="Vet" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-primary btn-sm">Contact</a>
     </div>
 </article>

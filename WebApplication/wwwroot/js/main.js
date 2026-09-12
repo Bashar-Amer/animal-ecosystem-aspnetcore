@@ -5,7 +5,7 @@
 
 // App State
 const AppState = {
-  user: null,
+  user: window.isAuthenticated ? {} : null,
   filters: {},
   sortBy: 'ending-soon',
   viewMode: 'grid',
@@ -267,15 +267,15 @@ function initAuctionCards() {
   });
 
   // Favorite/Watchlist buttons
-  const favoriteButtons = document.querySelectorAll('[data-favorite]');
+  // const favoriteButtons = document.querySelectorAll('[data-favorite]');
 
-  favoriteButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const auctionId = button.dataset.favorite;
-      toggleFavorite(auctionId, button);
-    });
-  });
+  // favoriteButtons.forEach((button) => {
+  //   button.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     const auctionId = button.dataset.favorite;
+  //     toggleFavorite(auctionId, button);
+  //   });
+  // });
 }
 
 /**
@@ -321,25 +321,25 @@ function toggleFavorite(auctionId, button) {
   }
 
   // Save to local storage or send to server
-  saveFavoriteState(auctionId, !isFavorited);
+  // saveFavoriteState(auctionId, !isFavorited);
 }
 
 /**
  * Save Favorite State
  */
-function saveFavoriteState(auctionId, isFavorited) {
-  let favorites = Utils.storage.get('favorites') || [];
+// function saveFavoriteState(auctionId, isFavorited) {
+//   let favorites = Utils.storage.get('favorites') || [];
 
-  if (isFavorited) {
-    if (!favorites.includes(auctionId)) {
-      favorites.push(auctionId);
-    }
-  } else {
-    favorites = favorites.filter((id) => id !== auctionId);
-  }
+//   if (isFavorited) {
+//     if (!favorites.includes(auctionId)) {
+//       favorites.push(auctionId);
+//     }
+//   } else {
+//     favorites = favorites.filter((id) => id !== auctionId);
+//   }
 
-  Utils.storage.set('favorites', favorites);
-}
+//   Utils.storage.set('favorites', favorites);
+// }
 
 /**
  * Initialize Scroll Effects (Header shadow, back-to-top button)

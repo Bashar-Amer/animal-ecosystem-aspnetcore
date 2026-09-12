@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Enums;
 
 namespace WebApp.Models
 {
@@ -8,7 +9,8 @@ namespace WebApp.Models
         Available,
         Reserved,
         InAuction,
-        Sold
+        Sold,
+        Withdrawn
     }
 
     public class Animal
@@ -65,6 +67,13 @@ namespace WebApp.Models
 
         // Navigation — add:
         public ICollection<AnimalHealthRecord> HealthRecords { get; set; } = new List<AnimalHealthRecord>();
+
+        public ModerationStatus ModerationStatus { get; set; } = ModerationStatus.Pending;
+        public string? RejectionReason { get; set; }
+        public DateTime? ModeratedAt { get; set; }
+        public string? ModeratedByAdminId { get; set; }
+        [ForeignKey(nameof(ModeratedByAdminId))]
+        public ApplicationUser? ModeratedByAdmin { get; set; }
     }
 
 

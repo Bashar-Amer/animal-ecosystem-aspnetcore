@@ -5,17 +5,17 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/vet-profile.css" />
+    <link rel="stylesheet" href="~/css/pages/vet/vet-profile.css" />
 }
 
 <div class="breadcrumb-bar">
     <div class="container breadcrumb-bar-inner">
         <nav aria-label="Breadcrumb" class="breadcrumb">
             <a asp-controller="Home" asp-action="Index">Home</a><span class="breadcrumb-sep">/</span>
-            <a asp-controller="Veterinarians" asp-action="Index">Veterinary</a><span class="breadcrumb-sep">/</span>
+            <a asp-controller="Vet" asp-action="Index">Veterinary</a><span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">@Model.Name</span>
         </nav>
-        <a asp-controller="Veterinarians" asp-action="Index" class="back-link">
+        <a asp-controller="Vet" asp-action="Index" class="back-link">
             <span class="material-symbols-outlined">arrow_back</span>Back to Directory
         </a>
     </div>
@@ -188,12 +188,19 @@
         <aside class="vet-profile-sidebar">
             <div class="booking-card" data-vet-slug="@Model.Slug">
                 <div class="booking-header">
-                    <div><span class="label-sm">Consultation Rate</span><div class="price-display"><span class="headline-lg">From @Model.ConsultationPriceFrom.ToString("C0")</span></div></div>
+                    <div><span class="label-sm">Consultation Rate</span><div class="price-display"><span class="headline-lg">From @Model.ConsultationPriceFrom.ToString("N0") JOD</span></div></div>
                     <span class="badge badge-spec">Base Visit Fee</span>
                 </div>
                 <p class="body-sm text-muted">In-person farm visit or specialized clinical consultation.</p>
                 <div class="booking-actions">
-                    <button class="btn btn-primary btn-block" id="book-visit-btn"><span class="material-symbols-outlined">calendar_month</span> Request Farm Visit</button>
+                    <button class="btn btn-primary btn-block"
+                            id="book-visit-btn"
+                            type="button"
+                            data-contact-vet
+                            data-vet-phone="@Model.PhoneNumber">
+                        <span class="material-symbols-outlined">phone</span>
+                        <span data-contact-vet-label>Contact Veterinarian</span>
+                    </button>
                     <button class="btn btn-outline btn-block" id="save-vet-btn"><span class="material-symbols-outlined">favorite_border</span> Save Veterinarian</button>
                 </div>
                 <div class="booking-notices">
@@ -247,5 +254,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/vet-profile.js"></script>
+    <script src="~/js/pages/vet/vet-profile.js"></script>
 }

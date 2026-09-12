@@ -36,13 +36,13 @@
             @if (Model.IsOwnerVerified || Model.IsVetVerified)
             {
                 <div class="market-badges">
-                    @if (Model.IsOwnerVerified)
+                    @* @if (Model.IsOwnerVerified)
                     {
                         <span class="badge badge-spec">
                             <span class="material-symbols-outlined">check</span>
                             Verified Owner
                         </span>
-                    }
+                    } *@
                     @if (Model.IsVetVerified)
                     {
                         <span class="badge badge-verified">

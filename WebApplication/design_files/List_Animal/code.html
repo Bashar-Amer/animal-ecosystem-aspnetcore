@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimalEcosystem Jordan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        @layer base {
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main > :first-child {
+                margin-top: 0 !important;
+            }
+
+            main > :last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#f6ece7", "outline-variant": "#d6c2bb", "surface-bright": "#fff8f5",
+                        "on-surface": "#1f1b18", "surface-container-low": "#fbf2ec", "on-secondary-fixed-variant": "#7d2d00",
+                        "background": "#fff8f5", "on-tertiary-container": "#dda48c", "tertiary-container": "#623927",
+                        "tertiary": "#482413", "primary-fixed-dim": "#f9b89a", "surface-tint": "#84523a",
+                        "on-surface-variant": "#52443e", "primary-container": "#643822", "surface-variant": "#eae1db",
+                        "on-primary-fixed-variant": "#683b25", "on-tertiary-fixed": "#321204", "surface-container-lowest": "#ffffff",
+                        "secondary": "#9d4314", "on-tertiary": "#ffffff", "on-primary-container": "#e0a286",
+                        "on-secondary-fixed": "#360f00", "surface-container-highest": "#eae1db", "secondary-container": "#fe8c58",
+                        "error-container": "#ffdad6", "on-secondary": "#ffffff", "on-error-container": "#93000a",
+                        "outline": "#84746d", "on-tertiary-fixed-variant": "#663c2a", "on-primary-fixed": "#331102",
+                        "primary": "#49230e", "on-secondary-container": "#712800", "primary-fixed": "#ffdbcc",
+                        "inverse-on-surface": "#f8efea", "tertiary-fixed": "#ffdbcd", "surface-container-high": "#f0e6e1",
+                        "inverse-surface": "#342f2c", "on-primary": "#ffffff", "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#ffb596", "error": "#ba1a1a", "surface-dim": "#e1d8d3",
+                        "tertiary-fixed-dim": "#f5b9a0", "surface": "#fff8f5", "on-background": "#1f1b18",
+                        "secondary-fixed": "#ffdbcd", "inverse-primary": "#f9b89a"
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    spacing: {
+                        "gutter-desktop": "1.5rem", "space-lg": "1.5rem", "space-3xl": "4rem", "gutter-mobile": "1rem",
+                        "container-max": "1280px", "space-xl": "2rem", "space-xs": "0.5rem", "space-2xs": "0.25rem",
+                        "space-md": "1rem", "space-2xl": "3rem", "space-sm": "0.75rem"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"],
+                        "display-hero-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"],
+                        "label-numeric-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.005em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-numeric-lg": ["24px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div class="h-20 max-w-[1280px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-sm">
+                <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm">
+                    <span class="material-symbols-outlined text-[24px]">pets</span>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-space-xs">
+                        <span class="font-title-sm text-title-sm text-primary tracking-tight font-bold">AnimalEcosystem</span>
+                        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">JORDAN</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">المملكة الأردنية الهاشمية</span>
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-title-sm font-bold underline decoration-primary-container decoration-2 underline-offset-8">
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Home</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Marketplace</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Auctions</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Veterinary</a>
+                <a aria-current="page" class="transition-colors py-space-xs text-primary font-title-sm font-bold underline decoration-primary-container decoration-2 underline-offset-8" href="#">Sell Animal</a>
+            </nav>
+            <div class="flex items-center gap-space-sm">
+                <a class="hidden sm:inline-flex items-center gap-space-2xs px-space-md py-space-xs font-title-sm text-title-sm bg-secondary text-on-secondary rounded-full hover:bg-on-secondary-container transition-colors shadow-sm" href="#">
+                    <span class="material-symbols-outlined text-[18px]">add_circle</span><span>Post Listing</span>
+                </a>
+                <a class="hidden md:inline-flex items-center justify-center px-space-md py-space-xs font-title-sm text-title-sm text-primary hover:bg-surface-container hover:text-on-surface rounded-full transition-colors" href="#">Sign In</a>
+                <a class="inline-flex items-center justify-center px-space-md py-space-xs font-title-sm text-title-sm bg-primary-container text-on-primary rounded-full hover:bg-primary transition-colors shadow-sm" href="#">Register</a>
+                <div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full pt-20 bg-background min-h-screen">
+        <div class="flex flex-col w-full">
+            <section class="w-full bg-surface-container-low border-b border-surface-variant">
+                <div class="max-w-[1280px] mx-auto px-gutter-desktop py-space-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs text-on-surface-variant font-label-md text-label-md">
+                    <div class="flex items-center gap-space-xs flex-wrap">
+                        <a class="hover:text-primary transition-colors" href="#">Home</a>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <a class="hover:text-primary transition-colors" href="#">Marketplace</a>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span class="text-primary font-bold">List an Animal (إنشاء إعلان بيع مواشي)</span>
+                    </div>
+                    <div class="flex items-center gap-space-xs bg-surface px-space-sm py-space-2xs rounded-full shadow-sm">
+                        <span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        <span class="text-on-surface font-semibold text-label-sm">MOA Health Protocol v4.2 Active</span>
+                        <span class="text-outline">•</span>
+                        <span class="text-secondary font-bold">Amman Central Escrow</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full bg-surface py-space-xl border-b border-surface-container">
+                <div class="max-w-[1280px] mx-auto px-gutter-desktop flex flex-col gap-space-lg">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+                        <div class="max-w-3xl flex flex-col gap-space-2xs">
+                            <div class="flex items-center gap-space-xs">
+                                <span class="px-space-xs py-space-2xs rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider font-bold">Seller Portal • بوابة المربين</span>
+                                <span class="text-on-surface-variant text-label-sm">Jordan Veterinary Medical Association Certified</span>
+                            </div>
+                            <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">List Your Livestock in the National Marketplace</h1>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Direct listing linked to Ministry of Agriculture biosecurity registries, guaranteed Central Bank of Jordan escrow custody, and accredited veterinary inspection across all 12 governorates.</p>
+                        </div>
+                        <div class="flex items-center gap-space-xs self-start md:self-auto bg-surface-container px-space-md py-space-sm rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[24px]">shield_person</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Seller Account</span>
+                                <span class="font-title-sm text-title-sm text-on-surface font-bold">Al-Rashid Awassi Estate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-surface-container-lowest p-space-md rounded-2xl shadow-sm">
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-space-sm items-center">
+                            <div class="flex items-center gap-space-xs">
+                                <div class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-label-md flex items-center justify-center shadow-sm">1</div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="font-label-md text-label-md font-bold text-primary truncate">Species &amp; ID</span>
+                                    <span class="font-body-sm text-body-sm text-secondary truncate">In Progress</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-space-xs opacity-75">
+                                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-label-md flex items-center justify-center">2</div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="font-label-md text-label-md font-semibold text-on-surface truncate">Photos &amp; Media</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Side Profile</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-space-xs opacity-75">
+                                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-label-md flex items-center justify-center">3</div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="font-label-md text-label-md font-semibold text-on-surface truncate">Biosecurity &amp; Vet</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Vaccination Pass</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-space-xs opacity-75">
+                                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-label-md flex items-center justify-center">4</div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="font-label-md text-label-md font-semibold text-on-surface truncate">Pricing &amp; Escrow</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant truncate">JOD &amp; Handover</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-space-xs opacity-75">
+                                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-label-md flex items-center justify-center">5</div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="font-label-md text-label-md font-semibold text-on-surface truncate">Review &amp; Submit</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant truncate">MOA Fast-Track</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full max-w-[1280px] mx-auto px-gutter-desktop py-space-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+                    <form class="lg:col-span-7 flex flex-col gap-space-xl" id="livestockListingForm" onsubmit="event.preventDefault();">
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-lg">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[18px]">sell</span>
+                                    </div>
+                                    <h2 class="font-headline-sm text-headline-sm text-primary">1. Listing Type &amp; Animal Classification</h2>
+                                </div>
+                                <span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Mandatory</span>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-title-sm text-title-sm text-on-surface">Select Market Format</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                                    <label class="relative flex items-center gap-space-sm p-space-md rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all">
+                                        <input checked class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="listing_type" onchange="updatePreviewBadge(this.value)" type="radio" value="marketplace">
+                                        <div class="flex flex-col">
+                                            <span class="font-title-sm text-title-sm text-on-surface font-bold">Direct Fixed Price</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface-variant">Immediate sale via Escrow checkout</span>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex items-center gap-space-sm p-space-md rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all">
+                                        <input class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="listing_type" onchange="updatePreviewBadge(this.value)" type="radio" value="auction">
+                                        <div class="flex flex-col">
+                                            <span class="font-title-sm text-title-sm text-on-surface font-bold">Live Auction Lot</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface-variant">Timed bidding with reserve ceiling</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex justify-between items-center">
+                                    <label class="font-title-sm text-title-sm text-on-surface">Target Species</label>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Select dominant category</span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-space-xs" id="speciesSelector">
+                                    <button class="species-btn flex flex-col items-center gap-space-2xs p-space-sm rounded-xl bg-primary text-on-primary shadow-sm transition-transform active:scale-95" data-species="Sheep" onclick="selectSpecies(this, 'Sheep (Awassi)')" type="button">
+                                        <span class="material-symbols-outlined text-[26px]">pets</span>
+                                        <span class="font-label-md text-label-md font-bold">Sheep (Awassi)</span>
+                                    </button>
+                                    <button class="species-btn flex flex-col items-center gap-space-2xs p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-species="Goat" onclick="selectSpecies(this, 'Goat (Shami / Boer)')" type="button">
+                                        <span class="material-symbols-outlined text-[26px]">cruelty_free</span>
+                                        <span class="font-label-md text-label-md font-semibold">Goat (Shami)</span>
+                                    </button>
+                                    <button class="species-btn flex flex-col items-center gap-space-2xs p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-species="Horse" onclick="selectSpecies(this, 'Arabian Horse')" type="button">
+                                        <span class="material-symbols-outlined text-[26px]">workspace_premium</span>
+                                        <span class="font-label-md text-label-md font-semibold">Arabian Horse</span>
+                                    </button>
+                                    <button class="species-btn flex flex-col items-center gap-space-2xs p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-species="Cattle" onclick="selectSpecies(this, 'Dairy Cow (Holstein)')" type="button">
+                                        <span class="material-symbols-outlined text-[26px]">agriculture</span>
+                                        <span class="font-label-md text-label-md font-semibold">Dairy Cow</span>
+                                    </button>
+                                    <button class="species-btn flex flex-col items-center gap-space-2xs p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface transition-all col-span-2 sm:col-span-1" data-species="Camel" onclick="selectSpecies(this, 'Camel (Najdi / Majaheem)')" type="button">
+                                        <span class="material-symbols-outlined text-[26px]">terrain</span>
+                                        <span class="font-label-md text-label-md font-semibold">Camel (Najdi)</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                <div class="flex flex-col gap-space-2xs sm:col-span-2">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold" for="listingTitle">Listing Title (عنوان الإعلان)</label>
+                                    <input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="listingTitle" oninput="syncPreviewTitle(this.value)" placeholder="e.g. Damascus Shami Buck, Dual Champion WAHO Mare" type="text" value="Purebred Awassi Ram 2 Yrs - Prime Breeding Stud">
+                                </div>
+                                <div class="flex flex-col gap-space-2xs">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold" for="breedInput">Specific Breed Lineage</label>
+                                    <input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="breedInput" oninput="syncPreviewBreed(this.value)" placeholder="e.g. Holstein-Friesian, Shami, Najdi" type="text" value="Purebred Syrian-Jordanian Awassi">
+                                </div>
+                                <div class="flex flex-col gap-space-2xs">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold" for="earTagInput">Official Ear Tag / Microchip #</label>
+                                    <div class="relative">
+                                        <input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="earTagInput" oninput="syncPreviewTag(this.value)" placeholder="JO-XXXX-XXXX" type="text" value="#JO-AW-9844">
+                                        <span class="material-symbols-outlined absolute right-space-sm top-3 text-on-surface-variant text-[18px]">verified</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-space-xs">
+                                    <div class="flex flex-col gap-space-2xs">
+                                        <label class="font-label-md text-label-md text-on-surface font-bold">Age</label>
+                                        <div class="flex items-center gap-space-2xs">
+                                            <input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="ageVal" max="30" min="0" oninput="syncPreviewAge()" type="number" value="2">
+                                            <select class="px-space-xs py-space-sm rounded-xl bg-surface-container text-on-surface font-label-md" id="ageUnit" onchange="syncPreviewAge()">
+                                                <option selected value="Yrs">Yrs</option>
+                                                <option value="Mos">Mos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-space-2xs">
+                                        <label class="font-label-md text-label-md text-on-surface font-bold">Gender</label>
+                                        <select class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="genderSelect" onchange="syncPreviewGender(this.value)">
+                                            <option selected value="Male (Ram / Sire)">Male (Ram/Sire)</option>
+                                            <option value="Female (Ewe / Dam)">Female (Ewe/Dam)</option>
+                                            <option value="Castrated">Castrated</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-space-2xs">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold">Lot Quantity</label>
+                                    <div class="flex items-center gap-space-xs">
+                                        <input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="headCount" max="500" min="1" type="number" value="1">
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Head (رأس)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                                    </div>
+                                    <h2 class="font-headline-sm text-headline-sm text-primary">2. Visual Documentation &amp; Media</h2>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-secondary font-semibold">Min 2 Required</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Under Jordan MOA inspection guidelines, clear standing side profile shots and front teeth dental views expedite listing verification.</p>
+                            <div class="p-space-xl rounded-2xl bg-surface-container-low flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-colors group">
+                                <div class="w-14 h-14 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-space-xs group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-[32px]">cloud_upload</span>
+                                </div>
+                                <span class="font-title-sm text-title-sm text-primary font-bold">Click to upload or drag images here</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">JPEG, PNG, WebP up to 15MB each</span>
+                                <span class="mt-space-xs inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm">
+                                    <span class="material-symbols-outlined text-[14px]">photo_library</span> High-resolution standing stance recommended
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+                                <div class="relative rounded-xl overflow-hidden shadow-sm aspect-[4/3] group">
+                                    <img class="w-full h-full object-cover" data-alt="Magnificent prime purebred Awassi ram with curved horns standing proudly in a sunlit Jordanian paddock during golden hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY3mImItvV062GM5IQX2H_c0bJ7QPCrpzI2Fl4ONnLeetdoEfWFB2Bn723dSHsZcRPwUFlXDVfh1-1pbJvWJRq0NjSBhAYuGWNL0Na4irhG4zeC6qi4FQq2C5yhKudleELZIffj55LWVB0owe85aR4uIC8KFMTiet9sN9JbLTXZSqPAz_C3jrw7oshC3XI-xA2nY3Fv7wx3qygcMAN3sXjtOq-0nbOs5iVpHcvCaDxzloEDNaM1ij5">
+                                    <span class="absolute top-2 left-2 px-space-2xs py-1 bg-primary text-on-primary font-label-sm text-label-sm rounded shadow">Primary</span>
+                                    <button class="absolute top-2 right-2 w-6 h-6 bg-surface/80 rounded-full flex items-center justify-center text-on-surface hover:bg-surface" type="button">
+                                        <span class="material-symbols-outlined text-[14px]">close</span>
+                                    </button>
+                                </div>
+                                <div class="relative rounded-xl overflow-hidden shadow-sm aspect-[4/3] group">
+                                    <img class="w-full h-full object-cover" data-alt="Studio quality standing side profile of a high yield black and white Holstein Friesian dairy cow in an agricultural enclosure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05WSrtuNXIHItZrS4YHq_tUxk86fXspVZBY512q9Mc9oOmOF3xPumXPht-OSdFhZiHH0CxukpR2nyQrsAHbZLGejKXW8OCTyARNmDw5MfPstaMH6hlybth9c9VCCY1zj2itUdtNNB-eaDn7hxf6_RPbYMeJIui6CwkfsG2WCe-cnhq1MLQbzhMS552I5Yo6-I7-kFJr5C3fGXU-SqZJ31s_kQlhAXKQ6jCby16AjW-5HOVs-Bxuc8">
+                                    <button class="absolute bottom-2 left-2 px-space-2xs py-1 bg-surface-container-highest/90 text-on-surface font-label-sm text-label-sm rounded opacity-0 group-hover:opacity-100 transition-opacity" onclick="setPrimaryThumb(this)" type="button">Set Primary</button>
+                                    <button class="absolute top-2 right-2 w-6 h-6 bg-surface/80 rounded-full flex items-center justify-center text-on-surface hover:bg-surface" type="button">
+                                        <span class="material-symbols-outlined text-[14px]">close</span>
+                                    </button>
+                                </div>
+                                <div class="relative rounded-xl overflow-hidden shadow-sm aspect-[4/3] group">
+                                    <img class="w-full h-full object-cover" data-alt="Regal dark bay Arabian stallion showing sculpted head arched neck and muscular shoulder against desert hills near Madaba Jordan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKXGIFvB6V4sQLF-h1hviDXgbqQQMsMmbzrNOLHqrdQfcMkrzxTKReaEEKV02J4ZQ8OzQVQYM0RANXy_tB79JjPWtbNbcndbH1UiCah4ugazW5N30AFcgtWguCAz1846aH7DMc9zpgyHUC0HYCdP3LN05a5CH_40IdRDP5RnXzOnWkFJrN8LoYe3lIXqT9g2KrF9uRUiu3jx9s5TqgPbTJuUm0ak1pbxrd91rIvpAKYIY5MStg64-O">
+                                    <button class="absolute bottom-2 left-2 px-space-2xs py-1 bg-surface-container-highest/90 text-on-surface font-label-sm text-label-sm rounded opacity-0 group-hover:opacity-100 transition-opacity" onclick="setPrimaryThumb(this)" type="button">Set Primary</button>
+                                    <button class="absolute top-2 right-2 w-6 h-6 bg-surface/80 rounded-full flex items-center justify-center text-on-surface hover:bg-surface" type="button">
+                                        <span class="material-symbols-outlined text-[14px]">close</span>
+                                    </button>
+                                </div>
+                                <div class="rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center p-space-xs cursor-pointer hover:bg-surface-container transition-colors aspect-[4/3]">
+                                    <span class="material-symbols-outlined text-secondary text-[26px]">video_call</span>
+                                    <span class="font-label-sm text-label-sm font-bold text-on-surface">Add Walkaround</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">360° video URL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-lg">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                                    </div>
+                                    <h2 class="font-headline-sm text-headline-sm text-primary">3. Biosecurity Passports &amp; Veterinary Clearance</h2>
+                                </div>
+                                <span class="font-label-sm text-label-sm text-on-surface-variant">Jordan JVMA Standards</span>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                                <label class="flex items-start gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                    <input checked class="mt-1 w-4 h-4 text-primary focus:ring-primary rounded accent-primary" type="checkbox">
+                                    <div class="flex flex-col">
+                                        <span class="font-title-sm text-title-sm text-on-surface">Brucellosis (Malta Fever) Negative</span>
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Official lab blood titer test within 60 days</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                    <input checked class="mt-1 w-4 h-4 text-primary focus:ring-primary rounded accent-primary" type="checkbox">
+                                    <div class="flex flex-col">
+                                        <span class="font-title-sm text-title-sm text-on-surface">Pox &amp; Enterotoxemia Vaccinated</span>
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Stamp verified on Ministry health log</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                    <input class="mt-1 w-4 h-4 text-primary focus:ring-primary rounded accent-primary" type="checkbox">
+                                    <div class="flex flex-col">
+                                        <span class="font-title-sm text-title-sm text-on-surface">FMD (Foot-and-Mouth) Inoculated</span>
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Bi-annual regional booster completed</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                    <input class="mt-1 w-4 h-4 text-primary focus:ring-primary rounded accent-primary" type="checkbox">
+                                    <div class="flex flex-col">
+                                        <span class="font-title-sm text-title-sm text-on-surface">WAHO / Pedigree Registered</span>
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Official royal breed certificate available</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-space-sm">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-secondary text-[22px]">medical_services</span>
+                                        <span class="font-title-sm text-title-sm text-primary font-bold">Request Official Farm Gate Inspection</span>
+                                    </div>
+                                    <span class="px-space-xs py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">Recommended</span>
+                                </div>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Boost your listing views by 340% with a "Ministry Certified Verified" badge. An accredited veterinarian visits your farm before escrow activation.</p>
+                                <div class="flex flex-col gap-space-xs">
+                                    <label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-lowest cursor-pointer">
+                                        <div class="flex items-center gap-space-sm">
+                                            <input checked class="w-4 h-4 text-primary accent-primary" name="vet_service" onchange="toggleVetPreview(true)" type="radio" value="on_site_dispatch">
+                                            <div class="flex flex-col">
+                                                <span class="font-title-sm text-title-sm text-on-surface">Book On-Farm Check with Dr. Ahmed Ali (JVMA #884)</span>
+                                                <span class="font-body-sm text-body-sm text-on-surface-variant">Includes digital health certificate upload &amp; escrow protection</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-title-sm text-title-sm text-primary font-bold">+30 JOD</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-lowest cursor-pointer">
+                                        <div class="flex items-center gap-space-sm">
+                                            <input class="w-4 h-4 text-primary accent-primary" name="vet_service" onchange="toggleVetPreview(false)" type="radio" value="self_upload">
+                                            <div class="flex flex-col">
+                                                <span class="font-title-sm text-title-sm text-on-surface">I already hold a valid MOA Health Passport</span>
+                                                <span class="font-body-sm text-body-sm text-on-surface-variant">Upload scan below for 2-hour admin moderation</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-title-sm text-title-sm text-on-surface-variant font-bold">0 JOD</span>
+                                    </label>
+                                </div>
+                                <div class="pt-space-2xs">
+                                    <label class="flex items-center gap-space-xs text-secondary font-title-sm text-title-sm cursor-pointer hover:underline">
+                                        <span class="material-symbols-outlined text-[18px]">attach_file</span>
+                                        <span>Attach Existing MOA Health Card or Pedigree (PDF / JPG)</span>
+                                        <input class="hidden" type="file">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-lg">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                                    </div>
+                                    <h2 class="font-headline-sm text-headline-sm text-primary">4. Pricing, Governorate &amp; Handover Protocol</h2>
+                                </div>
+                                <span class="font-label-sm text-label-sm text-on-surface-variant">CBJ Escrow Backed</span>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                <div class="flex flex-col gap-space-2xs">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold" for="priceInput">Asking Price per Head (السعر بالدينار الأردني)</label>
+                                    <div class="relative">
+                                        <input class="w-full pl-space-md pr-24 py-space-sm rounded-xl bg-surface-container-low text-on-surface font-headline-sm font-bold focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="priceInput" min="10" oninput="syncPreviewPrice(this.value)" step="5" type="number" value="380">
+                                        <div class="absolute right-2 top-2 px-space-sm py-1 bg-surface-container rounded-lg font-title-sm text-title-sm text-primary font-bold">JOD / د.أ</div>
+                                    </div>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Listing fees: 0 JOD (Platform commission 2% on settled sale)</span>
+                                </div>
+                                <div class="flex flex-col gap-space-2xs">
+                                    <label class="font-label-md text-label-md text-on-surface font-bold" for="govSelect">Holding Farm Governorate (المحافظة)</label>
+                                    <select class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="govSelect" onchange="syncPreviewLocation(this.value)">
+                                        <option value="Amman Governorate (العاصمة)">Amman Governorate (عمان - مرج الحمام)</option>
+                                        <option value="Irbid &amp; Northern Plains (إربد)">Irbid &amp; Northern Plains (إربد)</option>
+                                        <option value="Madaba &amp; Balqa (مادبا والبلقاء)">Madaba &amp; Balqa (مادبا)</option>
+                                        <option value="Zarqa &amp; Badia (الزرقاء والبادية)">Zarqa &amp; Eastern Badia (الزرقاء)</option>
+                                        <option value="As-Salt &amp; Jordan Valley (السلط)">As-Salt &amp; Jordan Valley (السلط)</option>
+                                        <option value="Mafraq Livestock Basin (المفرق)">Mafraq Basin (المفرق)</option>
+                                        <option value="Karak &amp; Southern Hills (الكرك)">Karak &amp; Southern Hills (الكرك)</option>
+                                        <option value="Aqaba Port &amp; South (العقبة)">Aqaba &amp; Wadi Rum (العقبة)</option>
+                                    </select>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Specific farm paddock address provided to verified buyers only</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-title-sm text-title-sm text-on-surface">Transport &amp; Handover Capability</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                                    <label class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                        <input checked class="w-4 h-4 text-primary rounded accent-primary" type="checkbox">
+                                        <div class="flex flex-col">
+                                            <span class="font-title-sm text-title-sm text-on-surface">Buyer Farm Gate Collection</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface-variant">Buyer inspects animal before releasing payment</span>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-low cursor-pointer">
+                                        <input checked class="w-4 h-4 text-primary rounded accent-primary" type="checkbox">
+                                        <div class="flex flex-col">
+                                            <span class="font-title-sm text-title-sm text-on-surface">Governorate Transport Available</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface-variant">Seller coordinates air-conditioned cattle truck</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="p-space-md rounded-xl bg-surface-container-high/60 flex items-start gap-space-sm">
+                                <div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-[18px]">lock</span>
+                                </div>
+                                <div class="flex flex-col gap-space-2xs">
+                                    <span class="font-title-sm text-title-sm text-primary font-bold">100% Escrow Protection via Jordan Central Bank Gateway</span>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Funds deposited by the buyer are safely held in escrow and credited to your Jordanian IBAN only after both parties sign the digital gate handover and veterinary clearance confirmation.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[18px]">description</span>
+                                    </div>
+                                    <h2 class="font-headline-sm text-headline-sm text-primary">5. Pedigree Notes &amp; Management History</h2>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Optional but helps sell faster</span>
+                            </div>
+                            <div class="flex flex-col gap-space-2xs">
+                                <label class="font-label-md text-label-md text-on-surface font-bold" for="descNotes">Breeding lineage, temperament, diet, and yields</label>
+                                <textarea class="w-full p-space-md rounded-xl bg-surface-container-low text-on-surface font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="descNotes" placeholder="E.g., Grandson of Royal Jordanian Awassi champion #410..." rows="4">Purebred Syrian-Jordanian Awassi Ram with wide horn spread and broad tail. Raised on organic alfalfa, high-protein barley feed, and free range grazing in Madaba pastures. Highly fertile with proven offspring in the 2024 lambing cycle. Health registry fully up to date with Dr. Ahmed Ali.</textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm">
+                            <button class="w-full sm:w-auto px-space-lg py-space-sm rounded-full bg-surface-container text-primary font-title-sm text-title-sm hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-2xs" type="button">
+                                <span class="material-symbols-outlined text-[18px]">drafts</span>
+                                <span>Save Draft</span>
+                            </button>
+                            <div class="w-full sm:w-auto flex items-center gap-space-sm">
+                                <button class="w-1/2 sm:w-auto px-space-lg py-space-sm rounded-full border-2 border-primary text-primary font-title-sm text-title-sm hover:bg-primary/5 transition-colors" onclick="openPreviewModal()" type="button">Full Preview</button>
+                                <button class="w-1/2 sm:w-auto px-space-xl py-space-sm rounded-full bg-primary text-on-primary font-title-sm text-title-sm hover:bg-primary-container shadow-md transition-all flex items-center justify-center gap-space-2xs" onclick="submitListingFlow()" type="button">
+                                    <span class="material-symbols-outlined text-[18px]">publish</span>
+                                    <span>Publish Listing</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <aside class="lg:col-span-5 flex flex-col gap-space-xl lg:sticky lg:top-24">
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+                            <div class="flex items-center justify-between border-b border-surface-container pb-space-sm">
+                                <div class="flex items-center gap-space-2xs">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                                    <span class="font-title-sm text-title-sm text-primary font-bold">Buyer View Preview</span>
+                                </div>
+                                <span class="px-space-xs py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Updated Live</span>
+                            </div>
+                            <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md flex flex-col">
+                                <div class="relative aspect-[16/10] bg-surface-container-low overflow-hidden">
+                                    <img class="w-full h-full object-cover" data-alt="Majestic purebred Awassi ram with distinct curved horns grazing in a sunlit Jordanian pastoral estate" id="previewImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqUYMAob2LwxRXhlFDJ4yw1zeiokWJtic2vsJjARkvEA624Gq-5cQSVr1hUXCUR1fbLwgvcdzJvazgValsJOOJ_G62xWVC6pycAu7eWwmvyMtSrBrjzZkUdv5BWOcgb_5RqQrlOpvNxO_oOEpVo2buHgF_A0_jxIKaWft55vmiOAQl2SUpNFFu1J-F_T1nTtNdULPGafOfelaeKEjzwO2n-NSAq9ncaU_nvHCN6ixbftashUnVBL_o">
+                                    <div class="absolute top-3 left-3 flex flex-col gap-1 items-start">
+                                        <span class="px-space-xs py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1" id="previewTypeBadge">
+                                            <span class="material-symbols-outlined text-[14px]">storefront</span>
+                                            <span id="previewTypeText">Marketplace Fixed Sale</span>
+                                        </span>
+                                        <span class="px-space-xs py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1" id="previewVetBadge">
+                                            <span class="material-symbols-outlined text-[12px]">verified</span>
+                                            <span>Dr. Ahmed Ali Vet Checked</span>
+                                        </span>
+                                    </div>
+                                    <span class="absolute bottom-3 left-3 px-space-xs py-1 rounded-md bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm backdrop-blur-sm" id="previewTagChip">#JO-AW-9844</span>
+                                </div>
+                                <div class="p-space-md flex flex-col gap-space-xs bg-surface-container-lowest">
+                                    <div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+                                        <span id="previewSpeciesBreed">Sheep (Awassi) • Purebred</span>
+                                        <span id="previewAgeGender">2 Yrs • Male</span>
+                                    </div>
+                                    <h3 class="font-title-sm text-title-sm text-primary font-bold line-clamp-1" id="previewTitle">Purebred Awassi Ram 2 Yrs - Prime Breeding Stud</h3>
+                                    <div class="flex items-center gap-space-2xs text-on-surface-variant font-body-sm text-body-sm">
+                                        <span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+                                        <span id="previewLocation">Amman Governorate (العاصمة)</span>
+                                    </div>
+                                    <div class="mt-space-xs pt-space-xs border-t border-surface-container flex items-center justify-between">
+                                        <div class="flex flex-col">
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Guaranteed Price</span>
+                                            <div class="flex items-baseline gap-space-2xs">
+                                                <span class="font-label-numeric-lg text-label-numeric-lg text-primary" id="previewPrice">380</span>
+                                                <span class="font-title-sm text-title-sm text-primary font-bold">JOD</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-space-2xs">
+                                            <span class="px-space-xs py-1 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Escrow Safe</span>
+                                            <button class="px-space-md py-space-xs rounded-full bg-primary/20 text-primary font-title-sm text-title-sm cursor-not-allowed" disabled type="button">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+                                <span class="material-symbols-outlined text-secondary text-[20px]">lightbulb</span>
+                                <span>Awassi rams with certified bloodline passports and recent Brucellosis stamps close 4.2x faster on the Amman exchange.</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+                            <div class="flex items-center gap-space-xs">
+                                <span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+                                <h3 class="font-title-sm text-title-sm text-primary font-bold">National Seller Guarantees</h3>
+                            </div>
+                            <div class="flex flex-col gap-space-sm text-body-sm text-on-surface-variant">
+                                <div class="flex items-start gap-space-xs">
+                                    <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+                                    <p><strong class="text-on-surface">Zero Non-Payment Risk:</strong> Buyer deposits 100% of the JOD purchase amount into Escrow before you dispatch or release the livestock.</p>
+                                </div>
+                                <div class="flex items-start gap-space-xs">
+                                    <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+                                    <p><strong class="text-on-surface">Automated Inter-Governorate Transit:</strong> Instant digital MOA veterinary transit permit issued to transport across checkpoints without delays.</p>
+                                </div>
+                                <div class="flex items-start gap-space-xs">
+                                    <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+                                    <p><strong class="text-on-surface">Rapid 2-Hour Moderation:</strong> Listings are verified by Ministry registered agronomy officers between 7:00 AM and 9:00 PM Jordan Time.</p>
+                                </div>
+                            </div>
+                            <div class="pt-space-xs border-t border-surface-container flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Seller Desk Support</span>
+                                    <span class="font-title-sm text-title-sm text-primary font-bold">+962 6 568 6151</span>
+                                </div>
+                                <a class="text-secondary font-label-md text-label-md hover:underline font-bold flex items-center gap-1" href="#">
+                                    <span>Read Seller Terms</span>
+                                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-gutter-mobile" id="publishSuccessModal">
+                <div class="bg-surface-container-lowest max-w-md w-full rounded-2xl p-space-xl shadow-xl flex flex-col items-center text-center gap-space-md">
+                    <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[36px]">verified</span>
+                    </div>
+                    <div class="flex flex-col gap-space-2xs">
+                        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Listing Transmitted to Moderation</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Your listing has been submitted for Ministry of Agriculture biosecurity registration. Reference ID <strong class="text-primary">#JO-MKT-2025-8831</strong>.</p>
+                    </div>
+                    <div class="p-space-sm rounded-xl bg-surface-container-low w-full text-left font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-1">
+                        <div><strong>Status:</strong> Pending Dr. Ahmed Ali verification dispatch</div>
+                        <div><strong>Location:</strong> Amman Holding Grounds</div>
+                        <div><strong>Expected Review SLA:</strong> Under 2 hours</div>
+                    </div>
+                    <div class="flex items-center gap-space-sm w-full">
+                        <button class="w-full py-space-sm rounded-full bg-primary text-on-primary font-title-sm text-title-sm hover:bg-primary-container" onclick="closeSuccessModal()" type="button">View Active Listings</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function selectSpecies(button, speciesName) {
+                    document.querySelectorAll('.species-btn').forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                        btn.classList.add('bg-surface-container', 'text-on-surface');
+                    });
+                    button.classList.remove('bg-surface-container', 'text-on-surface');
+                    button.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+                    const breed = document.getElementById('breedInput').value;
+                    document.getElementById('previewSpeciesBreed').textContent = speciesName + ' • ' + (breed || 'Purebred');
+                }
+                function syncPreviewTitle(val) { document.getElementById('previewTitle').textContent = val || 'Untitled Livestock Listing'; }
+                function syncPreviewBreed(val) {
+                    const activeSpecies = document.querySelector('.species-btn.bg-primary')?.getAttribute('data-species') || 'Livestock';
+                    document.getElementById('previewSpeciesBreed').textContent = activeSpecies + ' • ' + (val || 'Registered');
+                }
+                function syncPreviewTag(val) { document.getElementById('previewTagChip').textContent = val || '#UNTAGGED'; }
+                function syncPreviewAge() {
+                    const ageVal = document.getElementById('ageVal').value || '1';
+                    const ageUnit = document.getElementById('ageUnit').value;
+                    const gender = document.getElementById('genderSelect').value.split(' ')[0];
+                    document.getElementById('previewAgeGender').textContent = ageVal + ' ' + ageUnit + ' • ' + gender;
+                }
+                function syncPreviewGender(val) { syncPreviewAge(); }
+                function syncPreviewPrice(val) { document.getElementById('previewPrice').textContent = val ? Number(val).toLocaleString() : '0'; }
+                function syncPreviewLocation(val) { document.getElementById('previewLocation').textContent = val; }
+                function updatePreviewBadge(type) {
+                    const badgeText = document.getElementById('previewTypeText');
+                    badgeText.textContent = type === 'auction' ? 'Live Auction Lot' : 'Marketplace Fixed Sale';
+                }
+                function toggleVetPreview(show) {
+                    const badge = document.getElementById('previewVetBadge');
+                    badge.classList.toggle('hidden', !show);
+                }
+                function setPrimaryThumb(btn) {
+                    const img = btn.closest('.group')?.querySelector('img');
+                    if (img) {
+                        document.getElementById('previewImage').setAttribute('src', img.getAttribute('src'));
+                        document.getElementById('previewImage').setAttribute('data-alt', img.getAttribute('data-alt'));
+                    }
+                }
+                function submitListingFlow() {
+                    const modal = document.getElementById('publishSuccessModal');
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+                function closeSuccessModal() {
+                    const modal = document.getElementById('publishSuccessModal');
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }
+                function openPreviewModal() { submitListingFlow(); }
+            </script>
+        </div>
+    </main>
+
+    <footer class="w-full bg-[#120F0D] text-white pt-space-3xl pb-space-2xl">
+        <div class="max-w-[1280px] mx-auto px-gutter-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl pb-space-2xl">
+                <div class="lg:col-span-2 flex flex-col gap-space-md">
+                    <div class="flex items-center gap-space-sm">
+                        <div class="w-10 h-10 rounded-xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+                            <span class="material-symbols-outlined text-[24px]">pets</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-title-md text-title-md text-surface-bright tracking-tight">Kingdom Veterinary &amp; Livestock Exchange</span>
+                            <span class="font-body-sm text-body-sm text-outline-variant">Verified Regional Agricultural &amp; Equine Trading</span>
+                        </div>
+                    </div>
+                    <p class="font-body-md text-body-md text-[#A8A29E] max-w-md">Jordan's premier regulated digital livestock auction and veterinary certified marketplace. Empowering farmers, breeders, and equine estates across the Hashemite Kingdom.</p>
+                    <div class="flex items-center gap-space-xs text-[#A8A29E] font-label-sm text-label-sm">
+                        <span class="material-symbols-outlined text-[16px] text-secondary-container">verified_user</span>
+                        <span>Hashemite Kingdom of Jordan Ministry of Agriculture Compliant Registry #JO-4491</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">Platform</span>
+                    <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-[#A8A29E]">
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Browse Animals</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Sell Animal</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Live Auctions</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Veterinary Care</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Rare Species</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">Compliance &amp; Support</span>
+                    <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-[#A8A29E]">
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Contact Us</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Ministry of Agriculture Compliance</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Health Certification Standards</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">National Exchange</span>
+                    <div class="p-space-md rounded-xl bg-[#1F1B18] flex flex-col gap-space-2xs">
+                        <span class="font-label-sm text-label-sm text-secondary-container uppercase tracking-widest font-bold">Currency &amp; Trading</span>
+                        <span class="font-headline-sm text-headline-sm text-surface-bright font-bold">JOD (دينار أردني)</span>
+                        <p class="font-body-sm text-body-sm text-[#A8A29E]">Escrow-backed transactions with immediate veterinary inspection checkpoints.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md">
+                <div class="flex flex-wrap items-center justify-center gap-x-space-sm gap-y-space-2xs text-[#A8A29E] font-label-md text-label-md">
+                    <span class="text-surface-bright font-bold">Governorate Coverage:</span>
+                    <span>Amman</span><span class="text-tertiary-container">•</span>
+                    <span>Zarqa</span><span class="text-tertiary-container">•</span>
+                    <span>Irbid</span><span class="text-tertiary-container">•</span>
+                    <span>Mafraq</span><span class="text-tertiary-container">•</span>
+                    <span>Aqaba</span><span class="text-tertiary-container">•</span>
+                    <span>Balqa</span><span class="text-tertiary-container">•</span>
+                    <span>Karak</span>
+                </div>
+                <div class="font-body-sm text-body-sm text-[#A8A29E]">© 2025 AnimalEcosystem Jordan. Kingdom Veterinary &amp; Livestock Exchange. Ministry of Agriculture Compliant. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

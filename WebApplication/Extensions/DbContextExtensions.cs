@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using WebApp.Enums;
 using WebApp.Models;
 using WebApp.Services;
 
@@ -23,13 +24,15 @@ namespace WebApp.Extensions
                 }
 
                 // ---------- Roles ----------
-                foreach (var roleName in new[] { "Breeder", "Vet" })
+                foreach (var roleName in new[] { "Admin","Breeder", "Vet" })
                 {
                     if (!await roleManager.RoleExistsAsync(roleName))
                     {
                         await roleManager.CreateAsync(new IdentityRole(roleName));
                     }
                 }
+
+                
 
                 // ---------- Species ----------
                 var horse = new Species { Name = "Arabian Horse", Description = "Purebred Arabian horses" };
@@ -48,6 +51,9 @@ namespace WebApp.Extensions
                 var buyer1 = await CreateUser(userManager, "buyer@example.com", "Sami Odeh", "Amman, Jordan", password, null, verified: false);
                 var vetUser1 = await CreateUser(userManager, "dr.ahmad@example.com", "Dr. Ahmad Khalil", "Amman, Jordan", password, "Vet", verified: true);
                 var vetUser2 = await CreateUser(userManager, "dr.rana@example.com", "Dr. Rana Saleh", "Zarqa, Jordan", password, "Vet", verified: true);
+
+                // Add a seeded admin user:
+                var adminUser = await CreateUser(userManager, "admin@example.com", "Platform Admin", "Amman, Jordan", password, "Admin", verified: true);
 
                 // ---------- Animals ----------
                 var animal1 = new Animal
@@ -129,6 +135,13 @@ namespace WebApp.Extensions
                     SpeciesId = camel.Id,
                     OwnerId = breeder2.Id
                 };
+
+                animal1.ModerationStatus = ModerationStatus.Approved;
+                animal2.ModerationStatus = ModerationStatus.Approved;
+                animal3.ModerationStatus = ModerationStatus.Approved;
+                animal4.ModerationStatus = ModerationStatus.Approved;
+                animal5.ModerationStatus = ModerationStatus.Approved;
+
                 dbContext.Animals.AddRange(animal1, animal2, animal3, animal4, animal5);
                 await dbContext.SaveChangesAsync();
 

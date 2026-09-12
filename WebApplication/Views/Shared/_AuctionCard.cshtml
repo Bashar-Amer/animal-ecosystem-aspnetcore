@@ -21,7 +21,7 @@
 
         <div class="auction-lot-number"><span class="label-sm">@Model.LotNumber</span></div>
 
-        <button class="watchlist-btn" data-auction-id="@Model.Id" aria-label="Add to watchlist">
+        <button class="watchlist-btn" data-animal-id="@Model.AnimalId" aria-label="Add to watchlist">
             <span class="material-symbols-outlined">favorite_border</span>
         </button>
     </div>
@@ -29,7 +29,7 @@
     <div class="auction-card-content">
         <div class="auction-card-header">
             <h3 class="auction-card-title title-md">
-                <a asp-controller="Auctions" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a>
+                <a asp-controller="Auction" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a>
             </h3>
             @if (Model.IsVerified)
             {
@@ -57,7 +57,7 @@
         <div class="bid-info-card @(Model.IsUpcoming ? "upcoming" : "")">
             <div class="bid-current">
                 <span class="bid-label label-sm">@Model.BidLabel</span>
-                <span class="bid-value headline-md">@Model.Price.ToString("C0")</span>
+                <span class="bid-value headline-md">@Model.Price.ToString("N0") JOD</span>
                 @if (!Model.IsUpcoming)
                 {
                     <span class="bid-count body-sm">@Model.BidCount bids</span>
@@ -84,7 +84,7 @@
         }
         else
         {
-            <a asp-controller="Auctions" asp-action="Details" asp-route-id="@Model.Id" class="@Model.ActionCssClass">@Model.ActionText</a>
+            <a asp-controller="Auction" asp-action="Details" asp-route-id="@Model.Id" class="@Model.ActionCssClass">@Model.ActionText</a>
         }
     </div>
 </article>

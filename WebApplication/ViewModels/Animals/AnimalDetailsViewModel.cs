@@ -5,11 +5,9 @@ namespace WebApp.ViewModels.Animals
 {
     public class AnimalDetailsViewModel
     {
-        public Animal animalInfo { get; set; }
+        public AnimalDetailViewModel animalInfo { get; set; } = new();
         public ICollection<AnimalListViewModel> MoreFromSeller { get; set; } = [];
-
         public ICollection<AnimalListViewModel> SimilarListings { get; set; } = [];
-
-        public UserListViewModel owner { get; set; }
+        public UserListViewModel owner { get; set; } = new();
     }
 }

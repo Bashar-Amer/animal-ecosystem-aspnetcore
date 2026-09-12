@@ -2,7 +2,7 @@
 {
     public class AuctionDetailsViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; } = "";
         public string LotNumber { get; set; } = "";
         public string Title { get; set; } = "";
         public string StatusLabel { get; set; } = "OPEN AUCTION • LIVE";
@@ -30,5 +30,7 @@
 
         public AuctionSellerViewModel Seller { get; set; } = new();
         public List<SimilarAuctionViewModel> SimilarAuctions { get; set; } = new();
+
+        public string AnimalId { get; set; } = "";
     }
 }

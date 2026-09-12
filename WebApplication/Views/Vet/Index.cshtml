@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/veterinary.css" />
+    <link rel="stylesheet" href="~/css/pages/vet/veterinary.css" />
 }
 
 <section class="vet-hero">
@@ -43,32 +43,39 @@
 
 <section class="vet-filters-section">
     <div class="container">
-        <div class="filters-wrapper">
-            <div class="filter-group">
-                <div class="filter-group-label"><span class="material-symbols-outlined">stethoscope</span><span class="label-sm">Specialty</span></div>
-                <div class="filter-pills" data-filter-group="specialty">
-                    <button class="filter-pill active" data-value="all">All</button>
-                    <button class="filter-pill" data-value="large-animal">Large Animal</button>
-                    <button class="filter-pill" data-value="livestock">Livestock & Ruminants</button>
-                    <button class="filter-pill" data-value="equine">Equine Specialist</button>
-                    <button class="filter-pill" data-value="poultry">Poultry</button>
-                    <button class="filter-pill" data-value="mixed">Small & Mixed</button>
+        <div class="filters-panel">
+            <div class="filters-grid-custom">
+                <div class="filter-group">
+                    <div class="filter-group-label"><span class="material-symbols-outlined">stethoscope</span><span class="label-sm">Specialty</span></div>
+                    <div class="filter-pills" data-filter-group="specialty">
+                        <button class="filter-pill active" data-value="all">All</button>
+                        <button class="filter-pill" data-value="large-animal">Large Animal</button>
+                        <button class="filter-pill" data-value="livestock">Livestock & Ruminants</button>
+                        <button class="filter-pill" data-value="equine">Equine Specialist</button>
+                        <button class="filter-pill" data-value="poultry">Poultry</button>
+                        <button class="filter-pill" data-value="mixed">Small & Mixed</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-group">
-                <div class="filter-group-label"><span class="material-symbols-outlined">location_on</span><span class="label-sm">Region</span></div>
-                <div class="filter-pills" data-filter-group="region">
-                    <button class="filter-pill active" data-value="all">All Regions</button>
-                    <button class="filter-pill" data-value="central">Central</button>
-                    <button class="filter-pill" data-value="north">North</button>
-                    <button class="filter-pill" data-value="south">South</button>
-                    <button class="filter-pill" data-value="east">East</button>
-                    <button class="filter-pill" data-value="west">West</button>
+                <div class="filter-group">
+                    <div class="filter-group-label"><span class="material-symbols-outlined">location_on</span><span class="label-sm">City</span></div>
+                    <div class="filter-pills" data-filter-group="city">
+                        <button class="filter-pill active" data-value="all">All Cities</button>
+                        <button class="filter-pill" data-value="amman">Amman</button>
+                        <button class="filter-pill" data-value="zarqa">Zarqa</button>
+                        <button class="filter-pill" data-value="irbid">Irbid</button>
+                        <button class="filter-pill" data-value="aqaba">Aqaba</button>
+                        <button class="filter-pill" data-value="salt">Salt</button>
+                        <button class="filter-pill" data-value="madaba">Madaba</button>
+                        <button class="filter-pill" data-value="mafraq">Mafraq</button>
+                        <button class="filter-pill" data-value="jerash">Jerash</button>
+                        <button class="filter-pill" data-value="ajloun">Ajloun</button>
+                        <button class="filter-pill" data-value="karak">Karak</button>
+                        <button class="filter-pill" data-value="tafilah">Tafilah</button>
+                        <button class="filter-pill" data-value="ma'an">Ma'an</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-row-split">
                 <div class="filter-group">
                     <div class="filter-group-label"><span class="material-symbols-outlined">schedule</span><span class="label-sm">Availability</span></div>
                     <div class="filter-pills" data-filter-group="availability">
@@ -81,7 +88,7 @@
                 </div>
 
                 <div class="filter-group">
-                    <div class="filter-group-label"><span class="label-sm">Species</span></div>
+                    <div class="filter-group-label"><span class="material-symbols-outlined">pets</span><span class="label-sm">Species</span></div>
                     <div class="filter-pills" data-filter-group="species">
                         <button class="filter-pill active" data-value="all">All Species</button>
                         <button class="filter-pill" data-value="cattle">Cattle</button>
@@ -136,7 +143,7 @@
                 </div>
                 <div class="emergency-actions">
                     <a href="tel:000000000" class="btn btn-urgent btn-lg"><span class="material-symbols-outlined">call</span>Emergency Hotline</a>
-                    <button class="btn btn-secondary btn-lg btn-ghost-light" id="tele-triage-btn"><span class="material-symbols-outlined">videocam</span>Start Tele-Triage</button>
+                    @* <button class="btn btn-secondary btn-lg btn-ghost-light" id="tele-triage-btn"><span class="material-symbols-outlined">videocam</span>Start Tele-Triage</button> *@
                 </div>
             </div>
         </div>
@@ -170,5 +177,5 @@
 </section>
 
 @section Scripts {
-    <script src="~/js/veterinary.js"></script>
+    <script src="~/js/pages/vet/veterinary.js"></script>
 }

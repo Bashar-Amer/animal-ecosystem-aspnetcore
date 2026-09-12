@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/register.css" />
+    <link rel="stylesheet" href="~/css/pages/account/register.css" />
 }
 
 <main class="register-main">
@@ -52,6 +52,57 @@
                             <input asp-for="Email" class="form-input" style="padding-left:44px;" placeholder="name@example.com" />
                         </div>
                         <span asp-validation-for="Email" class="text-error body-sm"></span>
+                    </div>
+
+                    <div class="register-field-grid">
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber" class="form-label">
+                                @* <span class="material-symbols-outlined form-label-icon">phone</span> *@
+                                Phone Number <span class="optional-label">Optional</span>
+                            </label>
+                            <div class="input-with-icon">
+                                <span class="input-icon-left"><span class="material-symbols-outlined text-muted">phone</span></span>
+                                <input asp-for="PhoneNumber" class="form-input" placeholder="+962 7X XXX XXXX" autocomplete="tel" />
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-error body-sm"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Country" class="form-label">
+                                @* <span class="material-symbols-outlined form-label-icon">public</span> *@
+                                Country
+                            </label>
+                            <div class="input-with-icon">
+                                <span class="input-icon-left"><span class="material-symbols-outlined text-muted">public</span></span>
+                                <input asp-for="Country" class="form-input" style="padding-left:44px;" placeholder="Jordan" autocomplete="country-name" />
+                            </div>
+                            <span asp-validation-for="Country" class="text-error body-sm"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="City" class="form-label">
+                            @* <span class="material-symbols-outlined form-label-icon">location_city</span> *@
+                            City
+                        </label>
+                        <div class="input-with-icon">
+                            <span class="input-icon-left"><span class="material-symbols-outlined text-muted">location_city</span></span>
+                            <select asp-for="City" class="form-input register-select" autocomplete="address-level2">
+                                <option value="">Select your city</option>
+                                <option value="Amman">Amman</option>
+                                <option value="Zarqa">Zarqa</option>
+                                <option value="Irbid">Irbid</option>
+                                <option value="Aqaba">Aqaba</option>
+                                <option value="Salt">Salt</option>
+                                <option value="Madaba">Madaba</option>
+                                <option value="Mafraq">Mafraq</option>
+                                <option value="Jerash">Jerash</option>
+                                <option value="Karak">Karak</option>
+                                <option value="Tafilah">Tafilah</option>
+                                <option value="Ma'an">Ma'an</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="City" class="text-error body-sm"></span>
                     </div>
 
                     <div class="form-group">
@@ -118,5 +169,5 @@
 </main>
 
 @section Scripts {
-    <script src="~/js/register.js"></script>
+    <script src="~/js/pages/account/register.js"></script>
 }

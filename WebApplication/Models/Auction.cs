@@ -14,6 +14,13 @@ namespace WebApp.Models
         EndingSoon
     }
 
+    public enum AuctionModerationStatus
+    {
+        Pending,
+        Approved,
+        Rejected
+    }
+
     // [Index] with IsUnique enforces the one-to-one relationship with Animal at the DB level.
     // EF Core also infers one-to-one by convention here since both navigation properties
     // (Animal.Auction and Auction.Animal) are single references, not collections.
@@ -46,6 +53,13 @@ namespace WebApp.Models
         public DateTime EndTime { get; set; }
 
         public AuctionStatus Status { get; set; } = AuctionStatus.StartingSoon;
+        public AuctionModerationStatus ModerationStatus { get; set; } = AuctionModerationStatus.Pending;
+        public string? RejectionReason { get; set; }
+        public DateTime? ModeratedAt { get; set; }
+        public string? ModeratedByAdminId { get; set; }
+
+        [ForeignKey(nameof(ModeratedByAdminId))]
+        public ApplicationUser? ModeratedByAdmin { get; set; }
 
         // Tracks the current highest bidder for fast lookups without recalculating from Bids each time
         public string? HighestBidderId { get; set; }
@@ -55,6 +69,9 @@ namespace WebApp.Models
 
         // Navigation
         public ICollection<Bid> Bids { get; set; } = new List<Bid>();
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = null!;
     }
 
     public class Bid

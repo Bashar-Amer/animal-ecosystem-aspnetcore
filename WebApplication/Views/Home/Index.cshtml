@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/pages/home/home.css" />
 }
 
 <section class="hero-home">
@@ -32,21 +32,35 @@
             <div class="hero-visual">
                 <div class="live-auction-showcase">
                     <div class="showcase-accent"></div>
-                    <div class="showcase-header">
-                        <div class="live-indicator"><span class="live-pulse"></span><span class="live-text label-sm">Live Auction</span></div>
-                        <span class="lot-number label-sm">@Model.HeroShowcase.LotNumber</span>
-                    </div>
-                    <div class="showcase-image">
-                        <img src="@Model.HeroShowcase.ImageUrl" alt="@Model.HeroShowcase.Title" data-lazy />
-                        <div class="image-badge"><span class="material-symbols-outlined">verified</span><span>@Model.HeroShowcase.ImageCaption</span></div>
-                    </div>
-                    <div class="showcase-details">
-                        <div class="showcase-title-row"><h3 class="title-md">@Model.HeroShowcase.Title</h3><span class="location-label body-sm">@Model.HeroShowcase.Location</span></div>
-                        <div class="bid-info-panel">
-                            <div class="bid-amount"><span class="bid-label body-sm">Current Highest Bid</span><span class="bid-value headline-sm">@Model.HeroShowcase.CurrentBid.ToString("C0")</span></div>
-                            <div class="bid-timer"><span class="timer-label label-sm">Closes in</span><span class="timer-value title-sm" data-countdown="@Model.HeroShowcase.CountdownTarget.ToString("s")">--</span></div>
-                        </div>
-                        <a asp-controller="Auction" asp-action="Index" class="btn btn-urgent btn-block">Place Instant Bid</a>
+                        @if (!string.IsNullOrWhiteSpace(Model.HeroShowcase.Title))
+                        {
+                            <div class="showcase-header">
+                                <div class="live-indicator"><span class="live-pulse"></span><span class="live-text label-sm">Live Auction</span></div>
+                                <span class="lot-number label-sm">@Model.HeroShowcase.LotNumber</span>
+                            </div>
+                            <div class="showcase-image">
+                                <img src="@Model.HeroShowcase.ImageUrl" alt="@Model.HeroShowcase.Title" data-lazy />
+                                <div class="image-badge"><span class="material-symbols-outlined">verified</span><span>@Model.HeroShowcase.ImageCaption</span></div>
+                            </div>
+                            <div class="showcase-details">
+                                <div class="showcase-title-row"><h3 class="title-md">@Model.HeroShowcase.Title</h3><span class="location-label body-sm">@Model.HeroShowcase.Location</span></div>
+                                <div class="bid-info-panel">
+                                    <div class="bid-amount"><span class="bid-label body-sm">Current Highest Bid</span><span class="bid-value headline-sm">@Model.HeroShowcase.CurrentBid.ToString("N0") JOD</span></div>
+                                    <div class="bid-timer"><span class="timer-label label-sm">Closes in</span><span class="timer-value title-sm" data-countdown="@Model.HeroShowcase.CountdownTarget.ToString("s")">--</span></div>
+                                </div>
+                                <a asp-controller="Auction" asp-action="Index" class="btn btn-urgent btn-block">Place Instant Bid</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="showcase-empty-state">
+                                <div class="showcase-empty-icon"><span class="material-symbols-outlined">gavel</span></div>
+                                <span class="section-eyebrow label-sm">Live Auctions</span>
+                                <h2 class="headline-sm">No live auctions right now</h2>
+                                <p class="body-md">New livestock auctions will appear here as soon as they go live.</p>
+                                <a asp-controller="Auction" asp-action="Index" class="btn btn-primary btn-block">Browse Auctions</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -70,7 +84,7 @@
                 </a>
             </div>
             <div class="col">
-                <a asp-controller="Veterinarians" asp-action="Index" class="pillar-card">
+                <a asp-controller="Vet" asp-action="Index" class="pillar-card">
                     <div class="pillar-content">
                         <div class="pillar-icon pillar-icon-secondary"><span class="material-symbols-outlined">medical_services</span></div>
                         <div class="pillar-text">
@@ -99,6 +113,83 @@
         </div>
     </div>
 </section>
+
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="p-5 text-white rounded-5 shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #49230e 0%, #9d4314 100%);">
+            <!-- Subtle background decorative glow -->
+            <div class="position-absolute top-0 end-0 translate-middle-y bg-white opacity-10 rounded-circle" style="width: 300px; height: 300px; filter: blur(50px); pointer-events: none;"></div>
+
+            <div class="row align-items-center gy-4 position-relative z-1">
+                <div class="col-lg-6">
+                    <span class="badge bg-white bg-opacity-25 text-white mb-3 px-3 py-2 rounded-pill">
+                        <span class="material-symbols-outlined align-middle" style="font-size:16px;">storefront</span>
+                        For Breeders &amp; Farmers
+                    </span>
+                    <h2 class="fw-bold mb-3 display-6" style="letter-spacing: -0.5px;">Turn Your Livestock Into Opportunity</h2>
+                    <p class="text-white opacity-75 mb-0 fs-6" style="max-width: 440px; line-height: 1.6;">
+                        List your animals securely on the marketplace, or launch a live auction and let verified buyers compete in real time.
+                    </p>
+                </div>
+
+                <div class="col-lg-6">
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <a asp-controller="MyAnimals" asp-action="Create" class="card h-100 text-decoration-none border-0 p-4 bg-white text-dark rounded-4 sell-cta-card shadow-sm">
+                                    <div class="mb-3 d-inline-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 text-primary" style="width:48px;height:48px;">
+                                        <span class="material-symbols-outlined" style="font-size:24px;">add_box</span>
+                                    </div>
+                                    <h3 class="h6 fw-bold mb-1">List an Animal</h3>
+                                    <p class="small text-muted mb-0">Fixed-price marketplace entry</p>
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a asp-controller="MyAnimals" asp-action="Index" class="card h-100 text-decoration-none border-0 p-4 bg-white text-dark rounded-4 sell-cta-card shadow-sm">
+                                    <div class="mb-3 d-inline-flex align-items-center justify-content-center rounded-3 bg-warning bg-opacity-25 text-warning-emphasis" style="width:48px;height:48px;">
+                                        <span class="material-symbols-outlined text-warning" style="font-size:24px;">gavel</span>
+                                    </div>
+                                    <h3 class="h6 fw-bold mb-1">Start an Auction</h3>
+                                    <p class="small text-muted mb-0">Live competitive bidding</p>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="bg-white text-dark rounded-4 p-4 shadow-sm">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined" style="font-size:24px;">lock_open</span>
+                                </div>
+                                <div>
+                                    <h3 class="h6 fw-bold mb-0">Ready to sell your animals?</h3>
+                                    <p class="small text-muted mb-0">Create an account to start listing or bidding.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary flex-grow-1 py-2">Get Started</a>
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary flex-grow-1 py-2">Sign In</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .sell-cta-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .sell-cta-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.15) !important;
+        }
+</style>
 
 <section class="section featured-animals-section">
     <div class="container">
@@ -222,5 +313,5 @@
 </section>
 
 @section Scripts {
-    <script src="~/js/home.js"></script>
+    <script src="~/js/pages/home/home.js"></script>
 }

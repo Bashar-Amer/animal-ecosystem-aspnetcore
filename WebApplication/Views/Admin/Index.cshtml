@@ -1,0 +1,351 @@
+@using WebApp.Helpers
+@model WebApp.ViewModels.Admin.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+    string TimeRemaining(DateTime end)
+    {
+        var diff = end - DateTime.UtcNow;
+        if (diff <= TimeSpan.Zero) return "Ended";
+        if (diff.TotalDays >= 1) return $"{(int)diff.TotalDays}d {diff.Hours}h";
+        return $"{diff.Hours:00}h : {diff.Minutes:00}m";
+    }
+
+    string TimeAgo(DateTime when)
+    {
+        var diff = DateTime.UtcNow - when;
+        if (diff.TotalHours < 1) return $"{(int)diff.TotalMinutes} mins ago";
+        if (diff.TotalDays < 1) return $"{(int)diff.TotalHours}h ago";
+        return $"{(int)diff.TotalDays}d ago";
+    }
+}
+
+<div class="bg-light border-bottom py-4 mb-4">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-2">
+            <div>
+                <span class="badge bg-success-subtle text-success-emphasis mb-1">
+                    <span class="material-symbols-outlined align-middle" style="font-size:12px;">circle</span> Live Operations
+                </span>
+                <h1 class="h4 fw-bold mb-1">AnimalEcosystem Marketplace &amp; Auction Administration</h1>
+                <p class="text-muted small mb-0">Centralized platform moderation for livestock listings, live bidding rooms, and veterinarian credentials.</p>
+            </div>
+            <div>
+                <a asp-controller="Auction" asp-action="Index" class="btn btn-primary">
+                    <span class="material-symbols-outlined align-middle" style="font-size:18px;">gavel</span> View Auctions
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-uppercase text-muted small fw-bold">Total Active Listings</span>
+                        <span class="material-symbols-outlined text-primary">storefront</span>
+                    </div>
+                    <div class="h3 fw-bold mb-2">@Model.TotalActiveListings <span class="fs-6 fw-normal text-muted">Listings</span></div>
+                    <div class="d-flex justify-content-between small border-top pt-2">
+                        <span class="text-success fw-bold">+@Model.NewListingsThisWeek this week</span>
+                        <span class="text-warning fw-semibold">@Model.PendingListingsCount pending review</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-uppercase text-muted small fw-bold">Live &amp; Upcoming Auctions</span>
+                        <span class="material-symbols-outlined text-warning">gavel</span>
+                    </div>
+                    <div class="d-flex align-items-baseline gap-2 mb-2">
+                        <span class="h3 fw-bold mb-0">@Model.LiveAuctionsCount <span class="fs-6 fw-normal text-muted">Auctions</span></span>
+                        <span class="badge bg-danger-subtle text-danger-emphasis">
+                            <span class="spinner-grow spinner-grow-sm text-danger" style="width:.4rem;height:.4rem;"></span> @Model.LiveNowCount Live
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-between small border-top pt-2">
+                        <span class="text-muted">Active bids: <strong>@Model.TotalActiveBids</strong></span>
+                        <span class="text-warning fw-semibold">@Model.EndingSoonCount ending soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-uppercase text-muted small fw-bold">Veterinarians</span>
+                        <span class="material-symbols-outlined text-secondary">medical_services</span>
+                    </div>
+                    <div class="h3 fw-bold mb-2">@Model.VerifiedVetsCount <span class="fs-6 fw-normal text-muted">Verified</span></div>
+                    <div class="d-flex justify-content-between small border-top pt-2">
+                        <span class="text-warning fw-bold">
+                            <span class="material-symbols-outlined align-middle" style="font-size:14px;">pending</span> @Model.PendingVetsCount Pending Review
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8 d-flex flex-column gap-4">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-warning">pending_actions</span>
+                    <div>
+                        <div class="d-flex align-items-center gap-2">
+                            <h2 class="h6 fw-bold mb-0">Pending Animal Listing Approvals</h2>
+                            <span class="badge bg-warning-subtle text-warning-emphasis">@Model.PendingListingsCount Need Review</span>
+                        </div>
+                        <small class="text-muted">Marketplace moderation queue</small>
+                    </div>
+                </div>
+
+                @if (!Model.PendingListings.Any())
+                {
+                    <div class="card-body text-center text-muted small">No listings waiting for review.</div>
+                }
+                else
+                {
+                    <div class="list-group list-group-flush">
+                        @foreach (var item in Model.PendingListings)
+                        {
+                            <div class="list-group-item">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="@item.ImageUrl" alt="@item.Name" class="rounded" style="width:64px;height:64px;object-fit:cover;" />
+                                        <div>
+                                            <h3 class="h6 fw-bold mb-1">@item.Name</h3>
+                                            <div class="small text-muted mb-1">
+                                                Seller: <strong class="text-dark">@item.SellerName</strong>@(!string.IsNullOrEmpty(item.Location) ? $" ({item.Location})" : "")
+                                                &nbsp;•&nbsp; @item.SpeciesName@(!string.IsNullOrEmpty(item.Breed) ? $" — {item.Breed}" : "")
+                                                @if (item.AgeInMonths.HasValue)
+                                                {
+                                                    <text>&nbsp;•&nbsp; Age: @DisplayHelpers.FormatAge(item.AgeInMonths.Value)</text>
+                                                }
+                                            </div>
+                                            <span class="fw-bold text-primary">@item.Price.ToString("N0") JOD</span>
+                                            <span class="text-muted small ms-2">@TimeAgo(item.CreatedAt)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex gap-2 align-self-end align-self-md-center">
+                                        <form asp-controller="Admin" asp-action="RejectListing" asp-route-id="@item.Id" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">Reject</button>
+                                        </form>
+                                        <form asp-controller="Admin" asp-action="ApproveListing" asp-route-id="@item.Id" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-primary btn-sm">Approve Listing</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-warning">gavel</span>
+                    <div>
+                        <div class="d-flex align-items-center gap-2">
+                            <h2 class="h6 fw-bold mb-0">Pending Auction Approvals</h2>
+                            <span class="badge bg-warning-subtle text-warning-emphasis">@Model.PendingAuctionsCount Need Review</span>
+                        </div>
+                        <small class="text-muted">Auction moderation queue</small>
+                    </div>
+                </div>
+
+                @if (!Model.PendingAuctions.Any())
+                {
+                    <div class="card-body text-center text-muted small">No auctions waiting for review.</div>
+                }
+                else
+                {
+                    <div class="list-group list-group-flush">
+                        @foreach (var auction in Model.PendingAuctions)
+                        {
+                            <div class="list-group-item">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="@auction.ImageUrl" alt="@auction.AnimalName" class="rounded" style="width:64px;height:64px;object-fit:cover;" />
+                                        <div>
+                                            <h3 class="h6 fw-bold mb-1">@auction.Title</h3>
+                                            <div class="small text-muted">
+                                                @auction.LotNumber &nbsp;•&nbsp; @auction.AnimalName
+                                                &nbsp;•&nbsp; Seller: <strong class="text-dark">@auction.SellerName</strong>
+                                            </div>
+                                            <div class="small mt-1">
+                                                <strong class="text-primary">@auction.StartingPrice.ToString("N0") JOD starting price</strong>
+                                                &nbsp;•&nbsp; @auction.StartTime.ToLocalTime().ToString("g") - @auction.EndTime.ToLocalTime().ToString("g")
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex gap-2 align-self-end align-self-md-center">
+                                        <form asp-controller="Admin" asp-action="RejectAuction" asp-route-id="@auction.Id" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" name="reason" class="form-control" placeholder="Reason (optional)" aria-label="Rejection reason" maxlength="1000" />
+                                                <button type="submit" class="btn btn-outline-danger">Reject</button>
+                                            </div>
+                                        </form>
+                                        <form asp-controller="Admin" asp-action="ApproveAuction" asp-route-id="@auction.Id" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-primary btn-sm">Approve Auction</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-secondary">gavel</span>
+                    <div>
+                        <h2 class="h6 fw-bold mb-0">Live Auctions Monitor</h2>
+                        <small class="text-muted">Active auction rooms and closing countdowns</small>
+                    </div>
+                </div>
+
+                @if (!Model.LiveAuctions.Any())
+                {
+                    <div class="card-body text-center text-muted small">No active auctions right now.</div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr class="small text-uppercase text-muted">
+                                    <th>Lot &amp; Animal</th>
+                                    <th>Location</th>
+                                    <th>Current Bid</th>
+                                    <th>Time Remaining</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var auction in Model.LiveAuctions)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img src="@auction.ImageUrl" alt="@auction.Title" class="rounded" style="width:48px;height:48px;object-fit:cover;" />
+                                                <div>
+                                                    <div class="fw-bold">@auction.Title</div>
+                                                    <span class="badge bg-light text-dark border">@auction.LotNumber</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="material-symbols-outlined align-middle text-muted" style="font-size:15px;">location_on</span> @auction.Location
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold text-primary">@auction.CurrentPrice.ToString("N0") JOD</div>
+                                            <small class="text-muted">@auction.BidCount bids placed</small>
+                                        </td>
+                                        <td>
+                                            <span class="font-monospace small fw-bold px-2 py-1 rounded @(auction.Status == "ending-soon" ? "bg-danger-subtle text-danger-emphasis" : "bg-light text-dark")">
+                                                @TimeRemaining(auction.EndTime)
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (auction.Status == "ending-soon")
+                                            {
+                                                <span class="badge bg-danger-subtle text-danger-emphasis">Ending Soon</span>
+                                            }
+                                            else if (auction.Status == "live")
+                                            {
+                                                <span class="badge bg-success-subtle text-success-emphasis">Live</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning-subtle text-warning-emphasis">Upcoming</span>
+                                            }
+                                        </td>
+                                        <td class="text-end">
+                                            <a asp-controller="Auction" asp-action="Details" asp-route-id="@auction.Id" class="btn btn-outline-primary btn-sm">Monitor</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4 d-flex flex-column gap-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">verified</span>
+                        <h3 class="h6 fw-bold mb-0">Veterinarian Verification Queue</h3>
+                    </div>
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis">@Model.VerifiedVetsCount Verified</span>
+                </div>
+
+                @if (!Model.VetQueue.Any())
+                {
+                    <div class="card-body text-center text-muted small">No veterinarians yet.</div>
+                }
+                else
+                {
+                    <div class="list-group list-group-flush">
+                        @foreach (var vet in Model.VetQueue)
+                        {
+                            <div class="list-group-item d-flex justify-content-between align-items-start gap-2">
+                                <div class="d-flex align-items-start gap-2">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0" style="width:40px;height:40px;font-size:12px;">@vet.Initials</div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <span class="fw-bold small">@vet.Name</span>
+                                            @if (vet.IsVerified)
+                                            {
+                                                <span class="material-symbols-outlined text-secondary" style="font-size:14px;" title="Verified">verified</span>
+                                            }
+                                        </div>
+                                        <div class="text-muted small">@vet.Specialty@(!string.IsNullOrEmpty(vet.Location) ? $" • {vet.Location}" : "")</div>
+                                    </div>
+                                </div>
+                                @if (vet.IsVerified)
+                                {
+                                    <span class="badge bg-success-subtle text-success-emphasis flex-shrink-0">Verified</span>
+                                }
+                                else
+                                {
+                                    <form asp-controller="Admin" asp-action="VerifyVet" asp-route-vetProfileId="@vet.VetProfileId" method="post" class="flex-shrink-0">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-primary btn-sm">Verify</button>
+                                    </form>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="card-footer bg-white text-center">
+                    <a asp-controller="Vet" asp-action="Index" class="small text-decoration-none fw-bold">
+                        Open Full Veterinary Directory <span class="material-symbols-outlined align-middle" style="font-size:15px;">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

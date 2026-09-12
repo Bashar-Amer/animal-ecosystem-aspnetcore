@@ -1,0 +1,200 @@
+﻿@using WebApp.ViewModels.MyAnimals
+@model CreateAuctionViewModel
+
+@{
+    ViewData["Title"] = "Create Auction";
+    ViewData["Description"] = "Create a timed livestock auction for an approved animal.";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/my-animals/create-auction.css" />
+}
+
+<main class="create-auction-page">
+    <section class="auction-hero">
+        <div class="container">
+            <div class="auction-breadcrumb">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <span>/</span>
+                <a asp-controller="MyAnimals" asp-action="Index">My Animals</a>
+                <span>/</span>
+                <strong>Create Auction</strong>
+            </div>
+            <div class="auction-hero-content">
+                <div>
+                    <span class="section-eyebrow label-sm">Seller Portal</span>
+                    <h1 class="headline-lg">Submit a Live Auction</h1>
+                    <p class="body-lg mb-0">Set up transparent timed bidding for your approved livestock listing.</p>
+                </div>
+                <div class="auction-trust-badge">
+                    <span class="material-symbols-outlined">verified_user</span>
+                    <div>
+                        <strong>Admin approval required</strong>
+                        <span class="body-sm">Your auction will be reviewed before bidding opens.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section auction-content">
+        <div class="container">
+            <form asp-controller="MyAnimals" asp-action="CreateAuction" asp-route-animalId="@Model.AnimalId" method="post" id="createAuctionForm">
+                @Html.AntiForgeryToken()
+                <input asp-for="AnimalId" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+
+                <div class="auction-layout">
+                    <div class="auction-form-column">
+                        <section class="auction-card">
+                            <div class="auction-card-header">
+                                <div class="auction-step">1</div>
+                                <div>
+                                    <h2 class="title-md">Auction details</h2>
+                                    <p class="body-sm mb-0">Give bidders a clear title and understand the starting price.</p>
+                                </div>
+                            </div>
+                            <div class="auction-card-body">
+                                <div class="field-group">
+                                    <label asp-for="Title" class="field-label">Auction title</label>
+                                    <input asp-for="Title" class="field-input" placeholder="e.g. @Model.AnimalName - Premium Livestock Auction" maxlength="200" />
+                                    <span asp-validation-for="Title" class="field-error"></span>
+                                </div>
+
+                                <div class="form-grid form-grid-2">
+                                    <div class="field-group">
+                                        <label asp-for="StartingPrice" class="field-label">Starting price (JOD)</label>
+                                        <div class="input-with-suffix">
+                                            <input asp-for="StartingPrice" class="field-input" type="number" min="1" step="0.01" data-preview-starting-price />
+                                            <span>JOD</span>
+                                        </div>
+                                        <span asp-validation-for="StartingPrice" class="field-error"></span>
+                                        <span class="field-help">The first accepted bid must meet this amount.</span>
+                                    </div>
+                                    <div class="field-group">
+                                        <label asp-for="MinIncrement" class="field-label">Minimum bid increment</label>
+                                        <div class="input-with-suffix">
+                                            <input asp-for="MinIncrement" class="field-input" type="number" min="0.5" step="0.5" data-preview-increment />
+                                            <span>JOD</span>
+                                        </div>
+                                        <span asp-validation-for="MinIncrement" class="field-error"></span>
+                                        <span class="field-help">The smallest amount bidders can add to the current bid.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="auction-card">
+                            <div class="auction-card-header">
+                                <div class="auction-step">2</div>
+                                <div>
+                                    <h2 class="title-md">Schedule bidding</h2>
+                                    <p class="body-sm mb-0">Choose when the auction opens and when it closes.</p>
+                                </div>
+                            </div>
+                            <div class="auction-card-body">
+                                <div class="form-grid form-grid-2">
+                                    <div class="field-group">
+                                        <label asp-for="StartTime" class="field-label">Start date and time</label>
+                                        <input asp-for="StartTime" class="field-input" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" step="60" />
+                                        <span asp-validation-for="StartTime" class="field-error"></span>
+                                        <span class="field-help">Use your local Jordan time.</span>
+                                    </div>
+                                    <div class="field-group">
+                                        <label asp-for="EndTime" class="field-label">End date and time</label>
+                                        <input asp-for="EndTime" class="field-input" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" step="60" />
+                                        <span asp-validation-for="EndTime" class="field-error"></span>
+                                        <span class="field-help">The auction must end after it starts.</span>
+                                    </div>
+                                </div>
+                                <div class="schedule-note">
+                                    <span class="material-symbols-outlined">schedule</span>
+                                    <span>After submission, an administrator must approve the auction before it becomes visible or accepts bids.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="auction-actions">
+                            <a asp-controller="MyAnimals" asp-action="Index" class="btn btn-outline">Cancel</a>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="material-symbols-outlined">rocket_launch</span>
+                                Submit for Review
+                            </button>
+                        </div>
+                    </div>
+
+                    <aside class="auction-sidebar">
+                        <div class="preview-card">
+                            <div class="preview-header">
+                                <span><span class="status-dot"></span> Auction preview</span>
+                                <span class="label-sm">Pending review</span>
+                            </div>
+                            <div class="preview-image">
+                                <img src="@Model.ImageUrl" alt="@Model.AnimalName" />
+                                <span class="preview-badge">Starting soon</span>
+                            </div>
+                            <div class="preview-body">
+                                <span class="label-sm preview-eyebrow">Timed livestock auction</span>
+                                <h2 class="headline-sm" data-preview-title>@(string.IsNullOrWhiteSpace(Model.Title) ? Model.AnimalName : Model.Title)</h2>
+                                <div class="preview-price">
+                                    <span>Starting price</span>
+                                    <strong><span data-preview-price>@Model.StartingPrice.ToString("N0")</span> JOD</strong>
+                                </div>
+                                <div class="preview-meta">
+                                    <span><span class="material-symbols-outlined">add_circle</span> Min. increment: <strong><span data-preview-min-increment>@Model.MinIncrement.ToString("N0")</span> JOD</strong></span>
+                                    <span><span class="material-symbols-outlined">lock</span> Secure bidding process</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3 class="title-md"><span class="material-symbols-outlined">shield</span> Built for trusted trading</h3>
+                            <ul>
+                                <li><span class="material-symbols-outlined">verified</span><span>Approved listings are shown with their verification status.</span></li>
+                                <li><span class="material-symbols-outlined">gavel</span><span>Bidders can see the current price and bid increment.</span></li>
+                                <li><span class="material-symbols-outlined">history</span><span>Every bid is recorded in the auction history.</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="fee-card">
+                            <div>
+                                <span class="label-sm">Listing fee</span>
+                                <strong>0 JOD</strong>
+                            </div>
+                            <span class="body-sm">Create your auction without an upfront listing fee.</span>
+                        </div>
+                    </aside>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const form = document.getElementById("createAuctionForm");
+            if (!form) return;
+
+            const title = form.querySelector("#Title");
+            const startingPrice = form.querySelector("[data-preview-starting-price]");
+            const increment = form.querySelector("[data-preview-increment]");
+
+            title?.addEventListener("input", () => {
+                const previewTitle = form.querySelector("[data-preview-title]");
+                if (previewTitle) previewTitle.textContent = title.value.trim() || "@Model.AnimalName";
+            });
+
+            startingPrice?.addEventListener("input", () => {
+                const previewPrice = form.querySelector("[data-preview-price]");
+                if (previewPrice) previewPrice.textContent = Number(startingPrice.value || 0).toLocaleString(undefined, { maximumFractionDigits: 2 });
+            });
+
+            increment?.addEventListener("input", () => {
+                const previewIncrement = form.querySelector("[data-preview-min-increment]");
+                if (previewIncrement) previewIncrement.textContent = Number(increment.value || 0).toLocaleString(undefined, { maximumFractionDigits: 2 });
+            });
+        })();
+    </script>
+}

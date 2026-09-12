@@ -2,7 +2,7 @@
 {
     public class HomeAuctionCardViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string LotNumber { get; set; } = "";
         public string ImageUrl { get; set; } = "";
         public string Title { get; set; } = "";

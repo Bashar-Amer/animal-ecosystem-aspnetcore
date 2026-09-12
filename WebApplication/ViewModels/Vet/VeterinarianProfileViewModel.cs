@@ -4,6 +4,7 @@
     {
         public string Slug { get; set; } = "";
         public string Name { get; set; } = "";
+        public string? PhoneNumber { get; set; }
         public string AvatarInitials { get; set; } = "";
         public string CredentialBadge { get; set; } = "";   // "D.V.M."
         public List<ProfileBadgeViewModel> Badges { get; set; } = new();

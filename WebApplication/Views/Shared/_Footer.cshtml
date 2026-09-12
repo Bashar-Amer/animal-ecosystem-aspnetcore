@@ -1,40 +1,73 @@
 ﻿<footer class="footer">
     <div class="container">
-        <div class="row g-4 footer-content">
-            <div class="col-12 col-md-6 col-lg-3 footer-column">
-                <div class="footer-logo d-flex align-items-center gap-2 mb-3">
-                    <div class="logo-icon"><span class="material-symbols-outlined">pets</span></div>
-                    <span class="brand-name">AnimalEcosystem</span>
+        <div class="footer-intro">
+            <div class="footer-brand">
+                <a asp-controller="Home" asp-action="Index" class="footer-logo">
+                    <span class="footer-logo-mark"><span class="material-symbols-outlined">pets</span></span>
+                    <span>
+                        <strong>AnimalEcosystem</strong>
+                        <small>Trusted livestock, connected</small>
+                    </span>
+                </a>
+                <p class="footer-description">A trusted marketplace connecting animal owners, breeders, buyers, and veterinary professionals.</p>
+                <div class="footer-trust">
+                    <span><span class="material-symbols-outlined">verified</span>Verified listings</span>
+                    <span><span class="material-symbols-outlined">health_and_safety</span>Health-first standards</span>
                 </div>
-                <p class="footer-description body-md">Premium livestock trading platform with verified health documentation and secure transactions.</p>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 footer-column">
-                <h4 class="footer-column-title title-sm">Platform</h4>
-                <ul class="footer-links list-unstyled">
-                    <li><a asp-controller="Marketplace" asp-action="Index">Browse Animals</a></li>
-                    <li><a asp-controller="Auctions" asp-action="Index">Live Auctions</a></li>
-                    <li><a asp-controller="Veterinary" asp-action="Index">Veterinary Care</a></li>
+            <div class="footer-cta">
+                <span class="footer-cta-icon material-symbols-outlined">handshake</span>
+                <div>
+                    <strong>Trade with confidence</strong>
+                    <span>Discover verified animals and trusted care.</span>
+                </div>
+                <a asp-controller="Marketplace" asp-action="Index" class="btn btn-secondary btn-sm">Explore marketplace <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4 class="footer-column-title">Explore</h4>
+                <ul class="footer-links">
+                    <li><a asp-controller="Marketplace" asp-action="Index"><span class="material-symbols-outlined">storefront</span>Browse animals</a></li>
+                    <li><a asp-controller="Auction" asp-action="Index"><span class="material-symbols-outlined">gavel</span>Live auctions</a></li>
+                    <li><a asp-controller="Vet" asp-action="Index"><span class="material-symbols-outlined">medical_services</span>Veterinary care</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 footer-column">
-                <h4 class="footer-column-title title-sm">Support</h4>
-                <ul class="footer-links list-unstyled">
-                    <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
-                    <li><a asp-controller="Home" asp-action="Terms">Terms</a></li>
-                    <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+            <div class="footer-column">
+                <h4 class="footer-column-title">Your account</h4>
+                <ul class="footer-links">
+                    <li><a asp-controller="Account" asp-action="Profile"><span class="material-symbols-outlined">person</span>My profile</a></li>
+                    <li><a asp-controller="MyAnimals" asp-action="Index"><span class="material-symbols-outlined">inventory_2</span>My listings</a></li>
+                    <li><a asp-controller="Account" asp-action="Watchlist"><span class="material-symbols-outlined">favorite</span>Watchlist</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 footer-column">
-                <h4 class="footer-column-title title-sm">Trust & Safety</h4>
-                <ul class="footer-links list-unstyled">
-                    <li><a href="#">Buyer Protection</a></li>
-                    <li><a href="#">Health Standards</a></li>
-                    <li><a href="#">Verified Sellers</a></li>
+            <div class="footer-column">
+                <h4 class="footer-column-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a asp-controller="Home" asp-action="Contact"><span class="material-symbols-outlined">support_agent</span>Contact us</a></li>
+                    <li><a asp-controller="Home" asp-action="Terms"><span class="material-symbols-outlined">description</span>Terms of service</a></li>
+                    <li><a asp-controller="Home" asp-action="Privacy"><span class="material-symbols-outlined">lock</span>Privacy policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-column-title">Trust & safety</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><span class="material-symbols-outlined">shield</span>Buyer protection</a></li>
+                    <li><a href="#"><span class="material-symbols-outlined">vaccines</span>Health standards</a></li>
+                    <li><a href="#"><span class="material-symbols-outlined">badge</span>Verified sellers</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom text-center">
-            <p class="copyright body-sm mb-0">&copy; @DateTime.Now.Year AnimalEcosystem. All rights reserved.</p>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; @DateTime.Now.Year AnimalEcosystem. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <span><span class="material-symbols-outlined">language</span>Jordan marketplace</span>
+                <span class="footer-status"><i></i>Platform operational</span>
+            </div>
         </div>
     </div>
 </footer>

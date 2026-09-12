@@ -1,0 +1,46 @@
+﻿.watchlist-page { background:var(--background); min-height:70vh; }
+.watchlist-hero { padding:var(--space-2xl) 0; background:var(--surface-container); border-bottom:1px solid var(--border-divider); }
+.watchlist-hero-content { display:flex; align-items:center; justify-content:space-between; gap:var(--space-lg); }
+.watchlist-hero h1 { color:var(--primary); margin:.35rem 0; }
+.watchlist-hero-stat { display:flex; align-items:center; gap:var(--space-sm); padding:var(--space-md) var(--space-lg); color:var(--secondary); background:var(--surface-container-lowest); border:1px solid var(--border-divider); border-radius:var(--rounded-lg); box-shadow:var(--shadow-level-1); }
+.watchlist-hero-stat > .material-symbols-outlined { font-size:30px; }
+.watchlist-hero-stat div { display:flex; flex-direction:column; }
+.watchlist-hero-stat strong { color:var(--primary); font-size:var(--headline-md-size); line-height:1; }
+.watchlist-hero-stat span:last-child { color:var(--on-surface-variant); font-size:var(--body-sm-size); }
+.watchlist-toolbar { display:flex; align-items:center; justify-content:space-between; gap:var(--space-md); padding:var(--space-sm); margin-bottom:var(--space-xl); background:var(--surface-container-low); border:1px solid var(--border-divider); border-radius:var(--rounded-lg); }
+.watchlist-search { display:flex; align-items:center; gap:var(--space-xs); flex:1; padding:0 var(--space-sm); background:var(--surface-container-lowest); border:1px solid var(--border-divider); border-radius:var(--rounded-full); }
+.watchlist-search span { color:var(--muted-neutral); }
+.watchlist-search input { width:100%; padding:var(--space-sm) 0; border:0; outline:0; background:transparent; color:var(--on-surface); font:inherit; }
+.watchlist-filters { display:flex; gap:var(--space-2xs); }
+.watchlist-filter { display:inline-flex; align-items:center; gap:4px; padding:var(--space-xs) var(--space-sm); border:0; border-radius:var(--rounded-full); color:var(--on-surface-variant); background:transparent; font:inherit; font-size:var(--body-sm-size); cursor:pointer; white-space:nowrap; }
+.watchlist-filter:hover { background:var(--surface-container-high); color:var(--primary); }
+.watchlist-filter.active { color:var(--on-primary); background:var(--primary); }
+.watchlist-filter .material-symbols-outlined { font-size:17px; }
+.watchlist-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:var(--space-lg); }
+.watchlist-card { overflow:hidden; background:var(--surface-container-lowest); border:1px solid var(--border-divider); border-radius:var(--rounded-lg); box-shadow:var(--shadow-level-1); transition:transform var(--transition-fast), box-shadow var(--transition-fast); }
+.watchlist-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-level-2); }
+.watchlist-card-image { position:relative; height:210px; background:var(--surface-container); }
+.watchlist-card-image img { width:100%; height:100%; object-fit:cover; }
+.watchlist-type { position:absolute; top:var(--space-sm); left:var(--space-sm); display:inline-flex; align-items:center; gap:4px; padding:5px 9px; border-radius:var(--rounded-full); font-size:var(--label-sm-size); font-weight:var(--label-sm-weight); box-shadow:var(--shadow-level-1); }
+.watchlist-type .material-symbols-outlined { font-size:15px; }
+.watchlist-type-auction { color:var(--status-ending-text); background:var(--status-ending-bg); }
+.watchlist-type-listing { color:var(--status-verified-text); background:var(--status-verified-bg); }
+.watchlist-remove { position:absolute; top:var(--space-sm); right:var(--space-sm); display:flex; align-items:center; justify-content:center; width:36px; height:36px; color:var(--error); background:rgba(255,255,255,.9); border:0; border-radius:var(--rounded-full); cursor:pointer; box-shadow:var(--shadow-level-1); }
+.watchlist-remove:hover { color:var(--on-error); background:var(--error); }
+.watchlist-remove .material-symbols-outlined { font-size:19px; }
+.watchlist-card-body { display:flex; flex-direction:column; gap:var(--space-xs); padding:var(--space-md); }
+.watchlist-species { color:var(--secondary); text-transform:uppercase; }
+.watchlist-card h2 { color:var(--primary); margin:0; }
+.watchlist-meta { display:flex; flex-wrap:wrap; gap:var(--space-sm); color:var(--on-surface-variant); font-size:var(--body-sm-size); }
+.watchlist-meta span { display:inline-flex; align-items:center; gap:3px; }
+.watchlist-meta .material-symbols-outlined { color:var(--secondary); font-size:16px; }
+.watchlist-price, .watchlist-auction-info { display:flex; align-items:flex-end; justify-content:space-between; gap:var(--space-sm); padding-top:var(--space-sm); margin-top:var(--space-xs); border-top:1px solid var(--border-divider); color:var(--on-surface-variant); font-size:var(--body-sm-size); }
+.watchlist-price strong, .watchlist-auction-info strong { display:block; color:var(--primary); font-size:var(--title-md-size); }
+.watchlist-auction-info > span { color:var(--secondary); }
+.watchlist-card-actions { display:flex; gap:var(--space-xs); margin-top:var(--space-sm); }
+.watchlist-card-actions .btn { flex:1; justify-content:center; }
+.watchlist-empty { padding:var(--space-3xl) var(--space-lg); color:var(--on-surface-variant); text-align:center; background:var(--surface-container-low); border:1px dashed var(--outline-variant); border-radius:var(--rounded-lg); }
+.watchlist-empty > .material-symbols-outlined { color:var(--secondary); font-size:52px; }
+.watchlist-empty h2 { color:var(--primary); margin:var(--space-sm) 0 var(--space-xs); }
+@media (max-width:991px) { .watchlist-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:767px) { .watchlist-hero-content, .watchlist-toolbar { align-items:stretch; flex-direction:column; } .watchlist-filters { justify-content:stretch; } .watchlist-filter { flex:1; justify-content:center; } .watchlist-grid { grid-template-columns:1fr; } }

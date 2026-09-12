@@ -11,7 +11,7 @@
 
         // space-joined into data-specialty / data-breed for the existing filter JS
         public List<string> SpecialtyFilterValues { get; set; } = new();
-        public string RegionFilterValue { get; set; } = "";
+        public string CityFilterValue { get; set; } = "";
         // "now" | "today" | "week"
         public string AvailabilityFilterValue { get; set; } = "";
         public List<string> SpeciesFilterValues { get; set; } = new();

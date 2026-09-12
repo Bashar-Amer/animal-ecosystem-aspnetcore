@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimalEcosystem Jordan - National Livestock Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        @layer base {
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main > :first-child {
+                margin-top: 0 !important;
+            }
+
+            main > :last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#f6ece7", "outline-variant": "#d6c2bb", "surface-bright": "#fff8f5",
+                        "on-surface": "#1f1b18", "surface-container-low": "#fbf2ec", "on-secondary-fixed-variant": "#7d2d00",
+                        "background": "#fff8f5", "on-tertiary-container": "#dda48c", "tertiary-container": "#623927",
+                        "tertiary": "#482413", "primary-fixed-dim": "#f9b89a", "surface-tint": "#84523a",
+                        "on-surface-variant": "#52443e", "primary-container": "#643822", "surface-variant": "#eae1db",
+                        "on-primary-fixed-variant": "#683b25", "on-tertiary-fixed": "#321204", "surface-container-lowest": "#ffffff",
+                        "secondary": "#9d4314", "on-tertiary": "#ffffff", "on-primary-container": "#e0a286",
+                        "on-secondary-fixed": "#360f00", "surface-container-highest": "#eae1db", "secondary-container": "#fe8c58",
+                        "error-container": "#ffdad6", "on-secondary": "#ffffff", "on-error-container": "#93000a",
+                        "outline": "#84746d", "on-tertiary-fixed-variant": "#663c2a", "on-primary-fixed": "#331102",
+                        "primary": "#49230e", "on-secondary-container": "#712800", "primary-fixed": "#ffdbcc",
+                        "inverse-on-surface": "#f8efea", "tertiary-fixed": "#ffdbcd", "surface-container-high": "#f0e6e1",
+                        "inverse-surface": "#342f2c", "on-primary": "#ffffff", "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#ffb596", "error": "#ba1a1a", "surface-dim": "#e1d8d3",
+                        "tertiary-fixed-dim": "#f5b9a0", "surface": "#fff8f5", "on-background": "#1f1b18",
+                        "secondary-fixed": "#ffdbcd", "inverse-primary": "#f9b89a"
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    spacing: {
+                        "gutter-desktop": "1.5rem", "space-lg": "1.5rem", "space-3xl": "4rem", "gutter-mobile": "1rem",
+                        "container-max": "1280px", "space-xl": "2rem", "space-xs": "0.5rem", "space-2xs": "0.25rem",
+                        "space-md": "1rem", "space-2xl": "3rem", "space-sm": "0.75rem"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"],
+                        "display-hero-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"],
+                        "label-numeric-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.005em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-numeric-lg": ["24px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div class="h-20 max-w-[1280px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-sm">
+                <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm">
+                    <span class="material-symbols-outlined text-[24px]">pets</span>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-space-xs">
+                        <span class="font-title-sm text-title-sm text-primary tracking-tight font-bold">AnimalEcosystem</span>
+                        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">JORDAN</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">المملكة الأردنية الهاشمية</span>
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-title-sm font-bold underline decoration-primary-container decoration-2 underline-offset-8">
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Home</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Marketplace</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Auctions</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Veterinary</a>
+                <a class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" href="#">Sell Animal</a>
+                <a class="font-title-sm text-title-sm text-primary font-bold underline decoration-primary-container decoration-2 underline-offset-8 py-space-xs" href="#">My Animals &amp; Listings</a>
+            </nav>
+            <div class="flex items-center gap-space-sm">
+                <a class="hidden sm:inline-flex items-center gap-space-2xs px-space-md py-space-xs font-title-sm text-title-sm bg-secondary text-on-secondary rounded-full hover:bg-on-secondary-container transition-colors shadow-sm" href="#">
+                    <span class="material-symbols-outlined text-[18px]">add_circle</span><span>List Animal</span>
+                </a>
+                <button class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button">
+                    <span class="material-symbols-outlined text-[22px]">notifications</span>
+                    <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-secondary rounded-full ring-2 ring-surface"></span>
+                </button>
+                <div class="relative flex items-center">
+                    <a class="flex items-center gap-space-xs p-space-2xs pr-space-sm rounded-full bg-surface-container hover:bg-surface-container-high transition-colors" href="#">
+                        <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-[13px] shadow-sm">KA</div>
+                        <div class="hidden md:flex flex-col text-left">
+                            <span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Khalid Al-Rashid</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Al-Rashid Awassi Estate</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full pt-20 bg-background min-h-screen">
+        <div class="flex flex-col w-full">
+            <section class="w-full bg-surface-container-low py-space-xs">
+                <div class="max-w-[1280px] mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+                    <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+                        <a class="hover:text-primary transition-colors" href="#">Home</a>
+                        <span>/</span>
+                        <span class="text-secondary font-semibold">Seller Operations Portal</span>
+                        <span>/</span>
+                        <span class="text-on-surface font-bold">Al-Rashid Awassi Estate (إعلاناتي ومواشيّ)</span>
+                    </div>
+                    <div class="flex items-center gap-space-sm">
+                        <span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-tertiary">
+                            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                            <span>Escrow Bridge Connected: <strong>CliQ / Central Bank of Jordan</strong></span>
+                        </span>
+                        <span class="hidden md:inline text-on-surface-variant font-label-sm text-label-sm">Ministry Reg: #JO-BR-4401</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full bg-surface-container py-space-xl">
+                <div class="max-w-[1280px] mx-auto px-gutter-desktop">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-xl">
+                        <div class="flex items-start gap-space-md">
+                            <div class="relative">
+                                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-primary-container text-on-primary-container font-headline-lg text-headline-lg flex items-center justify-center font-bold shadow-md">KA</div>
+                                <span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+                                </span>
+                            </div>
+                            <div class="flex flex-col gap-space-2xs min-w-0">
+                                <div class="flex flex-wrap items-center gap-space-xs">
+                                    <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-extrabold">Khalid Al-Rashid</h1>
+                                    <span class="px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase font-bold">مربي معتمد • Certified Breeder</span>
+                                    <span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span> 4.9 (42 reviews)
+                                    </span>
+                                </div>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Al-Rashid Awassi Estate • Sahab / Amman Agricultural Basin • Member since 2022</p>
+                                <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 pt-1 font-body-sm text-body-sm text-outline">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[16px] text-secondary">agriculture</span> Awassi Pedigree Studs &amp; Damascus Dairy Goats
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span> CBJ Escrow Tier-1 Merchant
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[16px] text-secondary">health_and_safety</span> Resident Vet: Dr. Ahmed Ali (JVMA #2091)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-space-sm">
+                            <a class="inline-flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm transition-all shadow-md" href="#">
+                                <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                                <span>+ List New Animal</span>
+                            </a>
+                            <button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-surface-container-lowest text-primary hover:bg-surface-container-high font-title-sm text-title-sm transition-all shadow-sm" type="button">
+                                <span class="material-symbols-outlined text-[18px] text-secondary">clinical_notes</span>
+                                <span>Schedule Vet Inspection</span>
+                            </button>
+                            <button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-all shadow-sm" type="button">
+                                <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+                                <span>كشف حساب (Statement)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm mt-space-xl">
+                        <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Active Inventory</span>
+                                <span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined text-[18px]">pets</span>
+                                </span>
+                            </div>
+                            <div class="mt-space-xs">
+                                <span class="font-label-numeric-lg text-label-numeric-lg text-on-surface font-extrabold">9 Head</span>
+                                <div class="font-body-sm text-body-sm text-outline flex items-center gap-1 mt-0.5">
+                                    <span>5 Fixed Marketplace</span><span>•</span><span>4 In Live Auctions</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Active Catalog Value</span>
+                                <span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+                                    <span class="material-symbols-outlined text-[18px]">payments</span>
+                                </span>
+                            </div>
+                            <div class="mt-space-xs">
+                                <span class="font-label-numeric-lg text-label-numeric-lg text-primary font-extrabold">14,870 JOD</span>
+                                <div class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-0.5 font-medium">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    <span>+18.4% vs last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">CBJ Escrow In-Transit</span>
+                                <span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+                                    <span class="material-symbols-outlined text-[18px]">shield_lock</span>
+                                </span>
+                            </div>
+                            <div class="mt-space-xs">
+                                <span class="font-label-numeric-lg text-label-numeric-lg text-on-surface font-extrabold">4,820 JOD</span>
+                                <div class="font-body-sm text-body-sm text-outline flex items-center gap-1 mt-0.5">
+                                    <span>2 Deposits Pending Handover</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Pending Tasks</span>
+                                <span class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+                                    <span class="material-symbols-outlined text-[18px]">pending_actions</span>
+                                </span>
+                            </div>
+                            <div class="mt-space-xs">
+                                <span class="font-label-numeric-lg text-label-numeric-lg text-error font-extrabold">2 Required</span>
+                                <div class="font-body-sm text-body-sm text-outline flex items-center gap-1 mt-0.5">
+                                    <span>1 Vet signoff, 1 Dispatch OTP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full py-space-2xl">
+                <div class="max-w-[1280px] mx-auto px-gutter-desktop">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+                        <div class="lg:col-span-8 flex flex-col gap-space-xl">
+                            <div class="flex flex-col gap-space-md p-space-md rounded-2xl bg-surface-container-low shadow-sm">
+                                <div class="flex items-center gap-space-2xs overflow-x-auto pb-1 text-nowrap">
+                                    <button class="px-space-md py-space-xs rounded-full bg-primary text-on-primary font-title-sm text-title-sm font-semibold shadow-sm flex items-center gap-1.5 transition-all" id="tab-all" type="button">
+                                        <span>All Listings</span>
+                                        <span class="px-1.5 py-0.2 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">9</span>
+                                    </button>
+                                    <button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-title-sm text-title-sm transition-all flex items-center gap-1.5" id="tab-auctions" type="button">
+                                        <span>Live Auctions</span>
+                                        <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-bold">4</span>
+                                    </button>
+                                    <button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-title-sm text-title-sm transition-all flex items-center gap-1.5" id="tab-marketplace" type="button">
+                                        <span>Fixed Marketplace</span>
+                                        <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">5</span>
+                                    </button>
+                                    <button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-title-sm text-title-sm transition-all flex items-center gap-1.5" id="tab-vet" type="button">
+                                        <span>Vet Review</span>
+                                        <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-outline font-label-sm text-label-sm">2</span>
+                                    </button>
+                                    <button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-title-sm text-title-sm transition-all flex items-center gap-1.5" id="tab-completed" type="button">
+                                        <span>Completed</span>
+                                        <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-outline font-label-sm text-label-sm">14</span>
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-12 gap-space-xs pt-space-xs">
+                                    <div class="sm:col-span-7 relative">
+                                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-outline">search</span>
+                                        <input class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none shadow-sm" id="listing-search" placeholder="Search by ear tag (#JO-AW-9844), breed, lot # or name..." type="text">
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <select class="w-full px-3 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none shadow-sm">
+                                            <option value="all">All Species (كل الفصائل)</option>
+                                            <option value="sheep">Awassi Sheep (نعاج وخراف)</option>
+                                            <option value="goats">Damascus Goats (ماعز شامي)</option>
+                                            <option value="horses">Arabian Horses (خيول أصيلة)</option>
+                                            <option value="cattle">Dairy Cattle (أبقار هولشتاين)</option>
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <select class="w-full px-2.5 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none shadow-sm">
+                                            <option>Newest First</option>
+                                            <option>Expiring Soon</option>
+                                            <option>Highest Bid</option>
+                                            <option>Most Inquiries</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="w-3 h-3 rounded-full bg-secondary animate-ping"></span>
+                                        <h2 class="font-headline-sm text-headline-sm text-primary font-bold">Active Live Auctions (مزادات مباشرة)</h2>
+                                        <span class="px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant font-bold">4 Lots</span>
+                                    </div>
+                                    <a class="font-label-md text-label-md text-secondary hover:underline font-semibold flex items-center gap-1" href="#">
+                                        <span>View Public Auction Floor</span>
+                                        <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                                    </a>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg transition-transform hover:-translate-y-0.5">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Damascus Shami Goat Stud" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-error text-on-error font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="material-symbols-outlined text-[14px] animate-spin">timelapse</span>
+                                            <span>02h : 18m : 45s</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Ear Tag: JO-GT-7721</span>
+                                            <span>Lot #1048</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Shami Damascus Grand Champion Line</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Damascus Goat Buck (فحل شامي نخب أول)</h3>
+                                                </div>
+                                                <span class="px-space-xs py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">14 Active Bids</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Age: <strong>2 Years</strong></span><span>•</span><span>Sex: <strong>Intact Male Stud</strong></span><span>•</span>
+                                                <span class="flex items-center gap-1 text-primary">
+                                                    <span class="material-symbols-outlined text-[16px] text-secondary">verified</span> Ministry Stamped &amp; Brucellosis Clear
+                                                </span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-space-sm">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Current High Bid</span>
+                                                    <div class="flex items-baseline gap-1.5">
+                                                        <span class="font-headline-md text-headline-md text-primary font-black">1,850 JOD</span>
+                                                        <span class="font-body-sm text-body-sm text-secondary font-bold">(Reserve Exceeded)</span>
+                                                    </div>
+                                                    <span class="font-label-sm text-label-sm text-outline">Top Bidder: Abu Omar Al-Majali (Madaba)</span>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Escrow Protection</span>
+                                                    <div class="flex items-center gap-1 text-secondary font-label-md text-label-md font-bold">
+                                                        <span class="material-symbols-outlined text-[16px]">lock</span>
+                                                        <span>1,850 JOD Vaulted (CBJ)</span>
+                                                    </div>
+                                                    <span class="font-label-sm text-label-sm text-outline">Pre-Authorized Settlement</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <div class="flex items-center gap-space-xs">
+                                                <button class="px-space-md py-2 rounded-xl bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+                                                    <span class="material-symbols-outlined text-[18px]">gavel</span>
+                                                    <span>Monitor Live Floor</span>
+                                                </button>
+                                                <button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+                                                    <span class="material-symbols-outlined text-[18px]">chat</span>
+                                                    <span>Contact High Bidder</span>
+                                                </button>
+                                            </div>
+                                            <button class="p-2 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface" title="Share lot link" type="button">
+                                                <span class="material-symbols-outlined text-[20px]">share</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg transition-transform hover:-translate-y-0.5">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Herd Batch Awassi Ewes" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                            <span>01h : 18m : 00s</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Batch #JO-AW-BATCH-4</span>
+                                            <span>Lot #1052</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Flock Parcel • Prime Breeders</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Flock of 30 Awassi Breeding Ewes (قطيع نعاج عواسي)</h3>
+                                                </div>
+                                                <span class="px-space-xs py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">22 Bids Submitted</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Quantity: <strong>30 Head</strong></span><span>•</span><span>Avg Weight: <strong>55-62 kg</strong></span><span>•</span>
+                                                <span class="text-secondary font-semibold">Vaccinated: Sheep Pox &amp; Enterotoxemia</span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-space-sm">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Leading Batch Bid</span>
+                                                    <div class="flex items-baseline gap-1.5">
+                                                        <span class="font-headline-md text-headline-md text-primary font-black">9,600 JOD</span>
+                                                        <span class="font-body-sm text-body-sm text-outline">(320 JOD / Head)</span>
+                                                    </div>
+                                                    <span class="font-label-sm text-label-sm text-outline">Leading Bidder: Badia Pastures Agriculture Coop (Mafraq)</span>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Transit Protocol</span>
+                                                    <span class="block font-label-md text-label-md text-on-surface font-bold">Ministry Movement Permit Ready</span>
+                                                    <span class="font-label-sm text-label-sm text-secondary font-semibold">Escrow Released on Quarantine Gate Clear</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <div class="flex items-center gap-space-xs">
+                                                <button class="px-space-md py-2 rounded-xl bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+                                                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                                    <span>Live Bid Room</span>
+                                                </button>
+                                                <button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+                                                    <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                                                    <span>Audit Lot Manifest</span>
+                                                </button>
+                                            </div>
+                                            <span class="font-label-sm text-label-sm text-outline">Min Increment: +100 JOD</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg transition-transform hover:-translate-y-0.5">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Boer Goat Buck" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">hourglass_top</span>
+                                            <span>14h : 22m remaining</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Ear Tag: JO-GT-8812</span>
+                                            <span>Lot #1045</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Meat Stock Stud</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Boer Goat Buck (تيس بور جنوب أفريقي أصيل)</h3>
+                                                </div>
+                                                <span class="px-space-xs py-1 rounded-full bg-surface-container text-outline font-label-sm text-label-sm font-semibold">0 Bids Yet • 18 Watching</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Age: <strong>2 Years</strong></span><span>•</span><span>Weight: <strong>78 kg</strong></span><span>•</span>
+                                                <span class="text-primary font-medium">Veterinarian: Certified Healthy</span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-space-sm">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Starting Reserve</span>
+                                                    <div class="flex items-baseline gap-1.5">
+                                                        <span class="font-headline-md text-headline-md text-on-surface font-black">250 JOD</span>
+                                                        <span class="font-body-sm text-body-sm text-outline">(Reserve: 250 JOD)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center gap-space-xs">
+                                                    <button class="px-space-sm py-1.5 rounded-lg bg-surface-container-highest text-primary hover:bg-surface-dim font-label-md text-label-md font-bold transition-colors" type="button">Lower Reserve by 20 JOD</button>
+                                                    <button class="px-space-sm py-1.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md font-bold transition-colors" type="button">Boost / Feature Listing</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#">View Live Public Page</a>
+                                            <button class="font-label-md text-label-md text-error hover:underline" type="button">End Auction Early (Withdraw)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-space-md pt-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-[24px] text-primary">storefront</span>
+                                        <h2 class="font-headline-sm text-headline-sm text-primary font-bold">Fixed-Price Marketplace (سوق البيع المباشر)</h2>
+                                        <span class="px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant font-bold">5 Listings</span>
+                                    </div>
+                                    <span class="font-body-sm text-body-sm text-outline hidden sm:inline">Escrow-backed direct inquiries</span>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Arabian Stallion Najm" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Wl2Lz8_lqaftpfQQiIRh4zRzgznUMDYT9cFdWkkAaeKaw4IuTyMjtdQfMoCWmmzO_3F9uMhYuxarAzqsdTA4j9fq2caaU2dpJX265FIh3qvYQ-acVnqEIYMBU7NSBMiKmMcm4n1fg8UvmFhxzBovx4nWSzMbtnWonB50KlbF1PVpNwgpcHtSQJEfchSdGfeZDV5m_EF_trSKxaQ8fHcXr29kgIlEZ1q8yEPFKk-o8W3tzKfNlOgwUoJg">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="material-symbols-outlined text-[14px]">format_image_left</span>
+                                            <span>Escrow In-Review</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>WAHO: JOR-EQ-2041</span>
+                                            <span>#MP-9822</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Arabian Equine Registry • WAHO Certified</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Purebred Arabian Stallion "Najm" (حصان عربي أصيل)</h3>
+                                                </div>
+                                                <span class="font-headline-sm text-headline-sm text-primary font-black">5,000 JOD</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Age: <strong>4 Years</strong></span><span>•</span><span>Color: <strong>Chestnut Bay</strong></span><span>•</span><span>Pedigree: <strong>Saklawi Strain</strong></span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container-high flex items-start gap-space-sm">
+                                                <span class="material-symbols-outlined text-[20px] text-secondary mt-0.5">account_balance_wallet</span>
+                                                <div class="flex-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="font-title-sm text-title-sm text-on-surface font-bold">5,000 JOD Deposited into Escrow Vault</span>
+                                                        <span class="px-2 py-0.5 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm font-bold">Step 2 of 3</span>
+                                                    </div>
+                                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Buyer <strong>Tariq Al-Husseini (Amman)</strong> has funded escrow. Awaiting Pre-Purchase Veterinary Exam by <strong>Dr. Ahmed Ali</strong> before transport clearance.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <div class="flex items-center gap-space-xs">
+                                                <button class="px-space-md py-2 rounded-xl bg-secondary text-on-secondary hover:bg-on-secondary-container font-title-sm text-title-sm transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+                                                    <span class="material-symbols-outlined text-[18px]">verified</span>
+                                                    <span>Review Escrow &amp; Handover Docs</span>
+                                                </button>
+                                                <button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">Message Buyer</button>
+                                            </div>
+                                            <span class="font-label-sm text-label-sm text-outline">Inspection window: 36 hours remaining</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Awassi Ram Stud" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                            <span>Active • Live</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Tag: JO-AW-9844</span>
+                                            <span>#MP-9844</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Al-Rashid Bloodline Stud</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Purebred Awassi Ram (كبش عواسي نخب تأسيس)</h3>
+                                                </div>
+                                                <span class="font-headline-sm text-headline-sm text-primary font-black">380 JOD</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Age: <strong>2 Years</strong></span><span>•</span><span>Status: <strong>Proven Stud</strong></span><span>•</span><span>Views: <strong>342</strong></span><span>•</span><span>Inquiries: <strong>8 active chats</strong></span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container flex items-center justify-between text-body-sm font-body-sm">
+                                                <span class="text-on-surface-variant">Handover: Farm Pickup (Amman Basin) or Refrigerated Livestock Carrier</span>
+                                                <span class="text-primary font-semibold flex items-center gap-1">
+                                                    <span class="material-symbols-outlined text-[16px] text-secondary">verified</span> Ministry Veterinary Card Valid
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <div class="flex items-center gap-space-xs">
+                                                <button class="px-space-md py-2 rounded-xl bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm transition-colors shadow-sm" type="button">Edit Listing Details</button>
+                                                <button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">Mark as Reserved</button>
+                                            </div>
+                                            <button class="font-label-md text-label-md text-outline hover:text-on-surface" type="button">Pause Listing</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Holstein Dairy Cow" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1V2RqIbv7jH6l5gN5UEBIVvsBjui57SKL2kKqS6-8UQI88CnoP86WabWlRCV-WL5ao5-pp_CtxdF66GDzJVAG2Nd0QmajvLm3kIPgQqnRqeMykxSZeBd13Y1LGZLqZE-mEmzG7RlTTtyrajqW8T1XcwaTfxNJ1TzPo-SIzewr9nNNQm6wotKvS3zb8cfGZB0-E25l2Ui4HUWZ_vGZvNcHobUenywjAKeL6QTLhXQmrGqmAy-P33gEO6CFw">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                            <span>Active • Live</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Tag: JO-CT-1090</span>
+                                            <span>#MP-9811</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Certified Dairy Yield (28L / Day)</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Holstein Dairy Cow (بقرة حلوب هولشتاين فريزيان)</h3>
+                                                </div>
+                                                <span class="font-headline-sm text-headline-sm text-primary font-black">1,200 JOD</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+                                                <span>Age: <strong>3 Years</strong></span><span>•</span><span>Lactation: <strong>2nd Calving Cycle</strong></span><span>•</span><span>TB &amp; Brucellosis: <strong>Certified Negative</strong></span>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container flex items-center justify-between text-body-sm font-body-sm">
+                                                <span class="text-on-surface-variant">Milk recording log verified by Ministry of Agriculture inspectors (Feb 2025)</span>
+                                                <span class="text-secondary font-bold">3 Inquiries Pending</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <div class="flex items-center gap-space-xs">
+                                                <button class="px-space-md py-2 rounded-xl bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm transition-colors shadow-sm" type="button">Manage Listing</button>
+                                                <button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">Update Price</button>
+                                            </div>
+                                            <button class="font-label-md text-label-md text-secondary font-semibold hover:underline" type="button">Download Health Record PDF</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row gap-space-lg">
+                                    <div class="md:w-56 h-48 sm:h-52 md:h-auto rounded-xl overflow-hidden bg-surface-container relative shrink-0">
+                                        <img alt="Awassi Ewe with Lamb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow">
+                                        <div class="absolute top-3 left-3 px-space-xs py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="material-symbols-outlined text-[14px]">local_offer</span>
+                                            <span>Offer Received</span>
+                                        </div>
+                                        <div class="absolute bottom-2 left-2 right-2 px-space-xs py-0.5 rounded bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface font-label-sm text-label-sm flex items-center justify-between">
+                                            <span>Tag: JO-AW-4029</span>
+                                            <span>#MP-9840</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex flex-col justify-between gap-space-sm">
+                                        <div>
+                                            <div class="flex flex-wrap items-center justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Lactating Ewe + Ram Lamb</span>
+                                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">Awassi Ewe with Lamb (نعجة عواسي والدة مع طليها)</h3>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="font-headline-sm text-headline-sm text-primary font-black">320 JOD</span>
+                                                    <span class="block font-label-sm text-label-sm text-outline">Asking Price</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-xs">
+                                                <div>
+                                                    <span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Incoming Cash Offer via CliQ</span>
+                                                    <div class="font-title-sm text-title-sm text-on-surface font-extrabold">310 JOD Offered by Tariq Haddadin (Zarqa)</div>
+                                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Buyer escrow deposit ready. 10 JOD below asking price.</span>
+                                                </div>
+                                                <div class="flex items-center gap-space-xs shrink-0">
+                                                    <button class="px-space-md py-1.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md font-bold transition-colors" type="button">Accept 310 JOD</button>
+                                                    <button class="px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">Counter</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                                            <span class="font-body-sm text-body-sm text-outline">Offer expires in 11 hours</span>
+                                            <a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#">View Buyer Verification Record</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="lg:col-span-4 flex flex-col gap-space-lg w-full">
+                            <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col gap-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-[24px] text-secondary">account_balance</span>
+                                        <h3 class="font-title-md text-title-md text-primary font-bold">صندوق الضمان المالي (Escrow)</h3>
+                                    </div>
+                                    <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-bold">CBJ Regulated</span>
+                                </div>
+                                <div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-space-xs">
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Available for Instant Payout</span>
+                                    <div class="flex items-baseline justify-between">
+                                        <span class="font-display-hero-mobile text-display-hero-mobile text-primary font-black">3,450 JOD</span>
+                                        <span class="font-label-sm text-label-sm text-secondary font-bold">Ready</span>
+                                    </div>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Transfer via CliQ to Bank of Jordan (IBAN ending in •••• 8821)</p>
+                                    <button class="mt-space-xs w-full py-2.5 rounded-xl bg-primary text-on-primary hover:bg-tertiary font-title-sm text-title-sm font-semibold transition-colors shadow-sm flex items-center justify-center gap-1.5" type="button">
+                                        <span class="material-symbols-outlined text-[18px]">send_money</span>
+                                        <span>Withdraw to Bank Account</span>
+                                    </button>
+                                </div>
+                                <div class="flex flex-col gap-space-xs text-body-sm font-body-sm">
+                                    <div class="flex items-center justify-between py-1 text-on-surface-variant">
+                                        <span>In-Transit Locked Escrow</span>
+                                        <span class="font-bold text-on-surface">4,820 JOD</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 text-on-surface-variant">
+                                        <span>Total Settled (All-Time)</span>
+                                        <span class="font-bold text-on-surface">48,250 JOD</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 text-on-surface-variant">
+                                        <span>Platform Commission Rate</span>
+                                        <span class="font-semibold text-secondary">1.5% (Tier-1 Breeder)</span>
+                                    </div>
+                                </div>
+                                <div class="pt-space-xs">
+                                    <span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Recent Activity</span>
+                                    <div class="flex flex-col gap-space-xs mt-space-xs">
+                                        <div class="p-space-xs rounded-lg bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold text-on-surface">Lot #1048 Bid Deposit</span>
+                                                <span class="font-label-sm text-label-sm text-outline">Abu Omar • 28 mins ago</span>
+                                            </div>
+                                            <span class="font-bold text-secondary">+1,850 JOD</span>
+                                        </div>
+                                        <div class="p-space-xs rounded-lg bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold text-on-surface">Payout Handover #TX-9842</span>
+                                                <span class="font-label-sm text-label-sm text-outline">Transferred via CliQ</span>
+                                            </div>
+                                            <span class="font-bold text-primary">-1,200 JOD</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col gap-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-[24px] text-secondary">medical_services</span>
+                                        <h3 class="font-title-md text-title-md text-primary font-bold">الرعاية والفحص البيطري</h3>
+                                    </div>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                                </div>
+                                <div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-space-xs">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-sm text-label-sm uppercase font-bold text-secondary">Upcoming On-Farm Visit</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-primary font-bold">Today, 09:30 AM</span>
+                                    </div>
+                                    <h4 class="font-title-sm text-title-sm text-on-surface font-extrabold mt-1">Dr. Ahmed Ali (د. أحمد علي)</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Jordan Veterinary Medical Association License #2091. Scheduled for: <strong>Flock Brucellosis Follow-up &amp; WAHO Equine Pre-Purchase Exam.</strong></p>
+                                    <div class="flex items-center gap-space-xs mt-space-xs">
+                                        <a class="flex-1 py-2 rounded-lg bg-primary text-on-primary hover:bg-tertiary font-label-md text-label-md font-semibold text-center transition-colors shadow-sm" href="#">View Appointment Details</a>
+                                        <button class="px-space-sm py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors" title="Call Veterinarian" type="button">
+                                            <span class="material-symbols-outlined text-[18px]">call</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-space-xs">
+                                    <span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Active Certificates</span>
+                                    <div class="flex items-start gap-space-xs p-space-xs rounded-lg bg-surface-container-low">
+                                        <span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">verified_user</span>
+                                        <div class="flex-1">
+                                            <span class="font-label-md text-label-md font-bold text-on-surface block">MOA Brucella Free Quarantine Zone</span>
+                                            <span class="font-label-sm text-label-sm text-outline">Valid until 15 Nov 2025 • Amman District</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-space-xs p-space-xs rounded-lg bg-surface-container-low">
+                                        <span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">verified_user</span>
+                                        <div class="flex-1">
+                                            <span class="font-label-md text-label-md font-bold text-on-surface block">Awassi Genetic Pedigree Stamp</span>
+                                            <span class="font-label-sm text-label-sm text-outline">Certified Jordanian Pure Awassi Bloodline #JO-AW-2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="w-full py-2 rounded-xl bg-surface-container text-primary hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1" type="button">
+                                    <span class="material-symbols-outlined text-[18px]">add</span>
+                                    <span>Request New Veterinary Dispatch</span>
+                                </button>
+                            </div>
+
+                            <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-md flex flex-col gap-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-[24px] text-primary">local_shipping</span>
+                                        <h3 class="font-title-md text-title-md text-primary font-bold">بوابة المزرعة والنقل والشحن</h3>
+                                    </div>
+                                    <span class="font-label-sm text-label-sm text-secondary font-bold">Ready</span>
+                                </div>
+                                <div class="w-full h-36 rounded-xl bg-cover bg-center relative overflow-hidden shadow-inner flex items-end p-space-xs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTDISSMz5EVUUECrdPsekqv_4Wj5JISRouh0G8enw0Om98olJ5mAn5CH6o7Wsa9CHhYuthmu0QBP1KPSojSqcJpvaBRWIpFPm859EWW8BUZ-_mdCApBglEI49ZvZ4yk98TOVlSF3gbCg_4V6I24D3HZMTJzSykTgP7cikHKiichAn-OY4CGElvNPH13MobYOkiJddPdHHP6KajYA-At4szVef5rlNQTdGA0i4ftOyGOok75YwHUnMe')">
+                                    <div class="w-full px-space-xs py-1 rounded-lg bg-surface/90 backdrop-blur-md text-on-surface flex items-center justify-between text-label-sm font-label-sm">
+                                        <span class="font-semibold truncate">Al-Rashid Estate Gate #2, Sahab</span>
+                                        <span class="text-secondary font-bold shrink-0">Open 06:00 - 18:00</span>
+                                    </div>
+                                </div>
+                                <div class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-1">
+                                    <p>Certified pickup loading ramp available for multi-deck sheep carriers and equine trailers.</p>
+                                    <span class="text-primary font-medium">Permit #MOA-TRAN-391 approved for inter-governorate transit.</span>
+                                </div>
+                            </div>
+
+                            <div class="p-space-lg rounded-2xl bg-primary-container text-on-primary-container shadow-md flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-xs">
+                                    <span class="material-symbols-outlined text-[20px] text-secondary-fixed">lightbulb</span>
+                                    <span class="font-title-sm text-title-sm text-surface-bright font-bold">نصيحة المنصة للمربين</span>
+                                </div>
+                                <p class="font-body-sm text-body-sm text-primary-fixed leading-relaxed">Listings featuring 360° walkaround videos and certified Ministry ear tag close-ups receive <strong>3.4x more verified bids</strong> during live auctions.</p>
+                                <a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary-fixed hover:underline font-bold mt-1" href="#">
+                                    <span>Add video to Boer Goat Buck #JO-GT-8812</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                </a>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <script>
+                (function () {
+                    const searchInput = document.getElementById('listing-search');
+                    if (searchInput) {
+                        searchInput.addEventListener('input', function (e) {
+                            const val = e.target.value.toLowerCase();
+                            const cards = document.querySelectorAll('.lg\\:col-span-8 .rounded-2xl.bg-surface-container-lowest');
+                            cards.forEach(card => {
+                                const txt = card.innerText.toLowerCase();
+                                card.style.display = txt.includes(val) ? 'flex' : 'none';
+                            });
+                        });
+                    }
+                })();
+            </script>
+        </div>
+    </main>
+
+    <footer class="w-full bg-[#120F0D] text-white pt-space-3xl pb-space-2xl">
+        <div class="max-w-[1280px] mx-auto px-gutter-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl pb-space-2xl">
+                <div class="lg:col-span-2 flex flex-col gap-space-md">
+                    <div class="flex items-center gap-space-sm">
+                        <div class="w-10 h-10 rounded-xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+                            <span class="material-symbols-outlined text-[24px]">pets</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-title-md text-title-md text-surface-bright tracking-tight">Kingdom Veterinary &amp; Livestock Exchange</span>
+                            <span class="font-body-sm text-body-sm text-outline-variant">Verified Regional Agricultural &amp; Equine Trading</span>
+                        </div>
+                    </div>
+                    <p class="font-body-md text-body-md text-[#A8A29E] max-w-md">Jordan's premier regulated digital livestock auction and veterinary certified marketplace. Empowering farmers, breeders, and equine estates across the Hashemite Kingdom.</p>
+                    <div class="flex items-center gap-space-xs text-[#A8A29E] font-label-sm text-label-sm">
+                        <span class="material-symbols-outlined text-[16px] text-secondary-container">verified_user</span>
+                        <span>Hashemite Kingdom of Jordan Ministry of Agriculture Compliant Registry #JO-4491</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">Platform</span>
+                    <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-[#A8A29E]">
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Browse Animals</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Sell Animal</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">My Animals &amp; Listings (إعلاناتي ومواشيّ)</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Live Auctions</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Veterinary Care</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Rare Species</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">Compliance &amp; Support</span>
+                    <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-[#A8A29E]">
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Contact Us</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Ministry of Agriculture Compliance</a></li>
+                        <li><a class="hover:text-surface-bright transition-colors" href="#">Health Certification Standards</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-space-md">
+                    <span class="font-title-sm text-title-sm text-surface-bright uppercase tracking-wider">National Exchange</span>
+                    <div class="p-space-md rounded-xl bg-[#1F1B18] flex flex-col gap-space-2xs">
+                        <span class="font-label-sm text-label-sm text-secondary-container uppercase tracking-widest font-bold">Currency &amp; Trading</span>
+                        <span class="font-headline-sm text-headline-sm text-surface-bright font-bold">JOD (دينار أردني)</span>
+                        <p class="font-body-sm text-body-sm text-[#A8A29E]">Escrow-backed transactions with immediate veterinary inspection checkpoints.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md">
+                <div class="flex flex-wrap items-center justify-center gap-x-space-sm gap-y-space-2xs text-[#A8A29E] font-label-md text-label-md">
+                    <span class="text-surface-bright font-bold">Governorate Coverage:</span>
+                    <span>Amman</span><span class="text-tertiary-container">•</span>
+                    <span>Zarqa</span><span class="text-tertiary-container">•</span>
+                    <span>Irbid</span><span class="text-tertiary-container">•</span>
+                    <span>Mafraq</span><span class="text-tertiary-container">•</span>
+                    <span>Aqaba</span><span class="text-tertiary-container">•</span>
+                    <span>Balqa</span><span class="text-tertiary-container">•</span>
+                    <span>Karak</span>
+                </div>
+                <div class="font-body-sm text-body-sm text-[#A8A29E]">© 2025 AnimalEcosystem Jordan. Kingdom Veterinary &amp; Livestock Exchange. Ministry of Agriculture Compliant. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

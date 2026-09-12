@@ -1,0 +1,527 @@
+.create-auction-page {
+    background: var(--background);
+}
+
+.auction-hero {
+    padding: var(--space-xl) 0;
+    background: var(--surface-container-low);
+    border-bottom: 1px solid var(--border-divider);
+}
+
+.auction-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    color: var(--muted-neutral);
+    font-size: var(--body-sm-size);
+}
+
+.auction-breadcrumb a {
+    color: var(--on-surface-variant);
+    text-decoration: none;
+}
+
+.auction-breadcrumb a:hover {
+    color: var(--primary);
+}
+
+.auction-breadcrumb strong {
+    color: var(--primary);
+}
+
+.auction-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+}
+
+.auction-hero h1 {
+    margin: var(--space-xs) 0;
+    color: var(--primary);
+}
+
+.auction-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-width: 270px;
+    padding: var(--space-md);
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-level-1);
+}
+
+.auction-trust-badge > .material-symbols-outlined {
+    color: var(--status-verified-icon);
+    font-size: 28px;
+}
+
+.auction-trust-badge strong,
+.auction-trust-badge span {
+    display: block;
+}
+
+.auction-trust-badge strong {
+    color: var(--on-surface);
+    font-size: var(--body-md-size);
+}
+
+.auction-trust-badge .body-sm {
+    color: var(--muted-neutral);
+}
+
+.auction-content {
+    padding-top: var(--space-2xl);
+}
+
+.auction-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.auction-form-column,
+.auction-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.auction-sidebar {
+    position: sticky;
+    top: var(--space-lg);
+}
+
+.auction-card,
+.preview-card,
+.info-card,
+.fee-card {
+    overflow: hidden;
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-level-1);
+}
+
+.auction-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-divider);
+    background: var(--surface-container-low);
+}
+
+.auction-card-header h2 {
+    margin: 0 0 var(--space-2xs);
+    color: var(--primary);
+}
+
+.auction-step {
+    display: inline-flex;
+    flex: 0 0 32px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--on-primary-container);
+    background: var(--primary-container);
+    border-radius: var(--rounded);
+    font-weight: 800;
+}
+
+.auction-card-body {
+    padding: var(--space-lg);
+}
+
+.selected-animal {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    background: var(--surface-container);
+    border: 1.5px solid var(--primary-container);
+    border-radius: var(--rounded-md);
+}
+
+.selected-animal img {
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: var(--rounded);
+}
+
+.selected-animal h3 {
+    margin: var(--space-2xs) 0;
+    color: var(--on-surface);
+}
+
+.selected-animal .label-sm {
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+.selected-animal .body-sm {
+    color: var(--muted-neutral);
+}
+
+.selected-check {
+    margin-left: auto;
+    color: var(--status-verified-icon);
+}
+
+.health-verification,
+.schedule-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding: var(--space-sm);
+    color: var(--status-verified-text);
+    background: var(--status-verified-bg);
+    border: 1px solid var(--status-verified-border);
+    border-radius: var(--rounded-md);
+}
+
+.health-verification > .material-symbols-outlined,
+.schedule-note > .material-symbols-outlined {
+    color: var(--status-verified-icon);
+}
+
+.health-verification strong {
+    display: block;
+    margin-bottom: var(--space-2xs);
+}
+
+.health-verification p,
+.schedule-note {
+    color: var(--status-verified-text);
+}
+
+.form-grid {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.form-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-md);
+}
+
+.field-group:last-child {
+    margin-bottom: 0;
+}
+
+.field-label {
+    color: var(--on-surface-variant);
+    font-size: var(--label-md-size);
+    font-weight: var(--label-md-weight);
+}
+
+.field-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--on-surface);
+    background: var(--surface-container-low);
+    border: 1.5px solid var(--border-divider);
+    border-radius: var(--rounded);
+    font: inherit;
+    font-size: var(--body-md-size);
+}
+
+.field-input:focus {
+    outline: 0;
+    border-color: var(--primary-container);
+    background: var(--surface-container-lowest);
+    box-shadow: 0 0 0 3px rgba(100, 56, 34, 0.1);
+}
+
+.input-with-suffix {
+    position: relative;
+}
+
+.input-with-suffix .field-input {
+    padding-right: 54px;
+}
+
+.input-with-suffix > span {
+    position: absolute;
+    top: 50%;
+    right: var(--space-md);
+    color: var(--muted-neutral);
+    transform: translateY(-50%);
+    font-size: var(--body-sm-size);
+    font-weight: 600;
+}
+
+.field-help {
+    color: var(--muted-neutral);
+    font-size: var(--body-sm-size);
+}
+
+.field-error {
+    color: var(--error);
+    font-size: var(--body-sm-size);
+}
+
+.schedule-note {
+    color: var(--on-surface-variant);
+    background: var(--surface-container-low);
+    border-color: var(--border-divider);
+}
+
+.schedule-note > .material-symbols-outlined {
+    color: var(--secondary);
+}
+
+.auction-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--on-primary);
+    background: var(--primary);
+    font-size: var(--label-sm-size);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--label-sm-spacing);
+}
+
+.preview-header > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.preview-header .status-dot {
+    background: var(--secondary-container);
+}
+
+.preview-header .label-sm {
+    color: var(--on-primary-container);
+}
+
+.preview-image {
+    position: relative;
+    height: 230px;
+    background: var(--surface-container);
+}
+
+.preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    padding: 5px 9px;
+    color: var(--status-starting-text);
+    background: var(--status-starting-bg);
+    border-radius: var(--rounded-full);
+    font-size: var(--label-sm-size);
+    font-weight: var(--label-sm-weight);
+}
+
+.preview-body {
+    padding: var(--space-lg);
+}
+
+.preview-eyebrow {
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+.preview-body h2 {
+    margin: var(--space-xs) 0 var(--space-md);
+    color: var(--primary);
+}
+
+.preview-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--surface-container-low);
+    border-radius: var(--rounded-md);
+}
+
+.preview-price span {
+    color: var(--on-surface-variant);
+    font-size: var(--body-sm-size);
+}
+
+.preview-price strong {
+    color: var(--primary);
+    font-size: var(--label-numeric-lg-size);
+}
+
+.preview-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-top: var(--space-md);
+    color: var(--on-surface-variant);
+    font-size: var(--body-sm-size);
+}
+
+.preview-meta > span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.preview-meta .material-symbols-outlined {
+    color: var(--secondary);
+    font-size: 18px;
+}
+
+.info-card {
+    padding: var(--space-lg);
+    background: var(--surface-container-low);
+}
+
+.info-card h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0 0 var(--space-md);
+    color: var(--primary);
+}
+
+.info-card h3 .material-symbols-outlined {
+    color: var(--secondary);
+}
+
+.info-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: 0;
+    margin: 0;
+    color: var(--on-surface-variant);
+    list-style: none;
+    font-size: var(--body-sm-size);
+}
+
+.info-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+}
+
+.info-card li .material-symbols-outlined {
+    flex: 0 0 auto;
+    color: var(--secondary);
+    font-size: 19px;
+}
+
+.fee-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-md);
+}
+
+.fee-card span,
+.fee-card strong {
+    display: block;
+}
+
+.fee-card .label-sm {
+    color: var(--muted-neutral);
+    text-transform: uppercase;
+}
+
+.fee-card strong {
+    color: var(--primary);
+    font-size: var(--headline-sm-size);
+}
+
+.fee-card > .body-sm {
+    color: var(--muted-neutral);
+    text-align: right;
+}
+
+@media (max-width: 991px) {
+    .auction-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .auction-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .preview-card {
+        grid-row: span 2;
+    }
+}
+
+@media (max-width: 767px) {
+    .auction-hero-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .auction-trust-badge {
+        width: 100%;
+    }
+
+    .form-grid-2,
+    .auction-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-card {
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .auction-card-header,
+    .auction-card-body {
+        padding: var(--space-md);
+    }
+
+    .selected-animal {
+        align-items: flex-start;
+    }
+
+    .selected-animal img {
+        flex-basis: 60px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .auction-actions {
+        flex-direction: column-reverse;
+    }
+
+    .auction-actions .btn {
+        width: 100%;
+    }
+}

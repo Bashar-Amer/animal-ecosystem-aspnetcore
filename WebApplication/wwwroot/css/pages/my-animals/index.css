@@ -1,0 +1,412 @@
+.my-animals-page {
+    background: var(--background);
+}
+
+.my-animals-hero {
+    padding: var(--space-2xl) 0;
+    background: var(--surface-container);
+    border-bottom: 1px solid var(--border-divider);
+}
+
+.my-animals-hero-content,
+.listing-results-header,
+.listing-card-heading,
+.listing-actions,
+.auction-summary,
+.listing-toolbar,
+.dashboard-stat-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.my-animals-hero-content {
+    flex-wrap: wrap;
+}
+
+.my-animals-hero h1 {
+    color: var(--primary);
+}
+
+.my-animals-content {
+    padding-top: var(--space-2xl);
+}
+
+.my-animals-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+}
+
+.dashboard-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-level-1);
+}
+
+.dashboard-stat-heading {
+    color: var(--on-surface-variant);
+}
+
+.dashboard-stat-heading .label-sm {
+    text-transform: uppercase;
+    letter-spacing: var(--label-sm-spacing);
+}
+
+.dashboard-stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--primary);
+    background: var(--surface-container);
+    border-radius: var(--rounded);
+}
+
+.dashboard-stat-icon-accent {
+    color: var(--secondary);
+    background: var(--secondary-fixed);
+}
+
+.dashboard-stat strong {
+    color: var(--on-surface);
+}
+
+.listing-toolbar {
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: var(--space-sm);
+    margin-bottom: var(--space-xl);
+    background: var(--surface-container-low);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+}
+
+.listing-tabs,
+.listing-filters,
+.listing-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.listing-tabs {
+    flex-wrap: wrap;
+}
+
+.listing-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    color: var(--on-surface-variant);
+    border-radius: var(--rounded-full);
+    text-decoration: none;
+    font-size: var(--title-sm-size);
+    font-weight: var(--title-sm-weight);
+    white-space: nowrap;
+}
+
+.listing-tab:hover {
+    color: var(--primary);
+    background: var(--surface-container-lowest);
+}
+
+.listing-tab.active {
+    color: var(--on-primary);
+    background: var(--primary);
+}
+
+.listing-tab-count {
+    min-width: 22px;
+    padding: 2px 7px;
+    color: var(--on-surface-variant);
+    background: var(--surface-container-high);
+    border-radius: var(--rounded-full);
+    text-align: center;
+    font-size: var(--label-sm-size);
+}
+
+.listing-tab.active .listing-tab-count {
+    color: var(--on-primary-container);
+    background: var(--primary-container);
+}
+
+.listing-filters {
+    flex: 1 1 360px;
+    justify-content: flex-end;
+}
+
+.listing-search {
+    flex: 1 1 220px;
+    padding: 0 var(--space-sm);
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded);
+}
+
+.listing-search span {
+    color: var(--muted-neutral);
+}
+
+.listing-search input {
+    width: 100%;
+    min-width: 0;
+    padding: var(--space-sm) 0;
+    color: var(--on-surface);
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    font-size: var(--body-sm-size);
+}
+
+.listing-filters .form-select {
+    width: auto;
+    min-width: 145px;
+}
+
+.listing-results-header {
+    align-items: flex-end;
+    margin-bottom: var(--space-md);
+}
+
+.listing-results-header h2 {
+    color: var(--primary);
+}
+
+.listing-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.listing-card {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-level-1);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.listing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-level-2);
+}
+
+.listing-image-link {
+    position: relative;
+    flex: 0 0 220px;
+    height: 174px;
+    overflow: hidden;
+    background: var(--surface-container);
+    border-radius: var(--rounded-md);
+}
+
+.listing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listing-status {
+    position: absolute;
+    top: var(--space-xs);
+    left: var(--space-xs);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: 5px 9px;
+    border-radius: var(--rounded-full);
+    font-size: var(--label-sm-size);
+    font-weight: var(--label-sm-weight);
+    box-shadow: var(--shadow-level-1);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.status-live { color: var(--status-live-text); background: var(--status-live-bg); }
+.status-ending { color: var(--status-ending-text); background: var(--status-ending-bg); }
+.status-starting { color: var(--status-starting-text); background: var(--status-starting-bg); }
+.status-ended { color: var(--status-ended-text); background: var(--status-ended-bg); }
+.status-marketplace { color: var(--status-verified-text); background: var(--status-verified-bg); }
+
+.listing-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    gap: var(--space-md);
+}
+
+.listing-card-heading {
+    align-items: flex-start;
+}
+
+.listing-card-heading h3 {
+    margin: var(--space-2xs) 0 0;
+    color: var(--on-surface);
+}
+
+.listing-species {
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+.listing-price {
+    flex-shrink: 0;
+    color: var(--primary);
+    font-size: var(--headline-sm-size);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.listing-price small {
+    font-size: var(--body-sm-size);
+    font-weight: 600;
+}
+
+.listing-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    color: var(--on-surface-variant);
+}
+
+.auction-summary,
+.review-summary {
+    padding: var(--space-sm);
+    background: var(--surface-container);
+    border-radius: var(--rounded-md);
+}
+
+.auction-summary strong {
+    display: block;
+    color: var(--primary);
+    font-size: var(--headline-md-size);
+}
+
+.auction-summary-detail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--secondary);
+    font-size: var(--body-sm-size);
+    font-weight: 600;
+}
+
+.review-summary {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    color: var(--status-starting-text);
+    font-size: var(--body-sm-size);
+}
+
+.review-summary-error {
+    color: var(--on-error-container);
+    background: var(--error-container);
+}
+
+.listing-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.btn-quiet {
+    color: var(--muted-neutral);
+    background: transparent;
+}
+
+.btn-quiet:hover {
+    color: var(--error);
+    background: var(--error-container);
+}
+
+.empty-state {
+    padding: var(--space-3xl) var(--space-lg);
+    color: var(--on-surface-variant);
+    text-align: center;
+    background: var(--surface-container-low);
+    border: 1px dashed var(--outline-variant);
+    border-radius: var(--rounded-lg);
+}
+
+.empty-state .material-symbols-outlined {
+    font-size: 48px;
+    color: var(--secondary);
+}
+
+.empty-state h2 {
+    margin: var(--space-sm) 0 var(--space-xs);
+    color: var(--primary);
+}
+
+@media (max-width: 991px) {
+    .my-animals-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .my-animals-hero {
+        padding: var(--space-xl) 0;
+    }
+
+    .listing-card {
+        flex-direction: column;
+    }
+
+    .listing-image-link {
+        flex-basis: auto;
+        width: 100%;
+        height: 210px;
+    }
+
+    .listing-results-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+}
+
+@media (max-width: 575px) {
+    .my-animals-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .listing-filters {
+        flex-basis: 100%;
+        flex-wrap: wrap;
+    }
+
+    .listing-search,
+    .listing-filters .form-select,
+    .listing-filters .btn {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .listing-card-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+}

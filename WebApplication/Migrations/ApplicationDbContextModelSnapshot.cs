@@ -163,6 +163,9 @@ namespace WebApp.Migrations
                     b.Property<int?>("AgeInMonths")
                         .HasColumnType("int");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Breed")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -195,6 +198,15 @@ namespace WebApp.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<DateTime?>("ModeratedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModeratedByAdminId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ModerationStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -207,6 +219,9 @@ namespace WebApp.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("RejectionReason")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SpeciesId")
                         .HasColumnType("int");
 
@@ -214,6 +229,12 @@ namespace WebApp.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ModeratedByAdminId")
+                        .IsUnique()
+                        .HasFilter("[ModeratedByAdminId] IS NOT NULL");
 
                     b.HasIndex("OwnerId");
 
@@ -425,6 +446,24 @@ namespace WebApp.Migrations
                     b.Property<decimal>("MinIncrement")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime?>("ModeratedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModeratedByAdminId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ModerationStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RejectionReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
@@ -444,6 +483,8 @@ namespace WebApp.Migrations
                         .IsUnique();
 
                     b.HasIndex("HighestBidderId");
+
+                    b.HasIndex("ModeratedByAdminId");
 
                     b.ToTable("Auctions");
                 });
@@ -499,9 +540,10 @@ namespace WebApp.Migrations
 
                     b.HasIndex("AnimalId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId", "AnimalId")
+                        .IsUnique();
 
-                    b.ToTable("Favorite");
+                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("WebApp.Models.Species", b =>
@@ -527,6 +569,32 @@ namespace WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Species");
+                });
+
+            modelBuilder.Entity("WebApp.Models.VetFavorite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VetProfileId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VetProfileId");
+
+                    b.HasIndex("UserId", "VetProfileId")
+                        .IsUnique();
+
+                    b.ToTable("VetFavorites");
                 });
 
             modelBuilder.Entity("WebApp.Models.VetProfile", b =>
@@ -559,6 +627,9 @@ namespace WebApp.Migrations
                     b.Property<decimal>("ConsultationFee")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Credential")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -587,6 +658,12 @@ namespace WebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime?>("VerifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VerifiedByAdminId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("YearsOfExperience")
                         .HasColumnType("int");
 
@@ -594,6 +671,10 @@ namespace WebApp.Migrations
 
                     b.HasIndex("UserId")
                         .IsUnique();
+
+                    b.HasIndex("VerifiedByAdminId")
+                        .IsUnique()
+                        .HasFilter("[VerifiedByAdminId] IS NOT NULL");
 
                     b.ToTable("VetProfiles");
                 });
@@ -797,10 +878,19 @@ namespace WebApp.Migrations
 
             modelBuilder.Entity("WebApp.Models.Animal", b =>
                 {
-                    b.HasOne("WebApp.Models.ApplicationUser", "Owner")
+                    b.HasOne("WebApp.Models.ApplicationUser", null)
                         .WithMany("Animals")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("WebApp.Models.ApplicationUser", "ModeratedByAdmin")
+                        .WithOne()
+                        .HasForeignKey("WebApp.Models.Animal", "ModeratedByAdminId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("WebApp.Models.ApplicationUser", "Owner")
+                        .WithMany()
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("WebApp.Models.Species", "Species")
@@ -808,6 +898,8 @@ namespace WebApp.Migrations
                         .HasForeignKey("SpeciesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("ModeratedByAdmin");
 
                     b.Navigation("Owner");
 
@@ -867,9 +959,16 @@ namespace WebApp.Migrations
                         .WithMany()
                         .HasForeignKey("HighestBidderId");
 
+                    b.HasOne("WebApp.Models.ApplicationUser", "ModeratedByAdmin")
+                        .WithMany()
+                        .HasForeignKey("ModeratedByAdminId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("Animal");
 
                     b.Navigation("HighestBidder");
+
+                    b.Navigation("ModeratedByAdmin");
                 });
 
             modelBuilder.Entity("WebApp.Models.Bid", b =>
@@ -910,15 +1009,41 @@ namespace WebApp.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("WebApp.Models.VetFavorite", b =>
+                {
+                    b.HasOne("WebApp.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.Models.VetProfile", "VetProfile")
+                        .WithMany()
+                        .HasForeignKey("VetProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("VetProfile");
+                });
+
             modelBuilder.Entity("WebApp.Models.VetProfile", b =>
                 {
                     b.HasOne("WebApp.Models.ApplicationUser", "User")
                         .WithOne("VetProfile")
                         .HasForeignKey("WebApp.Models.VetProfile", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WebApp.Models.ApplicationUser", "VerifiedByAdmin")
+                        .WithOne()
+                        .HasForeignKey("WebApp.Models.VetProfile", "VerifiedByAdminId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.Navigation("User");
+
+                    b.Navigation("VerifiedByAdmin");
                 });
 
             modelBuilder.Entity("WebApp.Models.VetReview", b =>

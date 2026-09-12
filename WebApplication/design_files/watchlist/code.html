@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "inverse-primary": "#f9b89a",
+        "tertiary-container": "#623927",
+        "surface-dim": "#e1d8d3",
+        "on-primary": "#ffffff",
+        "tertiary-fixed-dim": "#f5b9a0",
+        "on-secondary-container": "#712800",
+        "on-surface": "#1f1b18",
+        "on-error-container": "#93000a",
+        "background": "#fff8f5",
+        "surface-variant": "#eae1db",
+        "on-primary-fixed": "#331102",
+        "inverse-surface": "#342f2c",
+        "on-tertiary-container": "#dda48c",
+        "primary-container": "#643822",
+        "on-secondary-fixed": "#360f00",
+        "tertiary-fixed": "#ffdbcd",
+        "secondary-fixed": "#ffdbcd",
+        "surface-container-low": "#fbf2ec",
+        "primary-fixed-dim": "#f9b89a",
+        "on-tertiary": "#ffffff",
+        "tertiary": "#482413",
+        "outline-variant": "#d6c2bb",
+        "primary-fixed": "#ffdbcc",
+        "inverse-on-surface": "#f8efea",
+        "surface-container": "#f6ece7",
+        "on-secondary-fixed-variant": "#7d2d00",
+        "secondary-container": "#fe8c58",
+        "secondary-fixed-dim": "#ffb596",
+        "on-secondary": "#ffffff",
+        "on-error": "#ffffff",
+        "primary": "#49230e",
+        "secondary": "#9d4314",
+        "on-primary-fixed-variant": "#683b25",
+        "on-tertiary-fixed-variant": "#663c2a",
+        "surface": "#fff8f5",
+        "surface-container-highest": "#eae1db",
+        "on-primary-container": "#e0a286",
+        "on-surface-variant": "#52443e",
+        "surface-container-high": "#f0e6e1",
+        "error": "#ba1a1a",
+        "on-background": "#1f1b18",
+        "surface-tint": "#84523a",
+        "on-tertiary-fixed": "#321204",
+        "error-container": "#ffdad6",
+        "outline": "#84746d",
+        "surface-container-lowest": "#ffffff",
+        "surface-bright": "#fff8f5"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "space-lg": "1.5rem",
+        "space-2xs": "0.25rem",
+        "space-2xl": "3rem",
+        "space-xs": "0.5rem",
+        "gutter-mobile": "1rem",
+        "space-md": "1rem",
+        "gutter-desktop": "1.5rem",
+        "container-max": "1280px",
+        "space-sm": "0.75rem",
+        "space-3xl": "4rem",
+        "space-xl": "2rem"
+      },
+      "fontFamily": {
+        "body-lg": ["Plus Jakarta Sans"],
+        "display-hero": ["Plus Jakarta Sans"],
+        "headline-lg-mobile": ["Plus Jakarta Sans"],
+        "label-numeric-lg": ["Plus Jakarta Sans"],
+        "title-md": ["Plus Jakarta Sans"],
+        "headline-md": ["Plus Jakarta Sans"],
+        "label-md": ["Plus Jakarta Sans"],
+        "headline-sm": ["Plus Jakarta Sans"],
+        "display-hero-mobile": ["Plus Jakarta Sans"],
+        "body-md": ["Plus Jakarta Sans"],
+        "body-sm": ["Plus Jakarta Sans"],
+        "title-sm": ["Plus Jakarta Sans"],
+        "headline-lg": ["Plus Jakarta Sans"],
+        "label-sm": ["Plus Jakarta Sans"]
+      },
+      "fontSize": {
+        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+        "display-hero": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+        "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700"}],
+        "label-numeric-lg": ["24px", {"lineHeight": "28px", "fontWeight": "800"}],
+        "title-md": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.005em", "fontWeight": "700"}],
+        "label-md": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+        "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+        "title-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(77,40,23,0.06)]"><div class="bg-surface-container-high py-space-2xs px-gutter-desktop"><div class="max-w-container-max mx-auto flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-secondary font-semibold"><span class="material-symbols-outlined text-[14px]">verified_user</span><span>Escrow Connected: CliQ / Central Bank of Jordan</span></div><span class="text-outline-variant">•</span><div class="flex items-center gap-space-xs font-medium"><span class="material-symbols-outlined text-[14px]">gavel</span><span>MOA Protocol v4.2 Active</span></div></div><div class="hidden md:flex items-center gap-space-md"><span class="flex items-center gap-space-2xs"><span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>National Live Registry</span><span>JOD / Official Settlement</span></div></div></div><div class="h-20 max-w-container-max mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-xs group" data-path="home" href="#"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm font-bold shadow-[0_2px_6px_-1px_rgba(77,40,23,0.2)]"><span class="material-symbols-outlined text-[24px]">pets</span></div><div class="flex flex-col"><div class="flex items-center gap-space-2xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary">AnimalEcosystem</span><span class="px-space-xs py-space-2xs rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold tracking-wider">JORDAN</span></div><span class="font-label-sm text-label-sm text-on-surface-variant tracking-normal">Livestock &amp; Veterinary Exchange</span></div></a><nav class="hidden xl:flex items-center gap-space-2xs p-space-2xs rounded-full bg-surface-container-low" data-active-classes="bg-primary-container text-on-primary font-bold shadow-sm"><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="marketplace" href="#">Marketplace</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="auctions" href="#">Auctions</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="veterinary" href="#">Veterinary</a><a aria-current="page" class="px-space-md py-space-xs rounded-full transition-colors bg-primary-container text-on-primary font-bold shadow-sm" data-path="my-watchlist" href="#">My Watchlist</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-animals-listings" href="#">My Animals &amp; Listings</a></nav></div><div class="flex items-center gap-space-sm"><a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all shadow-[0_2px_6px_-1px_rgba(77,40,23,0.12)]" data-path="sell-animal" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span class="hidden sm:inline font-semibold">Sell Animal</span></a><button aria-label="Notifications" class="relative p-space-xs rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-error ring-2 ring-surface"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Khalid Al-Rashid</span><span class="font-label-sm text-label-sm text-on-surface-variant">Verified Trader (JO)</span></div></div></div></div></header><main class="w-full pt-28 bg-surface min-h-[calc(100vh-360px)]"><div class="flex flex-col w-full">
+<!-- Interactive Toast Notification Placeholder -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-sm px-space-md py-space-sm rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl border border-white/10" id="toast-banner">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm font-bold text-surface-bright" id="toast-title">Item Removed</span>
+<span class="font-body-sm text-body-sm text-surface-dim" id="toast-desc">Lot removed from your active watchlist.</span>
+</div>
+<button class="ml-space-md p-1 rounded-full hover:bg-surface-variant/20 text-surface-dim hover:text-surface-bright pointer-events-auto" onclick="dismissToast()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="max-w-container-max mx-auto px-gutter-desktop w-full py-space-xl flex flex-col gap-space-2xl">
+<!-- Breadcrumbs & Stately Top Header -->
+<div class="flex flex-col gap-space-md">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant flex-wrap">
+<a class="hover:text-primary transition-colors flex items-center gap-1" data-path="home" href="#">
+<span class="material-symbols-outlined text-[16px]">cottage</span> Home
+        </a>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-primary transition-colors">Buyer Portal</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-bold">My Watchlist (قائمة المتابعة والتنبيهات)</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-2xs rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold tracking-wider uppercase">
+              Authenticated Portfolio
+            </span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span> MOA Biosecurity Synchronized
+            </span>
+</div>
+<h1 class="font-display-hero text-display-hero text-primary tracking-tight">
+            My Watchlist &amp; Saved Lots
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Track live bidding floors, price movements, reserve milestones, and direct purchase listings for certified livestock across the Hashemite Kingdom of Jordan.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap self-start lg:self-auto">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all shadow-sm" onclick="clearInactiveLots()">
+<span class="material-symbols-outlined text-[18px]">cleaning_services</span>
+<span>Clear Inactive Lots</span>
+</button>
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all shadow-sm" href="#notification-settings">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Alert Preferences</span>
+</a>
+</div>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-700">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-numeric-lg text-label-numeric-lg text-on-surface">3 Active</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Bidding Arenas</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-800">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-numeric-lg text-label-numeric-lg text-amber-800">1 Outbid</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Immediate Action Needed</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-800">
+<span class="material-symbols-outlined text-[20px]">trending_down</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-numeric-lg text-label-numeric-lg text-emerald-800">2 Drops</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Price Reduced Marketplace</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm font-bold text-on-surface">CBJ Escrow</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Protected via CliQ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Query Control Toolbar -->
+<div class="bg-surface-container-low rounded-2xl p-space-md shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<!-- Tabs -->
+<div class="flex items-center gap-space-2xs overflow-x-auto pb-1 md:pb-0" id="filter-tabs">
+<button class="tab-btn px-space-md py-space-xs rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm flex items-center gap-1.5 whitespace-nowrap" onclick="switchTab('all', this)">
+<span>All Saved</span>
+<span class="px-1.5 py-0.5 rounded-full bg-white/20 text-white font-label-sm text-label-sm" id="count-all">7</span>
+</button>
+<button class="tab-btn px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5 whitespace-nowrap" onclick="switchTab('auctions', this)">
+<span>Live Auctions</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm" id="count-auctions">3</span>
+</button>
+<button class="tab-btn px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5 whitespace-nowrap" onclick="switchTab('marketplace', this)">
+<span>Fixed Marketplace</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm" id="count-market">3</span>
+</button>
+<button class="tab-btn px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5 whitespace-nowrap" onclick="switchTab('vets', this)">
+<span>Saved Clinicians</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">1</span>
+</button>
+</div>
+<!-- Search & Sort Controls -->
+<div class="flex items-center gap-space-sm flex-wrap sm:flex-nowrap">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-9 pr-space-sm py-space-xs rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="watchlist-search" oninput="filterWatchlist()" placeholder="Search tag, breed, governorate..." type="text"/>
+</div>
+<div class="flex items-center gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap" for="watchlist-sort">Sort by:</label>
+<select class="bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full px-space-md py-space-xs shadow-sm focus:outline-none focus:ring-2 focus:ring-primary" id="watchlist-sort" onchange="sortWatchlist(this.value)">
+<option value="closing">Closing Soonest</option>
+<option value="price-asc">Price: Low to High</option>
+<option value="price-desc">Price: High to Low</option>
+<option value="recent">Recently Added</option>
+</select>
+</div>
+</div>
+</div>
+<!-- SECTION 1: LIVE AUCTIONS WATCHLIST -->
+<section class="flex flex-col gap-space-lg" id="section-auctions">
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-3 h-3 rounded-full bg-error animate-ping"></div>
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span>Timed Auctions &amp; Live Floors</span>
+<span class="font-title-sm text-title-sm text-on-surface-variant font-normal">(مزادات مباشرة قيد المتابعة)</span>
+</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Real-time floor data connected to Jordan livestock exchange engine</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="auctions-grid">
+<!-- AUCTION CARD 1: Boer Goat Buck -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Boer Goat Meat Stud" data-governorate="Zarqa" data-price="250" data-title="Boer Goat Buck" id="card-lot-1045">
+<!-- Card Image & Floating Badges -->
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden p-space-md">
+<img alt="Boer Goat Buck standing in studio setting" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wn_coEd9tfNPT1ixj303ayTVQw7G7M7jJszHO7zYdBNU01oWzdHpfE-KAv2hMSeYX06v7KCSWDliVr7lkHhL5QS1iV8AYNDCh7VCFbToL20BOzw9DZFTy8ZkC01ID4ohyULArOeNEFklThcy0WIQ737eGe0hV0_PWk_18LjofU8cJj0g6n9zafUkURk7sII-YXUci3p3PLRsGlrWnMYjakXdVpwFnYd4dos2Xca6WklthVxzZYKJNcKm0"/>
+<!-- Top Badges -->
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-red-100 text-red-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span>Starts in 14h : 22m</span>
+</span>
+</div>
+<!-- Quick Actions (Watchlist Remove & Alert Toggle) -->
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-on-surface-variant hover:text-secondary flex items-center justify-center shadow-sm transition-colors" id="bell-lot-1045" onclick="toggleAlert('lot-1045')" title="Toggle Push/SMS Bid Alerts">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-lot-1045', 'Boer Goat Buck (Lot #1045)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<!-- Bottom Tag Overlay -->
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">tag</span> Lot #1045 • #JO-GT-8812
+            </div>
+</div>
+<!-- Body Info -->
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Boer Goat Buck</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Meat Stock Stud • 78.4 kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Zarqa Holding Barn, Sector 4
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Seller: <strong>Al-Rashid Awassi Estate</strong> (4.9 ★ MOA Verified)</span>
+</div>
+</div>
+<!-- Price & Bid Status Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Starting Floor Bid</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Confidential Reserve Set</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">250</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-surface-variant/70 text-on-surface font-medium">0 Bids Lodged</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> Floor opens tomorrow 10:00 AM Amman Time
+              </div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<a class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm" data-path="auctions" href="#">
+                Place Proxy Bid
+              </a>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="auctions" href="#">
+                Enter Live Room
+              </a>
+</div>
+</div>
+</article>
+<!-- AUCTION CARD 2: Arabian Stallion (WITH OUTBID ALERT) -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Purebred Arabian" data-governorate="Madaba" data-price="4500" data-title="Thoroughbred Arabian Stallion" id="card-lot-1042">
+<!-- Image with Outbid Banner -->
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Purebred Arabian horse stallion in sunlit paddock" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wl2Lz8_lqaftpfQQiIRh4zRzgznUMDYT9cFdWkkAaeKaw4IuTyMjtdQfMoCWmmzO_3F9uMhYuxarAzqsdTA4j9fq2caaU2dpJX265FIh3qvYQ-acVnqEIYMBU7NSBMiKmMcm4n1fg8UvmFhxzBovx4nWSzMbtnWonB50KlbF1PVpNwgpcHtSQJEfchSdGfeZDV5m_EF_trSKxaQ8fHcXr29kgIlEZ1q8yEPFKk-o8W3tzKfNlOgwUoJg"/>
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-amber-700">bolt</span>
+<span>Ending Soon: 02h : 45m</span>
+</span>
+<span class="px-space-xs py-space-2xs rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold">
+                WAHO Certified
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm transition-colors" id="bell-lot-1042" onclick="toggleAlert('lot-1042')" title="Notification Active">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-lot-1042', 'Arabian Stallion (Lot #1042)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">tag</span> Lot #1042 • WAHO #JO-9021
+            </div>
+</div>
+<!-- Outbid Banner -->
+<div class="bg-amber-50 px-space-md py-space-xs flex items-center justify-between text-amber-900 font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-amber-700">warning</span>
+<span><strong>You were outbid!</strong> Highest: 4,500 JOD by Abu Tareq</span>
+</div>
+<span class="font-bold text-amber-800">Min Increment: +100 JOD</span>
+</div>
+<!-- Content -->
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Thoroughbred Arabian Stallion</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">check</span> Reserve Met
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Madaba Royal Equestrian Paddock
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Seller: <strong>Madaba Heritage Stables</strong> • Ministry Pedigree Pass</span>
+</div>
+</div>
+<!-- Price & Bid Status Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current High Bid</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">8 Bids Placed</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">4,500</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary font-bold">Your Max Proxy: 4,400 JOD</span>
+</div>
+</div>
+<!-- Action CTA -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md font-bold text-center transition-all shadow-sm flex items-center justify-center gap-2" onclick="increaseBidModal('Lot #1042 - Arabian Stallion', 4600)">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+<span>Increase Bid (Next Min: 4,600 JOD)</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="auctions" href="#">
+                  Lot Dossier (PDF)
+                </a>
+<a class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold text-center transition-all" data-path="auctions" href="#">
+                  Live Arena
+                </a>
+</div>
+</div>
+</div>
+</article>
+<!-- AUCTION CARD 3: Flock of 10 Awassi Sheep -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Awassi Sheep Lot" data-governorate="Irbid" data-price="2100" data-title="Flock of 10 Awassi Sheep" id="card-lot-1043">
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden p-space-md">
+<img alt="Awassi Sheep standing in profile" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow"/>
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-red-100 text-red-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span>05h : 12m Remaining</span>
+</span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-on-surface-variant hover:text-secondary flex items-center justify-center shadow-sm transition-colors" id="bell-lot-1043" onclick="toggleAlert('lot-1043')" title="Toggle Push/SMS Bid Alerts">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-lot-1043', 'Flock of 10 Awassi Sheep (Lot #1043)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">tag</span> Lot #1043 • Batch 10 Head
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Flock of 10 Awassi Sheep</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-bold">Reserve Exceeded</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Irbid North Pasture Estate
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Ministry Health Stamp Valid • Certified Ear-Tagged</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current High Bid</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4 Bids Active</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">2,100</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD (210/head)</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">You are high bidder!</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-emerald-700">lock</span> CliQ Hold: 210 JOD Security Registered
+              </div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm" onclick="increaseBidModal('Lot #1043 - Flock of 10 Awassi Sheep', 2150)">
+                Place Quick Bid (+50)
+              </button>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="auctions" href="#">
+                Audit Manifest
+              </a>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- SECTION 2: FIXED-PRICE MARKETPLACE WATCHLIST -->
+<section class="flex flex-col gap-space-lg" id="section-marketplace">
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">storefront</span>
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span>Fixed-Price Marketplace Watchlist</span>
+<span class="font-title-sm text-title-sm text-on-surface-variant font-normal">(سوق البيع المباشر)</span>
+</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Instant purchase with Central Bank regulated CliQ escrow hold</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="marketplace-grid">
+<!-- CARD 4: Purebred Awassi Ram (PRICE DROP BADGE) -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Awassi Ram" data-governorate="Amman" data-price="380" data-title="Purebred Awassi Ram 2 Yrs" id="card-mp-9844">
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden p-space-md">
+<img alt="Purebred Awassi Ram standing in profile" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow"/>
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+<span>Price Drop: -20 JOD</span>
+</span>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface/90 text-on-surface font-label-sm text-label-sm font-semibold">
+                Direct Buy
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-on-surface-variant hover:text-secondary flex items-center justify-center shadow-sm transition-colors" id="bell-mp-9844" onclick="toggleAlert('mp-9844')" title="Toggle Alert">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-mp-9844', 'Purebred Awassi Ram (#MP-9844)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">sell</span> #MP-9844 • Tag: #JO-AM-310
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Purebred Awassi Ram 2 Yrs</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">82 kg • Brucellosis Free</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Amman, Sahab Livestock District
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Verified Breeder (Yousef Al-Abbadi) • MOA Clear</span>
+</div>
+</div>
+<!-- Price Container -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Direct Purchase Price</span>
+<span class="font-label-sm text-label-sm text-outline line-through">400 JOD</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">380</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD</span>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-800 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">-5% Reduced Today</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Offers accepted above 300 JOD via CliQ counter-portal</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm flex items-center justify-center gap-2" onclick="triggerEscrowCheckout('Purebred Awassi Ram (#MP-9844)', 380)">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Buy Now (Escrow Checkout)</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" onclick="triggerMakeOffer('MP-9844', 380)">
+                  Submit Counter Offer
+                </button>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="marketplace" href="#">
+                  Contact Breeder
+                </a>
+</div>
+</div>
+</div>
+</article>
+<!-- CARD 5: Holstein Dairy Cow -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Holstein Friesian" data-governorate="Irbid" data-price="1200" data-title="Holstein Dairy Cow" id="card-mp-9811">
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Holstein Friesian dairy cow in studio portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1V2RqIbv7jH6l5gN5UEBIVvsBjui57SKL2kKqS6-8UQI88CnoP86WabWlRCV-WL5ao5-pp_CtxdF66GDzJVAG2Nd0QmajvLm3kIPgQqnRqeMykxSZeBd13Y1LGZLqZE-mEmzG7RlTTtyrajqW8T1XcwaTfxNJ1TzPo-SIzewr9nNNQm6wotKvS3zb8cfGZB0-E25l2Ui4HUWZ_vGZvNcHobUenywjAKeL6QTLhXQmrGqmAy-P33gEO6CFw"/>
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-surface/90 text-on-surface font-label-sm text-label-sm font-semibold">
+                Dairy Certified
+              </span>
+<span class="px-space-xs py-space-2xs rounded-full bg-blue-100 text-blue-800 font-label-sm text-label-sm font-bold">
+                28L / Day Yield
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-on-surface-variant hover:text-secondary flex items-center justify-center shadow-sm transition-colors" id="bell-mp-9811" onclick="toggleAlert('mp-9811')" title="Toggle Alert">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-mp-9811', 'Holstein Dairy Cow (#MP-9811)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">sell</span> #MP-9811 • 3 Years • Female
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Holstein Dairy Cow</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-semibold">Vaccinated April 2025</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Irbid Commercial Dairies, Ramtha Road
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Active Listing • <strong>3 Pending Buyer Inquiries</strong></span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Official Asking Price</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">MOA Calving Verified</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">1,200</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Transport ready</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Includes national ear registration and lactation test record</span>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm flex items-center justify-center gap-2" onclick="triggerEscrowCheckout('Holstein Dairy Cow (#MP-9811)', 1200)">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Request Escrow Purchase</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="veterinary" href="#">
+                  Vet Health Sheet
+                </a>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="marketplace" href="#">
+                  Contact Seller
+                </a>
+</div>
+</div>
+</div>
+</article>
+<!-- CARD 6: Damascus Goat Buck -->
+<article class="group relative bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden" data-breed="Shami Damascus Goat" data-governorate="Amman" data-price="350" data-title="Damascus Goat Buck" id="card-mp-9830">
+<div class="relative w-full aspect-[16/10] bg-surface-container flex items-center justify-center overflow-hidden p-space-md">
+<img alt="Damascus Goat buck on isolated background" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wn_coEd9tfNPT1ixj303ayTVQw7G7M7jJszHO7zYdBNU01oWzdHpfE-KAv2hMSeYX06v7KCSWDliVr7lkHhL5QS1iV8AYNDCh7VCFbToL20BOzw9DZFTy8ZkC01ID4ohyULArOeNEFklThcy0WIQ737eGe0hV0_PWk_18LjofU8cJj0g6n9zafUkURk7sII-YXUci3p3PLRsGlrWnMYjakXdVpwFnYd4dos2Xca6WklthVxzZYKJNcKm0"/>
+<div class="absolute top-3 left-3 flex items-center gap-space-2xs flex-wrap">
+<span class="px-space-xs py-space-2xs rounded-full bg-surface/90 text-on-surface font-label-sm text-label-sm font-semibold">
+                Shami (Damascus)
+              </span>
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">health_and_safety</span> Vet Checked
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-space-xs">
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-on-surface-variant hover:text-secondary flex items-center justify-center shadow-sm transition-colors" id="bell-mp-9830" onclick="toggleAlert('mp-9830')" title="Toggle Alert">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface/90 backdrop-blur text-error hover:bg-error hover:text-white flex items-center justify-center shadow-sm transition-colors" onclick="removeFromWatchlist('card-mp-9830', 'Damascus Goat Buck (#MP-9830)')" title="Remove from Watchlist">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-space-xs py-space-2xs rounded-md text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">sell</span> #MP-9830 • 2 Years • Male
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Damascus Goat Buck</h3>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Verified Breeder</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span> Amman Agricultural Green Belt
+              </p>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Vaccinated: Goat Pox &amp; Enterotoxaemia</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fixed Price</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Immediate Handover</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-headline-lg font-extrabold text-primary">350</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">JOD</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Direct pickup ready</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Clear pedigree lineage registered with Jordanian Goat Society</span>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm flex items-center justify-center gap-2" onclick="triggerEscrowCheckout('Damascus Goat Buck (#MP-9830)', 350)">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Buy with Escrow (CliQ)</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" onclick="triggerMakeOffer('MP-9830', 350)">
+                  Make Offer
+                </button>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="marketplace" href="#">
+                  Contact Seller
+                </a>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- SECTION 3: SAVED VETERINARIANS & CLINICS -->
+<section class="flex flex-col gap-space-lg" id="section-vets">
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">medical_services</span>
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span>Saved Livestock Clinicians &amp; Inspecting Vets</span>
+<span class="font-title-sm text-title-sm text-on-surface-variant font-normal">(أطباء بيطريون معتمدون)</span>
+</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Pre-purchase health audit and transit certification specialists</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- DOCTOR CARD -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-space-md" id="card-vet-884">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-headline-sm text-headline-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-[28px]">stethoscope</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Dr. Ahmed Ali</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="JVMA Licensed">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">JVMA Lic #884 • Ministry Accredited</span>
+<div class="flex items-center gap-1 text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">4.9</span>
+<span class="font-body-sm text-body-sm text-outline">(48 field inspections)</span>
+</div>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container text-error hover:bg-error hover:text-white flex items-center justify-center transition-colors" onclick="removeFromWatchlist('card-vet-884', 'Dr. Ahmed Ali (JVMA #884)')" title="Remove Doctor">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">Large Equine &amp; Ruminant</span>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">Amman &amp; Sahab District</span>
+<span class="px-space-xs py-space-2xs rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-bold">Available for Farm Gate Dispatch</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pre-Purchase Exam Fee:</span>
+<span class="font-title-sm text-title-sm font-bold text-primary">From 30 JOD</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Full biosecurity blood sampling, ultrasound screening, passport stamp.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<a class="w-full py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm" data-path="veterinary" href="#">
+              Book Inspection
+            </a>
+<a class="w-full py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold text-center transition-all" data-path="veterinary" href="#">
+              Message Clinic
+            </a>
+</div>
+</article>
+<!-- Informational Banner Card for Livestock Health -->
+<article class="bg-surface-container-high/60 rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md border-2 border-dashed border-outline-variant/60">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-primary">Need an Inspection for a Watched Lot?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Before releasing your escrow deposit for Madaba or Irbid auctions, you can commission a certified Ministry veterinarian to perform on-site health evaluations and blood titres.
+            </p>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-highest hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold transition-all" data-path="veterinary" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span>Browse All Registered Vets</span>
+</a>
+</article>
+</div>
+</section>
+<!-- SECTION 4: NOTIFICATION PREFERENCES & ESCROW REASSURANCE -->
+<section class="bg-surface-container-low rounded-2xl p-space-xl shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-xl" id="notification-settings">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<div class="flex items-center gap-space-xs text-secondary font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Automated Bid Dispatch Alerts</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Watchlist Notification Preferences</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Receive real-time alerts so you never lose an auction lot during final countdowns or miss sudden breeder price reductions.
+        </p>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md w-full lg:w-auto">
+<label class="flex items-center gap-space-xs cursor-pointer select-none bg-surface-container-lowest px-space-md py-space-sm rounded-xl shadow-sm">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" onchange="showToast('SMS Preferences', 'Outbid SMS alerts updated to active.')" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Instant Outbid SMS</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Direct to Jordanian Mobile</span>
+</div>
+</label>
+<label class="flex items-center gap-space-xs cursor-pointer select-none bg-surface-container-lowest px-space-md py-space-sm rounded-xl shadow-sm">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" onchange="showToast('Timer Preferences', '15-minute countdown alert active.')" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">15m Closing Countdown</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Push notifications</span>
+</div>
+</label>
+<label class="flex items-center gap-space-xs cursor-pointer select-none bg-surface-container-lowest px-space-md py-space-sm rounded-xl shadow-sm">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" onchange="showToast('WhatsApp Alerts', 'Price drop broadcasts active.')" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Price Drop Notices</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Via WhatsApp / Sanad</span>
+</div>
+</label>
+</div>
+</section>
+<!-- SECTION 5: RECOMMENDED BASED ON YOUR WATCHLIST -->
+<section class="flex flex-col gap-space-lg pt-space-md">
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wider">AI Registry Matching</span>
+<h2 class="font-headline-md text-headline-md text-primary">Recommended Based on Your Watchlist</h2>
+</div>
+<a class="font-label-md text-label-md font-bold text-primary hover:text-primary-container flex items-center gap-1 transition-colors" data-path="marketplace" href="#">
+<span>Explore Entire Catalog</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- RECOMMENDATION 1 -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center gap-space-md">
+<div class="w-full sm:w-40 aspect-square bg-surface-container rounded-xl overflow-hidden flex items-center justify-center p-2 flex-shrink-0">
+<img alt="Awassi Ewe with Lamb" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1X_6Djk_ChGrsdimszBxMA7N5yC4MkvHackqGzogqZTYg8JHqg8cb6j_rfT9SxFSojvWuTt-GltM_DDZyieSckQUzO_7kPHXY2Q8lwHRhX4JKQVcWDyWG9d9Oz80GOU9CRDL7A0TCZYbNag6CmB2t56vTjW4up-Pb4CgwzNstg1UTvknsYp57T-7LVDa9IJ3v8DitSkCI4KguR76OjuFverZghLc5tlyWkvEcxjq4obYxKnn7UzPOa8Ow"/>
+</div>
+<div class="flex flex-col justify-between gap-space-xs w-full">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">Awassi Sheep • Amman Farm</span>
+<span class="font-title-sm text-title-sm font-bold text-primary">320 JOD</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Awassi Ewe with Healthy Lamb</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">2.5 Years • High milk index female with 3-week-old ram lamb. Ministry vet verified.</p>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="px-space-md py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-all" onclick="addToWatchlist('Awassi Ewe with Healthy Lamb (#MP-9840)')">
+                Add to Watchlist
+              </button>
+<a class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all" data-path="marketplace" href="#">
+                View Lot
+              </a>
+</div>
+</div>
+</article>
+<!-- RECOMMENDATION 2 -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center gap-space-md">
+<div class="w-full sm:w-40 aspect-square bg-surface-container rounded-xl overflow-hidden flex items-center justify-center p-2 flex-shrink-0">
+<img alt="Prize Najdi Camel" class="w-full h-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida/AEtjO1Wl2Lz8_lqaftpfQQiIRh4zRzgznUMDYT9cFdWkkAaeKaw4IuTyMjtdQfMoCWmmzO_3F9uMhYuxarAzqsdTA4j9fq2caaU2dpJX265FIh3qvYQ-acVnqEIYMBU7NSBMiKmMcm4n1fg8UvmFhxzBovx4nWSzMbtnWonB50KlbF1PVpNwgpcHtSQJEfchSdGfeZDV5m_EF_trSKxaQ8fHcXr29kgIlEZ1q8yEPFKk-o8W3tzKfNlOgwUoJg"/>
+</div>
+<div class="flex flex-col justify-between gap-space-xs w-full">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">Upcoming Auction</span>
+<span class="font-title-sm text-title-sm font-bold text-primary">3,200 JOD</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Prize Najdi Camel (Lot #1046)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Aqaba Desert Registry • 6 Years • Pedigree racing and stud bloodline certificate.</p>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="px-space-md py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-all" onclick="addToWatchlist('Prize Najdi Camel (Lot #1046)')">
+                Add to Watchlist
+              </button>
+<a class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all" data-path="auctions" href="#">
+                Auction Details
+              </a>
+</div>
+</div>
+</article>
+</div>
+</section>
+</div>
+<!-- Interactive Modal for Fast Proxy / Instant Bidding -->
+<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-gutter-mobile" id="bid-modal">
+<div class="bg-surface rounded-2xl max-w-md w-full p-space-xl shadow-2xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-headline-sm text-headline-sm font-bold">
+<span class="material-symbols-outlined text-secondary">gavel</span>
+<span>Submit Bid Floor</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="closeBidModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-title-sm text-title-sm font-bold text-on-surface" id="modal-lot-title">Lot Title</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Central Bank Escrow Hold Authorized</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Your Proxy / Instant Bid (JOD)</label>
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary">JOD</span>
+<input class="w-full text-headline-md font-extrabold text-on-surface bg-surface-container-lowest px-space-md py-space-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-primary" id="modal-bid-input" type="number"/>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold" id="modal-min-text">Minimum accepted: 4,600 JOD</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span>CliQ Instant Escrow Hold will reserve 10% (Deposit Guarantee).</span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="flex-1 py-space-sm rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center transition-all shadow-sm" onclick="confirmBidSubmission()">
+          Confirm Bid with CliQ
+        </button>
+<button class="px-space-md py-space-sm rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-semibold transition-all" onclick="closeBidModal()">
+          Cancel
+        </button>
+</div>
+</div>
+</div>
+<script>
+    function showToast(title, desc) {
+      const banner = document.getElementById('toast-banner');
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-desc').textContent = desc;
+      banner.classList.remove('translate-y-28', 'opacity-0');
+      banner.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        dismissToast();
+      }, 4000);
+    }
+
+    function dismissToast() {
+      const banner = document.getElementById('toast-banner');
+      banner.classList.add('translate-y-28', 'opacity-0');
+      banner.classList.remove('translate-y-0', 'opacity-100');
+    }
+
+    function removeFromWatchlist(elementId, title) {
+      const card = document.getElementById(elementId);
+      if (card) {
+        card.classList.add('opacity-0', 'scale-95');
+        card.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+          card.remove();
+          updateCounts();
+          showToast('Removed from Watchlist', title + ' removed successfully.');
+        }, 300);
+      }
+    }
+
+    function toggleAlert(lotId) {
+      const bell = document.getElementById('bell-' + lotId);
+      if (bell) {
+        if (bell.classList.contains('text-secondary') || bell.classList.contains('bg-secondary-container')) {
+          bell.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'text-secondary');
+          bell.classList.add('text-on-surface-variant');
+          showToast('Alert Disabled', 'You will no longer receive push/SMS alerts for this item.');
+        } else {
+          bell.classList.remove('text-on-surface-variant');
+          bell.classList.add('bg-secondary-container', 'text-on-secondary-container');
+          showToast('Alert Activated', 'Push and SMS notifications are active for this lot.');
+        }
+      }
+    }
+
+    function clearInactiveLots() {
+      showToast('Cleanup Complete', 'Inactive and ended listings have been cleared from your watchlist.');
+    }
+
+    function updateCounts() {
+      const auctionCount = document.querySelectorAll('#auctions-grid > article').length;
+      const marketCount = document.querySelectorAll('#marketplace-grid > article').length;
+      const allCount = auctionCount + marketCount + 1; // +1 saved doctor
+      
+      const allEl = document.getElementById('count-all');
+      const aucEl = document.getElementById('count-auctions');
+      const mktEl = document.getElementById('count-market');
+
+      if (allEl) allEl.textContent = allCount;
+      if (aucEl) aucEl.textContent = auctionCount;
+      if (mktEl) mktEl.textContent = marketCount;
+    }
+
+    function switchTab(tab, btn) {
+      document.querySelectorAll('#filter-tabs button').forEach(b => {
+        b.className = 'tab-btn px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5 whitespace-nowrap';
+      });
+      btn.className = 'tab-btn px-space-md py-space-xs rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm flex items-center gap-1.5 whitespace-nowrap';
+
+      const secAuctions = document.getElementById('section-auctions');
+      const secMarket = document.getElementById('section-marketplace');
+      const secVets = document.getElementById('section-vets');
+
+      if (tab === 'all') {
+        secAuctions.style.display = 'flex';
+        secMarket.style.display = 'flex';
+        secVets.style.display = 'flex';
+      } else if (tab === 'auctions') {
+        secAuctions.style.display = 'flex';
+        secMarket.style.display = 'none';
+        secVets.style.display = 'none';
+      } else if (tab === 'marketplace') {
+        secAuctions.style.display = 'none';
+        secMarket.style.display = 'flex';
+        secVets.style.display = 'none';
+      } else if (tab === 'vets') {
+        secAuctions.style.display = 'none';
+        secMarket.style.display = 'none';
+        secVets.style.display = 'flex';
+      }
+    }
+
+    function filterWatchlist() {
+      const query = document.getElementById('watchlist-search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#auctions-grid > article, #marketplace-grid > article');
+      
+      cards.forEach(card => {
+        const title = (card.getAttribute('data-title') || '').toLowerCase();
+        const breed = (card.getAttribute('data-breed') || '').toLowerCase();
+        const gov = (card.getAttribute('data-governorate') || '').toLowerCase();
+
+        if (title.includes(query) || breed.includes(query) || gov.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function sortWatchlist(criteria) {
+      const auctionGrid = document.getElementById('auctions-grid');
+      const marketGrid = document.getElementById('marketplace-grid');
+
+      const sortContainer = (grid) => {
+        const cards = Array.from(grid.querySelectorAll('article'));
+        if (criteria === 'price-asc') {
+          cards.sort((a, b) => parseFloat(a.dataset.price || 0) - parseFloat(b.dataset.price || 0));
+        } else if (criteria === 'price-desc') {
+          cards.sort((a, b) => parseFloat(b.dataset.price || 0) - parseFloat(a.dataset.price || 0));
+        }
+        cards.forEach(c => grid.appendChild(c));
+      };
+
+      sortContainer(auctionGrid);
+      sortContainer(marketGrid);
+      showToast('Watchlist Reordered', 'Items sorted by ' + criteria);
+    }
+
+    function addToWatchlist(name) {
+      showToast('Added to Watchlist', name + ' has been saved to your active list.');
+    }
+
+    function triggerEscrowCheckout(name, price) {
+      showToast('CliQ Escrow Initialized', 'Connecting to Central Bank CliQ gateway for ' + price + ' JOD.');
+    }
+
+    function triggerMakeOffer(tag, price) {
+      showToast('Counter-Offer Form', 'Opening direct negotiation portal for ' + tag);
+    }
+
+    function increaseBidModal(title, minPrice) {
+      const modal = document.getElementById('bid-modal');
+      document.getElementById('modal-lot-title').textContent = title;
+      document.getElementById('modal-bid-input').value = minPrice;
+      document.getElementById('modal-min-text').textContent = 'Minimum accepted: ' + minPrice + ' JOD';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBidModal() {
+      const modal = document.getElementById('bid-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmBidSubmission() {
+      const val = document.getElementById('modal-bid-input').value;
+      closeBidModal();
+      showToast('Bid Successfully Lodged', 'Your high bid of ' + val + ' JOD was verified via MOA Escrow.');
+    }
+  </script>
+</div></main><footer class="w-full bg-inverse-surface text-inverse-on-surface"><div class="bg-inverse-surface py-space-xs px-gutter-desktop shadow-[inset_0_-1px_0_rgba(255,255,255,0.06)]"><div class="max-w-container-max mx-auto flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm"><div class="flex items-center gap-space-xs text-on-tertiary-container font-semibold"><span class="material-symbols-outlined text-[16px]">map</span><span>Official Governorate Coverage:</span></div><div class="flex flex-wrap items-center gap-space-md text-surface-dim font-medium"><span>Amman</span><span>•</span><span>Zarqa</span><span>•</span><span>Irbid</span><span>•</span><span>Mafraq</span><span>•</span><span>Aqaba</span><span>•</span><span>Balqa</span><span>•</span><span>Karak</span></div><div class="flex items-center gap-space-xs text-primary-fixed-dim"><span class="material-symbols-outlined text-[16px]">domain_verification</span><span>MOA Certified Checkpoints</span></div></div></div><div class="max-w-container-max mx-auto px-gutter-desktop py-space-3xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed"><span class="material-symbols-outlined text-[20px]">pets</span></div><span class="font-headline-sm text-headline-sm font-bold text-surface-bright">Kingdom Veterinary &amp; Livestock Exchange</span></div><p class="font-body-sm text-body-sm text-surface-dim max-w-md leading-relaxed">The Hashemite Kingdom of Jordan's authenticated livestock commerce hub. Providing verified auctions, digital escrow via CliQ &amp; Central Bank regulations, veterinary health records, and transport transit clearances.</p><div class="flex items-center gap-space-md mt-space-xs"><div class="px-space-md py-space-xs rounded-xl bg-surface-variant/10 flex items-center gap-space-xs text-surface-dim"><span class="material-symbols-outlined text-secondary-fixed text-[20px]">account_balance</span><div class="flex flex-col"><span class="font-label-sm text-label-sm font-bold text-surface-bright">CBJ Regulated Escrow</span><span class="font-label-sm text-label-sm text-outline-variant">Direct Clearance via CliQ</span></div></div></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-sm text-title-sm font-bold text-surface-bright">Marketplace</h4><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-surface-dim"><a class="hover:text-surface-bright transition-colors" data-path="marketplace" href="#">Pedigree Sheep &amp; Goats</a><a class="hover:text-surface-bright transition-colors" data-path="marketplace" href="#">Purebred Arabian Horses</a><a class="hover:text-surface-bright transition-colors" data-path="marketplace" href="#">Dairy &amp; Beef Cattle</a><a class="hover:text-surface-bright transition-colors" data-path="marketplace" href="#">Camel Herd Registry</a><a class="hover:text-surface-bright transition-colors" data-path="sell-animal" href="#">List Livestock Batch</a></ul></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-sm text-title-sm font-bold text-surface-bright">Auctions &amp; Escrow</h4><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-surface-dim"><a class="hover:text-surface-bright transition-colors" data-path="auctions" href="#">Live Bidding Arena</a><a class="hover:text-surface-bright transition-colors" data-path="auctions" href="#">Upcoming Catalogues</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">CliQ Deposit Process</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Buyer Settlement Terms</a><a class="hover:text-surface-bright transition-colors" data-path="my-watchlist" href="#">Active Bid Monitor</a></ul></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-sm text-title-sm font-bold text-surface-bright">Veterinary &amp; Legal</h4><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-surface-dim"><a class="hover:text-surface-bright transition-colors" data-path="veterinary" href="#">Ministry of Agriculture Approvals</a><a class="hover:text-surface-bright transition-colors" data-path="veterinary" href="#">Vaccination Passport Check</a><a class="hover:text-surface-bright transition-colors" data-path="veterinary" href="#">Certified Field Clinicians</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Transit Health Clearances</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Dispute Arbitration</a></ul></div></div><div class="mt-space-2xl pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-outline-variant shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"><p>© 2025 AnimalEcosystem Jordan. Operating under Kingdom Agricultural &amp; Digital Escrow Standards.</p><div class="flex items-center gap-space-lg"><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Escrow Security</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Ministry Regulations</a><a class="hover:text-surface-bright transition-colors" data-path="escrow-policy" href="#">Privacy Policy</a></div></div></div></footer></body></html>

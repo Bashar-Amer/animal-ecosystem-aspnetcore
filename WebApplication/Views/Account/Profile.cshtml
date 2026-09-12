@@ -1,0 +1,165 @@
+@model WebApp.ViewModels.Account.ProfileViewModel
+
+@{
+    ViewData["Title"] = "My Profile";
+    ViewData["Description"] = "View your AnimalEcosystem account profile and activity.";
+    var initials = string.Join("", Model.FullName
+        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Take(2)
+        .Select(part => part[0]))
+        .ToUpperInvariant();
+    var roleLabel = Model.Roles.Count > 0
+        ? string.Join(" · ", Model.Roles)
+        : "AnimalEcosystem member";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account/profile.css" />
+}
+
+<main class="profile-page">
+    <section class="profile-hero">
+        <div class="container">
+            <div class="profile-hero-content">
+                <div class="profile-identity">
+                    <div class="profile-avatar">
+                        @if (!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+                        {
+                            <img src="@Model.ProfileImageUrl" alt="@Model.FullName" />
+                        }
+                        else
+                        {
+                            <span>@(string.IsNullOrWhiteSpace(initials) ? "U" : initials)</span>
+                        }
+                        @if (Model.IsVerified)
+                        {
+                            <span class="profile-verified" title="Verified account">
+                                <span class="material-symbols-outlined">verified</span>
+                            </span>
+                        }
+                    </div>
+                    <div class="profile-identity-details">
+                        <span class="section-eyebrow label-sm">Account profile</span>
+                        <h1 class="headline-lg">@Model.FullName</h1>
+                        <p class="body-md profile-role">@roleLabel</p>
+                        <div class="profile-meta">
+                            @if (!string.IsNullOrWhiteSpace(Model.Location))
+                            {
+                                <span><span class="material-symbols-outlined">location_on</span>@Model.Location</span>
+                            }
+                            <span><span class="material-symbols-outlined">calendar_month</span>Member since @Model.CreatedAt.ToString("MMMM yyyy")</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <a asp-controller="MyAnimals" asp-action="Index" class="btn btn-primary">
+                        <span class="material-symbols-outlined">storefront</span>
+                        My listings
+                    </a>
+                    <a asp-controller="Account" asp-action="Watchlist" class="btn btn-outline">
+                        <span class="material-symbols-outlined">favorite</span>
+                        Watchlist
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="profile-stats" aria-label="Account activity">
+                <div class="profile-stat">
+                    <span class="material-symbols-outlined">storefront</span>
+                    <div><strong>@Model.ListingCount</strong><span>Listings</span></div>
+                </div>
+                <div class="profile-stat">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <div><strong>@Model.FavoriteCount</strong><span>Saved animals</span></div>
+                </div>
+                <div class="profile-stat">
+                    <span class="material-symbols-outlined">gavel</span>
+                    <div><strong>@Model.BidCount</strong><span>Bids placed</span></div>
+                </div>
+                <div class="profile-stat">
+                    <span class="material-symbols-outlined">star</span>
+                    <div><strong>@Model.Rating.ToString("0.0")</strong><span>Rating</span></div>
+                </div>
+            </div>
+
+            <div class="profile-grid">
+                <article class="profile-card">
+                    <div class="profile-card-heading">
+                        <div>
+                            <span class="section-eyebrow label-sm">Personal details</span>
+                            <h2 class="headline-sm">Contact information</h2>
+                        </div>
+                        <span class="material-symbols-outlined profile-card-icon">person</span>
+                    </div>
+                    <dl class="profile-details">
+                        <div>
+                            <dt><span class="material-symbols-outlined">badge</span>Full name</dt>
+                            <dd>@Model.FullName</dd>
+                        </div>
+                        <div>
+                            <dt><span class="material-symbols-outlined">mail</span>Email address</dt>
+                            <dd>@(string.IsNullOrWhiteSpace(Model.Email) ? "Not provided" : Model.Email)</dd>
+                        </div>
+                        <div>
+                            <dt><span class="material-symbols-outlined">phone</span>Phone number</dt>
+                            <dd>@(string.IsNullOrWhiteSpace(Model.PhoneNumber) ? "Not provided" : Model.PhoneNumber)</dd>
+                        </div>
+                        <div>
+                            <dt><span class="material-symbols-outlined">location_on</span>Location</dt>
+                            <dd>@(string.IsNullOrWhiteSpace(Model.Location) ? "Not provided" : Model.Location)</dd>
+                        </div>
+                    </dl>
+                </article>
+
+                <article class="profile-card">
+                    <div class="profile-card-heading">
+                        <div>
+                            <span class="section-eyebrow label-sm">Trust and access</span>
+                            <h2 class="headline-sm">Account status</h2>
+                        </div>
+                        <span class="material-symbols-outlined profile-card-icon">shield</span>
+                    </div>
+                    <div class="profile-status @(Model.IsVerified ? "is-verified" : "is-pending")">
+                        <span class="material-symbols-outlined">@(Model.IsVerified ? "verified" : "pending")</span>
+                        <div>
+                            <strong>@(Model.IsVerified ? "Verified account" : "Verification pending")</strong>
+                            <span>@(Model.IsVerified ? "Your account has been verified." : "Complete verification to build trust with other members.")</span>
+                        </div>
+                    </div>
+                    <div class="profile-roles">
+                        <span class="label-sm">Account roles</span>
+                        <div>
+                            @foreach (var role in Model.Roles)
+                            {
+                                <span class="profile-role-badge">@role</span>
+                            }
+                            @if (Model.Roles.Count == 0)
+                            {
+                                <span class="profile-role-badge">Member</span>
+                            }
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            @* <article class="profile-card profile-account-card">
+                <div class="profile-card-heading">
+                    <div>
+                        <span class="section-eyebrow label-sm">Account information</span>
+                        <h2 class="headline-sm">Your AnimalEcosystem account</h2>
+                    </div>
+                    <span class="profile-account-id">ID @Model.Id</span>
+                </div>
+                <div class="profile-account-note">
+                    <span class="material-symbols-outlined">lock</span>
+                    <p class="body-sm mb-0">Your profile information is used to identify your account and support trusted marketplace interactions.</p>
+                </div>
+            </article> *@
+        </div>
+    </section>
+</main>

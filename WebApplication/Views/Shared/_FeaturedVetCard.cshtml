@@ -17,7 +17,7 @@
             <span class="status-indicator status-@Model.AvailabilityStatus"></span>
             <span class="status-text label-sm">@Model.AvailabilityText</span>
         </div>
-        <span class="vet-fee title-sm">From @Model.FeeFrom.ToString("C0")</span>
+        <span class="vet-fee title-sm">From @Model.FeeFrom.ToString("N0") JOD</span>
     </div>
-    <a asp-controller="Veterinarians" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-outline btn-block">Book Consultation</a>
+    <a asp-controller="Vet" asp-action="Profile" asp-route-id="@Model.Slug" class="btn btn-outline btn-block">Contact</a>
 </article>

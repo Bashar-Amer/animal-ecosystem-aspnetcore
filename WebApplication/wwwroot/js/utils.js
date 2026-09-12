@@ -193,39 +193,28 @@ const Utils = {
    * @param {string} type - Type of toast (success, error, warning, info)
    * @param {number} duration - Duration in milliseconds
    */
-  showToast(message, type = 'info', duration = 3000) {
-    // Create toast element
-    const toast = document.createElement('div');
-    toast.className = `toast toast-${type}`;
-    toast.textContent = message;
-    toast.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 16px 24px;
-      border-radius: 8px;
-      background: var(--surface-container-lowest);
-      box-shadow: var(--shadow-level-3);
-      z-index: 9999;
-      animation: slideIn 0.3s ease-out;
-    `;
+    showToast(message, type = 'info', duration = 2000) {
+        // Map your custom types to background colors or CSS classes
+        const colors = {
+            success: '#198754', // Classic green
+            error: '#dc3545',   // Classic red
+            warning: '#ffc107', // Classic amber/yellow
+            info: '#0d6efd'     // Classic blue
+        };
 
-    // Set color based on type
-    const colors = {
-      success: 'var(--status-verified-bg)',
-      error: 'var(--error-container)',
-      warning: 'var(--status-ending-bg)',
-      info: 'var(--status-starting-bg)',
-    };
-    toast.style.backgroundColor = colors[type] || colors.info;
-
-    document.body.appendChild(toast);
-
-    // Remove after duration
-    setTimeout(() => {
-      toast.style.animation = 'slideOut 0.3s ease-out';
-      setTimeout(() => toast.remove(), 300);
-    }, duration);
+        Toastify({
+            text: message,
+            duration: duration,
+            close: true,
+            gravity: "bottom", // "top" or "bottom"
+            position: "right", // "left", "center" or "right"
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: colors[type] || colors.info,
+                borderRadius: "8px",
+                boxShadow: "var(--shadow-level-3)"
+            }
+        }).showToast();
   },
 
   /**

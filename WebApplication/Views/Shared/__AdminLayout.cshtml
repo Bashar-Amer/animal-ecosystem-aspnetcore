@@ -1,0 +1,245 @@
+@using Microsoft.AspNetCore.Identity
+@using WebApp.Models
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var currentUser = User.Identity?.IsAuthenticated == true ? await UserManager.GetUserAsync(User) : null;
+    var displayName = string.IsNullOrWhiteSpace(currentUser?.FullName) ? User.Identity?.Name : currentUser.FullName;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "AnimalEcosystem Jordan - Admin Platform Command")</title>
+    <link rel="icon" type="image/svg+xml" href="~/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css" />
+
+    <style>
+        @@layer base {
+            html, body { margin: 0; padding: 0; }
+            body { overscroll-behavior: none; }
+            main > :first-child { margin-top: 0 !important; }
+            main > :last-child { margin-bottom: 0 !important; }
+        }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+
+    <!-- Tailwind with Project Design System Tokens -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#49230e",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#643822",
+                        "on-primary-container": "#e0a286",
+                        "inverse-primary": "#f9b89a",
+                        "primary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#f9b89a",
+                        "on-primary-fixed": "#331102",
+                        "on-primary-fixed-variant": "#683b25",
+
+                        "secondary": "#9d4314",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fe8c58",
+                        "on-secondary-container": "#712800",
+                        "secondary-fixed": "#ffdbcd",
+                        "secondary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed": "#360f00",
+                        "on-secondary-fixed-variant": "#7d2d00",
+
+                        "tertiary": "#482413",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#623927",
+                        "on-tertiary-container": "#dda48c",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary-fixed-dim": "#f5b9a0",
+                        "on-tertiary-fixed": "#321204",
+                        "on-tertiary-fixed-variant": "#663c2a",
+
+                        "surface": "#fff8f5",
+                        "surface-dim": "#e1d8d3",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#fbf2ec",
+                        "surface-container": "#f6ece7",
+                        "surface-container-high": "#f0e6e1",
+                        "surface-container-highest": "#eae1db",
+                        "surface-variant": "#eae1db",
+                        "surface-tint": "#84523a",
+
+                        "on-surface": "#1f1b18",
+                        "on-surface-variant": "#52443e",
+                        "inverse-surface": "#342f2c",
+                        "inverse-on-surface": "#f8efea",
+
+                        "outline": "#84746d",
+                        "outline-variant": "#d6c2bb",
+
+                        "background": "#fff8f5",
+                        "on-background": "#1f1b18",
+
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "space-2xs": "0.25rem",
+                        "space-xs": "0.5rem",
+                        "space-sm": "0.75rem",
+                        "space-md": "1rem",
+                        "space-lg": "1.5rem",
+                        "space-xl": "2rem",
+                        "space-2xl": "3rem",
+                        "space-3xl": "4rem",
+                        "gutter-mobile": "1rem",
+                        "gutter-desktop": "1.5rem"
+                    },
+                    fontFamily: {
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                        body: ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Project Design System Fallbacks & Styles -->
+    <link rel="stylesheet" href="~/css/variables.css" />
+    <link rel="stylesheet" href="~/css/reset.css" />
+    <link rel="stylesheet" href="~/css/typography.css" />
+    <link rel="stylesheet" href="~/css/components.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+
+    <link rel="stylesheet" href="~/css/pages/admin/admin.css" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col">
+    <header class="header admin-header">
+        <div class="admin-header-container max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+                <a class="flex items-center gap-2.5 group" asp-controller="Admin" asp-action="Index">
+                    <img src="~/Logo.svg" alt="AnimalEcosystem logo" class="w-14 h-14 object-contain shrink-0" />
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-[9px] sm:text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-primary-fixed text-primary tracking-wider">ADMIN</span>
+                        </div>
+                        <span class="text-[10px] sm:text-[11px] text-on-surface-variant font-medium">المملكة الأردنية الهاشمية</span>
+                    </div>
+                </a>
+                <div class="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/60 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[15px] text-secondary">admin_panel_settings</span>
+                    <span class="text-[12px] font-semibold text-primary">Platform Administration (إدارة المنصة)</span>
+                </div>
+            </div>
+
+            <nav class="admin-desktop-nav hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-outline-variant/40" aria-label="Admin Navigation">
+                <a asp-controller="Admin" asp-action="Index" class="px-4 py-1.5 bg-primary-container text-on-primary font-semibold text-[13px] rounded-full shadow-sm transition-all" aria-current="page">Dashboard</a>
+                <a asp-controller="Admin" asp-action="Index" class="px-4 py-1.5 text-on-surface-variant hover:text-primary font-medium text-[13px] transition-colors rounded-full hover:bg-surface-container">Moderation Queue</a>
+                <a asp-controller="Auction" asp-action="Index" class="px-4 py-1.5 text-on-surface-variant hover:text-primary font-medium text-[13px] transition-colors rounded-full hover:bg-surface-container">Live Auctions</a>
+                <a asp-controller="Vet" asp-action="Index" class="px-4 py-1.5 text-on-surface-variant hover:text-primary font-medium text-[13px] transition-colors rounded-full hover:bg-surface-container">Veterinarians</a>
+                <a asp-controller="Marketplace" asp-action="Index" class="px-4 py-1.5 text-on-surface-variant hover:text-primary font-medium text-[13px] transition-colors rounded-full hover:bg-surface-container">Marketplace</a>
+            </nav>
+
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <div class="hidden md:flex items-center relative w-48 xl:w-60">
+                    <span class="material-symbols-outlined absolute left-3 text-[18px] text-outline pointer-events-none">search</span>
+                    <input class="w-full bg-surface-container-low pl-9 pr-3 py-1.5 rounded-full text-[12px] text-on-surface border border-outline-variant/60 focus:outline-none focus:border-primary focus:bg-surface-container-lowest placeholder:text-outline/80 transition-all" placeholder="Filter listings, tags..." type="text" data-admin-search />
+                </div>
+                <div class="relative">
+                    <button aria-label="Admin Notifications" class="w-9 h-9 rounded-full bg-surface-container-low border border-outline-variant/50 hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" data-admin-notifications>
+                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+                    </button>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-secondary text-on-secondary text-[10px] font-bold flex items-center justify-center shadow-xs">3</span>
+                </div>
+                <div class="flex items-center gap-2 pl-1 border-l border-outline-variant/60">
+                    <div class="relative">
+                        <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs shadow-xs">AD</div>
+                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+                    </div>
+                    <div class="hidden 2xl:flex flex-col text-left">
+                        <span class="text-[12px] font-bold text-primary leading-tight">Admin Console</span>
+                        <span class="text-[10px] text-on-surface-variant">Marketplace Oversight</span>
+                    </div>
+                </div>
+                <button type="button" class="lg:hidden w-9 h-9 rounded-full bg-surface-container-low border border-outline-variant/50 hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" id="admin-mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+                    <span class="material-symbols-outlined text-[20px]" id="admin-mobile-menu-icon">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="admin-mobile-drawer" class="hidden lg:hidden border-t border-outline-variant/40 bg-surface-container-lowest px-4 py-3 flex flex-col gap-2 transition-all">
+            <div class="relative mb-2 md:hidden">
+                <span class="material-symbols-outlined absolute left-3 top-2 text-[18px] text-outline pointer-events-none">search</span>
+                <input class="w-full bg-surface-container-low pl-9 pr-3 py-1.5 rounded-xl text-[12px] text-on-surface border border-outline-variant/60 focus:outline-none focus:border-primary placeholder:text-outline" placeholder="Filter listings, tags..." type="text" data-admin-search />
+            </div>
+            <a asp-controller="Admin" asp-action="Index" class="px-3 py-2 rounded-xl bg-primary-container text-on-primary font-semibold text-[13px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard</a>
+            <a asp-controller="Admin" asp-action="Index" class="px-3 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-medium text-[13px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">pending_actions</span> Moderation Queue</a>
+            <a asp-controller="Auction" asp-action="Index" class="px-3 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-medium text-[13px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">gavel</span> Live Auctions</a>
+            <a asp-controller="Vet" asp-action="Index" class="px-3 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-medium text-[13px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">medical_services</span> Veterinarians</a>
+            <a asp-controller="Marketplace" asp-action="Index" class="px-3 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container font-medium text-[13px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">storefront</span> Public Marketplace</a>
+        </div>
+    </header>
+
+    <!-- Main Content Space -->
+    <main class="w-full flex-1">
+        @RenderBody()
+    </main>
+
+    <!-- Grounded Levantine Admin Footer -->
+    <footer class="w-full bg-[#151210] text-[#E7E1D8] pt-space-xl pb-space-lg border-t border-stone-800 mt-auto">
+        <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-space-md pb-space-md border-b border-stone-800">
+                <div class="flex items-center gap-3">
+                    <img src="~/Logo.svg" alt="AnimalEcosystem logo" class="w-11 h-11 object-contain shrink-0" />
+                    <div class="flex flex-col text-left">
+                        <span class="font-bold text-[15px] text-white">AnimalEcosystem Jordan - Admin Platform</span>
+                        <span class="text-[12px] text-stone-400">Verified Marketplace, Timed Auctions &amp; Licensed Veterinary Operations</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-[12px] text-stone-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Central Escrow Gateway: Operational</span>
+                    <span class="text-stone-600">•</span>
+                    <span>12 Governorates Connected</span>
+                </div>
+            </div>
+            <div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-2 text-[12px] text-stone-500">
+                <span>&copy; @DateTime.Now.Year AnimalEcosystem Jordan. Platform Administration &amp; Moderation Command. All rights reserved.</span>
+                <div class="flex items-center gap-4">
+                    <a asp-controller="Home" asp-action="Index" class="hover:text-stone-300 transition-colors">Public Portal</a>
+                    <a asp-controller="Marketplace" asp-action="Index" class="hover:text-stone-300 transition-colors">Marketplace</a>
+                    <a asp-controller="Auction" asp-action="Index" class="hover:text-stone-300 transition-colors">Auctions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Html.AntiForgeryToken()
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/components.js"></script>
+    <script src="~/js/pages/admin/admin.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

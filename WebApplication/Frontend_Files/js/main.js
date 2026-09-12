@@ -129,11 +129,13 @@ function initAuctionCards() {
         e.addEventListener("click", t => {
             t.preventDefault(), handleBidClick(e.dataset.auctionId)
         })
-    }), document.querySelectorAll("[data-favorite]").forEach(e => {
-        e.addEventListener("click", t => {
-            t.preventDefault(), toggleFavorite(e.dataset.favorite, e)
-        })
-    })
+    }),
+    // document.querySelectorAll("[data-favorite]").forEach(e => {
+    //     e.addEventListener("click", t => {
+    //         t.preventDefault();
+    //         toggleFavorite(e.dataset.favorite, e);
+    //     })
+    // })
 }
 
 function handleBidClick(e) {
@@ -146,12 +148,12 @@ function handleBidClick(e) {
     t.modal && (t.modal.dataset.auctionId = e, t.modal.open())
 }
 
-function toggleFavorite(e, t) {
-    const s = t.classList.contains("favorited");
-    s ? (t.classList.remove("favorited"), Utils.showToast("Removed from watchlist", "info")) : (t.classList.add("favorited"), Utils.showToast("Added to watchlist", "success"));
-    const n = t.querySelector("svg");
-    n && n.classList.toggle("filled"), saveFavoriteState(e, !s)
-}
+// function toggleFavorite(e, t) {
+//     const s = t.classList.contains("favorited");
+//     s ? (t.classList.remove("favorited"), Utils.showToast("Removed from watchlist", "info")) : (t.classList.add("favorited"), Utils.showToast("Added to watchlist", "success"));
+//     const n = t.querySelector("svg");
+//     n && n.classList.toggle("filled"), saveFavoriteState(e, !s)
+// }
 
 function saveFavoriteState(e, t) {
     let s = Utils.storage.get("favorites") || [];

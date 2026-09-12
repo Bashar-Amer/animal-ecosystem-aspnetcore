@@ -1,0 +1,143 @@
+﻿@using WebApp.ViewModels.MyAnimals
+@model AnimalFormViewModel
+@{
+    ViewData["Title"] = "List an Animal";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/my-animals/create.css" />
+}
+
+<div class="create-animal-page mt-2 mb-5">
+    <div class="container" style="max-width: 900px;">
+
+        <div class="mb-lg">
+            <span class="label-sm" style="color: var(--secondary-accent);">Seller Portal</span>
+            <h1 class="headline-md mt-xs mb-xs">List an Animal</h1>
+            <p class="body-md text-muted mb-0">Your listing will be reviewed by an admin before it appears publicly.</p>
+        </div>
+
+        <form asp-controller="MyAnimals" asp-action="Create" method="post" enctype="multipart/form-data" id="createAnimalForm">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-error mb-lg" role="alert"></div>
+
+            <div class="form-card mb-lg">
+                <div class="form-card-header">
+                    <span class="material-symbols-outlined">pets</span>
+                    <h2 class="title-md mb-0">Animal Details</h2>
+                </div>
+                <div class="form-card-body">
+                    <div class="field-group">
+                        <label asp-for="Name" class="field-label"></label>
+                        <input asp-for="Name" class="field-input" placeholder="e.g. Zephyr" />
+                        <span asp-validation-for="Name" class="field-error"></span>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="field-group">
+                            <label asp-for="SpeciesId" class="field-label">Species</label>
+                            <select asp-for="SpeciesId" asp-items="Model.SpeciesOptions" class="field-input">
+                                <option value="">-- Select Species --</option>
+                            </select>
+                            <span asp-validation-for="SpeciesId" class="field-error"></span>
+                        </div>
+                        <div class="field-group">
+                            <label asp-for="Breed" class="field-label"></label>
+                            <input asp-for="Breed" class="field-input" placeholder="e.g. Arabian, Holstein" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <div class="field-group">
+                            <label asp-for="Gender" class="field-label"></label>
+                            <select asp-for="Gender" class="field-input">
+                                <option value="">-- Select --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Castrated">Castrated</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label asp-for="AgeInMonths" class="field-label">Age (months)</label>
+                            <input asp-for="AgeInMonths" type="number" min="0" class="field-input" />
+                        </div>
+                        <div class="field-group">
+                            <label asp-for="Price" class="field-label">Price (JOD)</label>
+                            <input asp-for="Price" type="number" step="0.01" min="0.01" class="field-input" />
+                            <span asp-validation-for="Price" class="field-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label asp-for="Location" class="field-label">Governorate</label>
+                        <select asp-for="Location" class="field-input">
+                            <option value="">-- Select Governorate --</option>
+                            <option value="Amman, Jordan">Amman</option>
+                            <option value="Irbid, Jordan">Irbid</option>
+                            <option value="Madaba, Jordan">Madaba</option>
+                            <option value="Zarqa, Jordan">Zarqa</option>
+                            <option value="As-Salt, Jordan">As-Salt</option>
+                            <option value="Mafraq, Jordan">Mafraq</option>
+                            <option value="Karak, Jordan">Karak</option>
+                            <option value="Aqaba, Jordan">Aqaba</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group mb-0">
+                        <label asp-for="Description" class="field-label"></label>
+                        <textarea asp-for="Description" class="field-input" rows="4" placeholder="Health, temperament, lineage, feeding..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card mb-lg">
+                <div class="form-card-header">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                    <h2 class="title-md mb-0">Photos</h2>
+                    <span class="label-sm ms-auto" style="color: var(--secondary-accent);">At least 1 recommended</span>
+                </div>
+                <div class="form-card-body">
+                    <div class="upload-dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload photos">
+                        <div class="upload-icon-circle">
+                            <span class="material-symbols-outlined">cloud_upload</span>
+                        </div>
+                        <span class="title-sm" style="color: var(--primary-container);">Click to upload or drag images here</span>
+                        <span class="body-sm text-muted">JPG, PNG, WebP — up to 5MB each</span>
+                    </div>
+                    <input type="file" id="imageInput" multiple accept=".jpg,.jpeg,.png,.webp" class="d-none" />
+
+                    <div class="photo-grid mt-md" id="photoGrid"></div>
+                    <p class="body-sm text-muted mt-sm mb-0 d-none" id="emptyHint">No photos added yet.</p>
+                </div>
+            </div>
+
+            <div class="form-card mb-lg">
+                <div class="form-card-header">
+                    <span class="material-symbols-outlined">description</span>
+                    <h2 class="title-md mb-0">Additional Notes</h2>
+                    <span class="label-sm ms-auto text-muted">Optional</span>
+                </div>
+                <div class="form-card-body">
+                    <div class="field-group mb-0">
+                        <label asp-for="BreederNotes" class="field-label">Notes (one per line)</label>
+                        <textarea asp-for="BreederNotes" class="field-input" rows="3" placeholder="Training history, vaccination notes, temperament..."></textarea>
+                        <span class="body-sm text-muted d-block mt-xs">Each line becomes a separate note on the listing.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-end gap-sm">
+                <a asp-controller="MyAnimals" asp-action="Index" class="btn-outline-brand">Cancel</a>
+                <button type="submit" class="btn-brand">
+                    <span class="material-symbols-outlined">publish</span>
+                    Submit for Review
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/pages/my-animals/create.js"></script>
+}

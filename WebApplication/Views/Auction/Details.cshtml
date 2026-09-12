@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/auction-details.css" />
+    <link rel="stylesheet" href="~/css/pages/auction/auction-details.css" />
 }
 
 <section class="auction-meta-header">
@@ -17,7 +17,7 @@
             </div>
             <nav aria-label="Breadcrumb" class="breadcrumb">
                 <a asp-controller="Home" asp-action="Index">Home</a><span class="breadcrumb-sep">/</span>
-                <a asp-controller="Auctions" asp-action="Index">Auctions</a><span class="breadcrumb-sep">/</span>
+                <a asp-controller="Auction" asp-action="Index">Auctions</a><span class="breadcrumb-sep">/</span>
                 <span class="breadcrumb-current">@Model.Title</span>
             </nav>
         </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="meta-actions">
-                <button class="icon-btn" aria-label="Save auction" data-action="save"><span class="material-symbols-outlined">favorite_border</span></button>
+                @* <button class="icon-btn" aria-label="Save auction" data-action="save"><span class="material-symbols-outlined">favorite_border</span></button> *@
                 <button class="icon-btn" aria-label="Share" data-action="share"><span class="material-symbols-outlined">share</span></button>
             </div>
         </div>
@@ -151,7 +151,7 @@
                                     <span class="bid-time">@bid.TimeAgo</span>
                                 </div>
                             </div>
-                            <span class="bid-value @(bid.IsWinning ? "headline-sm" : "title-sm")">@bid.Amount.ToString("C0")</span>
+                            <span class="bid-value @(bid.IsWinning ? "headline-sm" : "title-sm")">@bid.Amount.ToString("N0") JOD</span>
                         </div>
                     }
                 </div>
@@ -187,11 +187,11 @@
                 <div class="bid-financials">
                     <span class="label-sm text-muted">Current Highest Bid</span>
                     <div class="current-bid-display">
-                        <span class="bid-amount-large" id="current-bid-display">@Model.CurrentBid.ToString("F0")</span><span class="title-md">$</span>
+                        <span class="bid-amount-large" id="current-bid-display">@Model.CurrentBid.ToString("F0")</span><span class="title-md">JOD</span>
                     </div>
                     <div class="bid-meta">
-                        <span class="body-sm">Minimum Next Bid: <strong id="min-bid-label">@Model.MinNextBid.ToString("C0")</strong></span>
-                        <span class="body-sm">Increment: <strong>+@Model.BidIncrement.ToString("C0")</strong></span>
+                        <span class="body-sm">Minimum Next Bid: <strong id="min-bid-label">@Model.MinNextBid.ToString("N0") JOD</strong></span>
+                        <span class="body-sm">Increment: <strong>+@Model.BidIncrement.ToString("N0") JOD</strong></span>
                     </div>
                 </div>
 
@@ -201,7 +201,7 @@
                         @foreach (var amount in Model.QuickBidAmounts)
                         {
                             <button class="quick-bid-btn" data-quick-bid="@amount.ToString("F0")">
-                                +@((amount - Model.CurrentBid).ToString("F0")) $<span>@amount.ToString("C0")</span>
+                                +@((amount - Model.CurrentBid).ToString("F0")) JOD<span>@amount.ToString("N0") JOD</span>
                             </button>
                         }
                     </div>
@@ -210,15 +210,16 @@
                 <div class="bid-action-section">
                     <div class="bid-stepper">
                         <button type="button" data-stepper="minus">-</button>
-                        <input type="number" id="bid-amount-input" value="@Model.MinNextBid.ToString("F0")" min="@Model.MinNextBid.ToString("F0")" step="@Model.BidIncrement.ToString("F0")" />
-                        <span class="stepper-currency">$</span>
+                        <input type="number" id="bid-amount-input" value="@Model.MinNextBid.ToString("F0")" min="@Model.MinNextBid.ToString("F0")"  />
+                        @* step="@Model.BidIncrement.ToString("F0")" *@
+                        <span class="stepper-currency">JOD</span>
                         <button type="button" data-stepper="plus">+</button>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-block" id="place-bid-btn" type="button">
+                    <button class="btn btn-primary btn-lg btn-block" id="place-bid-btn" data-auction-id="@Model.Id" type="button">
                         <span class="material-symbols-outlined">gavel</span>
-                        <span id="place-bid-text">Place Bid of @Model.MinNextBid.ToString("C0")</span>
+                        <span id="place-bid-text">Place Bid of @Model.MinNextBid.ToString("N0") JOD</span>
                     </button>
-                    <button class="btn btn-outline btn-block" id="watchlist-btn" type="button">
+                    <button class="btn btn-outline btn-block" id="watchlist-btn" data-animal-id="@Model.AnimalId" type="button">
                         <span class="material-symbols-outlined">favorite_border</span>
                         Add to Watchlist
                     </button>
@@ -267,7 +268,7 @@
                 <span class="label-sm text-secondary uppercase font-bold">Explore Live Events</span>
                 <h2 class="headline-md mt-2xs">Similar Live Auctions</h2>
             </div>
-            <a asp-controller="Auctions" asp-action="Index" class="view-all-link title-sm">Browse All Active Auctions →</a>
+            <a asp-controller="Auction" asp-action="Index" class="view-all-link title-sm">Browse All Active Auctions →</a>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
             @foreach (var similar in Model.SimilarAuctions)
@@ -284,7 +285,7 @@
                             <h3 class="title-sm">@similar.Title</h3>
                             <div class="card-footer-row">
                                 <div><span class="label-sm text-muted">Current Bid</span><span class="title-sm font-bold">@similar.CurrentBid.ToString("C0")</span></div>
-                                <a asp-controller="Auctions" asp-action="Details" asp-route-id="@similar.Id" class="btn btn-primary btn-sm">Bid Now</a>
+                                <a asp-controller="Auction" asp-action="Details" asp-route-id="@similar.Id" class="btn btn-primary btn-sm">Bid Now</a>
                             </div>
                         </div>
                     </article>
@@ -295,5 +296,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/auction-details.js"></script>
+    <script src="~/js/pages/auction/auction-details.js"></script>
 }

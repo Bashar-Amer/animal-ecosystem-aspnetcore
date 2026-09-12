@@ -9,5 +9,6 @@ namespace WebApp.ViewModels.Users
         public DateTime CreatedAt { get; set; }
         public bool IsVerified { get; set; } = false;
         public string? Location { get; set; }
+        public string? PhoneNumber { get; set; }
     }
 }

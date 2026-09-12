@@ -9,7 +9,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/animal-details.css" />
+    <link rel="stylesheet" href="~/css/pages/marketplace/animal-details.css" />
 }
 
 @* ══════════════════════════════════════════
@@ -46,7 +46,7 @@
 
                     <div class="gallery-main">
                         <div class="image-showcase">
-                            <img src="@listing.Images.FirstOrDefault(i=>i.IsMain).ImageUrl"
+                            <img src="@listing.ImageUrls[0]"
                                  alt="@listing.Name - main view"
                                  class="main-image"
                                  id="mainImage"
@@ -56,15 +56,15 @@
                     </div>
 
                     @* Thumbnails — only render if more than one image *@
-                    @if (listing.Images.Count > 1)
+                    @if (listing.ImageUrls.Count > 1)
                     {
                         <div class="gallery-thumbnails" id="galleryThumbnails">
-                            @for (int i = 0; i < listing.Images.Count; i++)
+                            @for (int i = 0; i < listing.ImageUrls.Count; i++)
                             {
                                 <button class="thumbnail @(i == 0 ? "active" : "")"
                                         type="button"
                                         data-gallery-thumb="@i">
-                                    <img src="@listing.Images.ToList()[i].ImageUrl"
+                                    <img src="@listing.ImageUrls[i]"
                                          alt="@listing.Name - view @(i + 1)"
                                          loading="lazy" />
                                 </button>
@@ -96,7 +96,7 @@
                     <div class="spec-pills">
                         <span class="spec-pill">
                             <span class="spec-label">Species:</span>
-                            @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(listing.Species.Name)
+                            @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(listing.SpeciesName)
                         </span>
                         <span class="spec-pill">
                             <span class="spec-label">Breed:</span> @listing.Breed
@@ -126,7 +126,7 @@
                         <h2 class="headline-sm">Health & Verification</h2>
 
                         <div class="verification-badges">
-                            @if (seller.IsVerified)
+                            @* @if (seller.IsVerified)
                             {
                                 <span class="badge badge-verified">
                                     <svg class="icon" width="14" height="14" viewBox="0 0 20 20">
@@ -136,7 +136,7 @@
                                     </svg>
                                     Verified Owner
                                 </span>
-                            }
+                            } *@
                             @if (listing.IsVetChecked)
                             {
                                 <span class="badge badge-verified">
@@ -232,13 +232,14 @@
                         <button class="btn btn-primary btn-lg btn-block"
                                 type="button"
                                 data-contact-seller
-                                data-seller-id="@seller?.Id">
+                                data-seller-id="@seller?.Id"
+                                data-seller-phone="@seller?.PhoneNumber">
                             <svg class="icon" width="20" height="20" fill="none"
                                  stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                                       stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             </svg>
-                            Contact Seller
+                            <span data-contact-label>Contact Seller</span>
                         </button>
 
                         <button class="btn btn-secondary btn-block"
@@ -254,7 +255,7 @@
                         </button>
                     </div>
 
-                    <div class="trust-badges">
+                    @* <div class="trust-badges">
                         <div class="trust-item">
                             <svg class="icon icon-success" width="16" height="16" fill="none"
                                  stroke="currentColor" viewBox="0 0 24 24">
@@ -271,7 +272,7 @@
                             </svg>
                             <span class="body-sm">Identity Verified</span>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
 
                 @* ── Seller Card ── *@
@@ -408,7 +409,6 @@
         </div>
         <div class="modal-body">
             <form id="contactForm" data-contact-form>
-                @Html.AntiForgeryToken()
                 <div class="form-group">
                     <label for="contactMessage" class="form-label">Your Message</label>
                     <textarea id="contactMessage"
@@ -444,9 +444,8 @@
     *@
     <script>
         window.listingImages = @Html.Raw(
-                    System.Text.Json.JsonSerializer.Serialize(listing.Images.Select(i=>i.ImageUrl))
-                    );
+                    System.Text.Json.JsonSerializer.Serialize(listing.ImageUrls));
         window.listingId = "@listing.Id";
     </script>
-    <script src="~/js/animal-details.js"></script>
+    <script src="~/js/pages/marketplace/animal-details.js"></script>
 }

@@ -17,6 +17,8 @@ namespace WebApp.Data
         public DbSet<Species> Species { get; set; }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<Bid> Bids { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<VetFavorite> VetFavorites { get; set; }
         public DbSet<VetProfile> VetProfiles { get; set; }
         public DbSet<VetReview> VetReviews { get; set; }
         public DbSet<VeterinaryService> VeterinaryServices { get; set; }
@@ -81,6 +83,31 @@ namespace WebApp.Data
                 .WithOne(r => r.VetProfile)
                 .HasForeignKey(r => r.VetProfileId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Animal>()
+                .HasOne(e => e.ModeratedByAdmin)
+                .WithOne()
+                .HasForeignKey<Animal>(e => e.ModeratedByAdminId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Animal>()
+                .HasOne(a => a.Owner)
+                .WithMany()
+                .HasForeignKey(a => a.OwnerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Auction>()
+                .HasOne(a => a.ModeratedByAdmin)
+                .WithMany()
+                .HasForeignKey(a => a.ModeratedByAdminId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<VetProfile>()
+                .HasOne(e => e.VerifiedByAdmin)
+                .WithOne()
+                .HasForeignKey<VetProfile>(e => e.VerifiedByAdminId)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }

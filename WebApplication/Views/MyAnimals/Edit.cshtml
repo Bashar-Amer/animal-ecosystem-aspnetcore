@@ -1,0 +1,342 @@
+﻿@using WebApp.ViewModels.MyAnimals
+@model AnimalFormViewModel
+
+@{
+    ViewData["Title"] = "Edit Animal Listing";
+    var primaryImage = Model.ExistingImages.FirstOrDefault(i => i.IsMain)
+        ?? Model.ExistingImages.FirstOrDefault();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/my-animals/edit.css" />
+}
+
+<main class="edit-animal-page">
+    <div class="container edit-animal-container">
+        <nav class="edit-breadcrumb" aria-label="Breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <span>/</span>
+            <a asp-controller="MyAnimals" asp-action="Index">My Animals</a>
+            <span>/</span>
+            <strong>Edit listing</strong>
+        </nav>
+
+        <header class="edit-page-header">
+            <div>
+                <div class="edit-kicker">
+                    <span class="edit-id">Listing editor</span>
+                    <span class="edit-status"><span class="status-dot"></span> Changes require review</span>
+                </div>
+                <h1 class="headline-lg">Edit Animal Listing</h1>
+                <p class="body-lg mb-0">Keep your livestock details, photos, and asking price accurate for buyers.</p>
+            </div>
+            <div class="edit-header-actions">
+                <a asp-controller="MyAnimals" asp-action="Index" class="btn btn-outline">
+                    <span class="material-symbols-outlined">arrow_back</span> My listings
+                </a>
+                <button form="editAnimalForm" type="submit" class="btn btn-primary">
+                    <span class="material-symbols-outlined">save</span> Save changes
+                </button>
+            </div>
+        </header>
+
+        <div class="review-banner">
+            <span class="review-banner-icon material-symbols-outlined">verified_user</span>
+            <div>
+                <strong>Admin review protects trusted trading</strong>
+                <p class="mb-0">After you save, this listing will temporarily leave the public marketplace until an administrator approves the updated information.</p>
+            </div>
+        </div>
+
+        <form asp-controller="MyAnimals" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" id="editAnimalForm">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-error mb-lg" role="alert"></div>
+
+            <div class="edit-layout">
+                <div class="edit-main-column">
+                    <section class="edit-card">
+                        <div class="edit-card-header">
+                            <div class="edit-step">1</div>
+                            <div>
+                                <h2 class="title-md mb-0">Animal identification</h2>
+                                <p class="body-sm mb-0">The core information buyers use to understand your animal.</p>
+                            </div>
+                            <span class="edit-card-label"><span class="material-symbols-outlined">lock</span> Listing data</span>
+                        </div>
+                        <div class="edit-card-body">
+                            <div class="field-group">
+                                <label asp-for="Name" class="field-label">Animal name</label>
+                                <input asp-for="Name" class="field-input" placeholder="e.g. Zephyr" />
+                                <span asp-validation-for="Name" class="field-error"></span>
+                            </div>
+                            <div class="edit-field-grid edit-field-grid-2">
+                                <div class="field-group">
+                                    <label asp-for="SpeciesId" class="field-label">Species</label>
+                                    <select asp-for="SpeciesId" asp-items="Model.SpeciesOptions" class="field-input">
+                                        <option value="">-- Select species --</option>
+                                    </select>
+                                    <span asp-validation-for="SpeciesId" class="field-error"></span>
+                                </div>
+                                <div class="field-group">
+                                    <label asp-for="Breed" class="field-label">Breed</label>
+                                    <input asp-for="Breed" class="field-input" placeholder="e.g. Arabian, Holstein" />
+                                    <span asp-validation-for="Breed" class="field-error"></span>
+                                </div>
+                            </div>
+                            <div class="edit-field-grid edit-field-grid-3">
+                                <div class="edit-detail-tile">
+                                    <label asp-for="AgeInMonths" class="field-label">Age</label>
+                                    <div class="edit-tile-input"><input asp-for="AgeInMonths" type="number" min="0" /><span>months</span></div>
+                                    <span asp-validation-for="AgeInMonths" class="field-error"></span>
+                                </div>
+                                <div class="edit-detail-tile">
+                                    <label asp-for="Gender" class="field-label">Gender</label>
+                                    <select asp-for="Gender">
+                                        <option value="">-- Select --</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Castrated">Castrated</option>
+                                    </select>
+                                    <span asp-validation-for="Gender" class="field-error"></span>
+                                </div>
+                                <div class="edit-detail-tile">
+                                    <label asp-for="Price" class="field-label">Asking price</label>
+                                    <div class="edit-tile-input"><input asp-for="Price" type="number" min="0.01" step="0.01" /><span>JOD</span></div>
+                                    <span asp-validation-for="Price" class="field-error"></span>
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <label asp-for="Location" class="field-label">Governorate</label>
+                                <select asp-for="Location" class="field-input">
+                                    <option value="">-- Select governorate --</option>
+                                    <option value="Amman, Jordan">Amman</option>
+                                    <option value="Irbid, Jordan">Irbid</option>
+                                    <option value="Madaba, Jordan">Madaba</option>
+                                    <option value="Zarqa, Jordan">Zarqa</option>
+                                    <option value="As-Salt, Jordan">As-Salt</option>
+                                    <option value="Mafraq, Jordan">Mafraq</option>
+                                    <option value="Karak, Jordan">Karak</option>
+                                    <option value="Aqaba, Jordan">Aqaba</option>
+                                </select>
+                                <span asp-validation-for="Location" class="field-error"></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="edit-card">
+                        <div class="edit-card-header">
+                            <div class="edit-step">2</div>
+                            <div>
+                                <h2 class="title-md mb-0">Visual media</h2>
+                                <p class="body-sm mb-0">Use clear photos to build buyer confidence.</p>
+                            </div>
+                            <span class="edit-card-label">@Model.ExistingImages.Count / 8 uploaded</span>
+                        </div>
+                        <div class="edit-card-body">
+                            @if (Model.ExistingImages.Any())
+                            {
+                                <div class="edit-photo-grid">
+                                    @foreach (var image in Model.ExistingImages)
+                                    {
+                                        <div class="edit-photo @(image.IsMain ? "is-primary" : "")">
+                                            <div class="edit-photo-image">
+                                                <img src="@image.ImageUrl" alt="@(image.IsMain ? "Primary photo" : "Animal photo")" />
+                                                @if (image.IsMain)
+                                                {
+                                                    <span class="photo-badge">Primary photo</span>
+                                                }
+                                            </div>
+                                            <div class="edit-photo-actions">
+                                                @if (!image.IsMain)
+                                                {
+                                                    <form asp-controller="MyAnimals" asp-action="SetPrimaryImage" asp-route-imageId="@image.Id" asp-route-animalId="@Model.Id" method="post">
+                                                        @Html.AntiForgeryToken()
+                                                        <button type="submit" class="photo-link">Set primary</button>
+                                                    </form>
+                                                }
+                                                <form asp-controller="MyAnimals" asp-action="DeleteImage" asp-route-imageId="@image.Id" asp-route-animalId="@Model.Id" method="post" onsubmit="return confirm('Delete this photo?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="photo-link photo-link-danger"><span class="material-symbols-outlined">delete</span> Remove</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            <label class="edit-upload" for="newImages">
+                                <span class="edit-upload-icon material-symbols-outlined">add_photo_alternate</span>
+                                <strong>Upload a new photo</strong>
+                                <span>Choose one photo at a time. JPG, PNG, or WebP up to 5MB.</span>
+                            </label>
+                            <input id="newImages" class="edit-file-input d-none" type="file" accept=".jpg,.jpeg,.png,.webp" />
+                            <input asp-for="NewImages" id="newImagesSubmit" type="file" class="d-none" multiple />
+                            <input asp-for="NewPrimaryImageIndex" id="newPrimaryImageIndex" type="hidden" />
+                            <div id="newPhotoGrid" class="edit-photo-grid edit-new-photo-grid"></div>
+                            <p id="newPhotoHint" class="body-sm text-muted mb-0">New photos will be added when you save the listing.</p>
+                            <span asp-validation-for="NewImages" class="field-error"></span>
+                        </div>
+                    </section>
+
+                    <section class="edit-card">
+                        <div class="edit-card-header">
+                            <div class="edit-step">3</div>
+                            <div>
+                                <h2 class="title-md mb-0">Description and notes</h2>
+                                <p class="body-sm mb-0">Share the practical details buyers need before contacting you.</p>
+                            </div>
+                        </div>
+                        <div class="edit-card-body">
+                            <div class="field-group">
+                                <label asp-for="Description" class="field-label">Description</label>
+                                <textarea asp-for="Description" class="field-input" rows="5" placeholder="Health, temperament, lineage, feeding..."></textarea>
+                                <span asp-validation-for="Description" class="field-error"></span>
+                            </div>
+                            <div class="field-group mb-0">
+                                <label asp-for="BreederNotes" class="field-label">Breeder notes</label>
+                                <textarea asp-for="BreederNotes" class="field-input" rows="4" placeholder="Training history, vaccination notes, temperament..."></textarea>
+                                <span asp-validation-for="BreederNotes" class="field-error"></span>
+                                <span class="field-help">Each line becomes a separate note on the listing.</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="edit-sidebar">
+                    <div class="edit-preview-card">
+                        <div class="edit-preview-header">
+                            <span class="label-sm">Listing preview</span>
+                            <span class="preview-state"><span class="status-dot"></span> Review required</span>
+                        </div>
+                        <div class="edit-preview-image">
+                            @if (primaryImage is not null)
+                            {
+                                <img src="@primaryImage.ImageUrl" alt="@Model.Name" />
+                            }
+                            else
+                            {
+                                <div class="edit-preview-placeholder"><span class="material-symbols-outlined">pets</span></div>
+                            }
+                        </div>
+                        <div class="edit-preview-body">
+                            <span class="label-sm">Livestock listing</span>
+                            <h2 class="headline-sm" id="previewName">@Model.Name</h2>
+                            <div class="edit-preview-price"><span>Asking price</span><strong><span id="previewPrice">@Model.Price.ToString("N0")</span> JOD</strong></div>
+                            <div class="edit-preview-meta"><span class="material-symbols-outlined">location_on</span><span>@(Model.Location ?? "Location not provided")</span></div>
+                        </div>
+                    </div>
+                    <div class="edit-sidebar-card">
+                        <h3 class="title-sm"><span class="material-symbols-outlined">shield</span> Review checklist</h3>
+                        <ul class="edit-checklist">
+                            <li><span class="material-symbols-outlined">check_circle</span> Accurate animal information</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Clear and recent photos</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Fair asking price and location</li>
+                        </ul>
+                    </div>
+                    <div class="edit-sidebar-card edit-sidebar-note">
+                        <span class="material-symbols-outlined">info</span>
+                        <p class="body-sm mb-0">Your listing will remain associated with your account while it is being reviewed.</p>
+                    </div>
+                </aside>
+            </div>
+        </form>
+
+        <div class="edit-bottom-actions">
+            <a asp-controller="MyAnimals" asp-action="Index" class="btn btn-outline">Cancel</a>
+            <button form="editAnimalForm" type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Save changes for review</button>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const name = document.getElementById("Name");
+            const price = document.getElementById("Price");
+            const picker = document.getElementById("newImages");
+            const submitInput = document.getElementById("newImagesSubmit");
+            const primaryInput = document.getElementById("newPrimaryImageIndex");
+            const photoGrid = document.getElementById("newPhotoGrid");
+            const photoHint = document.getElementById("newPhotoHint");
+            const files = [];
+
+            picker?.addEventListener("change", () => {
+                const file = picker.files?.[0];
+                if (!file || !["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 5 * 1024 * 1024) {
+                    picker.value = "";
+                    return;
+                }
+                files.push(file);
+                if (primaryInput.value === "") {
+                    primaryInput.value = "0";
+                    updatePreview(file);
+                }
+                picker.value = "";
+                renderNewPhotos();
+            });
+
+            function renderNewPhotos() {
+                photoGrid.innerHTML = "";
+                photoHint.classList.toggle("d-none", files.length > 0);
+                const primaryIndex = Number(primaryInput.value);
+                files.forEach((file, index) => {
+                    const card = document.createElement("div");
+                    card.className = "edit-photo " + (index === primaryIndex ? "is-primary" : "");
+                    card.innerHTML = `
+                        <div class="edit-photo-image">
+                            <img alt="New photo ${index + 1}" src="${URL.createObjectURL(file)}" />
+                            ${index === primaryIndex ? '<span class="photo-badge">Primary photo</span>' : ""}
+                        </div>
+                        <div class="edit-photo-actions">
+                            ${index !== primaryIndex ? '<button type="button" class="photo-link">Set primary</button>' : '<span class="photo-link">Selected primary</span>'}
+                            <button type="button" class="photo-link photo-link-danger"><span class="material-symbols-outlined">delete</span> Remove</button>
+                        </div>`;
+                    const buttons = card.querySelectorAll("button");
+                    if (index !== primaryIndex) buttons[0].addEventListener("click", () => {
+                        primaryInput.value = String(index);
+                        updatePreview(file);
+                        renderNewPhotos();
+                    });
+                    buttons[buttons.length - 1].addEventListener("click", () => {
+                        files.splice(index, 1);
+                        if (files.length === 0) primaryInput.value = "";
+                        else if (index === primaryIndex) primaryInput.value = "0";
+                        else if (index < primaryIndex) primaryInput.value = String(primaryIndex - 1);
+                        if (files.length > 0) updatePreview(files[Number(primaryInput.value)]);
+                        renderNewPhotos();
+                    });
+                    photoGrid.appendChild(card);
+                });
+
+                const transfer = new DataTransfer();
+                files.forEach(file => transfer.items.add(file));
+                submitInput.files = transfer.files;
+            }
+
+            function updatePreview(file) {
+                if (!file) return;
+                const url = URL.createObjectURL(file);
+                const previewImage = document.querySelector(".edit-preview-image img");
+                const previewPlaceholder = document.querySelector(".edit-preview-placeholder");
+                if (previewImage) {
+                    previewImage.src = url;
+                    previewImage.alt = "Selected primary listing photo";
+                } else if (previewPlaceholder) {
+                    previewPlaceholder.outerHTML = `<img src="${url}" alt="Selected primary listing photo" />`;
+                }
+            }
+
+            name?.addEventListener("input", () => {
+                const preview = document.getElementById("previewName");
+                if (preview) preview.textContent = name.value.trim() || "Animal listing";
+            });
+            price?.addEventListener("input", () => {
+                const preview = document.getElementById("previewPrice");
+                if (preview) preview.textContent = Number(price.value || 0).toLocaleString(undefined, { maximumFractionDigits: 2 });
+            });
+            document.getElementById("editAnimalForm")?.addEventListener("submit", () => {
+                submitInput.name = "NewImages";
+            });
+        })();
+    </script>
+}

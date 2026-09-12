@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Models;
+using WebApp.Services;
 using static WebApp.Extensions.DbContextExtensions;
 
 var builder = WebApplication.CreateBuilder();
@@ -20,11 +21,17 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-CSRF-TOKEN";
+});
+
 //builder.Services.AddScoped<IAnimalService,AnimalService>();
 //builder.Services.AddScoped<IVetService, VetService>();
 //builder.Services.AddScoped<IAuctionService, AuctionService>();
 //builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddHostedService<AuctionStatusUpdaterService>();
 
 builder.Services.AddControllersWithViews();
 
@@ -46,6 +53,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

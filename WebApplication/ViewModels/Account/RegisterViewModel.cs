@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Validation;
 
 namespace WebApp.ViewModels.Account
 {
@@ -12,9 +13,21 @@ namespace WebApp.ViewModels.Account
         public string FullName { get; set; } = "";
 
         [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Enter a valid email address")]
+        [StrictEmailAddress]
         [Display(Name = "Email Address")]
         public string Email { get; set; } = "";
+
+        [Phone(ErrorMessage = "Please enter a valid phone number")]
+        [Display(Name = "Phone Number")]
+        public string? PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "City is required")]
+        [StringLength(100)]
+        public string City { get; set; } = "";
+
+        [Required(ErrorMessage = "Country is required")]
+        [StringLength(100)]
+        public string Country { get; set; } = "Jordan";
 
         [Required(ErrorMessage = "Password is required")]
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters")]

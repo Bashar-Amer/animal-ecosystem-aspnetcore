@@ -1,0 +1,221 @@
+﻿.create-animal-page .form-card {
+    background-color: var(--surface-container-lowest);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-level-1);
+    overflow: hidden;
+}
+
+.create-animal-page .form-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-divider);
+    background-color: var(--surface-container-low);
+    color: var(--primary-container);
+}
+
+.create-animal-page .form-card-body {
+    padding: var(--space-lg);
+}
+
+.create-animal-page .field-group {
+    margin-bottom: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
+.create-animal-page .field-label {
+    font-size: var(--label-md-size);
+    font-weight: var(--label-md-weight);
+    letter-spacing: var(--label-md-spacing);
+    color: var(--on-surface-variant);
+    text-transform: none;
+}
+
+.create-animal-page .field-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1.5px solid var(--border-divider);
+    border-radius: var(--rounded);
+    background-color: var(--surface-container-low);
+    font-family: var(--font-family);
+    font-size: var(--body-md-size);
+    color: var(--on-surface);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+    .create-animal-page .field-input:focus {
+        outline: none;
+        border-color: var(--primary-container);
+        background-color: var(--surface-container-lowest);
+        box-shadow: 0 0 0 3px rgba(100, 56, 34, 0.1);
+    }
+
+.create-animal-page .field-error {
+    color: var(--error);
+    font-size: var(--body-sm-size);
+}
+
+.create-animal-page .btn-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--rounded-full);
+    background-color: var(--primary-container);
+    color: var(--on-primary);
+    border: none;
+    font-size: var(--title-sm-size);
+    font-weight: var(--title-sm-weight);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: var(--shadow-level-1);
+}
+
+    .create-animal-page .btn-brand:hover {
+        background-color: var(--primary);
+        box-shadow: var(--shadow-level-2);
+    }
+
+.create-animal-page .btn-outline-brand {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--rounded-full);
+    background: transparent;
+    color: var(--primary-container);
+    border: 1.5px solid var(--outline-variant);
+    font-size: var(--title-sm-size);
+    font-weight: var(--title-sm-weight);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+
+    .create-animal-page .btn-outline-brand:hover {
+        background-color: var(--surface-container-low);
+        color: var(--primary);
+    }
+
+/* Upload dropzone */
+.create-animal-page .upload-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs);
+    text-align: center;
+    padding: var(--space-xl);
+    border: 2px dashed var(--outline-variant);
+    border-radius: var(--rounded-lg);
+    background-color: var(--surface-container-low);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+    .create-animal-page .upload-dropzone:hover,
+    .create-animal-page .upload-dropzone.dragover {
+        background-color: var(--surface-container);
+        border-color: var(--primary-container);
+    }
+
+.create-animal-page .upload-icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--rounded-full);
+    background-color: var(--surface-container-highest);
+    color: var(--primary-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-2xs);
+}
+
+    .create-animal-page .upload-icon-circle .material-symbols-outlined {
+        font-size: 30px;
+    }
+
+/* Photo grid */
+.create-animal-page .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: var(--space-sm);
+}
+
+.create-animal-page .photo-thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--rounded-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-level-1);
+    background-color: var(--surface-container);
+}
+
+    .create-animal-page .photo-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .create-animal-page .photo-thumb .remove-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 24px;
+        height: 24px;
+        border-radius: var(--rounded-full);
+        background-color: rgba(31, 27, 24, 0.65);
+        color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+        .create-animal-page .photo-thumb .remove-btn:hover {
+            background-color: var(--error);
+        }
+
+    .create-animal-page .photo-thumb .primary-badge {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        padding: 2px 8px;
+        border-radius: var(--rounded-full);
+        background-color: var(--primary-container);
+        color: var(--on-primary);
+        font-size: var(--label-sm-size);
+        font-weight: var(--label-sm-weight);
+        text-transform: uppercase;
+    }
+
+    .create-animal-page .photo-thumb .set-primary-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 4px 6px;
+        background-color: rgba(31, 27, 24, 0.75);
+        color: #fff;
+        border: none;
+        font-size: var(--label-sm-size);
+        font-weight: var(--label-sm-weight);
+        text-transform: uppercase;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity var(--transition-fast);
+    }
+
+    .create-animal-page .photo-thumb:hover .set-primary-btn {
+        opacity: 1;
+    }
+
+    .create-animal-page .photo-thumb.is-primary .set-primary-btn {
+        display: none;
+    }

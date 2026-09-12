@@ -68,6 +68,7 @@ namespace WebApp.Controllers
             {
                 Slug = id,
                 Name = vet.User.FullName,
+                PhoneNumber = vet.User.PhoneNumber,
                 AvatarInitials = DisplayHelpers.GetInitials(vet.User.FullName),
                 CredentialBadge = vet.Credential ?? "",
                 Badges = BuildBadges(vet),
@@ -163,7 +164,7 @@ namespace WebApp.Controllers
                 SpecialtyLabel = v.Specialty,
 
                 SpecialtyFilterValues = new List<string> { v.Specialty.ToLowerInvariant().Replace(" ", "-") },
-                RegionFilterValue = (v.ClinicLocation ?? "").ToLowerInvariant().Replace(" ", "-"),
+                CityFilterValue = ExtractCityFilterValue(v.ClinicLocation),
                 AvailabilityFilterValue = v.AvailabilityWindow,
                 SpeciesFilterValues = MapSpeciesFromSpecialty(v.Specialty),
 
@@ -185,6 +186,17 @@ namespace WebApp.Controllers
                 SpecPills = BuildSpecPills(v),
                 ConsultationPriceFrom = v.ConsultationFee
             };
+        }
+
+        private static string ExtractCityFilterValue(string? clinicLocation)
+        {
+            if (string.IsNullOrWhiteSpace(clinicLocation))
+            {
+                return "";
+            }
+
+            var city = clinicLocation.Split(',', StringSplitOptions.TrimEntries)[0];
+            return city.ToLowerInvariant().Replace(" ", "-");
         }
 
         private static string MapAvailabilityBadgeVariant(string status) => status switch

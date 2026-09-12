@@ -12,7 +12,7 @@
         <p class="card-meta body-sm">@Model.MetaLine</p>
     </div>
     <div class="card-footer animal-card-footer">
-        <div class="price-info"><span class="price-label body-sm">@Model.PriceLabel</span><span class="price-value headline-sm">@Model.Price.ToString("C0")</span></div>
+        <div class="price-info"><span class="price-label body-sm">@Model.PriceLabel</span><span class="price-value headline-sm">@Model.Price.ToString("N0") JOD</span></div>
         <a asp-controller="Marketplace" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Contact</a>
     </div>
 </article>

@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Validation;
 
 namespace WebApp.ViewModels.Account
 {
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Enter a valid email address")]
+        [StrictEmailAddress]
         [Display(Name = "Email Address")]
         public string Email { get; set; } = "";
 

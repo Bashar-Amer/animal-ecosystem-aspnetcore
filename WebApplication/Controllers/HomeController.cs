@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using WebApp.Data;
+using WebApp.Enums;
 using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels.Home;
@@ -20,8 +21,17 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            // Check if the user is authenticated and has the "Admin" role
+            if (User?.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
             var heroAuction = await _dbContext.Auctions
-            .Where(a => a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
+            .Where(a =>
+                     //(a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
+                     a.ModerationStatus == AuctionModerationStatus.Approved
+                     && a.Animal.ModerationStatus == ModerationStatus.Approved)
             .Include(a => a.Animal).ThenInclude(an => an.Images)
             .Include(a => a.Bids)
             .OrderByDescending(a => a.Bids.Count)
@@ -35,7 +45,7 @@ namespace WebApp.Controllers
             var registeredVets = await _dbContext.VetProfiles.CountAsync(v => v.IsVerified);
 
             var featuredAnimals = await _dbContext.Animals
-                .Where(a => a.IsFeatured && a.Status == AnimalStatus.Available)
+                .Where(a => a.IsFeatured && a.Status == AnimalStatus.Available && a.ModerationStatus == ModerationStatus.Approved)
                 .Include(a => a.Species)
                 .Include(a => a.Images)
                 .Include(a => a.Owner)
@@ -44,7 +54,9 @@ namespace WebApp.Controllers
                 .ToListAsync();
 
             var liveAuctions = await _dbContext.Auctions
-                .Where(a => a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
+                .Where(a => (a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
+                         && a.ModerationStatus == AuctionModerationStatus.Approved
+                         && a.Animal.ModerationStatus == ModerationStatus.Approved)
                 .Include(a => a.Animal)
                 .Include(a => a.Bids)
                 .OrderBy(a => a.EndTime)
@@ -65,7 +77,7 @@ namespace WebApp.Controllers
                     LotNumber = $"Lot #{heroAuction.LotNumber}",
                     ImageUrl = heroAuction.Animal.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
                                ?? heroAuction.Animal.Images.FirstOrDefault()?.ImageUrl
-                               ?? "/images/placeholder-animal.jpg",
+                               ?? "/images/placeholder.jpg",
                     ImageCaption = heroAuction.Animal.Name,
                     Title = heroAuction.Title,
                     Location = heroAuction.Animal.Location ?? "",
@@ -87,7 +99,7 @@ namespace WebApp.Controllers
                     Species = DisplayHelpers.MapCategory(a.Species.Name),
                     ImageUrl = a.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
                                ?? a.Images.FirstOrDefault()?.ImageUrl
-                               ?? "/images/placeholder-animal.jpg",
+                               ?? "/images/placeholder.jpg",
                     BadgeText = a.IsVetChecked ? "Vet Checked" : "",
                     LocationBadge = a.Location ?? "",
                     VerificationText = a.Owner.IsVerified ? "Verified Seller" : "",
@@ -98,10 +110,10 @@ namespace WebApp.Controllers
 
                 LiveAuctions = liveAuctions.Select(a => new HomeAuctionCardViewModel
                 {
-                    Id = a.LotNumber,
+                    Id = a.Id,
                     LotNumber = $"Lot #{a.LotNumber}",
                     ImageUrl = a.Animal.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
-                               ?? "/images/placeholder-animal.jpg",
+                               ?? "/images/placeholder.jpg",
                     Title = a.Title,
                     Description = a.Animal.Description ?? "",
                     Status = a.Status == AuctionStatus.EndingSoon ? "ending-soon" : "live",

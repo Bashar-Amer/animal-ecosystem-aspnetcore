@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace WebApp.Helpers
 {
@@ -40,5 +40,6 @@ namespace WebApp.Helpers
                 _ => name
             };
         }
+
     }
 }

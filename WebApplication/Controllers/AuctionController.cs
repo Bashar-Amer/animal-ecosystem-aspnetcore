@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 using WebApp.Data;
+using WebApp.Enums;
 using WebApp.Helpers;
 using WebApp.Interfaces.Services;
 using WebApp.Models;
@@ -29,7 +30,6 @@ public class AuctionController : Controller
     public async Task<IActionResult> Index()
     {
         var auctions = await _dbContext.Auctions
-            .Where(a => a.Status != AuctionStatus.Cancelled)
             .Include(a => a.Animal)
                 .ThenInclude(an => an.Species)
             .Include(a => a.Animal)
@@ -37,6 +37,9 @@ public class AuctionController : Controller
             .Include(a => a.Animal)
                 .ThenInclude(an => an.Owner)
             .Include(a => a.Bids)
+            .Where(a => a.ModerationStatus == AuctionModerationStatus.Approved
+                     && a.Status != AuctionStatus.Cancelled
+                     && a.Animal.ModerationStatus == ModerationStatus.Approved)
             .OrderByDescending(a => a.Status == AuctionStatus.Live)
             .ThenBy(a => a.EndTime)
             .ToListAsync();
@@ -65,7 +68,7 @@ public class AuctionController : Controller
     }
 
     // GET: AUCTIONS/Details/5
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(string id)
     {
 
         var auction = await _dbContext.Auctions
@@ -75,7 +78,9 @@ public class AuctionController : Controller
              .Include(a => a.Animal).ThenInclude(an => an.HealthRecords)
              .Include(a => a.Bids).ThenInclude(b => b.User)
              .Include(a => a.HighestBidder)
-             .FirstOrDefaultAsync(a => a.LotNumber == id);
+             .FirstOrDefaultAsync(a => a.Id == id
+                 && a.ModerationStatus == AuctionModerationStatus.Approved
+                 && a.Animal.ModerationStatus == ModerationStatus.Approved);
 
         if (auction == null)
         {
@@ -96,7 +101,9 @@ public class AuctionController : Controller
             .Where(a => a.Id != auction.Id &&
                         a.Animal.SpeciesId == animal.SpeciesId &&
                         a.Status != AuctionStatus.Ended &&
-                        a.Status != AuctionStatus.Cancelled)
+                        a.Status != AuctionStatus.Cancelled &&
+                        a.ModerationStatus == AuctionModerationStatus.Approved &&
+                        a.Animal.ModerationStatus == ModerationStatus.Approved)
             .Include(a => a.Animal).ThenInclude(an => an.Images)
             .Include(a => a.Animal).ThenInclude(an => an.Owner)
             .Include(a => a.Bids)
@@ -106,8 +113,9 @@ public class AuctionController : Controller
 
         var viewModel = new AuctionDetailsViewModel
         {
-            Id = auction.LotNumber,
+            Id = auction.Id,
             LotNumber = $"Lot #{auction.LotNumber}",
+            AnimalId = auction.AnimalId,
             Title = auction.Title,
             StatusLabel = BuildStatusLabel(auction.Status),
             Location = animal.Location ?? "",
@@ -115,7 +123,7 @@ public class AuctionController : Controller
 
             MainImageUrl = animal.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
                            ?? animal.Images.FirstOrDefault()?.ImageUrl
-                           ?? "/images/placeholder-animal.jpg",
+                           ?? "/images/placeholder.jpg",
             Thumbnails = animal.Images.Select(img => new AuctionMediaItemViewModel
             {
                 Type = "image",
@@ -178,7 +186,7 @@ public class AuctionController : Controller
                 Title = a.Title,
                 ImageUrl = a.Animal.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
                            ?? a.Animal.Images.FirstOrDefault()?.ImageUrl
-                           ?? "/images/placeholder-animal.jpg",
+                           ?? "/images/placeholder.jpg",
                 FarmName = a.Animal.Owner.FullName,
                 BidCount = a.Bids.Count,
                 EndsLabel = BuildTimeRemainingLabel(a),
@@ -197,12 +205,13 @@ public class AuctionController : Controller
 
         return new AuctionListViewModel
         {
-            Id = auction.LotNumber,
+            Id = auction.Id,
             LotNumber = $"Lot #{auction.LotNumber}",
+            AnimalId = auction.AnimalId,
             Title = auction.Title,
             ImageUrl = animal.Images.FirstOrDefault(i => i.IsMain)?.ImageUrl
                        ?? animal.Images.FirstOrDefault()?.ImageUrl
-                       ?? "/images/placeholder-animal.jpg",
+                       ?? "/images/placeholder.jpg",
             Status = status,
             Category = DisplayHelpers.MapCategory(animal.Species.Name),
             Price = auction.CurrentPrice,
