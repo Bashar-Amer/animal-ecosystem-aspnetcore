@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Enums;
+using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels.Account;
 
@@ -232,7 +233,7 @@ namespace WebApp.Controllers
                 Location = string.Join(", ", new[] { model.City, model.Country }
                     .Where(value => !string.IsNullOrWhiteSpace(value))
                     .Select(value => value.Trim())),
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = JordanTime.Now
             };
 
             var createResult = await _userManager.CreateAsync(user, model.Password);

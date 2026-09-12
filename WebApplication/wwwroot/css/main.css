@@ -387,8 +387,17 @@
 
 .footer-brand { max-width: 460px; }
 .footer-logo { display: inline-flex; align-items: center; gap: var(--space-sm); color: var(--surface-bright); text-decoration: none; }
-.footer-logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; color: var(--on-primary); background: var(--secondary); border-radius: 13px; box-shadow: 0 8px 20px rgba(157,67,20,.25); }
-.footer-logo-mark .material-symbols-outlined { font-size: 23px; }
+.footer-logo-image {
+    display: block;
+    width: 42px;
+    height: 42px;
+    padding: 5px;
+    object-fit: contain;
+    flex: 0 0 42px;
+    background: var(--surface-bright);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+}
 .footer-logo strong, .footer-logo small { display: block; }
 .footer-logo strong { font-size: var(--title-md-size); letter-spacing: -.02em; }
 .footer-logo small { margin-top: 2px; color: var(--primary-fixed-dim); font-size: var(--label-sm-size); }

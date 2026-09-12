@@ -5,7 +5,7 @@
 
     string TimeRemaining(DateTime end)
     {
-        var diff = end - DateTime.UtcNow;
+        var diff = end - JordanTime.Now;
         if (diff <= TimeSpan.Zero) return "Ended";
         if (diff.TotalDays >= 1) return $"{(int)diff.TotalDays}d {diff.Hours}h";
         return $"{diff.Hours:00}h : {diff.Minutes:00}m";
@@ -13,7 +13,7 @@
 
     string TimeAgo(DateTime when)
     {
-        var diff = DateTime.UtcNow - when;
+        var diff = JordanTime.Now - when;
         if (diff.TotalHours < 1) return $"{(int)diff.TotalMinutes} mins ago";
         if (diff.TotalDays < 1) return $"{(int)diff.TotalHours}h ago";
         return $"{(int)diff.TotalDays}d ago";
@@ -189,7 +189,7 @@
                                             </div>
                                             <div class="small mt-1">
                                                 <strong class="text-primary">@auction.StartingPrice.ToString("N0") JOD starting price</strong>
-                                                &nbsp;•&nbsp; @auction.StartTime.ToLocalTime().ToString("g") - @auction.EndTime.ToLocalTime().ToString("g")
+                                                &nbsp;•&nbsp; @auction.StartTime.ToString("g") - @auction.EndTime.ToString("g")
                                             </div>
                                         </div>
                                     </div>

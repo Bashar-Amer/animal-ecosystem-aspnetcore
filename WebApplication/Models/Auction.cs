@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Helpers;
 
 namespace WebApp.Models
 {
@@ -91,6 +92,6 @@ namespace WebApp.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        public DateTime PlacedAt { get; set; } = DateTime.UtcNow;
+        public DateTime PlacedAt { get; set; } = JordanTime.Now;
     }
 }

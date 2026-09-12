@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using WebApp.Helpers;
 using System.Security.Cryptography;
 
 namespace WebApp.Models
@@ -17,7 +18,7 @@ namespace WebApp.Models
         public string? VerificationDocumentUrl { get; set; } // uploaded ID/license for admin review
         public double Rating { get; set; } = 0;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = JordanTime.Now;
 
         // Navigation properties
         public ICollection<Animal> Animals { get; set; } = new List<Animal>();

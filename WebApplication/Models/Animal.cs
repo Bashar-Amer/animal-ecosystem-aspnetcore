@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebApp.Enums;
+using WebApp.Helpers;
 
 namespace WebApp.Models
 {
@@ -46,7 +47,7 @@ namespace WebApp.Models
         [MaxLength(2000)]
         public string? BreederNotes { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = JordanTime.Now;
 
         // Foreign Keys
         public int SpeciesId { get; set; }

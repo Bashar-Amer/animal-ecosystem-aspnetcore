@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Enums;
+using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels.MyAnimals;
 
@@ -410,7 +411,7 @@ namespace WebApp.Controllers
                     MinIncrement = model.MinIncrement,
                     StartTime = model.StartTime,
                     EndTime = model.EndTime,
-                    Status = model.StartTime <= DateTime.UtcNow ? AuctionStatus.Live : AuctionStatus.StartingSoon,
+                    Status = model.StartTime <= JordanTime.Now ? AuctionStatus.Live : AuctionStatus.StartingSoon,
                     ModerationStatus = AuctionModerationStatus.Pending
                 };
 

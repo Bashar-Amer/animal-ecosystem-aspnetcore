@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebApp.Services;
+using WebApp.Helpers;
 
 namespace WebApp.Models
 {
@@ -58,7 +59,7 @@ namespace WebApp.Models
         [MaxLength(30)]
         public string? Credential { get; set; } // e.g. "D.V.M."
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = JordanTime.Now;
         public DateTime? VerifiedAt { get; set; }
         public string? VerifiedByAdminId { get; set; }
         [ForeignKey(nameof(VerifiedByAdminId))]
@@ -94,6 +95,6 @@ namespace WebApp.Models
 
         public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = JordanTime.Now;
     }
 }

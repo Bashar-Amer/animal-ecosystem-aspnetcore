@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using WebApp.Helpers;
 using WebApp.DTOs;
 using WebApp.Models;
 
@@ -54,7 +55,7 @@ namespace WebApp.Controllers
                     return BadRequest(new { message = "You can't bid on your own listing." });
                 }
 
-                if (auction.EndTime <= DateTime.UtcNow)
+                if (auction.EndTime <= JordanTime.Now)
                 {
                     if (auction.Status != AuctionStatus.Ended)
                     {
@@ -84,7 +85,7 @@ namespace WebApp.Controllers
                     AuctionId = auction.Id,
                     UserId = userId,
                     Amount = request.Amount,
-                    PlacedAt = DateTime.UtcNow
+                    PlacedAt = JordanTime.Now
                 };
                 _dbContext.Bids.Add(bid);
 

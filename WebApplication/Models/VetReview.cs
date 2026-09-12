@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Helpers;
 
 namespace WebApp.Models
 {
@@ -25,6 +26,6 @@ namespace WebApp.Models
         [MaxLength(1000)]
         public string? Text { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = JordanTime.Now;
     }
 }

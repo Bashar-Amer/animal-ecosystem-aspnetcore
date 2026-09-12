@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApp.Helpers;
 using WebApp.Data;
 using WebApp.Models;
 
@@ -9,7 +10,7 @@ namespace WebApp.Services
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly ILogger<AuctionStatusUpdaterService> _logger;
 
-        private static readonly TimeSpan PollInterval = TimeSpan.FromMinutes(1);
+        private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(5);
         private static readonly TimeSpan EndingSoonThreshold = TimeSpan.FromHours(1);
 
         public AuctionStatusUpdaterService(
@@ -42,7 +43,7 @@ namespace WebApp.Services
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            var now = DateTime.UtcNow;
+            var now = JordanTime.Now;
 
             var activeAuctions = await dbContext.Auctions
                 .Where(a => a.Status == AuctionStatus.StartingSoon
@@ -61,8 +62,6 @@ namespace WebApp.Services
 
                 try
                 {
-                    // Saved individually so one conflicting auction (e.g. a bid just
-                    // landed on it) doesn't block status updates for the rest of the batch.
                     await dbContext.SaveChangesAsync(ct);
                 }
                 catch (DbUpdateConcurrencyException)

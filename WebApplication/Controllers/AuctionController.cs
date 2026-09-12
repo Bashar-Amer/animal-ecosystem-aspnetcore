@@ -285,7 +285,7 @@ public class AuctionController : Controller
         var verb = (auction.Status == AuctionStatus.StartingSoon || auction.Status == AuctionStatus.Upcoming)
             ? "Starts" : "Ends";
 
-        var diff = target - DateTime.UtcNow;
+        var diff = target - JordanTime.Now;
         if (diff <= TimeSpan.Zero) return $"{verb} shortly";
         if (diff.TotalHours < 1) return $"{verb} in {diff.Minutes}m";
         if (diff.TotalDays < 1) return $"{verb} in {diff.Hours}h {diff.Minutes}m";
@@ -295,7 +295,7 @@ public class AuctionController : Controller
 
     private static string FormatTimeAgo(DateTime placedAt)
     {
-        var diff = DateTime.UtcNow - placedAt;
+        var diff = JordanTime.Now - placedAt;
         if (diff.TotalMinutes < 1) return "Just now";
         if (diff.TotalMinutes < 60) return $"{(int)diff.TotalMinutes}m ago";
         if (diff.TotalHours < 24) return $"{(int)diff.TotalHours}h ago";

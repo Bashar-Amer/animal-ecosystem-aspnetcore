@@ -29,8 +29,8 @@ namespace WebApp.Controllers
 
             var heroAuction = await _dbContext.Auctions
             .Where(a =>
-                     //(a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
-                     a.ModerationStatus == AuctionModerationStatus.Approved
+                     (a.Status == AuctionStatus.Live || a.Status == AuctionStatus.EndingSoon)
+                     && a.ModerationStatus == AuctionModerationStatus.Approved
                      && a.Animal.ModerationStatus == ModerationStatus.Approved)
             .Include(a => a.Animal).ThenInclude(an => an.Images)
             .Include(a => a.Bids)

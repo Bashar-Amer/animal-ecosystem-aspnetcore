@@ -24,7 +24,7 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var now = DateTime.UtcNow;
+            var now = JordanTime.Now;
             var weekAgo = now.AddDays(-7);
 
             var totalActiveListings = await _dbContext.Animals
@@ -170,7 +170,7 @@ namespace WebApp.Controllers
             }
 
             auction.ModerationStatus = AuctionModerationStatus.Approved;
-            auction.ModeratedAt = DateTime.UtcNow;
+            auction.ModeratedAt = JordanTime.Now;
             auction.ModeratedByAdminId = _userManager.GetUserId(User);
             auction.RejectionReason = null;
 
@@ -186,7 +186,7 @@ namespace WebApp.Controllers
             if (auction == null) return NotFound();
 
             auction.ModerationStatus = AuctionModerationStatus.Rejected;
-            auction.ModeratedAt = DateTime.UtcNow;
+            auction.ModeratedAt = JordanTime.Now;
             auction.ModeratedByAdminId = _userManager.GetUserId(User);
             auction.RejectionReason = reason;
 
@@ -202,7 +202,7 @@ namespace WebApp.Controllers
             if (animal == null) return NotFound();
 
             animal.ModerationStatus = ModerationStatus.Approved;
-            animal.ModeratedAt = DateTime.UtcNow;
+            animal.ModeratedAt = JordanTime.Now;
             animal.ModeratedByAdminId = _userManager.GetUserId(User);
             animal.RejectionReason = null;
 
@@ -218,7 +218,7 @@ namespace WebApp.Controllers
             if (animal == null) return NotFound();
 
             animal.ModerationStatus = ModerationStatus.Rejected;
-            animal.ModeratedAt = DateTime.UtcNow;
+            animal.ModeratedAt = JordanTime.Now;
             animal.ModeratedByAdminId = _userManager.GetUserId(User);
             animal.RejectionReason = reason;
 
@@ -234,7 +234,7 @@ namespace WebApp.Controllers
             if (vetProfile == null) return NotFound();
 
             vetProfile.IsVerified = true;
-            vetProfile.VerifiedAt = DateTime.UtcNow;
+            vetProfile.VerifiedAt = JordanTime.Now;
             vetProfile.VerifiedByAdminId = _userManager.GetUserId(User);
 
             await _dbContext.SaveChangesAsync();

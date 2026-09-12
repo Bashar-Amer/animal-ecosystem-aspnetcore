@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Enums;
+using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels.Animals;
 using WebApp.ViewModels.Auctions;
@@ -148,7 +149,7 @@ public class MarketplaceController : Controller
             {
                 Id = animal.Owner?.Id ?? "",
                 FullName = animal.Owner?.FullName ?? "Unknown seller",
-                CreatedAt = animal.Owner?.CreatedAt ?? DateTime.UtcNow,
+                CreatedAt = animal.Owner?.CreatedAt ?? JordanTime.Now,
                 IsVerified = animal.Owner?.IsVerified ?? false,
                 Location = animal.Owner?.Location,
                 PhoneNumber = animal.Owner?.PhoneNumber

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Helpers;
 
 namespace WebApp.ViewModels.MyAnimals
 {
@@ -18,9 +19,9 @@ namespace WebApp.ViewModels.MyAnimals
         public decimal MinIncrement { get; set; } = 5;
 
         [Required]
-        public DateTime StartTime { get; set; } = DateTime.UtcNow;
+        public DateTime StartTime { get; set; } = JordanTime.Now;
 
         [Required]
-        public DateTime EndTime { get; set; } = DateTime.UtcNow.AddDays(3);
+        public DateTime EndTime { get; set; } = JordanTime.Now.AddDays(3);
     }
 }

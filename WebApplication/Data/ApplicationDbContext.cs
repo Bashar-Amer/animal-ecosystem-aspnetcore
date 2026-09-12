@@ -30,10 +30,7 @@ namespace WebApp.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Global default: no cascading deletes. This prevents multi-path cascade
-            // cycles (common once ApplicationUser is referenced from many entities)
-            // and is generally safer — deleting a user shouldn't silently wipe out
-            // their bids, reviews, appointments, etc.
+          
             foreach (var foreignKey in modelBuilder.Model
                 .GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())
